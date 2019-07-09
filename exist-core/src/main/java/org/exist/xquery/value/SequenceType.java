@@ -99,7 +99,7 @@ name|SequenceType
 parameter_list|()
 block|{
 block|}
-comment|/**      * Construct a new SequenceType using the specified      * primary type and cardinality constants.      *      * @param primaryType      * @param cardinality      */
+comment|/**      * Construct a new SequenceType using the specified      * primary type and cardinality constants.      *      * @param primaryType one of the constants defined in {@link Type}      * @param cardinality one of the constants defined in {@link Cardinality}      */
 specifier|public
 name|SequenceType
 parameter_list|(
@@ -123,7 +123,7 @@ operator|=
 name|cardinality
 expr_stmt|;
 block|}
-comment|/**      * Returns the primary type as one of the      * constants defined in {@link Type}.      */
+comment|/**      * Returns the primary type as one of the      * constants defined in {@link Type}.      *      * @return the primary type as one of the constants defined in {@link Type}      */
 specifier|public
 name|int
 name|getPrimaryType
@@ -148,7 +148,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**      * Returns the expected cardinality. See the constants      * defined in {@link Cardinality}.      */
+comment|/**      * Returns the expected cardinality. See the constants      * defined in {@link Cardinality}.      *      * @return expected cardinality, one of {@link Cardinality}      */
 specifier|public
 name|int
 name|getCardinality
@@ -197,7 +197,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      * Check the specified sequence against this SequenceType.      *      * @param seq      * @throws XPathException      * @throws XPathException      */
+comment|/**      * Check the specified sequence against this SequenceType.      *      * @param seq sequence to check      * @throws XPathException if check fails for one item in the sequence      * @return true, if all items of the sequence have the same type as or a subtype of primaryType      */
 specifier|public
 name|boolean
 name|checkType
@@ -278,7 +278,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Check a single item against this SequenceType.      *      * @param item      */
+comment|/**      * Check a single item against this SequenceType.      *      * @param item the item to check      * @return true, if item is a subtype of primaryType      */
 specifier|public
 name|boolean
 name|checkType
@@ -430,7 +430,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Check the given type against the primary type      * declared in this SequenceType.      *      * @param type      * @throws XPathException      */
+comment|/**      * Check the given type against the primary type      * declared in this SequenceType.      *      * @param type one of the constants defined in {@link Type}      * @throws XPathException if subtype check fails      */
 specifier|public
 name|void
 name|checkType
@@ -514,7 +514,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Check if the given sequence has the cardinality required      * by this sequence type.      *      * @param seq      * @throws XPathException      */
+comment|/**      * Check if the given sequence has the cardinality required      * by this sequence type.      *      * @param seq the sequence to check      * @throws XPathException if cardinality does not match      */
 specifier|public
 name|void
 name|checkCardinality

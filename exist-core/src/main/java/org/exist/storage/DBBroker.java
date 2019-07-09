@@ -1125,7 +1125,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Observer Design Pattern: add an observer. */
+comment|/**      * Observer Design Pattern: add an observer.      *      * @param observer the observer      */
 specifier|public
 name|void
 name|addContentLoadingObserver
@@ -1154,7 +1154,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Observer Design Pattern: remove an observer. */
+comment|/**      * Observer Design Pattern: remove an observer.      *      * @param observer the observer      */
 specifier|public
 name|void
 name|removeContentLoadingObserver
@@ -1182,7 +1182,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param docs a (possibly empty) document set to which the found documents are added.      */
+comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param docs a (possibly empty) document set to which the found documents are added.      * @return all XML resources as MutableDocumentSet      * @throws PermissionDeniedException when one collection can not be accessed      * @throws LockException when one collection is locked      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet
@@ -1221,7 +1221,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-comment|/**      * Gets a database Collection.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * The returned Collection will NOT HAVE a lock.      *      * The caller should take care to release any associated resource by      * calling {@link Collection#close()}      *      * In general, accessing Collections without a lock provides no consistency guarantees.      * This function should only be used where estimated reads are needed, no writes should      * be performed on a Collection retrieved by this function.      * If you are uncertain whether this function is safe for you to use, you should always      * use {@link #openCollection(XmldbURI, LockMode)} instead.      *       * @return the Collection, or null if no Collection matches the path      */
+comment|/**      * Gets a database Collection.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * The returned Collection will NOT HAVE a lock.      *      * The caller should take care to release any associated resource by      * calling {@link Collection#close()}      *      * In general, accessing Collections without a lock provides no consistency guarantees.      * This function should only be used where estimated reads are needed, no writes should      * be performed on a Collection retrieved by this function.      * If you are uncertain whether this function is safe for you to use, you should always      * use {@link org.exist.storage.DBBroker#openCollection(XmldbURI, LockMode)} instead.      *      * @param uri The Collection's path      * @return the Collection, or null if no Collection matches the path      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 annotation|@
 name|Nullable
 annotation|@
@@ -1237,7 +1237,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Open a Collection for reading or writing.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * It will be loaded and locked according to the lockMode argument.      *       * The caller should take care to release the Collection lock properly by      * calling {@link Collection#close()}      *       * @param uri The Collection's path      * @param lockMode the mode for locking the Collection, as specified in {@link LockMode}      *      * @return the Collection, or null if no Collection matches the path      */
+comment|/**      * Open a Collection for reading or writing.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * It will be loaded and locked according to the lockMode argument.      *       * The caller should take care to release the Collection lock properly by      * calling {@link Collection#close()}      *       * @param uri The Collection's path      * @param lockMode the mode for locking the Collection, as specified in {@link LockMode}      *      * @return the Collection, or null if no Collection matches the path      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 annotation|@
 name|Nullable
 annotation|@
@@ -1289,7 +1289,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param uri The collection's URI      * @param creationAttributes the attributes to use if the collection needs to be created.      * @return The collection or<code>null</code> if no collection matches the path      * @throws PermissionDeniedException      * @throws IOException      * @throws TriggerException      */
+comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param uri The collection's URI      * @param creationAttributes the attributes to use if the collection needs to be created.      * @return The collection or<code>null</code> if no collection matches the path      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws TriggerException If a CollectionTrigger throws an exception      */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1319,7 +1319,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Returns the configuration object used to initialize the current database      * instance.      */
+comment|/**      * Returns the configuration object used to initialize the current database      * instance.      *      * @return the configuration      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -1329,7 +1329,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/**      * Return a {@link org.exist.storage.dom.NodeIterator} starting at the      * specified node.      *       * @param node      * @return NodeIterator of node.      */
+comment|/**      * Return a {@link org.exist.storage.dom.NodeIterator} starting at the      * specified node.      *       * @param node the NodeHandle      * @return NodeIterator of node.      * @throws RuntimeException not implemented      */
 specifier|public
 name|INodeIterator
 name|getNodeIterator
@@ -1337,6 +1337,8 @@ parameter_list|(
 name|NodeHandle
 name|node
 parameter_list|)
+throws|throws
+name|RuntimeException
 block|{
 throw|throw
 operator|new
@@ -1346,7 +1348,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      *       * public abstract Document getXMLResource(String path) throws      * PermissionDeniedException;      */
+comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *      * @param docURI the XmldbURI to the resource      * @return the document or null if no document could be found at the      *         specified location.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 specifier|public
 specifier|abstract
 annotation|@
@@ -1360,7 +1362,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a document by its file name. The document's file name is used to      * identify a document.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @param accessType The access mode for the resource e.g. {@link org.exist.security.Permission#READ}      * @return The document value or null if no document could be found      */
+comment|/**      * Get a document by its file name. The document's file name is used to      * identify a document.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path      * @param accessType The access mode for the resource e.g. {@link org.exist.security.Permission#READ}      * @return The document value or null if no document could be found      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 specifier|public
 specifier|abstract
 annotation|@
@@ -1396,7 +1398,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock.      *       * @return the document or null if no document could be found at the      *         specified location.      */
+comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path.      * @param lockMode one of the modes in {@link LockMode}      *      * @return the document or null if no document could be found at the      *         specified location.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 annotation|@
 name|Nullable
 annotation|@
@@ -1415,7 +1417,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a new document id that does not yet exist within the collection.      * @throws EXistException       */
+comment|/**      * Get a new document id that does not yet exist within the collection.      *      * @param transaction the transaction      *      * @return next resource ID      *      * @throws EXistException when something went wrong      * @throws LockException when the resource or collection is locked      */
 specifier|public
 specifier|abstract
 name|int
@@ -1429,7 +1431,7 @@ name|EXistException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be added      * between adjacent elements in mixed content nodes.      */
+comment|/**      * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be added      * between adjacent elements in mixed content nodes.      * @param node the node      * @param addWhitespace to add whitespace or not      *      * @return the node value as String      *      * @throws RuntimeException not implemented      */
 specifier|public
 name|String
 name|getNodeValue
@@ -1449,7 +1451,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Get an instance of the Serializer used for converting nodes back to XML.      * Subclasses of DBBroker may have specialized subclasses of Serializer to      * convert a node into an XML-string      */
+comment|/**      * Get an instance of the Serializer used for converting nodes back to XML.      * Subclasses of DBBroker may have specialized subclasses of Serializer to      * convert a node into an XML-string      * @return the {@link Serializer}      */
 specifier|public
 specifier|abstract
 name|Serializer
@@ -1480,7 +1482,7 @@ argument_list|>
 name|chainOfReceivers
 parameter_list|)
 function_decl|;
-comment|/**      * Get a node with given owner document and id from the database.      *       * @param doc      *            the document the node belongs to      * @param nodeId      *            the node's unique identifier      */
+comment|/**      * Get a node with given owner document and id from the database.      *       * @param doc the document the node belongs to      * @param nodeId the node's unique identifier      *      * @return the IStoredNode      */
 specifier|public
 specifier|abstract
 name|IStoredNode
@@ -1563,7 +1565,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 function_decl|;
-comment|/**      * Remove a document from the database.      *      */
+comment|/**      * Remove a document from the database.      *      * @param tx the transaction      * @param doc the document      *      * @throws IOException If an error occurs whilst removing the Collection from disk      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 specifier|public
 specifier|abstract
 name|void
@@ -1589,7 +1591,7 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      * @param transaction the transaction      * @param document the document      *      * @throws IOException If an error occurs whilst removing the Collection from disk      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 specifier|public
 name|void
 name|removeXMLResource
@@ -1624,7 +1626,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      * @param transaction the transaction      * @param document the document      * @param freeDocId true, if the document ID can be freed      *      * @throws IOException If an error occurs whilst removing the Collection from disk      * @throws PermissionDeniedException If the current user does not have appropriate permissions      */
 specifier|public
 specifier|abstract
 name|void
@@ -1663,7 +1665,7 @@ name|REPAIR
 block|,
 name|REMOVE
 block|}
-comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param transaction      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
+comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param transaction the transaction      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
 specifier|public
 specifier|abstract
 name|void
@@ -1804,7 +1806,7 @@ name|void
 name|shutdown
 parameter_list|()
 function_decl|;
-comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param node      *            the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element.      */
+comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param transaction the current transaction      * @param node the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element.      * @param indexSpec the IndexSpec      * @param<T> the return type      */
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -1893,7 +1895,7 @@ name|boolean
 name|remove
 parameter_list|)
 function_decl|;
-comment|/**      * Store a document (descriptor) into the database.      *       * @param doc      *            the document's metadata to store.      */
+comment|/**      * Store a document (descriptor) into the database.      *      * @param transaction the current transaction      * @param doc      *            the document's metadata to store.      */
 specifier|public
 specifier|abstract
 name|void
@@ -1938,7 +1940,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
-comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *      * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      */
+comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *      * @param transaction the current transaction      * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      *      * @throws IOException If an error occurs whilst writing the binary resource to disk      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -1968,7 +1970,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *       * @param blob      *            the binary document descriptor      * @param is      *            the document binary data as input stream      */
+comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *      * @param transaction the current transaction      * @param blob      *            the binary document descriptor      * @param is      *            the document binary data as input stream      *      * @throws IOException If an error occurs whilst writing the binary resource to disk      */
 specifier|public
 specifier|abstract
 name|void
@@ -2006,7 +2008,7 @@ name|InternalAccess
 name|collectionInternalAccess
 parameter_list|)
 function_decl|;
-comment|/**      * @deprecated use {@link #readBinaryResource(Txn, BinaryDocument, OutputStream)}      */
+comment|/**      * @deprecated use {@link #readBinaryResource(Txn, BinaryDocument, OutputStream)}      * @param blob      *            the binary document descriptor      * @param os the OutputStream to use      * @throws IOException If an error occurs whilst reading the binary resource from disk      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2063,7 +2065,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @deprecated use {@link #withBinaryFile(Txn, BinaryDocument, Function)}      */
+comment|/**      * @deprecated use {@link #withBinaryFile(Txn, BinaryDocument, Function)}      * @param blob      *            the binary document descriptor      * @return the path to the binary document      * @throws IOException If an error occurs whilst reading the binary resource from disk      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2087,7 +2089,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Perform an operation with a {@link Path} reference to the BLOB file      * backing a Binary Document.      *      * NOTE: Use of this method should be avoided where possible. It only      * exists for integration with tools which can only      * work with File Paths and where making a copy of the file is not      * necessary.      *      * WARNING: The provided {@link Path} MUST ONLY be used for      * READ operations, any WRITE/DELETE operation will corrupt the      * integrity of the blob store.      *      * Consider if you really need to use this method. It is likely you could      * instead use {@link #getBinaryResource(Txn, BinaryDocument)} and make a      * copy of the data to a temporary file.      *      * Note that any resources associated with the BLOB file      * may not be released until the {@code fnFile} has finished executing.      *      * USE WITH CAUTION!      *      * @param transaction the current database transaction.      * @param binaryDocument the binary document to retrieve the backing BLOB file for.      * @param<T> the type of the return value      * @param fnFile a function which performs a read-only operation on the BLOB file.      *     The Path will be null if the Blob does not exist in the Blob Store.      *     If you wish to handle exceptions in your function you should consider      *     {@link com.evolvedbinary.j8fu.Try} or similar.      *      * @throws IOException if an error occurs whilst retrieving the BLOB file.      */
+comment|/**      * Perform an operation with a {@link Path} reference to the BLOB file      * backing a Binary Document.      *      * NOTE: Use of this method should be avoided where possible. It only      * exists for integration with tools which can only      * work with File Paths and where making a copy of the file is not      * necessary.      *      * WARNING: The provided {@link Path} MUST ONLY be used for      * READ operations, any WRITE/DELETE operation will corrupt the      * integrity of the blob store.      *      * Consider if you really need to use this method. It is likely you could      * instead use {@link #getBinaryResource(Txn, BinaryDocument)} and make a      * copy of the data to a temporary file.      *      * Note that any resources associated with the BLOB file      * may not be released until the {@code fnFile} has finished executing.      *      * USE WITH CAUTION!      *      * @param transaction the current database transaction.      * @param binaryDocument the binary document to retrieve the backing BLOB file for.      * @param<T> the type of the return value      * @param fnFile a function which performs a read-only operation on the BLOB file.      *     The Path will be null if the Blob does not exist in the Blob Store.      *     If you wish to handle exceptions in your function you should consider      *     {@link com.evolvedbinary.j8fu.Try} or similar.      * @return T      *      * @throws IOException if an error occurs whilst retrieving the BLOB file.      */
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -2125,7 +2127,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @deprecated use {@link #getBinaryResource(Txn, BinaryDocument)}      */
+comment|/**      * @deprecated use {@link #getBinaryResource(Txn, BinaryDocument)}      * @param blob      *            the binary document descriptor      * @return the InputStream      * @throws IOException if an error occurs whilst retrieving the binary resource.      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2174,7 +2176,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @deprecated use {@link BinaryDocument#getContentLength()}      */
+comment|/**      * @deprecated use {@link BinaryDocument#getContentLength()}      * @param blob      *            the binary document descriptor      * @return the size of the binary resource      * @throws IOException if an error occurs whilst retrieving the binary resource.      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2198,7 +2200,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Get the Digest of the content of a Binary Document.      *      * @param transaction the database transaction      * @param binaryDocument the binary document      * @param digestType the type of the digest      *      * @return the message digest of the content of the Binary Document      */
+comment|/**      * Get the Digest of the content of a Binary Document.      *      * @param transaction the database transaction      * @param binaryDocument the binary document      * @param digestType the type of the digest      *      * @return the message digest of the content of the Binary Document      * @throws IOException if an error occurs whilst retrieving the digest.      */
 specifier|public
 specifier|abstract
 name|MessageDigest
@@ -2219,7 +2221,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Completely delete this binary document (descriptor and binary data).      *       * @param blob      *            the binary document descriptor      * @throws PermissionDeniedException      *             if you don't have the right to do this      */
+comment|/**      * Completely delete this binary document (descriptor and binary data).      *      * @param transaction The current transaction      * @param blob the binary document descriptor      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws IOException if an error occurs whilst removing the binary resource.      */
 specifier|public
 specifier|abstract
 name|void
@@ -2335,7 +2337,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param sourceCollection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param sourceCollection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      * @throws EXistException If an internal error occurs      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2384,7 +2386,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/**      * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param sourceCollection The origin collection      * @param targetCollection The destination parent collection      * @param newName The new name of the collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      */
+comment|/**      * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param sourceCollection The origin collection      * @param targetCollection The destination parent collection      * @param newName The new name of the collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      * @throws EXistException If an internal error occurs      */
 specifier|public
 specifier|abstract
 name|void
@@ -2435,7 +2437,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param sourceDocument the resource to copy 	 * @param targetCollection the destination collection 	 * @param newName the new name the resource should have in the destination collection      * 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 *      * @param transaction The current transaction 	 * @param sourceDocument the resource to copy 	 * @param targetCollection the destination collection 	 * @param newName the new name the resource should have in the destination collection      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      * @throws EXistException If an internal error occurs      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2484,7 +2486,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/**      * Copy a resource to the destination collection and rename it.      * 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection`      *      * @param sourceDocument the resource to copy      * @param targetCollection the destination collection      * @param newName the new name the resource should have in the destination collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException      * @throws LockException      * @throws EXistException      */
+comment|/**      * Copy a resource to the destination collection and rename it.      * 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection`      *      * @param transaction The current transaction      * @param sourceDocument the resource to copy      * @param targetCollection the destination collection      * @param newName the new name the resource should have in the destination collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      * @throws EXistException If an internal error occurs      */
 specifier|public
 specifier|abstract
 name|void
@@ -2535,7 +2537,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
+comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *      * @param transaction The current transaction 	 * @param doc to defrag 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2557,7 +2559,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
+comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc the document to check the XML tree in 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2596,7 +2598,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync#MAJOR}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 */
+comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync#MAJOR}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent the event 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2606,7 +2608,7 @@ name|Sync
 name|syncEvent
 parameter_list|)
 function_decl|;
-comment|/** 	 * Update a node's data. To keep nodes in a correct sequential order, it is 	 * sometimes necessary to update a previous written node. Warning: don't use 	 * it for other purposes. 	 *  	 * @param node 	 *            Description of the Parameter 	 */
+comment|/** 	 * Update a node's data. To keep nodes in a correct sequential order, it is 	 * sometimes necessary to update a previous written node. Warning: don't use 	 * it for other purposes. 	 *      * @param transaction the current transaction 	 * @param node the node to update      * @param reindex true will trigger a reindex      * @param<T> the type to return 	 */
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -2764,7 +2766,7 @@ name|Txn
 name|transaction
 parameter_list|)
 function_decl|;
-comment|/** 	 * Create a temporary document in the temp collection and store the supplied 	 * data. 	 *  	 * @param doc 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Create a temporary document in the temp collection and store the supplied 	 * data. 	 *  	 * @param doc the document to store      * @return the temporary document      *      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks 	 */
 specifier|public
 specifier|abstract
 annotation|@
@@ -2790,7 +2792,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 * @param forceRemoval Should temporary resources be forcefully removed 	 */
+comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 * @param forceRemoval Should temporary resources be forcefully removed      * @throws PermissionDeniedException If the current user does not have appropriate permissions 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2809,7 +2811,7 @@ name|void
 name|checkAvailableMemory
 parameter_list|()
 function_decl|;
-comment|/**      * Get all the documents in this database matching the given      * document-type's name.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param doctype The doctype to match documents against      * @param result a (possibly empty) document set to which the found documents are added.      *      * @return The result      */
+comment|/**      * Get all the documents in this database matching the given      * document-type's name.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param doctype The doctype to match documents against      * @param result a (possibly empty) document set to which the found documents are added.      *      * @return The result      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet
@@ -3103,7 +3105,7 @@ return|return
 name|currentTransaction
 return|;
 block|}
-comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      */
+comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      * @return the transaction      */
 annotation|@
 name|Deprecated
 specifier|public
