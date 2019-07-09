@@ -1872,7 +1872,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add all context nodes from the other NodeProxy to the      * context of this NodeProxy.      *      * @param other      */
+comment|/**      * Add all context nodes from the other NodeProxy to the      * context of this NodeProxy.      *      * @param other NodePoxy to take context from      */
 specifier|public
 name|void
 name|addContext

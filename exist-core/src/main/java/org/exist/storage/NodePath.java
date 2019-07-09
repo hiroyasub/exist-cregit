@@ -248,7 +248,6 @@ operator|=
 name|includeDescendants
 expr_stmt|;
 block|}
-comment|/**      *       */
 specifier|public
 name|NodePath
 parameter_list|(
@@ -568,7 +567,6 @@ return|return
 name|pos
 return|;
 block|}
-comment|/**      * @throws ArrayIndexOutOfBoundsException      */
 specifier|public
 name|QName
 name|getComponent

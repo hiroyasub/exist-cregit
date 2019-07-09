@@ -319,7 +319,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**      * Get the Blob Store id for the      * content of this document.      *      * @return      */
+comment|/**      * Get the Blob Store id for the      * content of this document.      *      * @return the Blob Store id for the content of this document.      */
 annotation|@
 name|Nullable
 specifier|public
@@ -431,7 +431,7 @@ name|ostream
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Deserialize the document object from bytes.      *      * @param pool the database      * @param istream the byte stream to read      *      * @return the document object.      */
+comment|/**      * Deserialize the document object from bytes.      *      * @param pool the database      * @param istream the byte stream to read      *      * @return the document object.      * @throws IOException in case of an I/O error      */
 specifier|public
 specifier|static
 name|BinaryDocument

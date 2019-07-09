@@ -308,7 +308,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
+comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      * @throws DatabaseConfigurationException in case of an error in the config      */
 specifier|public
 specifier|static
 name|void
@@ -343,7 +343,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      * @param statusObserver    Observes the status of this database instance      *      * @throws EXistException If the initialization fails.      */
+comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      * @param statusObserver    Observes the status of this database instance      *      * @throws EXistException If the initialization fails.      * @throws DatabaseConfigurationException in case of an error in the config      */
 specifier|public
 specifier|static
 name|void

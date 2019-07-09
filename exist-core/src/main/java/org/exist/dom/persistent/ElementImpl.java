@@ -767,7 +767,7 @@ name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructor for the ElementImpl object      *      * @param nodeName Description of the Parameter      */
+comment|/**      * Constructor for the ElementImpl object      * @param symbols for ElementImpl      * @param nodeName Description of the Parameter      */
 specifier|public
 name|ElementImpl
 parameter_list|(
@@ -2781,7 +2781,7 @@ name|ns
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Append a child to this node. This method does not rearrange the      * node tree and is only used internally by the parser.      *      * @param child      * @throws DOMException      */
+comment|/**      * Append a child to this node. This method does not rearrange the      * node tree and is only used internally by the parser.      * @param prevNode node to append child to      * @param child node to append      *      * @throws DOMException in case of a DOM error      */
 specifier|public
 name|void
 name|appendChildInternal
@@ -9389,7 +9389,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Insert a list of nodes at the position following the reference      * child.      */
+comment|/**      * Insert a list of nodes at the position following the reference      * child.      * @param transaction the transaction      * @param nodes to be inserted      * @param refChild nodes will be added after      * @throws DOMException in case of a DOM error      */
 annotation|@
 name|Override
 specifier|public
@@ -9688,7 +9688,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Update the contents of this element. The passed list of nodes      * becomes the new content.      *      * @param newContent      * @throws DOMException      */
+comment|/**      * Update the contents of this element. The passed list of nodes      * becomes the new content.      * @param transaction the transaction      * @param newContent the context      * @throws DOMException in case of a DOM exception      */
 specifier|public
 name|void
 name|update
@@ -10097,7 +10097,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
+comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild to be replace      * @param newChild to be added      * @throws DOMException in case of a DOM error      */
 annotation|@
 name|Override
 specifier|public
@@ -11474,7 +11474,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Replaces the oldNode with the newChild      *      * @param transaction      * @param newChild      * @param oldChild      * @return The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+comment|/**      * Replaces the oldNode with the newChild      *      * @param transaction the transaction      * @param newChild to replace oldChild      * @param oldChild to be replace by newChild      * @return The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      * @throws DOMException in case of a DOM error      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public

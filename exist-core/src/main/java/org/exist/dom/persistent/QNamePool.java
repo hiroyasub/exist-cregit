@@ -143,7 +143,7 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/**      * Return a QName object for the given local name, namespace and      * prefix. Return null if the QName has not yet been added to the pool.      *      * @param type      * @param namespaceURI      * @param localName      * @param prefix      * @return QName object      */
+comment|/**      * Return a QName object for the given local name, namespace and      * prefix. Return null if the QName has not yet been added to the pool.      *      * @param type qname type      * @param namespaceURI qname namespace uri      * @param localName qname local name      * @param prefix qname prefix      * @return QName object      */
 specifier|public
 specifier|final
 name|QName
@@ -321,7 +321,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Add a QName, consisting of namespace, local name and prefix, to the      * pool.      */
+comment|/**      * Add a QName, consisting of namespace, local name and prefix, to the      * pool.      * @param namespaceURI qname namespace uri      * @param localName qname local name      * @param prefix qname prefix      * @param type qname type      * @return QName object      */
 specifier|public
 specifier|final
 name|QName

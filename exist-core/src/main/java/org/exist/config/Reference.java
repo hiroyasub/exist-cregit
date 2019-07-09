@@ -37,7 +37,7 @@ name|O
 name|resolve
 parameter_list|()
 function_decl|;
-comment|/**      * Get the name of the reference      */
+comment|/**      * Get the name of the reference      * @return name of the reference      */
 name|String
 name|getName
 parameter_list|()

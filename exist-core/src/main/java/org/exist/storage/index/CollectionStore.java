@@ -280,7 +280,6 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * @param pool      * @param id      * @param dataDir      * @param config      * @throws DBException      */
 specifier|public
 name|CollectionStore
 parameter_list|(

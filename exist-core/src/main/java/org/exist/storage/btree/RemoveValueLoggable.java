@@ -92,7 +92,6 @@ specifier|protected
 name|long
 name|oldPointer
 decl_stmt|;
-comment|/**      * @param fileId       * @param pageNum       * @param idx       * @param oldValue       * @param oldPointer       * @param transaction       */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(
@@ -151,7 +150,6 @@ operator|=
 name|oldPointer
 expr_stmt|;
 block|}
-comment|/**      * @param broker       * @param transactionId       */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(

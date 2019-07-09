@@ -1773,7 +1773,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**      * Append a value to the current page.      *       * This method is called when storing a new document. Each writing thread      * gets its own sequence of pages for writing a document, so all document      * nodes are stored in sequential order. A new page will be allocated if the      * current page is full. If the value is larger than the page size, it will      * be written to an overflow page.      *       * @param value the value to append      * @return the virtual storage address of the value      */
+comment|/**      * Append a value to the current page.      *       * This method is called when storing a new document. Each writing thread      * gets its own sequence of pages for writing a document, so all document      * nodes are stored in sequential order. A new page will be allocated if the      * current page is full. If the value is larger than the page size, it will      * be written to an overflow page.      *      * @param transaction to be documented      * @param value the value to append      * @return the virtual storage address of the value      * @throws ReadOnlyException to be documented      */
 specifier|public
 name|long
 name|add
@@ -1922,7 +1922,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value      * @param overflowPage      * @return the virtual storage address of the value      * @throws ReadOnlyException      */
+comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value to be documented      * @param overflowPage to be documented      * @return the virtual storage address of the value      * @throws ReadOnlyException to be documented      */
 specifier|private
 name|long
 name|add
@@ -2422,7 +2422,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value Binary resource as byte array      */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value Binary resource as byte array      * @param transaction to be documented      * @param doc to be documented      * @return to be documented      *      */
 specifier|public
 name|long
 name|addBinary
@@ -2585,7 +2585,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**      * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}.      *       * @param pageNum      */
+comment|/**      * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}.      *       * @param pageNum to be documented      * @return binary data stored      */
 specifier|public
 name|byte
 index|[]
@@ -2704,7 +2704,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Insert a new node after the specified node.      *       * @param key      * @param value      */
+comment|/**      * Insert a new node after the specified node.      *       * @param key to be documented      * @param value to be documented      * @param transaction to be documented      * @param doc to be documented      * @return to be documented      */
 specifier|public
 name|long
 name|insertAfter
@@ -2832,7 +2832,7 @@ return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
-comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc       the document to which the new node belongs.      * @param address   the storage address of the node after which the       *                  new value should be inserted.      * @param value     the value of the new node.      */
+comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc       the document to which the new node belongs.      * @param address   the storage address of the node after which the       *                  new value should be inserted.      * @param value     the value of the new node.      * @param transaction to be documented      * @return to be documented      */
 specifier|public
 name|long
 name|insertAfter
@@ -8529,7 +8529,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Retrieve node at virtual address.      *       * @param node The virtual address      * @return  The reference of the node      */
+comment|/**      * Retrieve node at virtual address.      * @param broker to be documented      * @param node The virtual address      * @return  The reference of the node      * @throws IOException to be documented      * @throws BTreeException to be documented      *      */
 specifier|protected
 name|long
 name|findValue
@@ -9457,7 +9457,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve a node by key      *       * @param key      * @return Description of the Return Value      */
+comment|/**      * Retrieve a node by key      *       * @param key to be documented      * @return Description of the Return Value      */
 specifier|public
 name|Value
 name|get
@@ -10061,7 +10061,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Put a new key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Put a new key/value pair.      *      * @param transaction to be documented      * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      * @throws ReadOnlyException to be documented      */
 specifier|public
 name|long
 name|put
@@ -10155,7 +10155,8 @@ return|return
 name|pointer
 return|;
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
+comment|// Physically remove a node. The data of the node will be removed from the
+comment|// page and the occupied space is freed.
 comment|//Unused ? -pb
 comment|//public void remove(Value key) {
 comment|//if (!lock.isLockedForWrite())
@@ -10766,7 +10767,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *       * @param pointer      */
+comment|// Physically remove a node. The data of the node will be removed from the
+comment|// page and the occupied space is freed.
 comment|//Seems to be unused -pb
 comment|//public void removeNode(long pointer) {
 comment|//removeNode(null, pointer);
@@ -11402,7 +11404,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      * @param transaction to be documented      * @param pointer to be documented      * @param key to be documented      */
 specifier|public
 name|void
 name|remove
@@ -11458,7 +11460,7 @@ expr_stmt|;
 comment|//TODO : rethrow exception ? -pb
 block|}
 block|}
-comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page      */
+comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page to be documented      */
 specifier|private
 name|void
 name|removePage
@@ -11699,7 +11701,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      */
+comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      *      * @param pointer to be documented      * @param transaction to be documented      */
 specifier|public
 name|void
 name|removeAll
@@ -12105,7 +12107,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Update the key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Update the key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @param transaction to be documented      * @return Description of the Return Value      * @throws ReadOnlyException to be documented      */
 specifier|public
 name|boolean
 name|update
@@ -12198,7 +12200,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Update the key/value pair where the value is found at address p.       */
+comment|/**      * Update the key/value pair where the value is found at address p.      * @param transaction to be documented      * @param pointer to be documented      * @param value to be documented      * @throws ReadOnlyException to be documented      */
 specifier|public
 name|void
 name|update
@@ -12472,7 +12474,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Retrieve the string value of the specified node. This is an optimized low-level method      * which will directly traverse the stored DOM nodes and collect the string values of      * the specified root node and all its descendants. By directly scanning the stored      * node data, we do not need to create a potentially large amount of node objects      * and thus save memory and time for garbage collection.       *       * @param node      * @return string value of the specified node      */
+comment|/**      * Retrieve the string value of the specified node. This is an optimized low-level method      * which will directly traverse the stored DOM nodes and collect the string values of      * the specified root node and all its descendants. By directly scanning the stored      * node data, we do not need to create a potentially large amount of node objects      * and thus save memory and time for garbage collection.       *       * @param node to be documented      * @param broker to be documented      * @param addWhitespace to be documented      * @return string value of the specified node      */
 specifier|public
 name|String
 name|getNodeValue
@@ -13707,7 +13709,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Find a record within the page or the pages linked to it.      *       * @param pointer      * @return The record position in the page      */
+comment|/**      * Find a record within the page or the pages linked to it.      *       * @param pointer  to be documented      * @param skipLinks to be documented      * @return The record position in the page      */
 specifier|protected
 name|RecordPos
 name|findRecord

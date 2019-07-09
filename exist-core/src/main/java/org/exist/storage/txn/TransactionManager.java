@@ -1487,7 +1487,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * @deprecated This mixes concerns and should not be here!      */
+comment|/**      * @deprecated This mixes concerns and should not be here!      * @param broker the  eXist-db DBBroker      * @throws IOException in response to an I/O error      */
 annotation|@
 name|Deprecated
 specifier|public

@@ -159,7 +159,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Returns the path corresponding to this index.      */
+comment|/**      * @return the path corresponding to this index.      */
 specifier|public
 name|NodePath
 name|getPath
@@ -169,7 +169,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/**      * Check if the path argument matches the path      * of this index spec.      *       * @param otherPath      * @return Whether or not the 2 paths match      */
+comment|/**      * Check if the path argument matches the path      * of this index spec.      *       * @param otherPath path argument to check      * @return Whether or not the 2 paths match      */
 specifier|protected
 name|boolean
 name|matches

@@ -360,7 +360,7 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy      * @param sizeHint      */
+comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy the proxy object      * @param sizeHint hint about the number of items      */
 annotation|@
 name|Override
 specifier|public
@@ -382,7 +382,7 @@ name|proxy
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other      * @throws XPathException      */
+comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other sequence of items to be added      * @throws XPathException in case of an XPath error      */
 annotation|@
 name|Override
 specifier|public
@@ -800,7 +800,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId      */
+comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId the context id      * @return all ancestors having descendants in this node set      */
 annotation|@
 name|Override
 specifier|public
@@ -1698,7 +1698,7 @@ return|return
 name|ancestors
 return|;
 block|}
-comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc      */
+comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc the document to get the hint for      * @return hint about how many nodes in this node set belong to the specified document      */
 annotation|@
 name|Override
 specifier|public
@@ -1716,7 +1716,7 @@ operator|.
 name|NO_SIZE_HINT
 return|;
 block|}
-comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other      */
+comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other to intersect the current node set with      * @return new node set, which represents the intersection of the current node set with the given node set.      */
 annotation|@
 name|Override
 specifier|public
@@ -2188,7 +2188,7 @@ return|return
 name|processInReverseOrder
 return|;
 block|}
-comment|/**      * Return a new node set which represents the union of the      * current node set and the given node set.      *      * @param other      */
+comment|/**      * Return a new node set which represents the union of the      * current node set and the given node set.      *      * @param other NodeSet to unify with current node set      * @return new node set which represents the union of the current node set and the given node set.      */
 specifier|public
 name|NodeSet
 name|union

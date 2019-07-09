@@ -549,7 +549,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Add a new collection configuration. The XML document is passed as a      * string.      *       * @param txn      *            The transaction that will hold the WRITE locks until they are      *            released by commit()/abort()      * @param broker      * @param collection      *            the collection to which the configuration applies.      * @param config      *            the xconf document as a String.      * @throws CollectionConfigurationException      */
+comment|/**      * Add a new collection configuration. The XML document is passed as a      * string.      *       * @param txn The transaction that will hold the WRITE locks until they are      *            released by commit()/abort()      * @param broker the eXist-db broker      * @param collection  the collection to which the configuration applies.      * @param config the xconf document as a String.      * @throws CollectionConfigurationException if config is invalid      */
 specifier|public
 name|void
 name|addConfiguration
@@ -758,7 +758,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Check the passed collection configuration. Throws an exception if errors      * are detected in the configuration document. Note: some configuration      * settings depend on the current environment, in particular the      * availability of trigger or index classes.      *       * @param broker      *            DBBroker      * @param config      *            the configuration to test      * @throws CollectionConfigurationException      *             if errors were detected      */
+comment|/**      * Check the passed collection configuration. Throws an exception if errors      * are detected in the configuration document. Note: some configuration      * settings depend on the current environment, in particular the      * availability of trigger or index classes.      *       * @param broker DBBroker      * @param config the configuration to test      * @throws CollectionConfigurationException if errors were detected      */
 specifier|public
 name|void
 name|testConfiguration
@@ -1028,7 +1028,7 @@ name|configs
 return|;
 block|}
 block|}
-comment|/**      * Retrieve the collection configuration instance for the given collection.      * This creates a new CollectionConfiguration object and recursively scans      * the collection hierarchy for available configurations.      *      * @param collection      * @return The collection configuration      */
+comment|/**      * Retrieve the collection configuration instance for the given collection.      * This creates a new CollectionConfiguration object and recursively scans      * the collection hierarchy for available configurations.      *      * @param collection to retrieve configuration for      * @return The collection configuration      */
 specifier|protected
 name|CollectionConfiguration
 name|getConfiguration
@@ -1654,7 +1654,7 @@ name|conf
 return|;
 block|}
 block|}
-comment|/**      * Notify the manager that a collection.xconf file has changed. All cached      * configurations for the corresponding collection and its sub-collections      * will be cleared.      *       * @param collectionPath      */
+comment|/**      * Notify the manager that a collection.xconf file has changed. All cached      * configurations for the corresponding collection and its sub-collections      * will be cleared.      *       * @param collectionPath to the collection for which configuration will be invalidated      */
 specifier|public
 name|void
 name|invalidateAll
@@ -1810,7 +1810,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      * @param pool if not null: clear query cache      */
+comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath to the collection for which configuration will be invalidated      * @param pool if not null: clear query cache      */
 specifier|public
 name|void
 name|invalidate
@@ -1892,7 +1892,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Check if the collection exists below the system collection. If not,      * create it.      *       * @param broker      * @param uri      * @throws EXistException      */
+comment|/**      * Check if the collection exists below the system collection. If not,      * create it.      *       * @param broker eXist-db broker      * @param txn according transaction      * @param uri to the collection to create      * @throws EXistException if something goes wrong      */
 specifier|private
 name|void
 name|checkCreateCollection
@@ -1991,7 +1991,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Create a stored default configuration document for the root collection      *       * @param broker      *            The broker which will do the operation      * @throws EXistException      */
+comment|/**      * Create a stored default configuration document for the root collection      *       * @param broker The broker which will do the operation      * @throws EXistException if something goes wrong      * @throws PermissionDeniedException if user does not have sufficient rights      */
 specifier|public
 name|void
 name|checkRootCollectionConfig

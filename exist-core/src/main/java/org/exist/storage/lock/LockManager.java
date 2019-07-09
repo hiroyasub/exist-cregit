@@ -501,7 +501,7 @@ name|collectionPath
 argument_list|)
 return|;
 block|}
-comment|/**      * Acquires a READ_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A READ_LOCK on the Collection.      */
+comment|/**      * Acquires a READ_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A READ_LOCK on the Collection.      * @throws LockException if a lock error occurs      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionReadLock
@@ -1038,7 +1038,7 @@ throw|;
 comment|// TODO(AR) implement the other modes
 block|}
 block|}
-comment|/**      * Acquires a WRITE_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A WRITE_LOCK on the Collection.      */
+comment|/**      * Acquires a WRITE_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A WRITE_LOCK on the Collection.      * @throws LockException if a lock error occurs      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionWriteLock

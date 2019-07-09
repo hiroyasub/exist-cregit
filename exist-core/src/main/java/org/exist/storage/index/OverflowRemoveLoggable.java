@@ -97,7 +97,6 @@ specifier|protected
 name|long
 name|nextInChain
 decl_stmt|;
-comment|/**      *       *       * @param status       * @param pageNum       * @param data       * @param length       * @param nextInChain       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowRemoveLoggable
 parameter_list|(
@@ -166,7 +165,6 @@ operator|=
 name|nextInChain
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param transactionId      */
 specifier|public
 name|OverflowRemoveLoggable
 parameter_list|(

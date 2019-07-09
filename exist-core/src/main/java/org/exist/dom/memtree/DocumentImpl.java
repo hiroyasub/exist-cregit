@@ -5878,7 +5878,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param node      * @param receiver      * @throws SAXException DOCUMENT ME!      */
+comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param node node to provide document fragment      * @param receiver document builder      * @throws SAXException DOCUMENT ME!      */
 specifier|public
 name|void
 name|copyTo
@@ -7268,7 +7268,7 @@ operator|.
 name|nextReferenceIdx
 expr_stmt|;
 block|}
-comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param serializer      * @param node      * @param receiver      * @throws SAXException      */
+comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param serializer the serializer      * @param node node to be serialized      * @param receiver the receiveer      * @throws SAXException DOCUMENT ME      */
 specifier|public
 name|void
 name|streamTo

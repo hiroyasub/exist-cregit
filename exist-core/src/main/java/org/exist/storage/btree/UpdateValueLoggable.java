@@ -96,7 +96,6 @@ specifier|protected
 name|long
 name|oldPointer
 decl_stmt|;
-comment|/**      * @param fileId       * @param pageNum       * @param idx       * @param key       * @param pointer       * @param oldPointer       * @param transaction       */
 specifier|public
 name|UpdateValueLoggable
 parameter_list|(
@@ -164,7 +163,6 @@ operator|=
 name|oldPointer
 expr_stmt|;
 block|}
-comment|/**      * @param broker       * @param transactionId       */
 specifier|public
 name|UpdateValueLoggable
 parameter_list|(

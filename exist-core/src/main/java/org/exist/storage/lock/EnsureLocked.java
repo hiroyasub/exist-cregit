@@ -96,7 +96,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An annotation for indicating that certain locks  * must be held on parameters to a method or return types.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used with parameters of type {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}. If this annotation is  * used on an {@link org.exist.xmldb.XmldbURI} then a {@code type} value must  * also be provided to indicate the type of the lock identified by the uri.  *  * For example we may indicate that Collection parameters to methods  * must already be locked appropriately before the method is called:  *<pre>{@code  * public Result copyCollection(  *         @EnsureLocked(mode=LockMode.READ_LOCK) final Collection srcCollection,  *         @EnsureLocked(mode=LockMode.WRITE_LOCK) final Collection destCollection) {  *  *    ...  *  * }  * }</pre>  *  * We may also indicate that objects returned from a function must have gained an appropriate  * lock for the calling thread:  *  *<pre>{@code  * public @EnsureLocked(mode=LockMode.READ_LOCK) Collection openCollection(final XmldbURI uri, final LockMode lockMode) {  *  *    ...  *  * }  * }</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
+comment|/**  * An annotation for indicating that certain locks  * must be held on parameters to a method or return types.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used with parameters of type {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}. If this annotation is  * used on an {@link org.exist.xmldb.XmldbURI} then a {@code type} value must  * also be provided to indicate the type of the lock identified by the uri.  *  * For example we may indicate that Collection parameters to methods  * must already be locked appropriately before the method is called:  *<pre>  * public Result copyCollection(  *          {@code @EnsureLocked(mode=LockMode.READ_LOCK)} final Collection srcCollection,  *          {@code @EnsureLocked(mode=LockMode.WRITE_LOCK)} final Collection destCollection) {  *  *    ...  *  * }  *</pre>  *  * We may also indicate that objects returned from a function must have gained an appropriate  * lock for the calling thread:  *  *<pre>  * public {@code @EnsureLocked(mode=LockMode.READ_LOCK)} Collection openCollection(final XmldbURI uri, final LockMode lockMode) {  *  *    ...  *  * }  * }</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_annotation_defn
@@ -126,7 +126,7 @@ specifier|public
 annotation_defn|@interface
 name|EnsureLocked
 block|{
-comment|/**      * Specifies the mode of the held lock.      *      * {@link LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      */
+comment|/**      * Specifies the mode of the held lock.      *      * {@link LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      * @return to be documented      */
 name|Lock
 operator|.
 name|LockMode
@@ -137,7 +137,7 @@ name|LockMode
 operator|.
 name|NO_LOCK
 function_decl|;
-comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      */
+comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      * @return to be documented      */
 name|short
 name|modeParam
 parameter_list|()
@@ -150,7 +150,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      */
+comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      * @return to be documented      */
 name|Lock
 operator|.
 name|LockType

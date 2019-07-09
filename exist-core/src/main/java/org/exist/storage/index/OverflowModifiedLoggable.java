@@ -92,7 +92,6 @@ specifier|protected
 name|int
 name|oldLength
 decl_stmt|;
-comment|/**      *       *       * @param pageNum       * @param length       * @param oldLength       * @param lastInChain       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowModifiedLoggable
 parameter_list|(
@@ -151,7 +150,6 @@ operator|=
 name|lastInChain
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param transactionId      */
 specifier|public
 name|OverflowModifiedLoggable
 parameter_list|(

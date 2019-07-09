@@ -771,7 +771,7 @@ name|PREPARE_EXCEPTION_MESSAGE
 init|=
 literal|"Error during trigger prepare"
 decl_stmt|;
-comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+comment|/** 	 * {@link org.exist.collections.triggers.Trigger#configure(DBBroker, Txn, Collection, Map)} 	 */
 annotation|@
 name|Override
 specifier|public

@@ -112,7 +112,6 @@ specifier|public
 class|class
 name|Statistics
 block|{
-comment|/** generate index statistics      * @param conf      * @param indexStats      */
 specifier|public
 specifier|static
 name|void

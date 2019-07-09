@@ -84,7 +84,6 @@ specifier|protected
 name|long
 name|parentNum
 decl_stmt|;
-comment|/**      * @param fileId       * @param pageNum       * @param parentNum       * @param transaction       */
 specifier|public
 name|SetParentLoggable
 parameter_list|(
@@ -125,7 +124,6 @@ operator|=
 name|parentNum
 expr_stmt|;
 block|}
-comment|/**      * @param broker       * @param transactionId       */
 specifier|public
 name|SetParentLoggable
 parameter_list|(

@@ -173,7 +173,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Subscribe an {@link UpdateListener} to receive notifications.      *      * @param listener      */
+comment|/**      * Subscribe an {@link UpdateListener} to receive notifications.      *      * @param listener to receive notifications for      */
 specifier|public
 specifier|synchronized
 name|void
@@ -196,7 +196,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Unsubscribe an {@link UpdateListener}.      *      * @param listener      */
+comment|/**      * Unsubscribe an {@link UpdateListener}.      *      * @param listener to stop receiving updates for      */
 specifier|public
 specifier|synchronized
 name|void
@@ -247,7 +247,7 @@ name|unsubscribe
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Notify all subscribers that a document has been updated/removed or      * a new document has been added.      *      * @param document      * @param event      */
+comment|/**      * Notify all subscribers that a document has been updated/removed or      * a new document has been added.      *      * @param document subscribers are listining to      * @param event that triggers the notify      */
 specifier|public
 specifier|synchronized
 name|void
@@ -282,7 +282,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run.      */
+comment|/**      * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run.      * @param newNode the new node      * @param oldNodeId old node that have been moved      */
 specifier|public
 specifier|synchronized
 name|void

@@ -57,7 +57,7 @@ specifier|final
 name|String
 name|source
 decl_stmt|;
-comment|/**      * @param source The resource name (e.g. url).      *      *                The name of a resource is a '<code>/</code>'-separated path name that      *               identifies the resource. Preceding "/" and "resource:"" are removed.      */
+comment|/**      * @param source The resource name (e.g. url).      *      *  The name of a resource is a '<code>/</code>'-separated path name that      *  identifies the resource. Preceding "/" and "resource:"" are removed.      * @throws IOException in case of an I/O error      */
 specifier|public
 name|ClassLoaderSource
 parameter_list|(

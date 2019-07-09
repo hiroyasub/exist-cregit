@@ -358,7 +358,7 @@ return|return
 name|INSTANCE
 return|;
 block|}
-comment|/**      * Will get the compiled stylesheet from the cache.      *      * If the stylesheet is not present in the cache it will be compiled and added to the cache.      * If the stylesheet is in the cache, but older than the current stylesheet it will be re-compiled and cached.      *      * @param broker Database broker for accessing the serializer pool      * @param stylesheet The stylesheet document      *      * @return The compiled stylesheet      */
+comment|/**      * Will get the compiled stylesheet from the cache.      *      * If the stylesheet is not present in the cache it will be compiled and added to the cache.      * If the stylesheet is in the cache, but older than the current stylesheet it will be re-compiled and cached.      *      * @param broker Database broker for accessing the serializer pool      * @param stylesheet The stylesheet document      * @throws TransformerConfigurationException if there is an error in the transformations      * @throws SAXException if a SAX error comes up      * @throws LockException if dbbroker is locked      *      * @return The compiled stylesheet      */
 specifier|public
 name|Templates
 name|getOrUpdateTemplate

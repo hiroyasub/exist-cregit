@@ -239,7 +239,7 @@ operator|=
 name|vector
 expr_stmt|;
 block|}
-comment|/**      * Construct a permission with given user, group and permissions      */
+comment|/**      * Construct a permission with given user, group and permissions      * @param sm the security manager      * @param ownerId the owner      * @param groupId id of the group      * @param mode mode for the resource.       */
 specifier|public
 name|UnixStylePermission
 parameter_list|(
@@ -2005,7 +2005,7 @@ return|return
 name|vector
 return|;
 block|}
-comment|/**      * should return max of 52 bits - e.g. The maximum numeric value - 4503599627370495      * exact encoding is [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]      */
+comment|/**      * should return max of 52 bits - e.g. The maximum numeric value - 4503599627370495      * exact encoding is [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]      * @param userId id of the user      * @param groupId id of the group      * @param mode mode for the resource.      * @return the encoded bit vector      */
 specifier|protected
 specifier|final
 name|long

@@ -625,7 +625,7 @@ return|return
 name|readOnly
 return|;
 block|}
-comment|/**      * Close the underlying files.      *      * @throws DBException      */
+comment|/**      * Close the underlying files.      *      * @throws DBException to be documented      */
 annotation|@
 name|Override
 specifier|public
@@ -712,7 +712,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * createFileHeader must be implemented by a Paged implementation in order      * to create an appropriate subclass instance of a FileHeader.      *      * @return A new file header      */
+comment|/**      * createFileHeader must be implemented by a Paged implementation in order      * to create an appropriate subclass instance of a FileHeader.      * @param pageSize to be documented      * @return A new file header      */
 specifier|public
 specifier|abstract
 name|FileHeader
@@ -739,7 +739,7 @@ operator|!
 name|fileIsNew
 return|;
 block|}
-comment|/** Flushes {@link org.exist.storage.btree.Paged#flush()} dirty data to the disk and cleans up the cache.      * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
+comment|/** Flushes {@link org.exist.storage.btree.Paged#flush()} dirty data to the disk and cleans up the cache.      * @return<code>true</code> if something has actually been cleaned      * @throws DBException to be documented      */
 specifier|public
 name|boolean
 name|flush
@@ -796,7 +796,7 @@ return|return
 name|flushed
 return|;
 block|}
-comment|/**      * Backup the entire contents of the underlying file to       * an output stream.      *       * @param os      * @throws IOException      */
+comment|/**      * Backup the entire contents of the underlying file to       * an output stream.      *       * @param os to be documented      * @throws IOException to be documented      */
 specifier|public
 name|void
 name|backupToStream
@@ -940,7 +940,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the first free page it can find, either by reusing a deleted page      * or by appending a new one to secondary storage.      *      * @param reuseDeleted if set to false, the method will not try to reuse a      * previously deleted page. This is required by btree page split operations to avoid       * concurrency conflicts within a transaction.      *      * @return a free page      * @throws IOException      */
+comment|/**      * Returns the first free page it can find, either by reusing a deleted page      * or by appending a new one to secondary storage.      *      * @param reuseDeleted if set to false, the method will not try to reuse a      * previously deleted page. This is required by btree page split operations to avoid       * concurrency conflicts within a transaction.      *      * @return a free page      * @throws IOException to be documented      */
 specifier|protected
 specifier|final
 name|Page
@@ -1147,7 +1147,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * @param requiredVersion The required version of the file      */
 specifier|public
 name|boolean
 name|open
@@ -1267,7 +1266,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Debug      *      * @exception IOException Description of the Exception      */
+comment|/**      * Debug      * @param out to be documented      * @exception IOException Description of the Exception      */
 specifier|public
 name|void
 name|printFreeSpaceList
@@ -1358,7 +1357,7 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * setFile sets the file object for this Paged.      *      * @param file The File      */
+comment|/**      * setFile sets the file object for this Paged.      *      * @param file The File      * @throws DBException to be documented      */
 specifier|protected
 specifier|final
 name|void
@@ -1687,7 +1686,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Clears the {@link FileHeader#firstFreePage} and      *  {@link FileHeader#lastFreePage}.      *      * This is needed in recovery, as the free page list      * may have become corrupted.      *      * Unfortunately this means we loose some space      * that we will never recover, but it does mean      * we are more likely to correctly recover.      */
+comment|/**      * Clears the {@link FileHeader#firstFreePage} and      *  {@link FileHeader#lastFreePage}.      *      * This is needed in recovery, as the free page list      * may have become corrupted.      *      * Unfortunately this means we loose some space      * that we will never recover, but it does mean      * we are more likely to correctly recover.      * @throws IOException to be documented      */
 specifier|protected
 name|void
 name|dropFreePageList

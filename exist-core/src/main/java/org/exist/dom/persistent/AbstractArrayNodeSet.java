@@ -287,7 +287,7 @@ operator|=
 name|proxy
 expr_stmt|;
 block|}
-comment|/**      * Just add the node to this set      * all of the checks have been      * done in @see AbstractArrayNodeSet#add(NodeProxy, int)      */
+comment|/**      * Just add the node to this set      * all of the checks have been      * done in @see AbstractArrayNodeSet#add(NodeProxy, int)      * @param proxy  node to add      * @param sizeHint hint about the size      */
 specifier|protected
 specifier|abstract
 name|void

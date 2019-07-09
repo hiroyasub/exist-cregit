@@ -187,7 +187,7 @@ operator|=
 name|thrashingFactor
 expr_stmt|;
 block|}
-comment|/**      * Set the current size of the cache. Should be called by the      * cache whenever it changes its size.      *       * @param totalSize      */
+comment|/**      * Set the current size of the cache. Should be called by the      * cache whenever it changes its size.      *       * @param totalSize of the cache      */
 specifier|public
 name|void
 name|setTotalSize
@@ -243,7 +243,7 @@ return|return
 name|misses
 return|;
 block|}
-comment|/**      * Called by the cache to signal that a page was replaced      * in order to store the Cacheable object passed.      *       * @param cacheable      */
+comment|/**      * Called by the cache to signal that a page was replaced      * in order to store the Cacheable object passed.      *       * @param cacheable object      */
 specifier|public
 name|void
 name|replacedPage

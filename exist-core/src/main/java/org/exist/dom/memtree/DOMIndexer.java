@@ -535,7 +535,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Scan the DOM tree once to determine its structure.      *      * @throws EXistException      */
+comment|/**      * Scan the DOM tree once to determine its structure.      *      * @throws EXistException DOCUMENT ME      */
 specifier|public
 name|void
 name|scan

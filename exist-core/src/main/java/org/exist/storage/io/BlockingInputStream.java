@@ -125,7 +125,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-comment|/**      * BlockingOutputStream adapter for this BlockingInputStream.      */
+comment|/**      * @return BlockingOutputStream adapter for this BlockingInputStream.      *      */
 specifier|public
 name|BlockingOutputStream
 name|getOutputStream
@@ -478,7 +478,7 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Closes this input stream, specifying that an exception has occurred.      * This will cause all producer calls to be unblocked and throw an      * ExistIOException with this exception as its cause.      * Releases the buffer associated with this stream.      *<code>BlockingInputStream</code> specific method.      */
+comment|/**      * Closes this input stream, specifying that an exception has occurred.      * This will cause all producer calls to be unblocked and throw an      * ExistIOException with this exception as its cause.      * Releases the buffer associated with this stream.      *<code>BlockingInputStream</code> specific method.      * @param ex the occurred exception      */
 specifier|public
 specifier|synchronized
 name|void

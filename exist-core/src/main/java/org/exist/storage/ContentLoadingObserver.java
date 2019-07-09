@@ -135,7 +135,7 @@ name|boolean
 name|remove
 parameter_list|)
 function_decl|;
-comment|/** store and index given text node */
+comment|/** store and index given text node 	 * @param currentPath  the node path 	 * @param node the text node to store 	 * */
 name|void
 name|storeText
 parameter_list|(
@@ -146,7 +146,7 @@ name|NodePath
 name|currentPath
 parameter_list|)
 function_decl|;
-comment|/** 	 * The given node is being removed from the database.  	 */
+comment|/** 	 * The given node is being removed from the database. 	 * 	 * @param node given node 	 * @param currentPath to be documented 	 * @param content to be documented 	 */
 name|void
 name|removeNode
 parameter_list|(
@@ -160,7 +160,7 @@ name|String
 name|content
 parameter_list|)
 function_decl|;
-comment|/** set the current document; generally called before calling an operation */
+comment|/** set the current document; generally called before calling an operation 	 * 	 * @param document the document to set as current document 	 * */
 name|void
 name|setDocument
 parameter_list|(
@@ -168,7 +168,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 function_decl|;
-comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection 	 */
+comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection to be documented 	 */
 name|void
 name|dropIndex
 parameter_list|(
@@ -176,7 +176,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 */
+comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc to be documented 	 */
 name|void
 name|dropIndex
 parameter_list|(
@@ -196,7 +196,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 sync() is called from time to time by the background sync daemon. */
+comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 * sync() is called from time to time by the background sync daemon. 	 */
 name|void
 name|sync
 parameter_list|()

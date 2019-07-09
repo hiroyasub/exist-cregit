@@ -251,7 +251,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the XQuery file declares a content encoding in the      * XQuery declaration.      *       * @param is      * @return The guessed encoding.      */
+comment|/**      * Check if the XQuery file declares a content encoding in the      * XQuery declaration.      *      * @param is the input stream      * @return The guessed encoding.      */
 specifier|protected
 specifier|final
 specifier|static
@@ -316,7 +316,7 @@ name|getEncoding
 argument_list|()
 return|;
 block|}
-comment|/**      * Check if the source is an XQuery module. If yes, return a QName containing      * the module prefix as local name and the module namespace as namespace URI.      *      * @param is      * @return QName describing the module namespace or null if the source is not      * a module.      */
+comment|/**      * Check if the source is an XQuery module. If yes, return a QName containing      * the module prefix as local name and the module namespace as namespace URI.      *      * @param is the input stream      * @return QName describing the module namespace or null if the source is not      * a module.      */
 specifier|protected
 specifier|final
 specifier|static

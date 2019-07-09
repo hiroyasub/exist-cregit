@@ -203,7 +203,7 @@ name|val
 return|;
 block|}
 block|}
-comment|/**      * Get the id of the lock      */
+comment|/**      * Get the id of the lock      * @return the id      */
 name|String
 name|getId
 parameter_list|()
@@ -213,7 +213,7 @@ name|LockInfo
 name|getLockInfo
 parameter_list|()
 function_decl|;
-comment|/** 	 * Acquire a lock for read. 	 *  	 * @throws LockException      *      * @deprecated Use {@link #acquire(LockMode)} 	 */
+comment|/** 	 * Acquire a lock for read. 	 *  	 * @throws LockException if a lock error occurs      * @return true if lock could be acquired      *      * @deprecated Use {@link #acquire(LockMode)} 	 */
 annotation|@
 name|Deprecated
 name|boolean
@@ -222,7 +222,7 @@ parameter_list|()
 throws|throws
 name|LockException
 function_decl|;
-comment|/**      * Acquire a lock for read or write.      * mode is one of {@link LockMode#READ_LOCK} or      * {@link LockMode#WRITE_LOCK}.      *       * @param mode The mode of the lock to acquire      * @throws LockException      */
+comment|/**      * Acquire a lock for read or write.      * mode is one of {@link LockMode#READ_LOCK} or      * {@link LockMode#WRITE_LOCK}.      *       * @param mode The mode of the lock to acquire      * @throws LockException if a lock error occurs      * @return true if lock could be acquired      */
 name|boolean
 name|acquire
 parameter_list|(
@@ -232,7 +232,7 @@ parameter_list|)
 throws|throws
 name|LockException
 function_decl|;
-comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *      * @param mode The mode of the lock to attempt to acquire 	 */
+comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *      * @param mode The mode of the lock to attempt to acquire      * @return true if attempt 	 */
 name|boolean
 name|attempt
 parameter_list|(

@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An annotation for indicating that certain locks  * must be held on the containing object before  * a method may be called.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used on methods within implementations of {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}.  * The typical use is to ensure that a container holds appropriate locks (by URI)  * when calling the method accessors on their internal state.  *  *<pre>{@code  * public class MyCollectonImpl implements Collection {  *     final XmldbURI uri;  *     public MyCollectionImpl(@EnsureLocked(mode=LockMode.READ_LOCK, type=LockType.COLLECTION) final XmldbURI uri) {  *         this.uri = uri;  *     }  *  *     public XmldbURI getUri() {  *         return uri;  *     }  *  *     ...  *  *     @EnsureContainerLocked(mode=LockMode.READ_LOCK)  *     public int countDocuments() {  *         return documents.size();  *     }  * }  * }</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
+comment|/**  * An annotation for indicating that certain locks  * must be held on the containing object before  * a method may be called.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used on methods within implementations of {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}.  * The typical use is to ensure that a container holds appropriate locks (by URI)  * when calling the method accessors on their internal state.  *  *<pre>  * public class MyCollectonImpl implements Collection {  *     final XmldbURI uri;  *     public MyCollectionImpl(@EnsureLocked(mode=LockMode.READ_LOCK, type=LockType.COLLECTION) final XmldbURI uri) {  *         this.uri = uri;  *     }  *  *     public XmldbURI getUri() {  *         return uri;  *     }  *  *     ...  *  *<code>@EnsureContainerLocked(mode=LockMode.READ_LOCK)</code>  *     public int countDocuments() {  *         return documents.size();  *     }  * }</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_annotation_defn
@@ -90,7 +90,7 @@ specifier|public
 annotation_defn|@interface
 name|EnsureContainerLocked
 block|{
-comment|/**      * Specifies the mode of the held lock.      *      * {@link Lock.LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      */
+comment|/**      * Specifies the mode of the held lock.      *      * {@link Lock.LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      * @return  the lock mode      */
 name|Lock
 operator|.
 name|LockMode
@@ -103,7 +103,7 @@ name|LockMode
 operator|.
 name|NO_LOCK
 function_decl|;
-comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      */
+comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      * @return to be documented      */
 name|short
 name|modeParam
 parameter_list|()

@@ -63,7 +63,6 @@ name|pageHits
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 *  	 */
 specifier|public
 name|BufferStats
 parameter_list|(
@@ -105,7 +104,6 @@ operator|=
 name|fails
 expr_stmt|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getPageFails
@@ -115,7 +113,6 @@ return|return
 name|pageFails
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getPageHits
@@ -125,7 +122,6 @@ return|return
 name|pageHits
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getSize
@@ -135,7 +131,6 @@ return|return
 name|size
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getUsed

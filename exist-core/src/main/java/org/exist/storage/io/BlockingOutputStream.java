@@ -63,7 +63,7 @@ operator|=
 name|stream
 expr_stmt|;
 block|}
-comment|/**      * BlockingInputStream of this BlockingOutputStream.      */
+comment|/**      * @return BlockingInputStream of this BlockingOutputStream.      */
 specifier|public
 name|BlockingInputStream
 name|getInputStream
@@ -142,7 +142,7 @@ name|closeOutputStream
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Closes this output stream, specifying that an exception has occurred.      * This will cause all consumer calls to be unblocked and throw an      * IOException with this exception as its cause.      *<code>BlockingInputStream</code> specific method.      * @throws IOException  if an I/O error occurs.      */
+comment|/**      * Closes this output stream, specifying that an exception has occurred.      * This will cause all consumer calls to be unblocked and throw an      * IOException with this exception as its cause.      *<code>BlockingInputStream</code> specific method.      * @param ex the occurred exception      * @throws IOException  if an I/O error occurs.      */
 specifier|public
 name|void
 name|close

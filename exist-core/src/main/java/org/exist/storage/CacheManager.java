@@ -32,7 +32,7 @@ specifier|public
 interface|interface
 name|CacheManager
 block|{
-comment|/**      * Register a cache, i.e. put it under control of      * the cache manager.      *      * @param cache      */
+comment|/**      * Register a cache, i.e. put it under control of      * the cache manager.      *      * @param cache cache to register      */
 name|void
 name|registerCache
 parameter_list|(
@@ -47,7 +47,7 @@ name|Cache
 name|cache
 parameter_list|)
 function_decl|;
-comment|/**      * Called by a cache if it wants to grow. The cache manager      * will either deny the request, for example, if there are no spare      * pages left, or calculate a new cache size and call the cache's      * {@link org.exist.storage.cache.Cache#resize(int)} method to resize the cache. The amount      * of pages by which the cache will grow is determined by the cache's      * growthFactor: {@link org.exist.storage.cache.Cache#getGrowthFactor()}.      *      * @param cache      * @return new cache size, or -1 if no free pages available.      */
+comment|/**      * Called by a cache if it wants to grow. The cache manager      * will either deny the request, for example, if there are no spare      * pages left, or calculate a new cache size and call the cache's      * {@link org.exist.storage.cache.Cache#resize(int)} method to resize the cache. The amount      * of pages by which the cache will grow is determined by the cache's      * growthFactor: {@link org.exist.storage.cache.Cache#getGrowthFactor()}.      *      * @param cache cache to grow      * @return new cache size, or -1 if no free pages available.      */
 name|int
 name|requestMem
 parameter_list|(

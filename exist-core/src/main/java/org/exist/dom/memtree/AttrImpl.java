@@ -180,7 +180,6 @@ name|ATTR_IDREFS_TYPE
 init|=
 literal|3
 decl_stmt|;
-comment|/**      * Creates a new AttributeImpl object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|AttrImpl
 parameter_list|(

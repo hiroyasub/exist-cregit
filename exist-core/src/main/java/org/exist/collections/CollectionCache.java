@@ -595,7 +595,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Put's the Collection into the cache      *      * If an existing Collection object for the same URI exists      * in the Cache it will be overwritten      *      * @param collection      */
+comment|/**      * Put's the Collection into the cache      *      * If an existing Collection object for the same URI exists      * in the Cache it will be overwritten      *      * @param collection to put into the cache      */
 specifier|public
 name|void
 name|put

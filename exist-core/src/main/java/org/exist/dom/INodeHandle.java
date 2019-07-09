@@ -51,7 +51,7 @@ name|NodeId
 name|getNodeId
 parameter_list|()
 function_decl|;
-comment|/**      * Get the type of the node      */
+comment|/**      * Get the type of the node      * @return the type of the node as short value      */
 specifier|public
 name|short
 name|getNodeType

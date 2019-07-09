@@ -151,7 +151,7 @@ operator|=
 name|mode
 expr_stmt|;
 block|}
-comment|/**      * Construct a permission with given user, group and mode      *      * @param  user      * @param  group      * @param  mode      */
+comment|/**      * Construct a permission with given user, group and mode      *      * @param user name of the owner      * @param group name of the group      * @param mode mode for the resource.      */
 specifier|public
 name|UnixStylePermissionAider
 parameter_list|(

@@ -362,7 +362,7 @@ name|digestPassword
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Create a new user with name and password      *      * @param realm      * @param id      * @param name      * @param password      * @throws ConfigurationException      */
+comment|/**      * Create a new user with name and password      * @param broker the eXist-db DBBroker      * @param realm the security realm      * @param id of the account      * @param name of the account      * @param password of the account      * @throws ConfigurationException if there is an configuration error      */
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -528,7 +528,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new user with name      *      * @param realm      * @param name      *            The account name      * @throws ConfigurationException      */
+comment|/**      * Create a new user with name      *      * @param broker the eXist-db DBBroker      * @param realm the security realm      * @param name of the account      *            The account name      * @throws ConfigurationException if there is an configuration error      */
 specifier|public
 name|AccountImpl
 parameter_list|(

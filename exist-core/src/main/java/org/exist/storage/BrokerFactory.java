@@ -323,7 +323,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a DBBroker instance.      *      * @param brokerPool the database's broker pool.      * @param configuration the database's configuration.      *      * @return DBBroker an instance of a sub-class of {@link DBBroker}.      *      * @throws IllegalArgumentException if the configuration does not define a broker ID.      * @throws IllegalStateException if there is no database backend defined for the broker ID.      * @throws RuntimeException if the database backend cannot be constructed.      */
+comment|/**      * Constructs a DBBroker instance.      *      * @param brokerPool the database's broker pool.      * @param configuration the database's configuration.      *      * @return DBBroker an instance of a sub-class of {@link DBBroker}.      *      * @throws EXistException in case of an eXist-db error      * @throws RuntimeException if the database backend cannot be constructed.      */
 specifier|public
 specifier|static
 name|DBBroker

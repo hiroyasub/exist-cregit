@@ -70,7 +70,7 @@ name|int
 name|getTimestamp
 parameter_list|()
 function_decl|;
-comment|/** 	 * Called before the object is released by the 	 * cache. The object should prepare to be garbage 	 * collected. All unwritten data should be flushed 	 * to disk. 	 */
+comment|/** 	 * Called before the object is released by the 	 * cache. The object should prepare to be garbage 	 * collected. All unwritten data should be flushed 	 * to disk. 	 * @param syncJournal the journal to sync 	 * @return true if sync was successful 	 */
 name|boolean
 name|sync
 parameter_list|(

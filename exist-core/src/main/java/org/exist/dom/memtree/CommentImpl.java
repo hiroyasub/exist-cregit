@@ -102,7 +102,6 @@ name|AbstractCharacterData
 implements|implements
 name|Comment
 block|{
-comment|/**      * Creates a new CommentImpl object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|CommentImpl
 parameter_list|(

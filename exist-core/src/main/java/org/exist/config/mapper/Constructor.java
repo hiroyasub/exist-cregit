@@ -238,7 +238,7 @@ name|obj
 argument_list|)
 return|;
 block|}
-comment|/**      * Create new java object by mapping instructions.      */
+comment|/**      * Create new java object by mapping instructions.      * @param newClazz object      * @param instance to load      * @param conf configuration      * @return new java object by mapping instructions.      */
 specifier|public
 specifier|static
 name|Object

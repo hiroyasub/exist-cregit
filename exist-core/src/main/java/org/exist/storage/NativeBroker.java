@@ -1297,7 +1297,7 @@ name|incrementalDocIds
 init|=
 literal|false
 decl_stmt|;
-comment|/** initialize database; read configuration, etc. */
+comment|// initialize database; read configuration, etc.
 specifier|public
 name|NativeBroker
 parameter_list|(
@@ -9747,7 +9747,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get the next available unique collection id.      *      * @return next available unique collection id      * @throws ReadOnlyException      */
+comment|/**      * Get the next available unique collection id.      * @param transaction the transaction      * @return next available unique collection id      * @throws ReadOnlyException in response to an readonly error      * @throws LockException in case of a lock error      */
 end_comment
 
 begin_function
@@ -14327,7 +14327,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Preserves attributes when copying a resource.      * e.g. `cp --preserve`      *      * @param srcDocument The source document.      * @param destDocument The destination document.      */
+comment|/**      * Preserves attributes when copying a resource.      * e.g. `cp --preserve`      *      * @param broker the eXist-db DBBroker      * @param srcDocument The source document.      * @param destDocument The destination document.      * @param overwrittingDest if true it overwrites the destination resource      * @throws PermissionDeniedException if user does not have sufficient rights      *      */
 end_comment
 
 begin_function

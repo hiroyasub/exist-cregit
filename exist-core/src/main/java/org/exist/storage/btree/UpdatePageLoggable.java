@@ -106,7 +106,6 @@ specifier|protected
 name|int
 name|nPointers
 decl_stmt|;
-comment|/**      * @param fileId       * @param pageNum       * @param values       * @param nValues       * @param pointers       * @param nPointers       * @param transaction       */
 specifier|public
 name|UpdatePageLoggable
 parameter_list|(
@@ -185,7 +184,6 @@ operator|=
 name|nPointers
 expr_stmt|;
 block|}
-comment|/**      * @param broker       * @param transactionId       */
 specifier|public
 name|UpdatePageLoggable
 parameter_list|(

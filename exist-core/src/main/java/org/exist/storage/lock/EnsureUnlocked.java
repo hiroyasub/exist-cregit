@@ -94,7 +94,7 @@ specifier|public
 annotation_defn|@interface
 name|EnsureUnlocked
 block|{
-comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      */
+comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      * @return the lock type      */
 name|Lock
 operator|.
 name|LockType

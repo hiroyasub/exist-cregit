@@ -399,7 +399,7 @@ name|unsupported
 argument_list|()
 throw|;
 block|}
-comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
+comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      * @param transaction the transaction      * @param oldChild node to update      * @param newChild updated node      * @throws DOMException in case of a DOM error      * @return updated node      */
 specifier|public
 name|IStoredNode
 name|updateChild
@@ -424,7 +424,7 @@ name|unsupported
 argument_list|()
 throw|;
 block|}
-comment|/**      * Insert a list of nodes at the position before the reference      * child.      *      * NOTE: You must call insertBefore on the parent node of the node that you      * want to insert nodes before.      */
+comment|/**      * Insert a list of nodes at the position before the reference      * child.      *      * NOTE: You must call insertBefore on the parent node of the node that you      * want to insert nodes before.      * @param transaction the transaction      * @param refChild target of param nodes      * @param nodes list of nodes to be added to refChild      */
 specifier|public
 name|void
 name|insertBefore
@@ -449,7 +449,7 @@ name|unsupported
 argument_list|()
 throw|;
 block|}
-comment|/**      * Insert a list of nodes at the position following the reference      * child.      *      * NOTE: You must call insertAfter on the parent node of the node that you want      * to insert nodes after.      */
+comment|/**      * Insert a list of nodes at the position following the reference      * child.      *      * NOTE: You must call insertAfter on the parent node of the node that you want      * to insert nodes after.      * @param transaction the transaction      * @param refChild target of param nodes      * @param nodes list of nodes to be added to refChild      */
 specifier|public
 name|void
 name|insertAfter

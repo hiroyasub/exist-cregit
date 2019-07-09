@@ -39,13 +39,13 @@ argument_list|<
 name|NodeProxy
 argument_list|>
 block|{
-comment|/**      * Look ahead: returns the node at the iterator's current position but      * does not move the iterator to the next node.      */
+comment|/**      * @return Look ahead: returns the node at the iterator's current position but      * does not move the iterator to the next node.      *      */
 specifier|public
 name|NodeProxy
 name|peekNode
 parameter_list|()
 function_decl|;
-comment|/**      * Reposition the iterator on the given NodeProxy, so calling      * {@link Iterator#next()} will return this NodeProxy. If the      * node does not exist in the node set, the iterator will be positioned      * to the end of the set.      *      * @param proxy      */
+comment|/**      * Reposition the iterator on the given NodeProxy, so calling      * {@link Iterator#next()} will return this NodeProxy. If the      * node does not exist in the node set, the iterator will be positioned      * to the end of the set.      *      * @param proxy the node      */
 specifier|public
 name|void
 name|setPosition

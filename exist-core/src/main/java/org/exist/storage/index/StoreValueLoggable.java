@@ -112,7 +112,6 @@ specifier|protected
 name|ByteArray
 name|value
 decl_stmt|;
-comment|/**      *       *       * @param transaction       * @param fileId       * @param page       * @param tid       * @param value       */
 specifier|public
 name|StoreValueLoggable
 parameter_list|(

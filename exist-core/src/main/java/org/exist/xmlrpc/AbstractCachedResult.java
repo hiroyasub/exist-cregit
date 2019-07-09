@@ -158,7 +158,7 @@ name|Object
 name|getResult
 parameter_list|()
 function_decl|;
-comment|/**      * Returns true if the Cached Result      * has been closed.      */
+comment|/**      * Returns true if the Cached Result      * has been closed.      * @return to be documented      */
 specifier|public
 specifier|final
 name|boolean

@@ -116,7 +116,6 @@ specifier|protected
 name|int
 name|startOffset
 decl_stmt|;
-comment|/**      *       *       * @param page       * @param chunk       * @param startOffset       * @param chunkSize       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowAppendLoggable
 parameter_list|(
@@ -175,7 +174,6 @@ operator|=
 name|startOffset
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param transactionId      */
 specifier|public
 name|OverflowAppendLoggable
 parameter_list|(

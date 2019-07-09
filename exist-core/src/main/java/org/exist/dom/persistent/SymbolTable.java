@@ -686,7 +686,7 @@ return|return
 name|FILE_NAME
 return|;
 block|}
-comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      * @param type qname type      * @param namespaceURI qname namespace uri      * @param localName qname localname      * @param prefix qname prefix      * @return qname from pool      */
 specifier|public
 specifier|synchronized
 name|QName
@@ -770,7 +770,7 @@ return|return
 name|qn
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified element.      *      * @param element      */
+comment|/**      * Return a unique id for the local node name of the specified element.      *      * @param element the element to create a unique id for      * @return unique id for the local node name of the specified element.      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
@@ -797,7 +797,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified attribute.      *      * @param attr      */
+comment|/**      * Return a unique id for the local node name of the specified attribute.      *      * @param attr the attribute to create a unique id for      * @return unique id for the local node name of the specified attribute.      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
@@ -832,7 +832,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *      * @param name      */
+comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *      * @param name local name      * @return unique id for local name      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
@@ -874,7 +874,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified namespace URI.      *      * @param ns      */
+comment|/**      * Returns a unique id for the specified namespace URI.      *      * @param ns namespace uri      * @return unique id for namespace uri      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
@@ -935,7 +935,7 @@ name|mimeType
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      */
+comment|/**      * @return true if the symbol table needs to be saved to persistent storage.      *      */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -946,7 +946,7 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *      * @param id      */
+comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *      * @param id identifier      * @return the local name registered for the id or null if the name is not known.      */
 specifier|public
 specifier|synchronized
 name|String
@@ -985,7 +985,7 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the namespace URI registered for the id or null      * if the namespace URI is not known. Returns the empty string      * if the namespace is empty.      *      * @param id      */
+comment|/**      * Returns the namespace URI registered for the id or null      * if the namespace URI is not known. Returns the empty string      * if the namespace is empty.      *      * @param id identifier      * @return  the namespace URI registered for the id or null      */
 specifier|public
 specifier|synchronized
 name|String
@@ -1005,7 +1005,7 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *      * @param os outputstream      * @throws IOException      */
+comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *      * @param os outputstream      * @throws IOException in response to an IO error      */
 specifier|private
 specifier|synchronized
 name|void
@@ -1051,7 +1051,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**      * Read the symbol table from disk.      *      * @param is      * @throws IOException      */
+comment|/**      * Read the symbol table from disk.      *      * @param is input      * @throws IOException in response to an IO error      */
 specifier|protected
 specifier|final
 name|void
@@ -1187,7 +1187,7 @@ break|break;
 comment|//Removed default clause
 block|}
 block|}
-comment|/**      * Legacy method: read a symbol table written by a previous eXist version.      *      * @param istream      * @throws IOException      */
+comment|/**      * Legacy method: read a symbol table written by a previous eXist version.      *      * @param istream input      * @throws IOException in response to an IO error      */
 specifier|protected
 specifier|final
 name|void
@@ -1413,7 +1413,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/**      * Save the entire symbol table. Will only be called when initializing an      * empty database or when upgrading an older dbx file.      *      * @throws EXistException      */
+comment|/**      * Save the entire symbol table. Will only be called when initializing an      * empty database or when upgrading an older dbx file.      *      * @throws EXistException in response to eXist-db error      */
 specifier|private
 name|void
 name|saveSymbols
@@ -1519,7 +1519,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Read the global symbol table. The global symbol table stores QNames and      * namespace/prefix mappings.      *      * @throws EXistException      */
+comment|/**      * Read the global symbol table. The global symbol table stores QNames and      * namespace/prefix mappings.      *      * @throws EXistException in response to eXist-db error      */
 specifier|private
 specifier|synchronized
 name|void
@@ -2283,7 +2283,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**          * Append a new entry to the .dbx file          *          * @param id          * @param key          */
+comment|// Append a new entry to the .dbx file
 specifier|private
 name|void
 name|write

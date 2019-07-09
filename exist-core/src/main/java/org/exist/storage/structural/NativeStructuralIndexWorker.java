@@ -614,7 +614,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Find all nodes in the index matching a given QName. If a match is selected and returned depends on      * the specified {@link org.exist.xquery.NodeSelector}.      *      * This implementation does a scan through the index for a range of document ids in the input set.      * It will be fast for bulk-loading a large node set, but slow if you need to operate on a small      * context set.      *      * @param type      * @param docs      * @param qname      * @param selector      * @return nodeset      */
+comment|/**      * Find all nodes in the index matching a given QName. If a match is selected and returned depends on      * the specified {@link org.exist.xquery.NodeSelector}.      *      * This implementation does a scan through the index for a range of document ids in the input set.      * It will be fast for bulk-loading a large node set, but slow if you need to operate on a small      * context set.      *      * @param type to be documented      * @param docs to be documented      * @param qname to be documented      * @param selector to be documented      * @return nodeset to be documented      *      */
 specifier|public
 name|NodeSet
 name|findElementsByTagName
@@ -879,7 +879,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Scan the document set to find document id ranges to query      *      * @param docs      * @return List of contiguous document id ranges      */
+comment|/**      * Scan the document set to find document id ranges to query      *      * @param docs to be documented      * @return List of contiguous document id ranges      */
 name|List
 argument_list|<
 name|Range
@@ -1056,7 +1056,7 @@ name|start
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Find all descendants (or children) of the specified node set matching the given QName.      *      * This implementation does one btree lookup for every node in contextSet. It offers superior performance      * if the number of nodes in contextSet is rather small compared to the overall number of nodes in      * the index.      */
+comment|/**      * Find all descendants (or children) of the specified node set matching the given QName.      *      * This implementation does one btree lookup for every node in contextSet. It offers superior performance      * if the number of nodes in contextSet is rather small compared to the overall number of nodes in      * the index.      * @param type to be documented      * @param contextSet to be documented      * @param docs to be documented      * @param axis to be documented      * @param contextId to be documented      * @param qname to be documented      * @return to be documented      *      */
 specifier|public
 name|NodeSet
 name|findDescendantsByTagName
@@ -3961,7 +3961,7 @@ literal|false
 return|;
 comment|//To change body of implemented methods use File | Settings | File Templates.
 block|}
-comment|/**      * Collect index statistics. Used by functions like util:index-keys.      *      * @param context      * @param docs The documents to which the index entries belong      * @param contextSet ignored by this index      * @param hints Some "hints" for retrieving the index entries. See such hints in      * {@link org.exist.indexing.OrderedValuesIndex} and {@link org.exist.indexing.QNamedKeysIndex}.      * @return      */
+comment|/**      * Collect index statistics. Used by functions like util:index-keys.      *      * @param context to be documented      * @param docs The documents to which the index entries belong      * @param contextSet ignored by this index      * @param hints Some "hints" for retrieving the index entries. See such hints in      * {@link org.exist.indexing.OrderedValuesIndex} and {@link org.exist.indexing.QNamedKeysIndex}.      * @return to be documented      */
 specifier|public
 name|Occurrences
 index|[]

@@ -270,7 +270,7 @@ name|cstr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new loggable for the given type.      *      * @param type The type of the loggable      * @param transactionId the id of the current transaction      *      * @return The loggable for the type, or null if no loggable for the type is known      */
+comment|/**      * Create a new loggable for the given type.      *      * @param broker The broker that will perform the operation      * @param type The type of the loggable      * @param transactionId the id of the current transaction      *      * @return The loggable for the type, or null if no loggable for the type is known      * @throws LogException in case of errors creating a new loggable      */
 specifier|public
 specifier|final
 specifier|static

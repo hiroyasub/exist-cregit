@@ -99,7 +99,6 @@ specifier|protected
 name|int
 name|len
 decl_stmt|;
-comment|/**      *       *       * @param page       * @param tid       * @param oldData       * @param offset       * @param len       * @param fileId       * @param transaction       */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(
@@ -168,7 +167,6 @@ operator|=
 name|len
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param transactionId      */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(

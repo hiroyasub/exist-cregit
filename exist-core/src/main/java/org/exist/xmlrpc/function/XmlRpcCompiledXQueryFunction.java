@@ -140,7 +140,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a compiled XQuery      *      * @param compiledQuery The compiled XQuery      */
+comment|/**      * Signature for lambda function which takes a compiled XQuery      *      * @param compiledQuery The compiled XQuery      * @return to be documented      * @throws EXistException to be documented      * @throws PermissionDeniedException to be documented      * @throws XPathException to be documented       *      */
 name|R
 name|applyXmlRpc
 parameter_list|(

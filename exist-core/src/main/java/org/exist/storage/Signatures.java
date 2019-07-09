@@ -170,7 +170,7 @@ name|shortContent
 init|=
 literal|0x2
 decl_stmt|;
-comment|/**      *  Returns the storage size of the given type as      *  number of bytes required.      */
+comment|/**      *  @return the storage size of the given type as      *  number of bytes required.      * @param type given type      */
 specifier|public
 specifier|final
 specifier|static
@@ -210,7 +210,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**      *  Returns one of IntContent, ShortContent, ByteContent      *  or NoContent based on the number of bytes required      *  to store the integer value given in length.      */
+comment|/**      *  Returns one of IntContent, ShortContent, ByteContent      *  or NoContent based on the number of bytes required      *  to store the integer value given in length.      * @param length number of bytes required      * @return one of IntContent, ShortContent, ByteContent or NoContent      */
 specifier|public
 specifier|final
 specifier|static
@@ -265,7 +265,7 @@ name|noContent
 return|;
 block|}
 block|}
-comment|/**      *  From the signature in byte 0 of the node data,      *  extract the node type and return a constant      *  as defined in {@link Node}.      */
+comment|/**      *  From the signature in byte 0 of the node data,      *  extract the node type and return a constant      *  as defined in {@link Node}.      *      * @param signature in byte 0 of the node data      * @return a constant as defined in {@link Node}.      */
 specifier|public
 specifier|final
 specifier|static

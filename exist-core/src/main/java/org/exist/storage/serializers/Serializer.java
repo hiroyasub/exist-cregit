@@ -2323,7 +2323,7 @@ name|TAG_NONE
 return|;
 block|}
 block|}
-comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 */
+comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 * @param writer to be documented 	 */
 specifier|protected
 name|void
 name|applyXSLHandler
@@ -2413,7 +2413,7 @@ return|return
 name|errorHandler
 return|;
 block|}
-comment|/** 	 * Set the current User. A valid user is required to 	 * process XInclude elements. 	 */
+comment|/** 	 * Set the current User. A valid user is required to 	 * process XInclude elements. 	 * @param user to be documented 	 */
 specifier|public
 name|void
 name|setUser
@@ -2429,7 +2429,6 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/** 	 * Get the current User. 	 */
 specifier|public
 name|Subject
 name|getUser
@@ -2811,7 +2810,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Serialize a document to the supplied writer. 	 */
+comment|/** 	 *  Serialize a document to the supplied writer. 	 * @param writer to be documented 	 * @param doc to be documented 	 * @throws SAXException to be documented 	 */
 specifier|public
 name|void
 name|serialize
@@ -3429,7 +3428,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Set the ContentHandler to be used during serialization. 	 * 	 *@param  contentHandler  The new contentHandler value 	 */
+comment|/** 	 *  Set the ContentHandler to be used during serialization. 	 * 	 * @param  contentHandler  The new contentHandler value 	 * @param lexicalHandler to be documented 	 */
 specifier|public
 name|void
 name|setSAXHandlers
@@ -4146,7 +4145,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Plug an XSL stylesheet into the processing pipeline. 	 *  All output will be passed to this stylesheet. 	 */
+comment|/** 	 *  Plug an XSL stylesheet into the processing pipeline. 	 *  All output will be passed to this stylesheet. 	 * @param doc to be documented 	 * @param stylesheet to be documented 	 * @throws TransformerConfigurationException to be documented 	 */
 specifier|public
 name|void
 name|setStylesheet
@@ -4563,7 +4562,6 @@ name|checkStylesheetParams
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**  	 * Set stylesheet parameter 	 **/
 specifier|public
 name|void
 name|setStylesheetParam
@@ -6256,7 +6254,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc      * @return link to the stylesheet      */
+comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc to be documented      * @return link to the stylesheet      */
 specifier|public
 name|String
 name|hasXSLPi
@@ -6466,7 +6464,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---&gt; goes through fine.      *      * fn:doc($expr)/element()/attribute() ---&gt; fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException      * @author Charles Foster      */
+comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---&gt; goes through fine.      *      * fn:doc($expr)/element()/attribute() ---&gt; fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException to be documented      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypeAttributeValue
@@ -6513,7 +6511,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Writes a start element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item a NodeValue which will be wrapped in a element.      * @throws SAXException      * @author Charles Foster      */
+comment|/**      * Writes a start element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item a NodeValue which will be wrapped in a element.      * @throws SAXException to be documented      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypePreNode
@@ -6765,7 +6763,7 @@ break|break;
 default|default:
 block|}
 block|}
-comment|/**      * Writes an end element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item the item which will be wrapped in an element.      * @throws SAXException      * @author Charles Foster      */
+comment|/**      * Writes an end element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item the item which will be wrapped in an element.      * @throws SAXException to be documented      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypePostNode

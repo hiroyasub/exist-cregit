@@ -448,7 +448,7 @@ name|documentLookupFun
 argument_list|)
 return|;
 block|}
-comment|/**                  * Executes the Collection operation and returns the result.                  *                  * @return The result of the Collection operation.                  */
+comment|/**                  * Executes the Collection operation and returns the result.                  *                  * @throws PermissionDeniedException in case user does not have sufficent rights                  * @throws LockException in case the database is locked                  * @throws EXistException in case of an eXist-db error                  * @return The result of the Collection operation.                  */
 specifier|public
 name|CR
 name|doAll
@@ -660,7 +660,7 @@ name|FluentBrokerAPIBuilder_Col1_Exec_Doc1_Exec_Doc1
 argument_list|()
 return|;
 block|}
-comment|/**                          * Executes the Collection operation, the Collection and Document operation, and returns the results.                          *                          * @return A tuple, where the first entry is the result of the Collection operation,                          *     and the second entry is the result of the Collection and Document operation.                          */
+comment|/**                          * Executes the Collection operation, the Collection and Document operation, and returns the results.                          *                          * @return A tuple, where the first entry is the result of the Collection operation,                          *     and the second entry is the result of the Collection and Document operation.                          *                          * @throws PermissionDeniedException in case user does not have sufficent rights                          * @throws LockException in case the database is locked                          * @throws EXistException in case of an eXist-db error                           */
 specifier|public
 name|Tuple2
 argument_list|<
@@ -827,7 +827,7 @@ operator|=
 name|documentOp
 expr_stmt|;
 block|}
-comment|/**                              * Executes the Collection operation, the Collection and Document operation, the Document Operation, and returns the results.                              *                              * @return A triple, where the first entry is the result of the Collection operation,                              *     the second entry is the result of the Collection and Document operation,                              *     and the third entry is the result of the Document operation.                              */
+comment|/**                              * Executes the Collection operation, the Collection and Document operation, the Document Operation, and returns the results.                              *                              * @return A triple, where the first entry is the result of the Collection operation,                              *     the second entry is the result of the Collection and Document operation,                              *     and the third entry is the result of the Document operation.                              * @throws PermissionDeniedException in case user does not have sufficent rights                              * @throws LockException in case the database is locked                              * @throws EXistException in case of an eXist-db error                               */
 specifier|public
 name|Tuple3
 argument_list|<
@@ -969,7 +969,7 @@ name|documentOp
 argument_list|)
 return|;
 block|}
-comment|/**                          * Executes the Collection operation and returns the result.                          *                          * @return The result of the Collection operation.                          */
+comment|/**                          * Executes the Collection operation and returns the result.                          *                          * @return The result of the Collection operation.                          * @throws PermissionDeniedException if user has not sufficient rights                          * @throws LockException in response to an lock error                          * @throws EXistException generic eXist-db Exception                          */
 specifier|public
 name|CR
 name|doAll
@@ -1077,7 +1077,7 @@ operator|=
 name|documentOp
 expr_stmt|;
 block|}
-comment|/**                              * Executes the Collection operation, the Document operation, and returns the results.                              *                              * @return A tuple, where the first entry is the result of the Collection operation,                              *     and the second entry is the result of the Document operation.                              */
+comment|/**                              * Executes the Collection operation, the Document operation, and returns the results.                              *                              * @return A tuple, where the first entry is the result of the Collection operation,                              *     and the second entry is the result of the Document operation.                              * @throws PermissionDeniedException if user has not sufficient rights                              * @throws LockException in response to an lock error                              * @throws EXistException generic eXist-db Exception                              */
 specifier|public
 name|Tuple2
 argument_list|<
@@ -1312,7 +1312,7 @@ name|FluentBrokerAPIBuilder_Col1_NoExec_Doc1_Exec_NoExec
 argument_list|()
 return|;
 block|}
-comment|/**                      * Executes the Collection and Document operation and returns the result.                      *                      * @return The result of the Collection and Document operation.                      */
+comment|/**                      * Executes the Collection and Document operation and returns the result.                      *                      * @return The result of the Collection and Document operation.                      * @throws PermissionDeniedException if user has not sufficient rights                      * @throws LockException in response to an lock error                      * @throws EXistException generic eXist-db Exception                      */
 specifier|public
 name|CDR
 name|doAll
@@ -1460,7 +1460,7 @@ operator|=
 name|documentOp
 expr_stmt|;
 block|}
-comment|/**                          * Executes the Collection and Document operation, the Document operation, and returns the results.                          *                          * @return A tuple, where the first entry is the result of the Collection and Document operation,                          *     and the second entry is the result of the Document operation.                          */
+comment|/**                          * Executes the Collection and Document operation, the Document operation, and returns the results.                          *                          * @return A tuple, where the first entry is the result of the Collection and Document operation,                          *     and the second entry is the result of the Document operation.                          * @throws PermissionDeniedException if user has not sufficient rights                          * @throws LockException in response to an lock error                          * @throws EXistException generic eXist-db Exception                          */
 specifier|public
 name|Tuple2
 argument_list|<
@@ -1628,7 +1628,7 @@ operator|=
 name|documentOp
 expr_stmt|;
 block|}
-comment|/**                          * Executes the Document operation and returns the result.                          *                          * @return The result of the Document operation.                          */
+comment|/**                          * Executes the Document operation and returns the result.                          *                          * @return The result of the Document operation.                          * @throws PermissionDeniedException if user has not sufficient rights                          * @throws LockException in response to an lock error                          * @throws EXistException generic eXist-db Exception                          */
 specifier|public
 name|DR
 name|doAll
