@@ -195,7 +195,7 @@ operator|.
 name|varName
 return|;
 block|}
-comment|/** 	 * Set the sequence type of the variable (as specified in the "as" clause). 	 *  	 * @param type 	 */
+comment|/** 	 * Set the sequence type of the variable (as specified in the "as" clause). 	 *  	 * @param type the {@link SequenceType} to set 	 */
 specifier|public
 name|void
 name|setSequenceType

@@ -767,7 +767,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Return the accessor function. Will be created on demand.      */
+comment|/**      * Return the accessor function. Will be created on demand.      *      * @return function item to access the map      */
 specifier|protected
 name|InternalFunctionCall
 name|getAccessorFunc

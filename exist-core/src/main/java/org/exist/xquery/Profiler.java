@@ -289,7 +289,7 @@ name|db
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Configure the profiler from an XQuery pragma.      * Parameters are:      *       *<ul>      *<li><strong>enabled</strong>: yes|no.</li>      *<li><strong>logger</strong>: name of the logger to use.</li>      *<li><strong>verbosity</strong>: integer value&gt; 0. 1 does only output function calls.</li>      *</ul>      * @param pragma      */
+comment|/**      * Configure the profiler from an XQuery option.      * Parameters are:      *       *<ul>      *<li><strong>enabled</strong>: yes|no.</li>      *<li><strong>logger</strong>: name of the logger to use.</li>      *<li><strong>verbosity</strong>: integer value&gt; 0. 1 does only output function calls.</li>      *</ul>      * @param pragma the option to read settings from      */
 specifier|public
 specifier|final
 name|void
@@ -1166,7 +1166,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Called by an expression to indicate the end of an operation.      * The profiler computes the elapsed time.      *       * @param expr the expression.      * @param message required: a message to be printed to the log.      */
+comment|/**      * Called by an expression to indicate the end of an operation.      * The profiler computes the elapsed time.      *       * @param expr the expression.      * @param message required: a message to be printed to the log.      * @param result the result sequence of the expression. If present and set to verbose output,      *               the number of items in the result sequence will be printed to the log.      */
 specifier|public
 specifier|final
 name|void
@@ -1649,7 +1649,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Print out a single profiling message for the given       * expression object.      *       *       * @param level       * @param title       * @param sequence       * @param expr       */
+comment|/**      * Print out a single profiling message for the given       * expression object.      *       *       * @param level debug level: message will be ignore if verbosity is set to lower level      * @param title a title string      * @param sequence the result sequence of the expression. If present and set to verbose output,      *                 the number of items in the result sequence will be printed to the log.      * @param expr the expression      */
 specifier|public
 specifier|final
 name|void

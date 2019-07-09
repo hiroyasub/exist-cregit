@@ -236,7 +236,6 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/** Constructor for the RootNode object */
 specifier|public
 name|RootNode
 parameter_list|(

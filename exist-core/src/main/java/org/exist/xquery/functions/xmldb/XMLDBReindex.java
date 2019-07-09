@@ -419,7 +419,6 @@ literal|"true() if successfully reindexed, false() otherwise"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|XMLDBReindex
 parameter_list|(

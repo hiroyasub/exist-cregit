@@ -1152,7 +1152,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Evaluate the function.      *      * @param contextSequence the context sequence      * @param contextItem the context item      * @param seq the sequence      * @throws XPathException if an error occurs whilst evaluation the function.      */
+comment|/**      * Evaluate the function.      *      * @param contextSequence the context sequence      * @param contextItem the context item      * @param seq the sequence      * @throws XPathException if an error occurs whilst evaluation the function.      * @return the evaluation result      */
 specifier|public
 name|Sequence
 name|evalFunction

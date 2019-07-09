@@ -425,7 +425,7 @@ argument_list|)
 expr_stmt|;
 comment|//To change body of generated methods, choose Tools | Templates.
 block|}
-comment|/**      * Get the Mode described by the table model      *       * The Unix mode of the permissions      */
+comment|/**      * Get the Mode described by the table model      *       * @return The Unix mode of the permissions      */
 specifier|public
 name|int
 name|getMode

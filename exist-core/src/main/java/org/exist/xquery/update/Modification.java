@@ -605,7 +605,6 @@ name|DocumentTrigger
 argument_list|>
 name|triggers
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|Modification
 parameter_list|(
@@ -791,7 +790,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Acquire a lock on all documents processed by this modification.      * We have to avoid that node positions change during the      * operation.      *      * @param nodes      *      * @throws LockException      * @throws TriggerException      */
+comment|/**      * Acquire a lock on all documents processed by this modification.      * We have to avoid that node positions change during the      * operation.      *      * @param nodes sequence containing nodes from documents to lock      * @param transaction current transaction      * @return array of nodes for which lock was acquired      *      * @throws LockException in case locking failed      * @throws TriggerException in case of error thrown by triggers      * @throws XPathException in case of dynamic error      */
 specifier|protected
 name|StoredNode
 index|[]
@@ -805,8 +804,6 @@ name|nodes
 parameter_list|)
 throws|throws
 name|LockException
-throws|,
-name|PermissionDeniedException
 throws|,
 name|XPathException
 throws|,
@@ -1549,7 +1546,7 @@ name|fragmentationLimit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Check if any of the modified documents needs defragmentation.      *      * Defragmentation will take place if the number of split pages in the      * document exceeds the limit defined in the configuration file.      *      * @param docs      */
+comment|/**      * Check if any of the modified documents needs defragmentation.      *      * Defragmentation will take place if the number of split pages in the      * document exceeds the limit defined in the configuration file.      *      * @param context current context      * @param docs document set to check      * @param splitCount number of page splits      * @throws EXistException on general errors during defrag      * @throws LockException in case locking failed      */
 specifier|public
 specifier|static
 name|void

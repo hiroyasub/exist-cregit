@@ -183,7 +183,6 @@ specifier|private
 name|DefaultComboBoxModel
 name|groupNameModel
 decl_stmt|;
-comment|/**      * Creates new form FindGroupForm      */
 specifier|public
 name|FindGroupForm
 parameter_list|(

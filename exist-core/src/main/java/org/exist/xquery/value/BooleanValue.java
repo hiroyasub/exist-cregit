@@ -127,7 +127,7 @@ operator|=
 name|bool
 expr_stmt|;
 block|}
-comment|/**      * Returns one of the static fields TRUE or FALSE depending on      * the value of the parameter.      *      * @param bool      */
+comment|/**      * Returns one of the static fields TRUE or FALSE depending on      * the value of the parameter.      *      * @param bool the boolean value to map      * @return either {@link #TRUE} or {@link #FALSE}      */
 specifier|public
 specifier|final
 specifier|static

@@ -1243,7 +1243,7 @@ name|rootExpression
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Set the root expression for this context.      *      * @param  expr      */
+comment|/**      * Set the root expression for this context.      *      * @param  expr the root expression      */
 specifier|protected
 name|void
 name|setRootExpression

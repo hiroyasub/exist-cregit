@@ -583,7 +583,6 @@ name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunReplace
 parameter_list|(

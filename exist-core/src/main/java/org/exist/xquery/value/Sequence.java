@@ -253,7 +253,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Convert the sequence to a string.      *      * @return the string value      */
+comment|/**      * Convert the sequence to a string.      *      * @return the string value      * @throws XPathException in case of dynamic error      */
 name|String
 name|getStringValue
 parameter_list|()
@@ -305,7 +305,7 @@ argument_list|>
 name|javaClass
 parameter_list|)
 function_decl|;
-comment|/**      * Convert the value into an instance of the specified      * Java class.      *      * @param target the target class      *      * @return the Java object.      *      * @throws XPathException if an error occurs      */
+comment|/**      * Convert the value into an instance of the specified      * Java class.      *      * @param<T> the class to which the instance is converted      * @param target the target class      *      * @return the Java object.      *      * @throws XPathException if an error occurs      */
 parameter_list|<
 name|T
 parameter_list|>

@@ -132,7 +132,6 @@ specifier|private
 name|Expression
 name|parent
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|FilteredExpression
 parameter_list|(

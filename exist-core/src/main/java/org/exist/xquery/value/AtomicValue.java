@@ -422,7 +422,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @return true if the value starts with the other value      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|startsWith
@@ -454,7 +454,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @return true if the value ends with the other value      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|endsWith
@@ -486,7 +486,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      * @return true if the value contains the passed in value      */
 specifier|public
 name|boolean
 name|contains

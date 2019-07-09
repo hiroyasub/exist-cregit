@@ -96,7 +96,7 @@ specifier|public
 class|class
 name|RegexUtil
 block|{
-comment|/**      * Parses the flags for an XQuery Regular Expression.      *      * @param context The calling expression      * @param strFlags The XQuery Regular Expression flags.      *      * @return The flags for a Java Regular Expression.      */
+comment|/**      * Parses the flags for an XQuery Regular Expression.      *      * @param context The calling expression      * @param strFlags The XQuery Regular Expression flags.      *      * @return The flags for a Java Regular Expression.      * @throws XPathException in case of invalid flag      */
 specifier|public
 specifier|static
 name|int
@@ -330,7 +330,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**      * Translates the Regular Expression from XPath3 syntax to Java regex      * syntax.      *      * @param pattern a String containing a regular expression in the syntax of XPath Functions and Operators 3.0.      * @param ignoreWhitespace true if whitespace is to be ignored ('x' flag)      * @param caseBlind true if case is to be ignored ('i' flag)      *      * @return The Java Regular Expression      *      * @throws XPathException if the XQuery Regular Expression is invalid.      */
+comment|/**      * Translates the Regular Expression from XPath3 syntax to Java regex      * syntax.      *      * @param context the context expression - used for error reporting      * @param pattern a String containing a regular expression in the syntax of XPath Functions and Operators 3.0.      * @param ignoreWhitespace true if whitespace is to be ignored ('x' flag)      * @param caseBlind true if case is to be ignored ('i' flag)      *      * @return The Java Regular Expression      *      * @throws XPathException if the XQuery Regular Expression is invalid.      */
 specifier|public
 specifier|static
 name|String

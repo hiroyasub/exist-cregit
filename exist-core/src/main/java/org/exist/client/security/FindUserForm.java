@@ -195,7 +195,6 @@ specifier|private
 name|DefaultComboBoxModel
 name|usernameModel
 decl_stmt|;
-comment|/**      * Creates new form FindUserForm      */
 specifier|public
 name|FindUserForm
 parameter_list|(

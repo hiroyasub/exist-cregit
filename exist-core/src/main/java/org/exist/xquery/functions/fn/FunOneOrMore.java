@@ -279,7 +279,6 @@ literal|"the sequence passed in by $arg if it contains one or more items."
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunOneOrMore
 parameter_list|(

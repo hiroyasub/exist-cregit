@@ -383,7 +383,7 @@ operator|new
 name|Random
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Takes a String of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param str 	 *            The String of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes a String of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param str 	 *            The String of XML 	 *  	 * @return The NodeValue of XML      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source 	 */
 specifier|public
 specifier|static
 name|NodeValue
@@ -427,7 +427,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 * Takes an InputStream of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param is 	 *            The InputStream of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes an InputStream of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param is 	 *            The InputStream of XML 	 *  	 * @return The NodeValue of XML      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      */
 specifier|public
 specifier|static
 name|NodeValue
@@ -457,7 +457,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Takes a Source of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param src 	 *            The Source of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes a Source of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param src 	 *            The Source of XML 	 *  	 * @return The NodeValue of XML      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      */
 specifier|public
 specifier|static
 name|NodeValue
@@ -554,7 +554,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param inputSource 	 *            The InputSource of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param inputSource 	 *            The InputSource of XML 	 *  	 * @return The NodeValue of XML      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      */
 specifier|public
 specifier|static
 name|NodeValue
@@ -705,7 +705,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param src 	 *            The InputSource of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param src 	 *            The InputSource of XML 	 *      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      * @return The NodeValue of XML 	 */
 specifier|private
 specifier|static
 name|NodeValue
@@ -824,7 +824,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Takes a HTML InputSource and creates an XML representation of the HTML by 	 * tidying it (uses NekoHTML) 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param srcHtml 	 *            The Source for the HTML      * @param parserFeatures      *            The features to set on the Parser      * @param parserProperties      *            The properties to set on the Parser 	 *  	 * @return An in-memory Document representing the XML'ised HTML 	 */
+comment|/** 	 * Takes a HTML InputSource and creates an XML representation of the HTML by 	 * tidying it (uses NekoHTML) 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param srcHtml 	 *            The Source for the HTML      * @param parserFeatures      *            The features to set on the Parser      * @param parserProperties      *            The properties to set on the Parser 	 *      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      * @return An in-memory Document representing the XML'ised HTML 	 */
 specifier|public
 specifier|static
 name|DocumentImpl
@@ -908,7 +908,7 @@ name|parserProperties
 argument_list|)
 return|;
 block|}
-comment|/**      * Takes a HTML InputSource and creates an XML representation of the HTML by      * tidying it      *      * @param context      *            The Context of the calling XQuery      * @param srcHtml      *            The InputSource for the HTML      * @param parserFeatures      *            The features to set on the Parser      * @param parserProperties      *            The properties to set on the Parser      *      * @return An in-memory Document representing the XML'ised HTML      */
+comment|/**      * Takes a HTML InputSource and creates an XML representation of the HTML by      * tidying it      *      * @param context      *            The Context of the calling XQuery      * @param srcHtml      *            The InputSource for the HTML      * @param parserFeatures      *            The features to set on the Parser      * @param parserProperties      *            The properties to set on the Parser      *      * @throws SAXException in case of a SAX error      * @throws IOException in case of error reading input source      * @return An in-memory Document representing the XML'ised HTML      */
 specifier|public
 specifier|static
 name|DocumentImpl
@@ -1314,7 +1314,7 @@ name|lock
 return|;
 block|}
 block|}
-comment|/**      * Retrieves a previously stored Object from the Context of an XQuery.      *      * @param   context         The Context of the XQuery containing the Object      * @param   contextMapName  DOCUMENT ME!      * @param   objectUID       The UID of the Object to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
+comment|/**      * Retrieves a previously stored Object from the Context of an XQuery.      *      * @param   context         The Context of the XQuery containing the Object      * @param   contextMapName  DOCUMENT ME!      * @param   objectUID       The UID of the Object to retrieve from the Context of the XQuery      * @param<T> class of the object stored in the context      * @return  the object stored in the context or null      */
 specifier|public
 specifier|static
 parameter_list|<
@@ -1605,7 +1605,7 @@ name|entry
 parameter_list|)
 function_decl|;
 block|}
-comment|/**      * Stores an Object in the Context of an XQuery.      *      * @param   context         The Context of the XQuery to store the Object in      * @param   contextMapName  The name of the context map      * @param   o               The Object to store      *      * @return  A unique ID representing the Object      */
+comment|/**      * Stores an Object in the Context of an XQuery.      *      * @param   context         The Context of the XQuery to store the Object in      * @param   contextMapName  The name of the context map      * @param   o               The Object to store      * @param<T> the class of the object being stored      * @return  A unique ID representing the Object      */
 specifier|public
 specifier|static
 parameter_list|<

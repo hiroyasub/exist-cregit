@@ -99,7 +99,6 @@ specifier|final
 name|Expression
 name|expression
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param axis 	 */
 specifier|public
 name|SimpleStep
 parameter_list|(

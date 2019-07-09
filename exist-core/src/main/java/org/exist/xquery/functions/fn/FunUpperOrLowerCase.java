@@ -336,7 +336,6 @@ literal|"the resulting lower-case text"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FunUpperOrLowerCase
 parameter_list|(

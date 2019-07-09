@@ -635,7 +635,6 @@ argument_list|)
 argument_list|)
 block|,     }
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|IndexKeys
 parameter_list|(

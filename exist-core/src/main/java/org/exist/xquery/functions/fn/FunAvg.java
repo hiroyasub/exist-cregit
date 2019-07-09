@@ -412,7 +412,6 @@ literal|"The average of the values in the input sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|FunAvg
 parameter_list|(

@@ -194,7 +194,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param qname the of the function 	 */
+comment|/** 	 * Create new call on the Java method or constructor identified by the QName. 	 * 	 * @param context current context 	 * @param qname the name of the function 	 * @throws XPathException in case of a static error 	 */
 specifier|public
 name|JavaCall
 parameter_list|(

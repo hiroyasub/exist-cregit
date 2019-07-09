@@ -257,7 +257,6 @@ name|memberOfGroupsListCellRenderer
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates new form UserDialog      */
 specifier|public
 name|UserDialog
 parameter_list|(

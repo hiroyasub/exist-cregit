@@ -468,7 +468,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *       * @param contextSequence       * @param collection       * @param args       * @throws XPathException       */
 specifier|public
 name|Sequence
 name|evalWithCollection

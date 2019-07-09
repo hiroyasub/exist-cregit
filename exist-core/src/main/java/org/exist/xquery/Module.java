@@ -165,7 +165,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param context the xquery context 	 * @param keepGlobals true to keep global declarations 	 */
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param xqueryContext the xquery context 	 * @param keepGlobals true to keep global declarations 	 */
 specifier|public
 name|void
 name|reset

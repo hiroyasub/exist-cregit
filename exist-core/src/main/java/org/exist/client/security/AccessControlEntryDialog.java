@@ -295,7 +295,6 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * Creates new form AccessControlEntryDialog      */
 specifier|public
 name|AccessControlEntryDialog
 parameter_list|(

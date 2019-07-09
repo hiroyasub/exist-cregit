@@ -153,7 +153,6 @@ specifier|final
 name|Expression
 name|content
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|DocumentConstructor
 parameter_list|(

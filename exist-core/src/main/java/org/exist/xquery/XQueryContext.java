@@ -2132,7 +2132,7 @@ name|src
 argument_list|)
 return|;
 block|}
-comment|/**      * Prepares the XQuery Context for use.      *      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      */
+comment|/**      * Prepares the XQuery Context for use.      *      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      *      * @throws XPathException in case of static error      */
 specifier|public
 name|void
 name|prepareForReuse
@@ -5338,7 +5338,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get's a document from the "Available documents" of the      * dynamic context.      */
+comment|/**      * Get's a document from the "Available documents" of the      * dynamic context.      *      * @param uri the URI by which the document was registered      * @return sequence of available documents matching the URI      * @throws XPathException in case of dynamic error      */
 end_comment
 
 begin_function
@@ -5447,7 +5447,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get's a text resource from the "Available text resources" of the      * dynamic context.      */
+comment|/**      * Get's a text resource from the "Available text resources" of the      * dynamic context.      *      * @param uri the URI by which the document was registered      * @param charset the charset to use for retrieving the resource      * @return a reader to read the resource content from      * @throws XPathException in case of a dynamic error      */
 end_comment
 
 begin_function
@@ -5542,7 +5542,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get's a collection from the "Available collections" of the      * dynamic context.      */
+comment|/**      * Get's a collection from the "Available collections" of the      * dynamic context.      *      * @param uri the URI of the collection to retrieve      * @return a sequence of document nodes      * @throws XPathException in case of dynamic error      */
 end_comment
 
 begin_function

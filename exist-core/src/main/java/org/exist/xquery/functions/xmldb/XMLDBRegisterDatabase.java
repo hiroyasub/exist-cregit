@@ -334,7 +334,6 @@ literal|"true() if successfully registered, false() otherwise"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|XMLDBRegisterDatabase
 parameter_list|(

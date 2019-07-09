@@ -442,7 +442,6 @@ literal|"the result"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|TwoParamFunctions
 parameter_list|(

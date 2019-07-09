@@ -127,7 +127,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**      * Get the signature of the function on which this      * annotation was placed      */
+comment|/**      * Get the signature of the function on which this      * annotation was placed      *      * @return the function signature      */
 specifier|public
 name|FunctionSignature
 name|getFunctionSignature

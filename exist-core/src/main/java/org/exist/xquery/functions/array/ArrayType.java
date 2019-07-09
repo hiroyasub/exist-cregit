@@ -893,7 +893,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Add member. Modifies the array! Don't use unless you're constructing a new array.      *      * @param seq      */
+comment|/**      * Add member. Modifies the array! Don't use unless you're constructing a new array.      *      * @param seq the member sequence to add      */
 specifier|public
 name|void
 name|add
@@ -912,7 +912,7 @@ name|seq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Return a new array with a member appended.      *      * @param seq      * @return      */
+comment|/**      * Return a new array with a member appended.      *      * @param seq the member sequence to append      * @return new array      */
 specifier|public
 name|ArrayType
 name|append
@@ -1961,7 +1961,7 @@ name|toSequence
 argument_list|()
 return|;
 block|}
-comment|/**      * Flatten the given sequence by recursively replacing arrays with their member sequence.      *      * @param input      * @return      * @throws XPathException      */
+comment|/**      * Flatten the given sequence by recursively replacing arrays with their member sequence.      *      * @param input the sequence to flatten      * @return flattened sequence      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|Sequence

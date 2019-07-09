@@ -748,7 +748,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**      * Set the level id which starts at offset to the      * given id value.      *      * @param offset      * @param levelId      */
+comment|/**      * Set the level id which starts at offset to the      * given id value.      *      * @param offset offset in number of bits      * @param levelId the level id to set      */
 specifier|public
 name|void
 name|setLevelId
@@ -774,7 +774,7 @@ name|levelId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Adds a new level to the node id, using levelId      * as initial value.      *      * @param levelId initial value      */
+comment|/**      * Adds a new level to the node id, using levelId      * as initial value.      *      * @param levelId initial value      * @param isSubLevel if the new level id is a sublevel      */
 specifier|public
 name|void
 name|addLevelId
@@ -955,7 +955,7 @@ name|nbits
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set the level id for the last level that has been written.      * The data array will be resized automatically if the bit set is      * too small to encode the id.      *      * @param levelId      */
+comment|/**      * Set the level id for the last level that has been written.      * The data array will be resized automatically if the bit set is      * too small to encode the id.      *      * @param levelId the level id      */
 specifier|protected
 name|void
 name|setCurrentLevelId
@@ -1059,7 +1059,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns the id starting at offset.      *      * @param startBit      * @return the level id      */
+comment|/**      * Returns the id starting at offset.      *      * @param startBit the offset (in number of bits) to read the level id from      * @return the level id      */
 specifier|public
 name|int
 name|getLevelId
@@ -1291,7 +1291,7 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**      * Returns the number of level in this id, which corresponds      * to the depth at which the node occurs within the node tree.      *      * @return the number of levels in this id      */
+comment|/**      * Returns the number of level in this id, which corresponds      * to the depth at which the node occurs within the node tree.      *      * @param startOffset the offset (in number of bits) to start counting      * @return the number of levels in this id      */
 specifier|public
 name|int
 name|getLevelCount
@@ -1397,7 +1397,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**      * Returns the number of sub-levels in the id starting at      * startOffset. This is required to determine where a node      * can be inserted.      *       * @param startOffset      * @return number of sub-levels      */
+comment|/**      * Returns the number of sub-levels in the id starting at      * startOffset. This is required to determine where a node      * can be inserted.      *       * @param startOffset the start offset (in number of bits)      * @return number of sub-levels      */
 specifier|public
 name|int
 name|getSubLevelCount
@@ -1851,7 +1851,7 @@ operator|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Calculates the number of bits available in a bit set      * that uses the given number of units. These are the bits      * that can be actually used for the id, not including the      * trailing address bits.      *       * @param units      * @return number of bits available      */
+comment|/**      * Calculates the number of bits available in a bit set      * that uses the given number of units. These are the bits      * that can be actually used for the id, not including the      * trailing address bits.      *       * @param units the number of units to use      * @return number of bits available      */
 specifier|protected
 specifier|static
 name|int
@@ -2223,7 +2223,7 @@ index|]
 operator|)
 return|;
 block|}
-comment|/**      * Checks if the current DLN starts with the      * same bit sequence as other. This is used      * to test ancestor-descendant relationships.      *       * @param other      */
+comment|/**      * Checks if the current DLN starts with the      * same bit sequence as other. This is used      * to test ancestor-descendant relationships.      *       * @param other other DLN to compare with      * @return true if this DLN starts with the same bit sequence as the other      */
 specifier|public
 name|boolean
 name|startsWith

@@ -131,7 +131,7 @@ operator|.
 name|FOR
 return|;
 block|}
-comment|/**      * A "for" expression may have an optional positional variable whose      * QName can be set via this method.      *       * @param var      */
+comment|/**      * A "for" expression may have an optional positional variable whose      * QName can be set via this method.      *       * @param var the name of the variable to set      */
 specifier|public
 name|void
 name|setPositionalVariable

@@ -479,7 +479,6 @@ name|ERROR_TITLE
 init|=
 literal|"Edit Properties Error"
 decl_stmt|;
-comment|/**      * Creates new form PropertiesDialog      */
 specifier|public
 name|EditPropertiesDialog
 parameter_list|(

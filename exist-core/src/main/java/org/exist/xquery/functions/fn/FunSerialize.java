@@ -695,7 +695,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Sequence normalization as described in      * http://www.w3.org/TR/xslt-xquery-serialization-30/#serdm      *      * @param input non-normalized sequence      * @return normalized sequence      * @throws XPathException      */
+comment|/**      * Sequence normalization as described in      * http://www.w3.org/TR/xslt-xquery-serialization-30/#serdm      *      * @param input non-normalized sequence      * @param context current context      * @param callingExpr the expression from which the function is called.      *                    needed for error reporting      * @return normalized sequence      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|Sequence

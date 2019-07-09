@@ -285,7 +285,6 @@ literal|"specified in the '?lang=' parameter of a collation URI."
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|Collations
 parameter_list|(

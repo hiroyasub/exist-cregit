@@ -86,7 +86,6 @@ specifier|private
 name|NodeSet
 name|context
 decl_stmt|;
-comment|/**      *      */
 specifier|public
 name|SelfSelector
 parameter_list|(

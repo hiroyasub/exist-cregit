@@ -2659,7 +2659,7 @@ name|result
 operator|)
 return|;
 block|}
-comment|/**      * Generic, slow implementation. Applied if none of the possible optimizations can be used.      *      * @param   contextSequence      * @param   contextItem      *      * @return  The Sequence resulting from the comparison      *      * @throws  XPathException      */
+comment|/**      * Generic, slow implementation. Applied if none of the possible optimizations can be used.      *      * @param   contextSequence the context sequence      * @param   contextItem optional context item      *      * @return  The Sequence resulting from the comparison      *      * @throws  XPathException in case of dynamic error      */
 specifier|protected
 name|Sequence
 name|genericCompare

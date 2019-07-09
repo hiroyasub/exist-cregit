@@ -141,7 +141,6 @@ specifier|final
 name|NodeComparisonOperator
 name|relation
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|NodeComparison
 parameter_list|(

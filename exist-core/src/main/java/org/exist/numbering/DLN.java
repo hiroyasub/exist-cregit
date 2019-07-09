@@ -87,7 +87,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a new DLN by parsing the string argument.      * In the string, levels are separated by a '.', sublevels by      * a '/'. For example, '1.2/1' or '1.2/1.2' are valid ids.      *       * @param s      */
+comment|/**      * Constructs a new DLN by parsing the string argument.      * In the string, levels are separated by a '.', sublevels by      * a '/'. For example, '1.2/1' or '1.2/1.2' are valid ids.      *       * @param s string represenation of a DLN      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -226,7 +226,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Constructs a new DLN, using the passed id as its      * single level value.      *       * @param id      */
+comment|/**      * Constructs a new DLN, using the passed id as its      * single level value.      *       * @param id the value for the initial first level of this DLN      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -251,7 +251,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a new DLN by copying the data of the      * passed DLN.      *       * @param other      */
+comment|/**      * Constructs a new DLN by copying the data of the      * passed DLN.      *       * @param other the DLN to copy data from      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -294,7 +294,7 @@ name|startOffset
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Reads a DLN from the given {@link VariableByteInput} stream.      *       * @see #write(VariableByteOutputStream)      * @param is      * @throws IOException      */
+comment|/**      * Reads a DLN from the given {@link VariableByteInput} stream.      *       * @see #write(VariableByteOutputStream)      * @param bitCnt total number of bits to read      * @param is the input stream to read from      * @throws IOException in case of an error reading the DLN      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -351,7 +351,7 @@ name|is
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new DLN by copying nbits bits from the given       * byte[].      *       * @param data      * @param nbits      */
+comment|/**      * Create a new DLN by copying nbits bits from the given       * byte[].      *       * @param data the byte[] to read bits from      * @param nbits number of bits to read      */
 specifier|protected
 name|DLN
 parameter_list|(
@@ -1425,7 +1425,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Write the node id to a {@link VariableByteOutputStream}.      *      * @param os      * @throws IOException      */
+comment|/**      * Write the node id to a {@link VariableByteOutputStream}.      *      * @param os the output stream to write to      * @throws IOException in case of write error      */
 annotation|@
 name|Override
 specifier|public

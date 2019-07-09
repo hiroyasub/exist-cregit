@@ -339,7 +339,6 @@ literal|"the document URI of $document-node"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      *       */
 specifier|public
 name|FunDocumentURI
 parameter_list|(

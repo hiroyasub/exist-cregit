@@ -570,7 +570,7 @@ name|deprecated
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new function signature.      *       * @param name the QName of the function.      * @param arguments the sequence types of all expected arguments      * @param returnType the sequence type returned by the function      * @param overloaded set to true if the function may expect additional parameters      */
+comment|/**      * Create a new function signature.      *       * @param name the QName of the function.      * @param description documentation string describing the function      * @param arguments the sequence types of all expected arguments      * @param returnType the sequence type returned by the function      * @param overloaded set to true if the function may expect additional parameters      */
 specifier|public
 name|FunctionSignature
 parameter_list|(

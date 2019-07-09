@@ -322,7 +322,6 @@ literal|"the sole item in $items if it contains exactly one item. Otherwise, an 
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunExactlyOne
 parameter_list|(

@@ -654,7 +654,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Creates a Subsequence from a sequence      *      * @param startLoc the starting location value as passed to {@code fn:subsequence}      * @param length the length value as passed to {@code fn:subsequence}, or null for all items      *      * @return the subsequence      */
+comment|/**      * Creates a Subsequence from a sequence      *      * @param sequence the input sequence      * @param startLoc the starting location value as passed to {@code fn:subsequence}      * @param length the length value as passed to {@code fn:subsequence}, or null for all items      *      * @return the subsequence      */
 specifier|public
 specifier|static
 name|Sequence

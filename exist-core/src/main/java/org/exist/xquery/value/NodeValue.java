@@ -100,7 +100,7 @@ name|PERSISTENT_NODE
 init|=
 literal|1
 decl_stmt|;
-comment|/**      * Returns true if this node has the same identity as another      * node. Used to implement "is" and "isnot" comparisons.      *      * @param other      * @throws XPathException      */
+comment|/**      * Returns true if this node has the same identity as another      * node. Used to implement "is" and "isnot" comparisons.      *      * @param other the other node to compare with      * @return true if the nodes have the same identity      * @throws XPathException in case of a dynamic error      */
 name|boolean
 name|equals
 parameter_list|(
@@ -110,7 +110,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Returns true if this node comes before another node in      * document order.      *      * @param other      * @throws XPathException      */
+comment|/**      * Returns true if this node comes before another node in      * document order.      *      * @param other the other node to compare with      * @param isPreceding if true, return false for ancestors of the current node      * @return true if this nodes precedes the other node      * @throws XPathException in case of dynamic error      */
 name|boolean
 name|before
 parameter_list|(
@@ -123,7 +123,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Returns true if this node comes after another node in      * document order.      *      * @param other      * @throws XPathException      */
+comment|/**      * Returns true if this node comes after another node in      * document order.      *      * @param other the other node to compare with      * @param isFollowing if true, return false for descendants of the current node      * @return true if this nodes precedes the other node      * @throws XPathException in case of dynamic error      */
 name|boolean
 name|after
 parameter_list|(
@@ -136,7 +136,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Returns the implementation-type of this node, i.e. either      * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}.      */
+comment|/**      * Returns the implementation-type of this node, i.e. either      * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}.      *      * @return {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}      */
 name|int
 name|getImplementationType
 parameter_list|()

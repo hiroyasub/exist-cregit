@@ -372,7 +372,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Combine the left and right sequences in some manner 	 * 	 * @param ls Left sequence 	 * @param rs Right sequence 	 * 	 * @return The combined result 	 */
+comment|/** 	 * Combine the left and right sequences in some manner 	 * 	 * @param ls Left sequence 	 * @param rs Right sequence 	 * 	 * @throws XPathException in case of a dynamic error 	 * @return The combined result 	 */
 specifier|protected
 specifier|abstract
 name|Sequence

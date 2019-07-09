@@ -141,7 +141,6 @@ specifier|final
 name|int
 name|mode
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|QuantifiedExpression
 parameter_list|(

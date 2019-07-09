@@ -144,7 +144,6 @@ name|EnclosedExpr
 extends|extends
 name|PathExpr
 block|{
-comment|/**      *       */
 specifier|public
 name|EnclosedExpr
 parameter_list|(

@@ -669,7 +669,6 @@ operator|.
 name|IndexFlags
 argument_list|()
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunMatches
 parameter_list|(

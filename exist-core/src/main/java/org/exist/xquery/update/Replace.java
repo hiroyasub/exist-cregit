@@ -404,7 +404,6 @@ name|Replace
 extends|extends
 name|Modification
 block|{
-comment|/**      * @param context      */
 specifier|public
 name|Replace
 parameter_list|(

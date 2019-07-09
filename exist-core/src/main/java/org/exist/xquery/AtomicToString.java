@@ -69,7 +69,6 @@ block|{
 name|Expression
 name|expression
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|AtomicToString
 parameter_list|(

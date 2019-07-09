@@ -231,7 +231,6 @@ literal|"the value of pi"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|NoParamFunctions
 parameter_list|(

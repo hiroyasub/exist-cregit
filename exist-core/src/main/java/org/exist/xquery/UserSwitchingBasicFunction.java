@@ -64,7 +64,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Switches the current broker to the provided user      *      */
+comment|/**      * Switches the current broker to the provided user      *      * @param user the user to switch to      */
 specifier|protected
 name|void
 name|switchUser

@@ -82,7 +82,6 @@ specifier|private
 name|NodeSet
 name|parents
 decl_stmt|;
-comment|/**      *      */
 specifier|public
 name|ParentSelector
 parameter_list|(

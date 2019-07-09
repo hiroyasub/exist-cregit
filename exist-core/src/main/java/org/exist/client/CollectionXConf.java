@@ -713,7 +713,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Update the details of a Range Index 	 * 	 * @param index		The numeric index of the range index to update 	 * @param XPath		The new XPath, or null to just set the type 	 * @param xsType	The new type of the path, a valid xs:type, or just null to set the path 	 */
+comment|/** 	 * Update the details of a Range Index 	 * 	 * @param index		The numeric index of the range index to update 	 * @param type		The type of the index, either {@link #TYPE_PATH} or {@link #TYPE_QNAME} 	 * @param XPath		The new XPath, or null to just set the type 	 * @param xsType	The new type of the path, a valid xs:type, or just null to set the path 	 */
 specifier|public
 name|void
 name|updateRangeIndex
@@ -790,7 +790,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Add a Range Index 	 * 	 * @param XPath		The XPath to index 	 * @param xsType	The type of the path, a valid xs:type 	 */
+comment|/** 	 * Add a Range Index 	 * 	 * @param type		The type of the index, either {@link #TYPE_PATH} or {@link #TYPE_QNAME} 	 * @param XPath		The XPath to index 	 * @param xsType	The type of the path, a valid xs:type 	 */
 specifier|public
 name|void
 name|addRangeIndex
@@ -1055,7 +1055,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Update the details of a Trigger 	 * 	 * @param index		The numeric index of the range index to update 	 * @param triggerClass	The name of the new class for the trigger          * @param parameters The parameters to the trigger 	 *  	 */
+comment|/** 	 * Update the details of a Trigger 	 * 	 * @param index		The numeric index of the range index to update 	 * @param triggerClass	The name of the new class for the trigger 	 * @param parameters The parameters to the trigger 	 *  	 */
 specifier|public
 name|void
 name|updateTrigger
@@ -1094,7 +1094,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Add a Trigger 	 * 	 * @param triggerClass The class for the Trigger 	 *  	 */
+comment|/** 	 * Add a Trigger 	 * 	 * @param triggerClass The class for the Trigger 	 * @param parameters Parameters to pass to trigger 	 *  	 */
 specifier|public
 name|void
 name|addTrigger
@@ -2154,7 +2154,7 @@ name|xsType
 init|=
 literal|null
 decl_stmt|;
-comment|/** 		 * Constructor 		 *  		 * @param XPath		The XPath to create a range index on 		 * @param xsType	The data type pointed to by the XPath as an xs:type  		 */
+comment|/** 		 * Constructor 		 * 		 * @param type type of the index, either "qname" or "path" 		 * @param XPath		The XPath to create a range index on 		 * @param xsType	The data type pointed to by the XPath as an xs:type  		 */
 name|RangeIndex
 parameter_list|(
 name|String

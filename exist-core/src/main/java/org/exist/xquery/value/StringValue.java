@@ -476,7 +476,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Collapses all sequences of adjacent whitespace chars in the input string      * into a single space.      *      * @param in      */
+comment|/**      * Collapses all sequences of adjacent whitespace chars in the input string      * into a single space.      *      * @param in the input string      * @return the collapsed string      */
 specifier|public
 specifier|static
 name|String
@@ -4237,7 +4237,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**      * Serialize for the persistant storage      *      * @param offset      */
+comment|/**      * Serialize for the persistant storage      *      * @param offset the byte offset at which to start encoding      * @param caseSensitive should the string be converted to lower case?      * @return new byte array containing the encoded string      */
 specifier|public
 name|byte
 index|[]

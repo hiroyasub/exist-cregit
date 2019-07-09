@@ -288,7 +288,6 @@ name|groupsTableModel
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates new form UserManagerDialog      */
 specifier|public
 name|UserManagerDialog
 parameter_list|(

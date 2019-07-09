@@ -115,7 +115,7 @@ specifier|final
 name|int
 name|requiredType
 decl_stmt|;
-comment|/** 	 * Constructor. When calling {@link #eval(Sequence, Item)}  	 * the passed expression will be cast into the required type and cardinality. 	 *  	 * @param context 	 */
+comment|/** 	 * Constructor. When calling {@link #eval(Sequence, Item)}  	 * the passed expression will be cast into the required type and cardinality. 	 *  	 * @param context current context      * @param expr expression to cast      * @param requiredType the {@link Type} expected      * @param cardinality the {@link Cardinality} expected 	 */
 specifier|public
 name|CastExpression
 parameter_list|(

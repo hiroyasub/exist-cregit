@@ -2661,7 +2661,7 @@ return|return
 name|fc
 return|;
 block|}
-comment|/**      * Wrap a function call into a user defined function.      * This is used to handle dynamic function calls or partial      * function applications on built in functions.      *       * @param context      * @param call the function call to be wrapped      * @return a new function call referencing an inline function      * @throws XPathException      */
+comment|/**      * Wrap a function call into a user defined function.      * This is used to handle dynamic function calls or partial      * function applications on built in functions.      *       * @param context current context      * @param call the function call to be wrapped      * @return a new function call referencing an inline function      * @throws XPathException in case of a static error      */
 specifier|public
 specifier|static
 name|FunctionCall

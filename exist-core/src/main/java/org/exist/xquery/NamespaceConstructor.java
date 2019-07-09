@@ -136,7 +136,6 @@ name|content
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|NamespaceConstructor
 parameter_list|(

@@ -81,7 +81,7 @@ name|boolean
 name|trackURI
 parameter_list|)
 function_decl|;
-comment|/**      * Sets the time span (in milliseconds) for which the stats for an executed query should      * be kept in the recent query history.      *      * @param time      */
+comment|/**      * Sets the time span (in milliseconds) for which the stats for an executed query should      * be kept in the recent query history.      *      * @param time time span in milliseconds      */
 name|void
 name|setHistoryTimespan
 parameter_list|(
@@ -93,7 +93,7 @@ name|long
 name|getHistoryTimespan
 parameter_list|()
 function_decl|;
-comment|/**      * Sets the minimum execution time of queries recorded in the recent query history.      * Queries faster than this are not recorded.      *      * @param time      */
+comment|/**      * Sets the minimum execution time of queries recorded in the recent query history.      * Queries faster than this are not recorded.      *      * @param time time span in milliseconds      */
 name|void
 name|setMinTime
 parameter_list|(
@@ -105,7 +105,7 @@ name|long
 name|getMinTime
 parameter_list|()
 function_decl|;
-comment|/**      * Enable request tracking: for every executed query, try to figure out which HTTP      * URL triggered it (if applicable). For performance reasons this is disabled by default,      * though the overhead should be small.      *      * @param track      */
+comment|/**      * Enable request tracking: for every executed query, try to figure out which HTTP      * URL triggered it (if applicable). For performance reasons this is disabled by default,      * though the overhead should be small.      *      * @param track should URLs be tracked?      */
 name|void
 name|setTrackRequestURI
 parameter_list|(

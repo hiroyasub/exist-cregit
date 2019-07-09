@@ -41,7 +41,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**      * Rewrite the expression to make use of indexes. The method may also return an additional      * pragma to be added to the extension expression which is inserted by the optimizer.      *      * @param locationStep      * @return      * @throws XPathException      */
+comment|/**      * Rewrite the expression to make use of indexes. The method may also return an additional      * pragma to be added to the extension expression which is inserted by the optimizer.      *      * @param locationStep the location step to rewrite      * @return a pragma expression to replace the step or null if not applicable      * @throws XPathException in case of a static error      */
 specifier|public
 name|Pragma
 name|rewriteLocationStep

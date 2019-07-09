@@ -458,7 +458,7 @@ operator|=
 name|tryTargetExpr
 expr_stmt|;
 block|}
-comment|/**      * Receive catch-clause data from parser.      */
+comment|/**      * Receive catch-clause data from parser.      *      * TODO: check if catchVars are still needed      *      * @param catchErrorList list of errors to catch      * @param catchVars variable names for caught errors: unused (from earlier version of the spec?)      * @param catchExpr the expression to be evaluated if error is caught      */
 specifier|public
 name|void
 name|addCatchClause
@@ -2859,7 +2859,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Data container      */
+comment|/**      * Data container      *      * TODO: catchVars is unused? Remove?      */
 specifier|public
 specifier|static
 class|class

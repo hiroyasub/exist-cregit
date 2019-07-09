@@ -4007,7 +4007,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * Get's the sibling nodes of the context set      *      * @param context         a<code>XQueryContext</code> value      * @param contextSequence a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * Get's the sibling nodes of the context set      *      * @param context         a<code>XQueryContext</code> value      * @param contextSequence a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      * @throws XPathException in case of dynamic error      */
 specifier|protected
 name|Sequence
 name|getSiblings

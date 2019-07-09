@@ -491,7 +491,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Zip up a directory path      *      * @param directory      * @param zos      * @param path      * @throws IOException      */
+comment|/**      * Zip up a directory path      *      * @param directory the directory to zip      * @param zos output stream for the zip entries      * @param path prefix path to be prepended to entries      * @throws IOException in case of an io error zipping the directory      */
 specifier|public
 specifier|static
 name|void
@@ -602,7 +602,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/***      * Extract zipfile to outdir with complete directory structure.      *      * @param fileUri the file URI      * @param file Input .zip file      * @param outdir Output directory      */
+comment|/***      * Extract zipfile to outdir with complete directory structure.      *      * @param fileUri the file URI      * @param file Input .zip file      * @param outdir Output directory      * @throws IOException in case of an error unzipping the file      */
 specifier|public
 specifier|static
 name|void

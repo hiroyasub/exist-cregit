@@ -354,7 +354,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * Constructor for FunId. 	 */
 specifier|public
 name|FunId
 parameter_list|(

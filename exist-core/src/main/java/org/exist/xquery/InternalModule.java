@@ -60,7 +60,7 @@ name|XPathException
 block|{
 comment|// no-op
 block|}
-comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return implementing class for the function 	 */
+comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname function QName to get definition for 	 * @param argCount arity of the function 	 * @return implementing class for the function 	 */
 name|FunctionDef
 name|getFunctionDef
 parameter_list|(
@@ -71,7 +71,7 @@ name|int
 name|argCount
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return all functions defined in this module 	 */
+comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname function QName to match 	 * @return all functions defined in this module 	 */
 name|List
 argument_list|<
 name|FunctionSignature

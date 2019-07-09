@@ -161,7 +161,7 @@ name|getSignature
 argument_list|()
 return|;
 block|}
-comment|/**      * Calls {@link FunctionCall#analyze(AnalyzeContextInfo)}.      *      * @param contextInfo      * @throws XPathException      */
+comment|/**      * Calls {@link FunctionCall#analyze(AnalyzeContextInfo)}.      *      * @param contextInfo current context information      * @throws XPathException in case of static error      */
 specifier|public
 name|void
 name|analyze
@@ -235,7 +235,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Calls {@link FunctionCall#eval(Sequence)}.      */
+comment|/**      * Calls {@link FunctionCall#eval(Sequence)}.      *      * @param contextSequence the input sequence      * @return evaluation result of the function call      * @throws XPathException in case of dynamic error      */
 specifier|public
 name|Sequence
 name|eval
@@ -255,7 +255,7 @@ name|contextSequence
 argument_list|)
 return|;
 block|}
-comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      */
+comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      *      * @param contextSequence the input sequence      * @param contextItem optional: the current context item      * @param seq array of parameters to be passed to the function      * @return evaluation result of the function call      * @throws XPathException in case of dynamic error      */
 specifier|public
 name|Sequence
 name|evalFunction

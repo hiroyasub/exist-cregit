@@ -9536,7 +9536,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * stores given Resource      *      * @param fileName simple file or directory      * @throws XMLDBException      */
+comment|/**      * stores given Resource      *      * @param fileName simple file or directory      * @throws XMLDBException in case of database error storing the resource      * @throws IOException in case of a read error      * @return true if the operation succeeded      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10080,7 +10080,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * stores given Resource.      *      * @param zipPath Path to a zip file      *      * @throws XMLDBException      */
+comment|/**      * stores given Resource.      *      * @param zipPath Path to a zip file      *      * @throws XMLDBException in case of error writing to the database      * @return true if operation succeeded      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10716,7 +10716,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Method called by the store Dialog      *      * @param files  : selected      * @param upload : GUI object      * @throws XMLDBException      */
+comment|/**      * Method called by the store Dialog      *      * @param files  : selected      * @param upload : GUI object      * @throws XMLDBException in case of an error uploading the resources      * @return true if the operation succeeded      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -13051,7 +13051,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Main processing method for the InteractiveClient object      *      * @return true on success, false on failure      */
+comment|/**      * Main processing method for the InteractiveClient object      *      * @param args command line arguments      * @return true on success, false on failure      * @throws Exception if an error occurs      */
 specifier|public
 name|boolean
 name|run

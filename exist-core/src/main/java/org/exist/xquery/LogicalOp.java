@@ -84,7 +84,6 @@ specifier|protected
 name|Expression
 name|parent
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|LogicalOp
 parameter_list|(

@@ -200,7 +200,6 @@ name|groupMembersTableModel
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates new form GroupDialog      */
 specifier|public
 name|GroupDialog
 parameter_list|(

@@ -231,7 +231,6 @@ name|runningThread
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *       */
 specifier|public
 name|XQueryWatchDog
 parameter_list|(
@@ -252,7 +251,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Track the name of the thread currently running this query.      * Used for JMX stats.      *      * @param name      */
+comment|/**      * Track the name of the thread currently running this query.      * Used for JMX stats.      *      * @param name name of the thread      */
 specifier|public
 name|void
 name|setRunningThread
@@ -268,7 +267,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**      * Get the name of last thread which has been running this query.      *      * @return      */
+comment|/**      * Get the name of last thread which has been running this query.      *      * @return name of the last thread      */
 specifier|public
 name|String
 name|getRunningThread

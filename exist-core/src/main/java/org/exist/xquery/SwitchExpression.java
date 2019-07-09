@@ -234,7 +234,7 @@ operator|=
 name|operand
 expr_stmt|;
 block|}
-comment|/**      * Add case clause(s) with a return.      */
+comment|/**      * Add case clause(s) with a return.      *      * @param caseOperands list of operands      * @param returnClause the return clause      */
 specifier|public
 name|void
 name|addCase
@@ -263,7 +263,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the default clause.      */
+comment|/**      * Set the default clause.      *      * @param defaultClause the default clause      */
 specifier|public
 name|void
 name|setDefault

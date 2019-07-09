@@ -367,7 +367,6 @@ literal|"the translated string"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunTranslate
 parameter_list|(

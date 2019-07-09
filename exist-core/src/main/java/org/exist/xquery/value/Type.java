@@ -1657,7 +1657,7 @@ literal|"xs:ENTITY"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param name The first name is the default name, any other names are aliases.      */
+comment|/**      * @param type the type constant      * @param name The first name is the default name, any other names are aliases.      */
 specifier|public
 specifier|static
 name|void
@@ -1700,7 +1700,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the internal default name for the built-in type.      *      * @param type      */
+comment|/**      * Get the internal default name for the built-in type.      *      * @param type the type constant      * @return name of the type      */
 specifier|public
 specifier|static
 name|String
@@ -1722,7 +1722,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**      * Get the internal aliases for the built-in type.      *      * @param type      */
+comment|/**      * Get the internal aliases for the built-in type.      *      * @param type the type constant      * @return one or more alias names      */
 specifier|public
 specifier|static
 name|String
@@ -1800,7 +1800,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Get the type code for a type identified by its internal name.      *      * @param name      * @throws XPathException      */
+comment|/**      * Get the type code for a type identified by its internal name.      *      * @param name name of the type      * @return type constant      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|int
@@ -1849,7 +1849,7 @@ return|return
 name|code
 return|;
 block|}
-comment|/**      * Get the type code for a type identified by its QName.      *      * @param qname      * @throws XPathException      */
+comment|/**      * Get the type code for a type identified by its QName.      *      * @param qname name of the type      * @return type constant      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|int
@@ -1919,7 +1919,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Define supertype/subtype relation.      *      * @param supertype      * @param subtype      */
+comment|/**      * Define supertype/subtype relation.      *      * @param supertype type constant of the super type      * @param subtype the subtype      */
 specifier|public
 specifier|static
 name|void
@@ -1940,7 +1940,7 @@ operator|=
 name|supertype
 expr_stmt|;
 block|}
-comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype      * @param supertype      * @throws IllegalArgumentException When the type is invalid      */
+comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype the type constant of the subtype      * @param supertype type constant of the super type      * @return true if subtype is a sub type of supertype      * @throws IllegalArgumentException When the type is invalid      */
 specifier|public
 specifier|static
 name|boolean
@@ -2041,7 +2041,7 @@ name|supertype
 argument_list|)
 return|;
 block|}
-comment|/**      * Get the type code of the supertype of the specified subtype.      *      * @param subtype      */
+comment|/**      * Get the type code of the supertype of the specified subtype.      *      * @param subtype type code of the sub type      * @return type constant for the super type      */
 specifier|public
 specifier|static
 name|int
@@ -2107,7 +2107,7 @@ return|return
 name|supertype
 return|;
 block|}
-comment|/**      * Find a common supertype for two given type codes.      *      * Type.ITEM is returned if no other common supertype      * is found.      *      * @param type1      * @param type2      */
+comment|/**      * Find a common supertype for two given type codes.      *      * Type.ITEM is returned if no other common supertype      * is found.      *      * @param type1 type constant for the first type      * @param type2 type constant for the second type      * @return common super type or {@link Type#ITEM} if none      */
 specifier|public
 specifier|static
 name|int

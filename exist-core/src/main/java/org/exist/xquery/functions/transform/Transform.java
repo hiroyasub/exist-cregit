@@ -968,7 +968,6 @@ name|stopOnWarn
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
 specifier|public
 name|Transform
 parameter_list|(

@@ -281,7 +281,6 @@ literal|"The absolute value of the argument"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|FunAbs
 parameter_list|(
