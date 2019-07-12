@@ -1272,7 +1272,7 @@ literal|"You cannot change the group ID of a file you do not own when posix-chow
 argument_list|)
 throw|;
 block|}
-comment|// and, group equals either the effective group ID of the process or one of the processÃ¢ÂÂs supplementary group IDs.
+comment|// and, group equals either the effective group ID of the process or one of the processes supplementary group IDs.
 specifier|final
 name|int
 name|desiredGroupId

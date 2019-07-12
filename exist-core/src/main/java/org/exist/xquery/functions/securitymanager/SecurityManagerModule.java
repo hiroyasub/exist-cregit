@@ -573,7 +573,7 @@ name|FunctionDef
 argument_list|(
 name|FindGroupFunction
 operator|.
-name|FNS_FIND_GROUPS_WHERE_GROUPNAME_CONTANINS
+name|FNS_FIND_GROUPS_WHERE_GROUPNAME_CONTAINS
 argument_list|,
 name|FindGroupFunction
 operator|.
