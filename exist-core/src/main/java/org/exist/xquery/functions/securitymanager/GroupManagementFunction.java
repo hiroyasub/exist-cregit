@@ -436,7 +436,7 @@ name|FunctionSignature
 argument_list|(
 name|qnRemoveGroup
 argument_list|,
-literal|"Remove a User Group. Any resources owned by the group will be moved to the 'guest' group."
+literal|"Remove a User Group."
 argument_list|,
 operator|new
 name|SequenceType
