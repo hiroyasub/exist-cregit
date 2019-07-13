@@ -219,6 +219,16 @@ name|GUEST_USER
 init|=
 literal|"guest"
 decl_stmt|;
+name|String
+name|UNKNOWN_GROUP
+init|=
+literal|"nogroup"
+decl_stmt|;
+name|String
+name|UNKNOWN_USER
+init|=
+literal|"nobody"
+decl_stmt|;
 name|void
 name|attach
 parameter_list|(
