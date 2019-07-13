@@ -1171,7 +1171,6 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-specifier|final
 name|boolean
 name|changeGroup
 init|=
@@ -1274,8 +1273,8 @@ throw|;
 block|}
 comment|// and, group equals either the effective group ID of the process or one of the processes supplementary group IDs.
 specifier|final
-name|int
-name|desiredGroupId
+name|Group
+name|desiredGroup
 init|=
 name|broker
 operator|.
@@ -1292,6 +1291,27 @@ operator|.
 name|get
 argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|desiredGroup
+operator|==
+literal|null
+condition|)
+block|{
+comment|// guard against attempting to change to a non-existent or removed group
+name|changeGroup
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
+specifier|final
+name|int
+name|desiredGroupId
+init|=
+name|desiredGroup
 operator|.
 name|getId
 argument_list|()
@@ -1314,6 +1334,7 @@ argument_list|(
 literal|"You cannot change the group ID of a file to a group of which you are not a member when posix-chown-restricted is in effect."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
