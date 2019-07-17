@@ -203,7 +203,7 @@ name|getSize
 argument_list|()
 return|;
 block|}
-comment|/**      * Add the given node path (a path like /root/childA/childB) to the data guide.      * The frequency for the target element (i.e. the last component in the path)      * is incremented by one.      *      * @param path node path      * @return the data guide      *      */
+comment|/**      * Add the given node path (a path like /root/childA/childB) to the data guide.      * The frequency for the target element (i.e. the last component in the path)      * is incremented by one.      *      * @param path the node path      *      * @return the node statistics      */
 specifier|public
 name|NodeStats
 name|add
@@ -221,7 +221,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Add the given node path using the frequency and size information      * given in the second argument. Used to merge two DataGuides.      * @param path node path      * @param mergeWith provides frequency and size information      * @return the merged data guide      */
+comment|/**      * Add the given node path using the frequency and size information      * given in the second argument. Used to merge two DataGuides.      *      * @param path the node path      * @param mergeWith the existing node statistics      *      * @return the node statistics      */
 specifier|protected
 name|NodeStats
 name|add
@@ -320,7 +320,7 @@ return|return
 name|current
 return|;
 block|}
-comment|/**      * Merge paths and statistics from this instance into the      * other instance.      *      * @param other data guide      * @return the other instance containing the merged graphs      */
+comment|/**      * Merge paths and statistics from this instance into the      * other instance.      *      * @param other the other data guide      * @return the other instance containing the merged graphs      */
 specifier|public
 name|DataGuide
 name|mergeInto

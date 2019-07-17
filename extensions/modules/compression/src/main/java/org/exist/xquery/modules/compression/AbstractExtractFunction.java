@@ -710,7 +710,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Processes a compressed archive      *      * @param compressedData the compressed data to extract      * @return Sequence of results      */
+comment|/**      * Processes a compressed archive      *      * @param compressedData the compressed data to extract      * @return Sequence of results      *      * @throws XPathException if a query error occurs      * @throws XMLDBException if a database error occurs      */
 specifier|protected
 specifier|abstract
 name|Sequence
@@ -727,7 +727,7 @@ name|XPathException
 throws|,
 name|XMLDBException
 function_decl|;
-comment|/**      * Processes a compressed entry from an archive      *      * @param name The name of the entry      * @param isDirectory true if the entry is a directory, false otherwise      * @param is an InputStream for reading the uncompressed data of the entry      * @param filterParam is an additional param for entry filtering function        * @param storeParam is an additional param for entry storing function      * @throws XMLDBException       */
+comment|/**      * Processes a compressed entry from an archive      *      * @param name The name of the entry      * @param isDirectory true if the entry is a directory, false otherwise      * @param is an InputStream for reading the uncompressed data of the entry      * @param filterParam is an additional param for entry filtering function        * @param storeParam is an additional param for entry storing function      *      * @return the result of processing the compressed entry.      *      * @throws XPathException if a query error occurs      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|Sequence
 name|processCompressedEntry

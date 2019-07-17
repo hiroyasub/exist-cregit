@@ -188,7 +188,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XML-RPC function      * @param transaction The transaction for the XML-RPC function      * @return to be documented      * @throws EXistException to be documented      * @throws PermissionDeniedException to be documented      * @throws SAXException to be documented      * @throws IOException to be documented      * @throws LockException to be documented      */
+comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XML-RPC function      * @param transaction The transaction for the XML-RPC function      *      * @return the result of the function      *      * @throws EXistException if an error occurs with the database      * @throws PermissionDeniedException if the caller has insufficient priviledges      * @throws IOException if an I/O error occurs      * @throws SAXException if a SAX error occurs      * @throws LockException if a lock error occurs      */
 name|R
 name|applyXmlRpc
 parameter_list|(

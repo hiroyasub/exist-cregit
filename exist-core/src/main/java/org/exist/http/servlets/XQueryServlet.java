@@ -588,7 +588,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Servlet to generate HTML output from an XQuery file.  *  * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *  * The servlet accepts the following initialization parameters in web.xml:  *  *<table border="0">  *<caption>Initialization Parameters</caption>  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML for  * ms.</td></tr>  *</table>  *  * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Servlet to generate HTML output from an XQuery file.  *  * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *  * The servlet accepts the following initialization parameters in web.xml:  *  *<table border="0">  *<caption>Initialization Parameters</caption>  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML for  * ms.</td></tr>  *</table>  *  * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1236,7 +1236,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Processes incoming HTTP requests for XQuery      */
+comment|/**      * Processes incoming HTTP requests for XQuery.      *      * @param request the http request      * @param response the http response      *      * @throws ServletException if the servlet raises an exception      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|void
 name|process

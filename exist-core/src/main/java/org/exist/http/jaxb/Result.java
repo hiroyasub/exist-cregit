@@ -317,7 +317,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      * Gets the value of the value property.      *       *       * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *       *       * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *       *       * Objects of the following type(s) are allowed in the list      * {@link Result.Value }      *       *       */
+comment|/**      * Gets the value of the value property.      *       *       * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *       *       * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *       *       * Objects of the following type(s) are allowed in the list      * {@link Result.Value }      *       * @return the result values      */
 specifier|public
 name|List
 argument_list|<
@@ -535,7 +535,7 @@ specifier|protected
 name|String
 name|type
 decl_stmt|;
-comment|/**          * Gets the value of the content property.          *           *           * This accessor method returns a reference to the live list,          * not a snapshot. Therefore any modification you make to the          * returned list will be present inside the JAXB object.          * This is why there is not a<CODE>set</CODE> method for the content property.          *           *           * For example, to add a new item, do as follows:          *<pre>          *    getContent().add(newItem);          *</pre>          *           *           *           * Objects of the following type(s) are allowed in the list          * {@link Element }          * {@link String }          *           *           */
+comment|/**          * Gets the value of the content property.          *           *           * This accessor method returns a reference to the live list,          * not a snapshot. Therefore any modification you make to the          * returned list will be present inside the JAXB object.          * This is why there is not a<CODE>set</CODE> method for the content property.          *           *           * For example, to add a new item, do as follows:          *<pre>          *    getContent().add(newItem);          *</pre>          *           *           *           * Objects of the following type(s) are allowed in the list          * {@link Element }          * {@link String }          *          * @return the content list          */
 specifier|public
 name|List
 argument_list|<

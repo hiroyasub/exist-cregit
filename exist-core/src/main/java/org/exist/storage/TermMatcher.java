@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Check if an index entry matches a given search term.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Check if an index entry matches a given search term.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface

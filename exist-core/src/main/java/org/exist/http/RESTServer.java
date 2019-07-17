@@ -1772,7 +1772,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a      * binary resource with mime-type "application/xquery", this resource will      * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul><li>_xpath or _query: if specified, the given query is executed on      * the current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type      * "application/xquery" is requested then the xquery will not be executed,      * instead the source of the document will be returned. Must be enabled in      * descriptor.xml with the following syntax      *<pre>{@code      *<xquery-app>      *<allow-source>      *<xquery path="/db/mycollection/myquery.xql"/>      *</allow-source>      *</xquery-app>      * }</pre>      *</li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *</ul>      *      * @param broker the database broker      * @param request the request      * @param response the response      * @param path the path of the request      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws NotFoundException if the request resource cannot be found      */
+comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a      * binary resource with mime-type "application/xquery", this resource will      * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul><li>_xpath or _query: if specified, the given query is executed on      * the current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type      * "application/xquery" is requested then the xquery will not be executed,      * instead the source of the document will be returned. Must be enabled in      * descriptor.xml with the following syntax      *<pre>{@code      *<xquery-app>      *<allow-source>      *<xquery path="/db/mycollection/myquery.xql"/>      *</allow-source>      *</xquery-app>      * }</pre>      *</li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *</ul>      *      * @param broker the database broker      * @param transaction the database transaction      * @param request the request      * @param response the response      * @param path the path of the request      *      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws NotFoundException if the request resource cannot be found      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|void
 name|doGet
@@ -3726,7 +3726,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Handles POST requests. If the path leads to a binary resource with      * mime-type "application/xquery", that resource will be read and executed      * by the XQuery engine. Otherwise, the request content is loaded and parsed      * as XML. It may either contain an XUpdate or a query request.      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
+comment|/**      * Handles POST requests. If the path leads to a binary resource with      * mime-type "application/xquery", that resource will be read and executed      * by the XQuery engine. Otherwise, the request content is loaded and parsed      * as XML. It may either contain an XUpdate or a query request.      *      * @param broker the database broker      * @param transaction the database transaction      * @param request the request      * @param response the response      * @param path the path of the request      *      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws NotFoundException if the request resource cannot be found      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|void
 name|doPost
@@ -5987,7 +5987,7 @@ name|uri
 return|;
 block|}
 block|}
-comment|/**      * Handles PUT requests. The request content is stored as a new resource at      * the specified location. If the resource already exists, it is overwritten      * if the user has write permissions.      *      * The resource type depends on the content type specified in the HTTP      * header. The content type will be looked up in the global mime table. If      * the corresponding mime type is not a know XML mime type, the resource      * will be stored as a binary resource.      *      * @param broker      * @param path The path to which the file should be stored      * @param request      * @param response      * @throws BadRequestException      * @throws PermissionDeniedException      */
+comment|/**      * Handles PUT requests. The request content is stored as a new resource at      * the specified location. If the resource already exists, it is overwritten      * if the user has write permissions.      *      * The resource type depends on the content type specified in the HTTP      * header. The content type will be looked up in the global mime table. If      * the corresponding mime type is not a know XML mime type, the resource      * will be stored as a binary resource.      *      * @param broker the database broker      * @param transaction the database transaction      * @param request the request      * @param response the response      * @param path the path of the request      *      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws NotFoundException if the request resource cannot be found      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|void
 name|doPut
@@ -7345,7 +7345,7 @@ return|return
 name|xml
 return|;
 block|}
-comment|/**      * TODO: pass request and response objects to XQuery.      *      * @throws XPathException      */
+comment|/**      * TODO: pass request and response objects to XQuery.      *      * @param broker the database broker      * @param transaction the database transaction      * @param query the XQuery      * @param path the path of the request      * @param namespaces any XQuery namespace bindings      * @param variables any XQuery variable bindings      * @param howmany the number of items in the results to return      * @param start the start position in the results to return      * @param typed whether the result nodes should be typed      * @param outputProperties the serialization properties      * @param wrap true to wrap the result of the XQuery in an exist:result      * @param cache whether to cache the results      * @param request the request      * @param response the response      *      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws XPathException if the XQuery raises an error      */
 specifier|protected
 name|void
 name|search
@@ -10790,7 +10790,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param response      * @param encoding      * @param updateCount      */
+comment|/**      * Writes the XUpdate results to the http response.      *      * @param response the http response to write the result to      * @param encoding the character encoding      * @param updateCount the number of updates performed      *      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|writeXUpdateResult
@@ -10892,7 +10892,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param response      * @param encoding      * @param broker      * @param collection      */
+comment|/**      * Write the details of a Collection to the http response.      *      * @param response the http response to write the result to      * @param encoding the character encoding      * @param broker the database broker      * @param collection the collection to write      *      * @throws IOException if an I/O error occurs      * @throws PermissionDeniedException if there are insufficient privildged for the caller      * @throws LockException if a lock error occurs      */
 specifier|protected
 name|void
 name|writeCollection

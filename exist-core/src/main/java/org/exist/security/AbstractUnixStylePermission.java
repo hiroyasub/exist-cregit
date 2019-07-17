@@ -742,7 +742,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|execute]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
+comment|/**      * Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|execute]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@throws  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
 annotation|@
 name|Deprecated
 specifier|private

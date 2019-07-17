@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of an {@link org.exist.xquery.ExternalModule}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Default implementation of an {@link org.exist.xquery.ExternalModule}.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

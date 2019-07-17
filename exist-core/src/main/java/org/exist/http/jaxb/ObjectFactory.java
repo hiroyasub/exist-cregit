@@ -60,7 +60,7 @@ specifier|public
 class|class
 name|ObjectFactory
 block|{
-comment|/**      * Create an instance of {@link Result }      *       */
+comment|/**      * Create an instance of {@link Result }      *      * @return the result      */
 specifier|public
 name|Result
 name|createResult
@@ -72,7 +72,7 @@ name|Result
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query }      *       */
+comment|/**      * Create an instance of {@link Query }      *      * @return the query      */
 specifier|public
 name|Query
 name|createQuery
@@ -84,7 +84,7 @@ name|Query
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Sequence }      *       */
+comment|/**      * Create an instance of {@link Sequence }      *      * @return the sequence      */
 specifier|public
 name|Sequence
 name|createSequence
@@ -96,7 +96,7 @@ name|Sequence
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query.Properties }      *       */
+comment|/**      * Create an instance of {@link Query.Properties }      *      * @return the query properties      */
 specifier|public
 name|Query
 operator|.
@@ -112,7 +112,7 @@ name|Properties
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query.Variables }      *       */
+comment|/**      * Create an instance of {@link Query.Variables }      *      * @return the query variables      */
 specifier|public
 name|Query
 operator|.
@@ -128,7 +128,7 @@ name|Variables
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query.Variables.Variable }      *       */
+comment|/**      * Create an instance of {@link Query.Variables.Variable }      *      * @return the variable      */
 specifier|public
 name|Query
 operator|.
@@ -148,7 +148,7 @@ name|Variable
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Collection }      *       */
+comment|/**      * Create an instance of {@link Collection }      *      * @return the collection      */
 specifier|public
 name|Collection
 name|createCollection
@@ -160,7 +160,7 @@ name|Collection
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Result.Value }      *       */
+comment|/**      * Create an instance of {@link Result.Value }      *      * @return the result value      */
 specifier|public
 name|Result
 operator|.
@@ -176,7 +176,7 @@ name|Value
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Sequence.Value }      *       */
+comment|/**      * Create an instance of {@link Sequence.Value }      *      * @return the sequence value      */
 specifier|public
 name|Sequence
 operator|.
@@ -192,7 +192,7 @@ name|Value
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query.Properties.Property }      *       */
+comment|/**      * Create an instance of {@link Query.Properties.Property }      *      * @return the property      */
 specifier|public
 name|Query
 operator|.
@@ -212,7 +212,7 @@ name|Property
 argument_list|()
 return|;
 block|}
-comment|/**      * Create an instance of {@link Query.Variables.Variable.Qname }      *       */
+comment|/**      * Create an instance of {@link Query.Variables.Variable.Qname }      *      * @return the qname      */
 specifier|public
 name|Query
 operator|.

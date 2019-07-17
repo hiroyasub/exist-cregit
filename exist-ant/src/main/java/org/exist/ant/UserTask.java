@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * abstract base class for all user-related tasks.  *  * @author  peter.klotz@blue-elephant-systems.com  * @author  andrzej@chaeron.com  */
+comment|/**  * abstract base class for all user-related tasks.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  * @author  andrzej@chaeron.com  */
 end_comment
 
 begin_class

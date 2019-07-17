@@ -92,6 +92,7 @@ specifier|protected
 name|long
 name|oldPointer
 decl_stmt|;
+comment|/**      * @param transaction the database transaction      * @param fileId the file id      * @param pageNum the page number      * @param idx the index      * @param oldValue the old value      * @param oldPointer the old pointer      */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(
@@ -150,6 +151,7 @@ operator|=
 name|oldPointer
 expr_stmt|;
 block|}
+comment|/**      * @param broker the database broker      * @param transactionId the transaction id      */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(
@@ -172,7 +174,8 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -249,7 +252,8 @@ name|oldPointer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
@@ -320,7 +324,8 @@ name|getLong
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -340,6 +345,8 @@ name|getLength
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -356,6 +363,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undo
@@ -372,6 +381,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

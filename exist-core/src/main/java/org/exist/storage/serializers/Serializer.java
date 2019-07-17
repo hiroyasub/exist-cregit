@@ -2323,7 +2323,7 @@ name|TAG_NONE
 return|;
 block|}
 block|}
-comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 * @param writer to be documented 	 */
+comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 * 	 * @param writer the writer 	 */
 specifier|protected
 name|void
 name|applyXSLHandler
@@ -2394,7 +2394,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Return my internal EntityResolver 	 * 	 *@return    The entityResolver value 	 */
+comment|/** 	 * Return my internal EntityResolver 	 * 	 * @return The entityResolver value 	 */
 specifier|public
 name|EntityResolver
 name|getEntityResolver
@@ -2413,7 +2413,7 @@ return|return
 name|errorHandler
 return|;
 block|}
-comment|/** 	 * Set the current User. A valid user is required to 	 * process XInclude elements. 	 * @param user to be documented 	 */
+comment|/** 	 * Set the current User. A valid user is required to 	 * process XInclude elements. 	 * 	 * @param user the user 	 */
 specifier|public
 name|void
 name|setUser
@@ -2429,6 +2429,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
+comment|/** 	 * Get the current User. 	 * 	 * @return the user 	 */
 specifier|public
 name|Subject
 name|getUser
@@ -2810,7 +2811,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Serialize a document to the supplied writer. 	 * @param writer to be documented 	 * @param doc to be documented 	 * @throws SAXException to be documented 	 */
+comment|/** 	 *  Serialize a document to the supplied writer. 	 * 	 * @param doc the document 	 * @param writer the output writer 	 * @throws SAXException if an error occurs during serialization 	 */
 specifier|public
 name|void
 name|serialize
@@ -3240,7 +3241,7 @@ name|releasePrettyPrinter
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Serialize a single NodeProxy. 	 * 	 *@param  p                 Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
+comment|/** 	 * Serialize a single NodeProxy. 	 * 	 * @param  p the node proxy 	 * 	 * @return the serialized result 	 * 	 * @throws SAXException if a SAX error occurs 	 */
 specifier|public
 name|String
 name|serialize
@@ -3428,7 +3429,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Set the ContentHandler to be used during serialization. 	 * 	 * @param  contentHandler  The new contentHandler value 	 * @param lexicalHandler to be documented 	 */
+comment|/** 	 * Set the ContentHandler to be used during serialization. 	 * 	 * @param  contentHandler the content handler 	 * @param lexicalHandler the lexical handle 	 */
 specifier|public
 name|void
 name|setSAXHandlers
@@ -3571,7 +3572,8 @@ return|return
 name|xinclude
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.XMLReader#setContentHandler(org.xml.sax.ContentHandler) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContentHandler
@@ -3588,7 +3590,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Required by interface XMLReader. Always returns null. 	 *  	 * @see org.xml.sax.XMLReader#getContentHandler() 	 */
+annotation|@
+name|Override
 specifier|public
 name|ContentHandler
 name|getContentHandler
@@ -3598,7 +3601,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Sets the entityResolver attribute of the Serializer object 	 * 	 *@param  resolver  The new entityResolver value 	 */
+comment|/** 	 * Sets the entityResolver attribute of the Serializer object 	 * 	 * @param  resolver  The new entityResolver value 	 */
 specifier|public
 name|void
 name|setEntityResolver
@@ -3612,7 +3615,7 @@ operator|=
 name|resolver
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the errorHandler attribute of the Serializer object 	 * 	 *@param  handler  The new errorHandler value 	 */
+comment|/** 	 * Sets the errorHandler attribute of the Serializer object 	 * 	 * @param  handler  The new errorHandler value 	 */
 specifier|public
 name|void
 name|setErrorHandler
@@ -3626,7 +3629,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the feature attribute of the Serializer object 	 * 	 *@param  name                           The new feature value 	 *@param  value                          The new feature value 	 *@exception  SAXNotRecognizedException  Description of the Exception 	 *@exception  SAXNotSupportedException   Description of the Exception 	 */
+comment|/** 	 * Sets the feature attribute of the Serializer object 	 * 	 * @param  name The new feature name 	 * @param  value The new feature value 	 * @throws  SAXNotRecognizedException  Description of the Exception 	 * @throws  SAXNotSupportedException   Description of the Exception 	 */
 specifier|public
 name|void
 name|setFeature
@@ -4145,7 +4148,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Plug an XSL stylesheet into the processing pipeline. 	 *  All output will be passed to this stylesheet. 	 * @param doc to be documented 	 * @param stylesheet to be documented 	 * @throws TransformerConfigurationException to be documented 	 */
+comment|/** 	 *  Plug an XSL stylesheet into the processing pipeline. 	 *  All output will be passed to this stylesheet. 	 * 	 * @param doc the document 	 * @param stylesheet the stylesheet 	 * 	 * @throws TransformerConfigurationException if the stylesheet cannot be set 	 */
 specifier|public
 name|void
 name|setStylesheet
@@ -4562,12 +4565,13 @@ name|checkStylesheetParams
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**  	 * Set stylesheet parameter 	 * 	 * @param name the parameter name 	 * @param value the parameter value 	 */
 specifier|public
 name|void
 name|setStylesheetParam
 parameter_list|(
 name|String
-name|param
+name|name
 parameter_list|,
 name|String
 name|value
@@ -4587,7 +4591,7 @@ argument_list|()
 operator|.
 name|setParameter
 argument_list|(
-name|param
+name|name
 argument_list|,
 name|value
 argument_list|)
@@ -6234,7 +6238,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Inherited from XMLReader. Ignored. 	 *  	 * @see org.xml.sax.XMLReader#setDTDHandler(org.xml.sax.DTDHandler) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDTDHandler
@@ -6244,7 +6249,8 @@ name|handler
 parameter_list|)
 block|{
 block|}
-comment|/** 	 * Inherited from XMLReader. Ignored. Returns always null. 	 *  	 * @see org.xml.sax.XMLReader#getDTDHandler() 	 */
+annotation|@
+name|Override
 specifier|public
 name|DTDHandler
 name|getDTDHandler
@@ -6254,7 +6260,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc to be documented      * @return link to the stylesheet      */
+comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc the document      * @return link to the stylesheet      */
 specifier|public
 name|String
 name|hasXSLPi
@@ -6464,7 +6470,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---&gt; goes through fine.      *      * fn:doc($expr)/element()/attribute() ---&gt; fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException to be documented      * @author Charles Foster      */
+comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---&gt; goes through fine.      *      * fn:doc($expr)/element()/attribute() ---&gt; fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException if the attribute can't be serialized      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypeAttributeValue
@@ -6511,7 +6517,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Writes a start element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item a NodeValue which will be wrapped in a element.      * @throws SAXException to be documented      * @author Charles Foster      */
+comment|/**      * Writes a start element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item a NodeValue which will be wrapped in a element. 	 * @throws SAXException if the element can't be serialized      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypePreNode
@@ -6763,7 +6769,7 @@ break|break;
 default|default:
 block|}
 block|}
-comment|/**      * Writes an end element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item the item which will be wrapped in an element.      * @throws SAXException to be documented      * @author Charles Foster      */
+comment|/**      * Writes an end element for DOCUMENT, ATTRIBUTE and TEXT nodes.      * This is required for the XQJ API implementation.      *      * @param item the item which will be wrapped in an element. 	 * @throws SAXException if the element can't be serialized      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypePostNode

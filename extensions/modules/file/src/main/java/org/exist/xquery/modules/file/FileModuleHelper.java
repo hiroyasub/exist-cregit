@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Helper class for FileModule  *   * @author Dannes Wessels (dannes@exist-db.org)  */
+comment|/**  *  Helper class for FileModule  *   * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class

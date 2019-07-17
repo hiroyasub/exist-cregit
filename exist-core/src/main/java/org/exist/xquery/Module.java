@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines an XQuery library module. A module consists of function definitions  * and global variables. It is uniquely identified by a namespace URI and an optional  * default namespace prefix. All functions provided by the module have to be defined   * in the module's namespace.  *   * Modules can be either internal or external: internal modules are collections of Java  * classes, each being a subclass of {@link org.exist.xquery.Function}. External modules  * are defined by the XQuery "module" directive and can be loaded with "import module".  *   * Modules are dynamically loaded by class {@link org.exist.xquery.XQueryContext}, either  * during the initialization phase of the query engine (for the standard library modules) or  * upon an "import module" directive.   *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines an XQuery library module. A module consists of function definitions  * and global variables. It is uniquely identified by a namespace URI and an optional  * default namespace prefix. All functions provided by the module have to be defined   * in the module's namespace.  *   * Modules can be either internal or external: internal modules are collections of Java  * classes, each being a subclass of {@link org.exist.xquery.Function}. External modules  * are defined by the XQuery "module" directive and can be loaded with "import module".  *   * Modules are dynamically loaded by class {@link org.exist.xquery.XQueryContext}, either  * during the initialization phase of the query engine (for the standard library modules) or  * upon an "import module" directive.   *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface

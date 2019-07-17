@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface

@@ -276,7 +276,7 @@ specifier|protected
 name|String
 name|permissions
 decl_stmt|;
-comment|/**      * Gets the value of the collection property.      *       *      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the collection property.      *       *      * For example, to add a new item, do as follows:      *<pre>      *    getCollection().add(newItem);      *</pre>      *       *       *      * Objects of the following type(s) are allowed in the list      * {@link Collection }      *       *       */
+comment|/**      * Gets the value of the collection property.      *       *      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the collection property.      *       *      * For example, to add a new item, do as follows:      *<pre>      *    getCollection().add(newItem);      *</pre>      *       *       *      * Objects of the following type(s) are allowed in the list      * {@link Collection }      *       * @return the collections.      */
 specifier|public
 name|List
 argument_list|<

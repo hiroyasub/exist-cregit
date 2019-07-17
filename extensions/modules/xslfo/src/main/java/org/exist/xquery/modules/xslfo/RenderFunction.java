@@ -563,7 +563,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * Constructor for RenderFunction, which returns a new instance of this      * class.      *      * @param context      * @param signature      */
 specifier|public
 name|RenderFunction
 parameter_list|(

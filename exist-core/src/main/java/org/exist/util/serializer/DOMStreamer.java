@@ -242,7 +242,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * General purpose class to stream a DOM node to SAX.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * General purpose class to stream a DOM node to SAX.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

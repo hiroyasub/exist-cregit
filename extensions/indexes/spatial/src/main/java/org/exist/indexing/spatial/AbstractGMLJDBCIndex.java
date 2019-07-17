@@ -620,7 +620,7 @@ name|ClassNotFoundException
 throws|,
 name|SQLException
 function_decl|;
-comment|/**      * Shuts down the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
+comment|/**      * Shuts down the JDBC database that contains the indexed spatial data.      *       * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -629,7 +629,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Deletes the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
+comment|/**      * Deletes the JDBC database that contains the indexed spatial data.      *      * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -638,7 +638,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Deletes the spatial data contained in the JDBC database.      *       * @throws DBException      */
+comment|/**      * Deletes the spatial data contained in the JDBC database.      *      * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -647,7 +647,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Convenience method that can be used by the IndexWorker to acquire a connection       * to the JDBC database that contains the indexed spatial data.      *       * @param broker the broker that will use th connection      * @return the connection      */
+comment|/**      * Convenience method that can be used by the IndexWorker to acquire a connection       * to the JDBC database that contains the indexed spatial data.      *       * @param broker the broker that will use th connection      *      * @return the connection      *      * @throws SQLException if a JDBC error occurs      */
 specifier|protected
 specifier|abstract
 name|Connection
@@ -659,7 +659,7 @@ parameter_list|)
 throws|throws
 name|SQLException
 function_decl|;
-comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *       */
+comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *      * @throws SQLException if a JDBC error occurs      */
 specifier|protected
 specifier|abstract
 name|void

@@ -234,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Ant task to store a set of files into eXist.  *  * The task expects a nested fileset element. The files selected by the fileset will be stored into the database.  *  * New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.  *  * @author wolf  *  *         slightly modified by:  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * An Ant task to store a set of files into eXist.  *  * The task expects a nested fileset element. The files selected by the fileset will be stored into the database.  *  * New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.  *  * @author wolf  *  *         slightly modified by:  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  */
 end_comment
 
 begin_class

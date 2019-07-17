@@ -5365,7 +5365,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**          * First, closes the underlying Input Stream          * by calling {@code super#close()} and then          * always executes the {@link #closeAction}.          *          * This method is idempotent, which is to say that          * the operation will only be          * applied once.          *          * @exception IOException if an I/O error occurs.          */
+comment|/**          * First, closes the underlying Input Stream          * by calling {@code super#close()} and then          * always executes the {@link #closeAction}.          *          * This method is idempotent, which is to say that          * the operation will only be          * applied once.          *          * @throws IOException if an I/O error occurs.          */
 annotation|@
 name|Override
 specifier|public

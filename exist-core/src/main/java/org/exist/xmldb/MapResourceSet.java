@@ -456,7 +456,7 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      * Gets the resource at a given position.      *      * @param pos position&gt; 0      * @return The resource value      * @exception XMLDBException thrown if pos is out of range      */
+comment|/**      * Gets the resource at a given position.      *      * @param pos position&gt; 0      * @return The resource value      * @throws XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -520,7 +520,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Gets the size property.      *      * @return The size value      *      * @exception XMLDBException if an error occurs getting the size.      */
+comment|/**      * Gets the size property.      *      * @return The size value      *      * @throws XMLDBException if an error occurs getting the size.      */
 annotation|@
 name|Override
 specifier|public
@@ -540,7 +540,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      * Removes the resource at a given position.      *      * @param pos position&gt; 0      * @exception XMLDBException thrown if pos is out of range      */
+comment|/**      * Removes the resource at a given position.      *      * @param pos position&gt; 0      * @throws XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -619,7 +619,7 @@ operator|=
 name|start
 expr_stmt|;
 block|}
-comment|/**          * Classical loop test.          *          * @return Description of the Return Value          * @exception XMLDBException Description of the Exception          */
+comment|/**          * Classical loop test.          *          * @return Description of the Return Value          * @throws XMLDBException Description of the Exception          */
 annotation|@
 name|Override
 specifier|public
@@ -638,7 +638,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**          * Classical accessor to next Resource          *          * @return the next Resource          * @exception XMLDBException          */
+comment|/**          * Classical accessor to next Resource          *          * @return the next Resource          * @throws XMLDBException          */
 annotation|@
 name|Override
 specifier|public

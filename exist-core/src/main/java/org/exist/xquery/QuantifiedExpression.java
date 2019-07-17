@@ -110,7 +110,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a quantified expression: "some ... in ... satisfies",   * "every ... in ... satisfies".  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Represents a quantified expression: "some ... in ... satisfies",   * "every ... in ... satisfies".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

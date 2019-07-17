@@ -1953,7 +1953,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @throws IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName
@@ -2046,7 +2046,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @throws IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName

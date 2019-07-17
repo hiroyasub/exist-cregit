@@ -100,7 +100,7 @@ specifier|public
 class|class
 name|Compressor
 block|{
-comment|/**      * Compress the byte array using GZip compression.      *      * GZip compression has some overhead for headers etc,      * so it does not make sense to use this with perfectly      * compressible buffers smaller than 23 bytes.      * In reality buffers are unlikely to be perfectly compressible,      * so you likely want to only use it with large buffers.      *      * @param buf the data to compress.      *      * @return the compressed data.      *      * @exception IOException if an error occurs      */
+comment|/**      * Compress the byte array using GZip compression.      *      * GZip compression has some overhead for headers etc,      * so it does not make sense to use this with perfectly      * compressible buffers smaller than 23 bytes.      * In reality buffers are unlikely to be perfectly compressible,      * so you likely want to only use it with large buffers.      *      * @param buf the data to compress.      *      * @return the compressed data.      *      * @throws IOException if an error occurs      */
 specifier|public
 specifier|static
 name|byte
@@ -126,7 +126,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**      * Compress the byte array using GZip compression.      *      * GZip compression has some overhead for headers etc,      * so it does not make sense to use this with perfectly      * compressible buffers smaller than 23 bytes.      * In reality buffers are unlikely to be perfectly compressible,      * so you likely want to only use it with large buffers.      *      * @param buf the data to compress.      * @param len the number of bytes from buf to compress.      *      * @return the compressed data.      *      * @exception IOException if an error occurs      */
+comment|/**      * Compress the byte array using GZip compression.      *      * GZip compression has some overhead for headers etc,      * so it does not make sense to use this with perfectly      * compressible buffers smaller than 23 bytes.      * In reality buffers are unlikely to be perfectly compressible,      * so you likely want to only use it with large buffers.      *      * @param buf the data to compress.      * @param len the number of bytes from buf to compress.      *      * @return the compressed data.      *      * @throws IOException if an error occurs      */
 specifier|public
 specifier|static
 name|byte
@@ -192,7 +192,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      *      * @return the uncompressed data.      *      * @exception IOException if an error occurs      */
+comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      *      * @return the uncompressed data.      *      * @throws IOException if an error occurs      */
 specifier|public
 specifier|static
 name|byte
@@ -233,7 +233,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      * @param os the destination for the uncompressed data;      *      * @return the number of bytes uncompressed      *      * @exception IOException if an error occurs      */
+comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      * @param os the destination for the uncompressed data;      *      * @return the number of bytes uncompressed      *      * @throws IOException if an error occurs      */
 specifier|public
 specifier|static
 name|int

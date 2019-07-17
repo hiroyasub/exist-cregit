@@ -427,7 +427,7 @@ return|return
 name|defaultAnalyzer
 return|;
 block|}
-comment|/**      * Parse<analyzer/> element and register configured analyzer.      *      * @param config The analyzer element from .xconf file.      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
+comment|/**      * Parse {@code<analyzer/>} element and register configured analyzer.      *      * @param config The analyzer element from .xconf file.      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
 specifier|public
 name|void
 name|addAnalyzer
@@ -514,7 +514,7 @@ operator|=
 name|analyzer
 expr_stmt|;
 block|}
-comment|/**      * Parse<analyzer/> element from xconf and initialize an analyzer with the      * parameters.      *      * @param config The analyzer element      * @return Initialized Analyzer object      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
+comment|/**      * Parse {@code<analyzer/>} element from xconf and initialize an analyzer with the      * parameters.      *      * @param config The analyzer element      * @return Initialized Analyzer object      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
 specifier|protected
 specifier|static
 name|Analyzer

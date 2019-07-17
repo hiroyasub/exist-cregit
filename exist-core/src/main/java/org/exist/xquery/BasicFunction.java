@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

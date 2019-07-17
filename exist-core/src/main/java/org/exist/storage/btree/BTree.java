@@ -903,7 +903,7 @@ operator|=
 name|factor
 expr_stmt|;
 block|}
-comment|/**      * addValue adds a Value to the BTree and associates a pointer with it. The      * pointer can be used for referencing any type of data, it just so happens      * that dbXML uses it for referencing pages of associated data in the BTree      * file or other files.      *      * @param  value               The Value to add      * @param  pointer             The pointer to associate with it      * @return                     The previous value for the pointer (or -1)      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
+comment|/**      * addValue adds a Value to the BTree and associates a pointer with it. The      * pointer can be used for referencing any type of data, it just so happens      * that dbXML uses it for referencing pages of associated data in the BTree      * file or other files.      *      * @param  value               The Value to add      * @param  pointer             The pointer to associate with it      * @return                     The previous value for the pointer (or -1)      * @throws  IOException     Description of the Exception      * @throws  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|addValue
@@ -967,7 +967,7 @@ name|pointer
 argument_list|)
 return|;
 block|}
-comment|/**      * removeValue removes a Value from the BTree and returns the associated      * pointer for it.      *      * @param  value               The Value to remove      * @return                     The pointer that was associated with it      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
+comment|/**      * removeValue removes a Value from the BTree and returns the associated      * pointer for it.      *      * @param  value               The Value to remove      * @return                     The pointer that was associated with it      * @throws  IOException     Description of the Exception      * @throws  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|removeValue
@@ -1048,7 +1048,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Search for keys matching the given {@link IndexQuery} and      * remove them from the node. Every match is reported       * to the specified {@link BTreeCallback}.      *       * @param query to be docuemnted      * @param callback to be docuemnted      * @param transaction to be docuemnted      * @throws IOException to be docuemnted      * @throws BTreeException to be docuemnted      * @throws TerminatedException to be docuemnted      */
+comment|/**      * Search for keys matching the given {@link IndexQuery} and      * remove them from the node. Every match is reported       * to the specified {@link BTreeCallback}.      *      * @param transaction the database transaction.      * @param query the query      * @param callback the callback      *      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurss with the tree      * @throws TerminatedException if the callback is terminated      */
 specifier|public
 name|void
 name|remove
@@ -1412,7 +1412,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * findValue finds a Value in the BTree and returns the associated pointer      * for it.      *      * @param  value               The Value to find      * @return                     The pointer that was associated with it      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
+comment|/**      * findValue finds a Value in the BTree and returns the associated pointer      * for it.      *      * @param  value               The Value to find      * @return                     The pointer that was associated with it      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurss with the tree      */
 specifier|public
 name|long
 name|findValue
@@ -1436,7 +1436,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**      * query performs a query against the BTree and performs callback      * operations to report the search results.      *      * @param  query               The IndexQuery to use (or null for everything)      * @param  callback            The callback instance      * @throws IOException     to be documented      * @throws BTreeException  to be documented      * @throws TerminatedException to be documented      */
+comment|/**      * query performs a query against the BTree and performs callback      * operations to report the search results.      *      * @param  query               The IndexQuery to use (or null for everything)      * @param  callback            The callback instance      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurss with the tree      * @throws TerminatedException if the callback is terminated      */
 specifier|public
 name|void
 name|query
@@ -1564,7 +1564,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Executes a query against the BTree and performs callback      * operations to report the search results. This method takes an      * additional prefix value. Only BTree keys starting with the specified      * prefix are considered. Search through the tree is thus restricted to      * a given key range.      *      * @param  query The IndexQuery to use (or null for everything)      * @param prefix a prefix value      * @param  callback The callback instance      *      * @throws   IOException to be docuemnted      * @throws BTreeException to be docuemnted      * @throws TerminatedException to be documented      */
+comment|/**      * Executes a query against the BTree and performs callback      * operations to report the search results. This method takes an      * additional prefix value. Only BTree keys starting with the specified      * prefix are considered. Search through the tree is thus restricted to      * a given key range.      *      * @param  query The IndexQuery to use (or null for everything)      * @param prefix a prefix value      * @param  callback The callback instance      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurss with the tree      * @throws TerminatedException if the callback is terminated      */
 specifier|public
 name|void
 name|query
@@ -1766,7 +1766,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Create a new node with the given status and parent.      *       * @param transaction to be docuemnted      * @param status to be docuemnted      * @param parent to be docuemnted      * @return The BTree node      */
+comment|/**      * Create a new node with the given status and parent.      *       * @param transaction the database transaction      * @param status the status      * @param parent the parent      * @param reuseDeleted true if deleted pages should be reused      * @return The BTree node      */
 specifier|private
 name|BTreeNode
 name|createBTreeNode
@@ -1924,7 +1924,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Read a node from the given page.      *       * @param pageNum      * @return The BTree node      */
+comment|/**      * Read a node from the given page.      *       * @param pageNum the page number      * @return The BTree node      */
 specifier|private
 name|BTreeNode
 name|getBTreeNode
@@ -2031,7 +2031,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Set the root node of the tree.      *       * @param rootNode to be docuemnted      * @throws IOException to be docuemnted      */
+comment|/**      * Set the root node of the tree.      *       * @param rootNode the root node      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|void
 name|setRootNode
@@ -2070,7 +2070,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create the root node.      *       * @param transaction to be docuemnted      * @return The root node to be docuemnted      * @throws IOException to be docuemnted      */
+comment|/**      * Create the root node.      *       * @param transaction the database transaction      * @return The root node      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|long
 name|createRootNode
@@ -2201,7 +2201,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Print a dump of the tree to the given writer. For debug only!      * @param writer to be docuemnted      * @throws IOException to be docuemnted      * @throws BTreeException to be docuemnted      */
+comment|/**      * Print a dump of the tree to the given writer. For debug only!      *      * @param writer the writer      *      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurss with the tree      */
 specifier|public
 name|void
 name|dump
@@ -2536,7 +2536,7 @@ name|leafs
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Scan pages by walking through the file sequentially.      * Optionally remove all inner (branch) pages and return the first leaf page (in order).      * This method is used to rebuild the btree from the leaf pages.      *      * @return to be docuemnted      * @throws IOException to be docuemnted      * @throws TerminatedException to be docuemnted      * @throws DBException to be docuemnted      */
+comment|/**      * Scan pages by walking through the file sequentially.      * Optionally remove all inner (branch) pages and return the first leaf page (in order).      * This method is used to rebuild the btree from the leaf pages.      *      * @param removeBranches, true if branches should be removed      * @return the tree info      * @throws IOException if an I/O error occurs      * @throws DBException if an error occurss with the tree      * @throws TerminatedException if the callback is terminated      */
 specifier|private
 name|TreeInfo
 name|scanTree
@@ -3048,7 +3048,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Rebuild the btree: removes all branches and rebuilds the tree by scanning      * through leaf pages.      *      * @throws TerminatedException to be docuemnted      * @throws IOException to be docuemnted      * @throws DBException to be docuemnted      */
+comment|/**      * Rebuild the btree: removes all branches and rebuilds the tree by scanning      * through leaf pages.      *      * @throws IOException if an I/O error occurs      * @throws DBException if an error occurss with the tree      * @throws TerminatedException if the callback is terminated      */
 specifier|public
 name|void
 name|rebuild
@@ -3306,7 +3306,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Walk the tree to find the parent page to which key should      * be promoted.      *      * @param key to be docuemnted      * @return to be docuemnted      * @throws IOException to be docuemnted      */
+comment|/**      * Walk the tree to find the parent page to which key should      * be promoted.      *      * @param key the key      * @return the parent node      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|BTreeNode
 name|findParent
@@ -4649,7 +4649,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**          * Set the link to the parent of this node.          *           * @param parent the parent node          */
+comment|/**          * Set the link to the parent of this node.          *           * @param parent the parent          */
 specifier|public
 name|void
 name|setParent
@@ -4694,7 +4694,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * @return the parent of this node.          */
+comment|/**          * Get the parent.          *          * @return the parent of this node.          */
 specifier|public
 name|BTreeNode
 name|getParent
@@ -4952,7 +4952,7 @@ operator|!
 name|saved
 return|;
 block|}
-comment|/**          * Set the keys of this node.          *           * @param vals to be docuemnted          */
+comment|/**          * Set the keys of this node.          *           * @param vals the values          */
 specifier|private
 name|void
 name|setValues
@@ -4988,7 +4988,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Set the array of pointers of this node.          *           * @param pointers to be docuemnted          */
+comment|/**          * Set the array of pointers of this node.          *           * @param pointers the pointers          */
 specifier|private
 name|void
 name|setPointers
@@ -5201,7 +5201,7 @@ return|return
 name|currentDataLen
 return|;
 block|}
-comment|/**          * Add the raw data size required to store the value to the internal          * data size of this node.          *            */
+comment|/**          * Add the raw data size required to store the value to the internal          * data size of this node.          *          * @param idx the index          */
 specifier|private
 name|void
 name|adjustDataLen
@@ -5432,7 +5432,7 @@ return|return
 name|prefix
 return|;
 block|}
-comment|/**          * Compute where to split a page: tries to split at half the data size          *          * @return where page was split          */
+comment|/**          * Compute where to split a page: tries to split at half the data size          *          * @param preferred preferred          *          * @return the pivot          */
 specifier|private
 name|int
 name|getPivot
@@ -5745,7 +5745,7 @@ name|getWorkSize
 argument_list|()
 return|;
 block|}
-comment|/**          * Read the node from the underlying page.          *           * @throws IOException to be docuemnted          */
+comment|/**          * Read the node from the underlying page.          *          * @throws IOException if an I/O error occurs          */
 specifier|private
 name|void
 name|read
@@ -6149,7 +6149,7 @@ literal|8
 expr_stmt|;
 block|}
 block|}
-comment|/**          * Write the node to the underlying page.          *           * @throws IOException to be docuemnted          */
+comment|/**          * Write the node to the underlying page.          *          * @throws IOException if an I/O error occurs          */
 specifier|private
 name|void
 name|write
@@ -6576,7 +6576,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**          * Retrieve the child node at guven index.          *           * @param idx The index          * @return The BTree node          * @throws IOException to be docuemnted          */
+comment|/**          * Retrieve the child node at guven index.          *           * @param idx The index          * @return The BTree node          * @throws IOException if an I/O error occurs          */
 specifier|private
 name|BTreeNode
 name|getChildNode
@@ -6623,7 +6623,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**          * Remove a key.          * @param transaction to be docuemnted          * @param key to be docuemnted          *          * @return to be docuemnted          * @throws IOException to be docuemnted          * @throws BTreeException to be docuemnted          */
+comment|/**          * Remove a key.          *          * @param transaction the database transaction          * @param key the key          *          * @throws IOException if an I/O error occurs          * @throws DBException if an error occurs with the tree          */
 specifier|private
 name|long
 name|removeValue
@@ -6803,7 +6803,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**          * Add a key and the corresponding pointer to the node.          * @param transaction to be docuemnted          * @param pointer to be docuemnted          * @param value to be docuemnted          * @return to be docuemnted          * @throws IOException to be docuemnted          * @throws BTreeException to be docuemnted          */
+comment|/**          * Add a key and the corresponding pointer to the node.          *          * @param transaction the database transaction          * @param value the value          * @param pointer the pointer to the node          *          * @return the new storage address          */
 specifier|private
 name|long
 name|addValue
@@ -7141,7 +7141,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**          * Promote a key to the parent node. Called by {@link #split(Txn)}.          * @param transaction to be docuemnted          * @param value to be docuemnted          * @param rightNode to be docuemnted          * @return to be docuemnted          * @throws IOException to be docuemnted          * @throws BTreeException to be docuemnted          */
+comment|/**          * Promote a key to the parent node. Called by {@link #split(Txn)}.          *          * @param transaction the database transaction          * @param value the value          * @param rightNode the right-most node          */
 specifier|private
 name|void
 name|promoteValue
@@ -7288,7 +7288,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Split the node.          * @param transaction the current transaction          * @param pivot to be docuemnted          * @throws IOException to be docuemnted          * @throws BTreeException to be docuemnted          */
+comment|/**          * Split the node.          *          * @param transaction the current transaction          * @param pivot the pivot value          *          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurss with the tree          */
 specifier|private
 name|void
 name|split
@@ -8470,7 +8470,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Set the parent-link in all child nodes to point to this node */
+comment|/**          * Set the parent-link in all child nodes to point to this node          */
 specifier|private
 name|void
 name|setAsParent
@@ -8530,7 +8530,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**          * Locate the given value in the keys and return the          * associated pointer.          * @param value to be documented          * @return to be documented          * @throws IOException to be documented          * @throws BTreeException to be documented          *          */
+comment|/**          * Locate the given value in the keys and return the          * associated pointer.          *          * @param value the value          *          * @return the address of the value          *          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurs with the tree          */
 specifier|private
 name|long
 name|findValue
@@ -8774,7 +8774,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**          * Prints out a debug view of the node to the given writer.          * @param writer to be documented          * @throws IOException to be documented          * @throws BTreeException to be documented          */
+comment|/**          * Prints out a debug view of the node to the given writer.          *          * @param writer the writer          *          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurs with the tree          */
 specifier|private
 name|void
 name|dump
@@ -9085,7 +9085,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}.          *           * @param query to be documented          * @param callback to be documented          * @throws IOException to be documented          * @throws BTreeException to be documented          * @throws TerminatedException to be documented          */
+comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}.          *           * @param query the query          * @param callback the callback          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurs with the tree          * @throws TerminatedException if the callback is terminated          */
 specifier|private
 name|void
 name|query
@@ -10457,7 +10457,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}. This specialized          * method only considers keys whose value starts with the specified keyPrefix.          *           * @param query to be documented          * @param callback to be documented          * @throws IOException to be documented          * @throws BTreeException to be documented          * @throws TerminatedException to be documented          */
+comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}. This specialized          * method only considers keys whose value starts with the specified keyPrefix.          *           * @param query the query          * @param keyPrefix the key prefix          * @param callback the callback          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurs with the tree          * @throws TerminatedException if the callback is terminated          */
 specifier|private
 name|void
 name|query
@@ -11350,7 +11350,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**          * Search for keys matching the given {@link IndexQuery} and          * remove them from the node. Every match is reported           * to the specified {@link BTreeCallback}.          *           * @param query to be documented          * @param callback to be documented          * @throws IOException to be documented          * @throws BTreeException to be documented          * @throws TerminatedException  to be documented          */
+comment|/**          * Search for keys matching the given {@link IndexQuery} and          * remove them from the node. Every match is reported           * to the specified {@link BTreeCallback}.          *          * @param transaction the database transaction          * @param query the query          * @param callback the callback          *          * @throws IOException if an I/O error occurs          * @throws BTreeException if an error occurs with the tree          * @throws TerminatedException if the callback is terminated          */
 specifier|private
 name|void
 name|remove
@@ -13878,7 +13878,7 @@ name|newLen
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Insert a key into the array of keys.          * @param val to be documented          * @param idx to be documented          */
+comment|/**          * Insert a key into the array of keys.          *          * @param val the value          * @param idx the index          */
 specifier|private
 name|void
 name|insertKey
@@ -14025,7 +14025,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Remove a key from the array of keys.          * @param idx to be documented          */
+comment|/**          * Remove a key from the array of keys.          *          * @param idx the index          */
 specifier|private
 name|void
 name|removeKey
@@ -14095,7 +14095,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Insert a pointer into the array of pointers.          *           * @param ptr to be documented          * @param idx to be documented          */
+comment|/**          * Insert a pointer into the array of pointers.          *           * @param ptr the pointer          * @param idx the index          */
 specifier|private
 name|void
 name|insertPointer
@@ -14150,7 +14150,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Remove a pointer from the array of pointers.          * @param idx to be documented          */
+comment|/**          * Remove a pointer from the array of pointers.          *          * @param idx the index          */
 specifier|private
 name|void
 name|removePointer
@@ -14189,7 +14189,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Search for the given key in the keys of this node.          */
+comment|/**          * Search for the given key in the keys of this node.          *          * @param key the key          *          * @return the position          */
 specifier|private
 name|int
 name|searchKey
@@ -15026,7 +15026,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/**          *  Set the root page of the storage tree          *          *@param  rootPage The new rootPage value          */
+comment|/**          *  Set the root page of the storage tree          *          * @param rootPage The new rootPage value          */
 specifier|public
 specifier|final
 name|void
@@ -15049,7 +15049,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          *  Get the root page of the storage tree          *          *@return The rootPage value          */
+comment|/**          *  Get the root page of the storage tree          *          * @return The rootPage value          */
 specifier|public
 specifier|final
 name|long
@@ -15297,7 +15297,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          *  The number of values stored by this page          *          *@return    The valueCount value          */
+comment|/**          * The number of values stored by this page          *          * @return    The valueCount value          */
 specifier|public
 specifier|final
 name|short
@@ -15308,7 +15308,7 @@ return|return
 name|valueCount
 return|;
 block|}
-comment|/**          *  The number of pointers stored by this page          *          *@return    The pointerCount value          */
+comment|/**          * The number of pointers stored by this page          *          * @return    The pointerCount value          */
 specifier|public
 specifier|final
 name|short

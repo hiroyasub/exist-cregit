@@ -272,7 +272,7 @@ name|UNIX_PERMS_REGEX
 init|=
 literal|"([r-][w-][x-]){3}"
 decl_stmt|;
-comment|/**      * DOCUMENT ME!      *      * @param  driver      */
+comment|/**      * Set the driver.      *      * @param driver the driver      */
 specifier|public
 name|void
 name|setDriver
@@ -288,7 +288,7 @@ operator|=
 name|driver
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  password      */
+comment|/**      * Set the password.      *      * @param password the password      */
 specifier|public
 name|void
 name|setPassword
@@ -304,7 +304,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  user      */
+comment|/**      * Set the user.      *      * @param user      */
 specifier|public
 name|void
 name|setUser
@@ -320,7 +320,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  uri      */
+comment|/**      * Set the URI.      *      * @param uri the URI      */
 specifier|public
 name|void
 name|setUri
@@ -336,7 +336,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  ssl      */
+comment|/**      * Set whether to use SSL      *      * @param ssl true to use SSL, false otherwise      */
 specifier|public
 name|void
 name|setSsl
@@ -352,7 +352,7 @@ operator|=
 name|ssl
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  create      */
+comment|/**      * Set whether to initialise the database.      *      * @param create true to initialise the database, false otherwise.      */
 specifier|public
 name|void
 name|setInitdb

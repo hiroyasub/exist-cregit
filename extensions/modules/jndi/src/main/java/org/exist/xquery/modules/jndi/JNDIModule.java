@@ -511,7 +511,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/** 	 * Retrieves a previously stored Connection from the Context of an XQuery 	 *  	 * @param context 		The Context of the XQuery containing the JNDI Context 	 * @param ctxID 		The ID of the JNDI Context to retrieve from the Context of the XQuery 	 */
+comment|/** 	 * Retrieves a previously stored Connection from the Context of an XQuery 	 *  	 * @param context 		The Context of the XQuery containing the JNDI Context 	 * @param ctxID 		The ID of the JNDI Context to retrieve from the Context of the XQuery 	 * 	 * @return the JNDI context 	 */
 specifier|public
 specifier|final
 specifier|static

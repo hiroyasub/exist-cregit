@@ -100,7 +100,8 @@ name|deduplicateBlobs
 init|=
 literal|false
 decl_stmt|;
-comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -257,7 +258,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  dir      */
+comment|/**      * Set the directory.      *      * @param dir the directory.      */
 specifier|public
 name|void
 name|setDir

@@ -215,7 +215,7 @@ name|SecureRandom
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Register the user and generate a first login token which will be valid for the next      * call to {@link #lookup(String)}.      *      * The generated token will have the format base64(series-hash):base64(token-hash).      *      * @param user the user name      * @param password the password      * @param timeToLive timeout of the token      * @return a first login token      * @throws XPathException      */
+comment|/**      * Register the user and generate a first login token which will be valid for the next      * call to {@link #lookup(String)}.      *      * The generated token will have the format base64(series-hash):base64(token-hash).      *      * @param user the user name      * @param password the password      * @param timeToLive timeout of the token      * @return a first login token      * @throws XPathException if a query error occurs      */
 specifier|public
 name|LoginDetails
 name|register

@@ -150,7 +150,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A special function call to a Java method or constructor.  *   * This class handles all function calls who's namespace URI  * starts with "java:".  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A special function call to a Java method or constructor.  *   * This class handles all function calls who's namespace URI  * starts with "java:".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

@@ -3668,7 +3668,7 @@ return|return
 name|lockManager
 return|;
 block|}
-comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *      * @param broker that will perform the operation      * @return true if successfull      * @throws EXistException in case of an eXist-db error      */
+comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *      * @param broker the database broker      * @return true if recovery was run, false otherwise      * @throws EXistException if a database error occurs      */
 specifier|public
 name|boolean
 name|runRecovery
@@ -3777,7 +3777,7 @@ return|return
 name|pageSize
 return|;
 block|}
-comment|/**      * @return the class loader used when this BrokerPool was configured.      */
+comment|/**      * Returns the class loader used when this BrokerPool was configured.      *      * @return the classloader      */
 specifier|public
 name|ClassLoader
 name|getClassLoader
@@ -4288,7 +4288,7 @@ return|return
 name|globalXUpdateLock
 return|;
 block|}
-comment|/**      * Creates an inactive broker for the database instance.      *      * @return The broker      * @throws EXistException in case of an eXist-db error      */
+comment|/**      * Creates an inactive broker for the database instance.      *      * @return The broker      * @throws EXistException if the broker cannot be created      */
 specifier|protected
 name|DBBroker
 name|createBroker

@@ -526,7 +526,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * SendEmail Constructor      *      * @param context	The Context of the calling XQuery      */
 specifier|public
 name|SendEmailFunction
 parameter_list|(
@@ -545,7 +544,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the xquery send-email function,      * it is really the main entry point of this class      *      * @param args		arguments from the send-email() function call      * @param contextSequence	the Context Sequence to operate on (not used here internally!)      * @return		A sequence representing the result of the send-email() function call      *      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -1309,7 +1309,7 @@ name|mailElements
 argument_list|)
 return|;
 block|}
-comment|/**      * Sends an email using the Operating Systems sendmail application      *      * @param mail representation of the email to send      * @return		boolean value of true of false indicating success or failure to send email      */
+comment|/**      * Sends an email using the Operating Systems sendmail application      *      * @param mail representation of the email to send      * @return boolean value of true of false indicating success or failure to send email      */
 specifier|private
 name|boolean
 name|sendBySendmail
@@ -1583,7 +1583,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sends an email using SMTP      *      * @param mails		A list of mail object representing the email to send      * @param SMTPServer	The SMTP Server to send the email through      * @return		boolean value of true of false indicating success or failure to send email      */
+comment|/**      * Sends an email using SMTP      *      * @param mails A list of mail object representing the email to send      * @param SMTPServer The SMTP Server to send the email through      * @return boolean value of true of false indicating success or failure to send email      *      * @throws SMTPException if an I/O error occurs      */
 specifier|private
 name|List
 argument_list|<
@@ -2351,7 +2351,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param out		A PrintWriter to receive the email      * @param aMail		A mail object representing the email to write out      */
+comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param out A PrintWriter to receive the email      * @param aMail A mail object representing the email to write out      *      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|writeMessage
@@ -3371,7 +3371,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Get's the version of eXist we are running      * The eXist version is used as part of the multipart separator      *      * @return		The eXist Version      */
+comment|/**      * Get's the version of eXist we are running      * The eXist version is used as part of the multipart separator      *      * @return The eXist Version      *      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|String
 name|eXistVersion
@@ -3414,7 +3414,7 @@ literal|"unknown version"
 argument_list|)
 return|;
 block|}
-comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text></text>      *<xhtml></xhtml>      *</message>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      */
+comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text></text>      *<xhtml></xhtml>      *</message>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      *      * @throws TransformerException if a transformation error occurs      */
 specifier|private
 name|List
 argument_list|<
@@ -3822,7 +3822,7 @@ return|return
 name|mails
 return|;
 block|}
-comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text charset="" encoding=""></text>      *<xhtml charset="" encoding=""></xhtml>      *<generic charset="" type="" encoding=""></generic>      *</message>      *<attachment mimetype="" filename=""></attachment>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      */
+comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text charset="" encoding=""></text>      *<xhtml charset="" encoding=""></xhtml>      *<generic charset="" type="" encoding=""></generic>      *</message>      *<attachment mimetype="" filename=""></attachment>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      *      * @throws IOException if an I/O error occurs      * @throws MessagingException if an email error occurs      * @throws TransformerException if a transformation error occurs      */
 specifier|private
 name|List
 argument_list|<
@@ -5545,7 +5545,7 @@ return|return
 name|dateString
 return|;
 block|}
-comment|/**      * Base64 Encodes a string (used for message subject)      *      * @param str	The String to encode      * @return		The encoded String      */
+comment|/**      * Base64 Encodes a string (used for message subject)      *      * @param str	The String to encode      * @return		The encoded String      *      * @throws java.io.UnsupportedEncodingException if the encocding is unsupported      */
 specifier|private
 name|String
 name|encode64
@@ -5624,7 +5624,7 @@ name|result
 operator|)
 return|;
 block|}
-comment|/**      * Base64 Encodes an email address      *      * @param str	The email address as a String to encode      * @return		The encoded email address String      */
+comment|/**      * Base64 Encodes an email address      *      * @param str	The email address as a String to encode      * @return		The encoded email address String      *      * @throws java.io.UnsupportedEncodingException if the encocding is unsupported      */
 specifier|private
 name|String
 name|encode64Address

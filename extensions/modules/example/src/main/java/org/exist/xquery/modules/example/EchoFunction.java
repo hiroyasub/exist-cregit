@@ -230,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is an example module showing how to create a function module.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Loren Cahlander (loren@syntactica.com)  */
+comment|/**  * This is an example module showing how to create a function module.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author Loren Cahlander (loren@syntactica.com)  */
 end_comment
 
 begin_class

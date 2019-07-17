@@ -280,6 +280,7 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/**      * @param pool the broker pool      * @param id the if of the collection store      * @param dataDir the data directory for the collection store      * @param config the database configuration      *      * @throws DBException if the collection store cannot be constructed.      */
 specifier|public
 name|CollectionStore
 parameter_list|(
@@ -357,7 +358,6 @@ return|return
 name|FILE_KEY_IN_CONFIG
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.store.BFile#getDataSyncPeriod()      */
 annotation|@
 name|Override
 specifier|protected

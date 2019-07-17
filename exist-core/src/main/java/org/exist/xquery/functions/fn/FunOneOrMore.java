@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements function fn:one-or-more.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements function fn:one-or-more.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

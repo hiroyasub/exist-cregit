@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines an internal module implemented in Java. The class maintains a collection of   * Java classes each being a subclass of {@link org.exist.xquery.Function}. For internal  * modules, a new function object is created from its class for each function reference in the  * XQuery script.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines an internal module implemented in Java. The class maintains a collection of   * Java classes each being a subclass of {@link org.exist.xquery.Function}. For internal  * modules, a new function object is created from its class for each function reference in the  * XQuery script.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface

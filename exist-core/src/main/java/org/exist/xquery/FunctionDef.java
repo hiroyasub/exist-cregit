@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A function definition, consisting of a signature and the implementing class.  *   * Used by modules to define the available functions. A single implementation class  * can be mapped to more than one function signature, given that the signatures differ  * in name or the number of expected arguments.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A function definition, consisting of a signature and the implementing class.  *   * Used by modules to define the available functions. A single implementation class  * can be mapped to more than one function signature, given that the signatures differ  * in name or the number of expected arguments.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

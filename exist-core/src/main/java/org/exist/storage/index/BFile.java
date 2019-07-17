@@ -1042,7 +1042,7 @@ return|return
 name|DATA_SYNC_PERIOD
 return|;
 block|}
-comment|/**      * Append the given data fragment to the value associated      * with the key. A new entry is created if the key does not      * yet exist in the database.      *       * @param key to be documented      * @param value to be documented      *      * @throws ReadOnlyException to be documented      * @throws IOException to be documented      * @return to be documented      */
+comment|/**      * Append the given data fragment to the value associated      * with the key. A new entry is created if the key does not      * yet exist in the database.      *       * @param key the key      * @param value the value      *      * @return the pointer to the storage address      *      * @throws ReadOnlyException if the BFile is read-only      * @throws IOException if an I/O error occurs whilst writing to the BFile      */
 specifier|public
 name|long
 name|append
@@ -1654,7 +1654,7 @@ name|BFilePageHeader
 argument_list|()
 return|;
 block|}
-comment|/**      * Remove all entries matching the given query.      *      * @param transaction to be documented      * @param query to be documented      *      * @throws IOException to be documented      * @throws BTreeException to be documented      */
+comment|/**      * Remove all entries matching the given query.      *      * @param transaction the database transaction      * @param query the removal query      *      * @throws IOException if an I/O error occurs whilst writing to the BFile      * @throws BTreeException if an error occurs with the tree      */
 specifier|public
 name|void
 name|removeAll
@@ -2317,7 +2317,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Get the value data associated with the specified key      * or null if the key could not be found.      *       * @param key to be documented      * @return to be documented      */
+comment|/**      * Get the value data associated with the specified key      * or null if the key could not be found.      *       * @param key the key      *      * @return the value associated with the key, or null if there is no association.      */
 specifier|public
 name|Value
 name|get
@@ -2428,7 +2428,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Get the value data for the given key as a variable byte      * encoded input stream.      *       * @param key to be documented      * @throws IOException to be documented      * @return to be documented      */
+comment|/**      * Get the value data for the given key as a variable byte      * encoded input stream.      *       * @param key the key      * @return the stream      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|VariableByteInput
 name|getAsStream
@@ -2550,7 +2550,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Get the value located at the specified address as a      * variable byte encoded input stream.      *       * @param pointer to be documented      * @throws IOException to be documented      * @return to be documented      */
+comment|/**      * Get the value located at the specified address as a      * variable byte encoded input stream.      *       * @param pointer the pointer to the value      * @return the stream      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|VariableByteInput
 name|getAsStream
@@ -2732,14 +2732,14 @@ return|return
 name|input
 return|;
 block|}
-comment|/**      * Returns the value located at the specified address.      *       * @param p to be documented      * @return value located at the specified address      */
+comment|/**      * Returns the value located at the specified address.      *       * @param pointer the pointer to the value      * @return value located at the specified address      */
 specifier|public
 name|Value
 name|get
 parameter_list|(
 specifier|final
 name|long
-name|p
+name|pointer
 parameter_list|)
 block|{
 try|try
@@ -2752,7 +2752,7 @@ name|StorageAddress
 operator|.
 name|pageFromPointer
 argument_list|(
-name|p
+name|pointer
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2769,7 +2769,7 @@ name|get
 argument_list|(
 name|page
 argument_list|,
-name|p
+name|pointer
 argument_list|)
 return|;
 block|}
@@ -2792,7 +2792,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Retrieve value at logical address p from page      * @param p to be documented      * @param page to be documented      * @return to be documented      * @throws IOException to be documented      */
+comment|/**      * Retrieve value at logical address pointer from page      *      * @param page the data page      * @param pointer the pointer to the value      *      * @return the value or null if there is no value      *      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|Value
 name|get
@@ -2803,7 +2803,7 @@ name|page
 parameter_list|,
 specifier|final
 name|long
-name|p
+name|pointer
 parameter_list|)
 throws|throws
 name|IOException
@@ -2816,7 +2816,7 @@ name|StorageAddress
 operator|.
 name|tidFromPointer
 argument_list|(
-name|p
+name|pointer
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2977,7 +2977,7 @@ name|v
 operator|.
 name|setAddress
 argument_list|(
-name|p
+name|pointer
 argument_list|)
 expr_stmt|;
 return|return
@@ -3419,7 +3419,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Put data under given key.      *      * @param key to be documented      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException to be documented      */
+comment|/**      * Put data under given key.      *      * @param key the key      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException if the BFile is read-only      */
 specifier|public
 name|long
 name|put
@@ -3474,7 +3474,6 @@ specifier|final
 name|boolean
 name|overwrite
 parameter_list|)
-comment|/* throws ReadOnlyException */
 block|{
 name|SanityCheck
 operator|.
@@ -5177,7 +5176,7 @@ name|UNKNOWN_ADDRESS
 return|;
 block|}
 block|}
-comment|/**      * Update the key/value pair with logical address p and stored in page.      *       * @param p Description of the Parameter      * @param page Description of the Parameter      * @param key Description of the Parameter      * @param value  Description of the Parameter      * @param transaction to be documented      * @exception BTreeException Description of the Exception      * @exception IOException Description of the Exception      * @return to be documented      */
+comment|/**      * Update the key/value pair with logical address p and stored in page.      *      * @param transaction the database transaction      * @param p the pointer address      * @param page the data page      * @param key the key      * @param value the value      *      * @return the new pointer      *      * @throws BTreeException if an error occurs updating the tree      * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|long
 name|update
@@ -5387,7 +5386,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* ---------------------------------------------------------------------------------      * Methods used by recovery and transaction management      * --------------------------------------------------------------------------------- */
-comment|/**      * Write loggable to the journal and update the LSN in the page header.      */
+comment|/**      * Write loggable to the journal and update the LSN in the page header.      *      * @param loggable the log entry      * @param page the data page      */
 specifier|private
 name|void
 name|writeToLog
@@ -10577,7 +10576,7 @@ name|MULTI_PAGE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Append a new chunk of data to the page          *          * @param transaction          * @param chunk          *                   chunk of data to append          */
+comment|/**          * Append a new chunk of data to the page          *          * @param transaction the database transaction          * @param chunk chunk of data to append          */
 specifier|public
 name|void
 name|append

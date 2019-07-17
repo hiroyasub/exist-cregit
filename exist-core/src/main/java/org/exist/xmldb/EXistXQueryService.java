@@ -118,7 +118,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Execute XQuery expressions on the database.  *  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Execute XQuery expressions on the database.  *  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface

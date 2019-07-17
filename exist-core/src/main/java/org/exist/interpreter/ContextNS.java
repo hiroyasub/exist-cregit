@@ -285,7 +285,7 @@ name|boolean
 name|isBaseURIDeclared
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the base URI of the evaluation context. 	 * 	 * This is the URI returned by the fn:base-uri() function. 	 * 	 * @return base URI of the evaluation context 	 * 	 * @exception XPathException if an error occurs whilst setting the base-uri 	 */
+comment|/** 	 * Get the base URI of the evaluation context. 	 * 	 * This is the URI returned by the fn:base-uri() function. 	 * 	 * @return base URI of the evaluation context 	 * 	 * @throws XPathException if an error occurs whilst setting the base-uri 	 */
 specifier|public
 name|AnyURIValue
 name|getBaseURI

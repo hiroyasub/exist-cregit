@@ -503,7 +503,7 @@ name|methodWithEnsureContainerUnlocked
 parameter_list|()
 block|{
 block|}
-comment|/**      * Ensures that the parameters to a method      * annotated by {@link EnsureLocked} hold      * the indicated locks.      *      * @throws LockException if the appropriate locks are not held and      *  the System property `exist.ensurelocking.enforce=true` is set.      * @param joinPoint to be documented      */
+comment|/**      * Ensures that the parameters to a method      * annotated by {@link EnsureLocked} hold      * the indicated locks.      *      @param joinPoint the join point of the aspect      *      * @throws LockException if the appropriate locks are not held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
 annotation|@
 name|Before
 argument_list|(
@@ -925,7 +925,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Ensures that the object returned by a method      * has an lock taken upon it before it is returned.      *      * @throws LockException if the appropriate locks are not held and      *  the System property `exist.ensurelocking.enforce=true` is set.      * @param joinPoint to be documented      * @param result to be documented      *      */
+comment|/**      * Ensures that the object returned by a method      * has an lock taken upon it before it is returned.      *      * @param joinPoint the join point of the aspect      *      * @param result the result of the instrumented method      *      * @throws LockException if the appropriate locks are not held and      *  the System property `exist.ensurelocking.enforce=true` is set.      *      */
 annotation|@
 name|AfterReturning
 argument_list|(
@@ -1271,7 +1271,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Ensures that the appropriate lock is held on the container      * object which houses the method before the method is called.      *      * @throws LockException if the appropriate locks are not held and      *  the System property `exist.ensurelocking.enforce=true` is set.      * @param joinPoint to be documented      * @param container to be documented      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
+comment|/**      * Ensures that the appropriate lock is held on the container      * object which houses the method before the method is called.      *      * @param joinPoint the join point of the aspect      * @param container the object containing the instrumented method      *      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
 annotation|@
 name|Before
 argument_list|(
@@ -1625,7 +1625,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Ensures that the parameters to a method      * annotated by {@link EnsureUnlocked} do not hold      * any locks.      *      * @param joinPoint to be documented      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
+comment|/**      * Ensures that the parameters to a method      * annotated by {@link EnsureUnlocked} do not hold      * any locks.      *      * @param joinPoint the join point of the aspect      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
 annotation|@
 name|Before
 argument_list|(
@@ -2029,7 +2029,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Ensures that the object returned by a method      * has no lock held upon it before it is returned.      * @param joinPoint to be documented      * @param result to be documented      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
+comment|/**      * Ensures that the object returned by a method      * has no lock held upon it before it is returned.      * @param joinPoint the join point of the aspect      * @param result the result of the instrumented method      * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
 annotation|@
 name|AfterReturning
 argument_list|(
@@ -2356,7 +2356,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Ensures that the no locks are held on the container      * object which houses the method before the method is called.      * @param joinPoint to be documented      * @param container to be documented       * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
+comment|/**      * Ensures that the no locks are held on the container      * object which houses the method before the method is called.      * @param joinPoint the join point of the aspect      * @param container the object containing the instrumented method       * @throws LockException if any locks are held and      *  the System property `exist.ensurelocking.enforce=true` is set.      */
 annotation|@
 name|Before
 argument_list|(

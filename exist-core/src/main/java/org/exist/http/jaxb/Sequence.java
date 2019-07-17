@@ -221,7 +221,7 @@ name|Value
 argument_list|>
 name|value
 decl_stmt|;
-comment|/**      * Gets the value of the value property.      *      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *      * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *      * Objects of the following type(s) are allowed in the list      * {@link Sequence.Value }      *       *       */
+comment|/**      * Gets the value of the value property.      *      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *      * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *      * Objects of the following type(s) are allowed in the list      * {@link Sequence.Value }      *       * @return the sequence value      */
 specifier|public
 name|List
 argument_list|<

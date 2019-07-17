@@ -161,7 +161,7 @@ name|defaultEnc
 operator|)
 return|;
 block|}
-comment|/**     * Get stream encoding or NULL if stream is uninitialized.     * Call init() or read() method to initialize it.     */
+comment|/**      * Get stream encoding or NULL if stream is uninitialized.      * Call init() or read() method to initialize it. 	 * 	 * @return the encoding      */
 specifier|public
 name|String
 name|getEncoding
@@ -193,7 +193,7 @@ name|ret
 operator|)
 return|;
 block|}
-comment|/**     * Read-ahead four bytes and check for BOM marks. Extra bytes are     * unread back to the stream, only BOM bytes are skipped.     */
+comment|/**      * Read-ahead four bytes and check for BOM marks. Extra bytes are      * unread back to the stream, only BOM bytes are skipped. 	 * 	 * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|void
 name|init

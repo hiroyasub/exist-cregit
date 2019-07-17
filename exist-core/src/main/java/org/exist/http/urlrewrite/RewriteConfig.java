@@ -594,7 +594,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Lookup the given path in the static mappings table.      *      * @param path          path to look up      * @param staticMapping don't return redirects to other controllers, just static mappings      *                      to servlets.      * @return the URLRewrite instance for the mapping or null if none was found      */
+comment|/**      * Lookup the given path in the static mappings table.      *      * @param path the path to look up      * @param serverName the servers name      * @param staticMapping don't return redirects to other controllers, just static mappings to servlets.      * @param copyFrom the urlrewrite rule to copy from or null      *      * @return the URLRewrite instance for the mapping or null if none was found      */
 specifier|public
 specifier|synchronized
 name|URLRewrite

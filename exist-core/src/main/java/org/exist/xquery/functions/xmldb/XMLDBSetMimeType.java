@@ -328,7 +328,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels (dannes@exist-db.org)  */
+comment|/**  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class

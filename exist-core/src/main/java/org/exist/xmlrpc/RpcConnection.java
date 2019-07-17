@@ -1262,7 +1262,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *         Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
+comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *         Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -642,9 +642,7 @@ operator|=
 operator|new
 name|Int2ObjectOpenHashMap
 argument_list|<>
-argument_list|(
-literal|10
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

@@ -453,7 +453,7 @@ name|namespaces
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Copy constructor. LuceneConfig is only configured once by database instance,      * so to avoid concurrency issues when using e.g. iterator, we create a copy.      *       * @param other      */
+comment|/**      * Copy constructor. LuceneConfig is only configured once by database instance,      * so to avoid concurrency issues when using e.g. iterator, we create a copy.      *       * @param other the other LuceneConfig      */
 specifier|public
 name|LuceneConfig
 parameter_list|(
@@ -1217,14 +1217,16 @@ name|imports
 argument_list|)
 return|;
 block|}
-comment|/**      * Parse a configuration entry. The main configuration entries for this index      * are the&lt;text&gt; elements. They may be enclosed by a&lt;lucene&gt; element.      *      * @param configNodes      * @param namespaces      * @throws org.exist.util.DatabaseConfigurationException      */
+comment|/**      * Parse a configuration entry. The main configuration entries for this index      * are the&lt;text&gt; elements. They may be enclosed by a&lt;lucene&gt; element.      *      * @param configNodes the configuration      * @param namespaces the namespaces      *      * @throws DatabaseConfigurationException if the configuration can't be parsed      */
 specifier|protected
 name|void
 name|parseConfig
 parameter_list|(
+specifier|final
 name|NodeList
 name|configNodes
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String

@@ -70,7 +70,7 @@ name|IRawNodeIterator
 extends|extends
 name|Closeable
 block|{
-comment|/**      * Reposition the iterator to the start of the specified node.      *      * @param node the start node where the iterator will be positioned.      * @throws IOException to be documented      */
+comment|/**      * Reposition the iterator to the start of the specified node.      *      * @param node the start node where the iterator will be positioned.      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|void
 name|seek

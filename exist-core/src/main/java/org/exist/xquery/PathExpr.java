@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will be called  * step by step.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author perig  * @author ljo  */
+comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will be called  * step by step.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author perig  * @author ljo  */
 end_comment
 
 begin_class

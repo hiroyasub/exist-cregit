@@ -2729,7 +2729,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sets the content for this resource. If value is of type File, it is      * directly passed to the parser when Collection.storeResource is called.      * Otherwise the method tries to convert the value to String.      *       * Passing a File object should be preferred if the document is large. The      * file's content will not be loaded into memory but directly passed to a      * SAX parser.      *       * @param obj the content value to set for the resource.      * @exception XMLDBException with expected error codes. See {@link ErrorCodes#VENDOR_ERROR}      *     for any vendor specific errors that occur.      */
+comment|/**      * Sets the content for this resource. If value is of type File, it is      * directly passed to the parser when Collection.storeResource is called.      * Otherwise the method tries to convert the value to String.      *       * Passing a File object should be preferred if the document is large. The      * file's content will not be loaded into memory but directly passed to a      * SAX parser.      *       * @param obj the content value to set for the resource.      * @throws XMLDBException with expected error codes. See {@link ErrorCodes#VENDOR_ERROR}      *     for any vendor specific errors that occur.      */
 annotation|@
 name|Override
 specifier|public

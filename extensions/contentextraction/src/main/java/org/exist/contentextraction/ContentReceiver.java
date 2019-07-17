@@ -372,7 +372,7 @@ operator|=
 name|userData
 expr_stmt|;
 block|}
-comment|/**      *  Get the result of the content extraction      *       * @return       */
+comment|/**      * Get the result of the content extraction.      *       * @return the result sequence.      */
 specifier|public
 name|Sequence
 name|getResult

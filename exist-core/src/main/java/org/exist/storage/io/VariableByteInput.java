@@ -52,7 +52,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Fill the provided byte array with data from the input.      *       * @param data to be documented      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Fill the provided byte array with data from the input.      *       * @param data the buffer to read      * @throws IOException in case of an I/O error      * @return the number of bytes read      */
 specifier|public
 name|int
 name|read
@@ -81,7 +81,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Returns a value&gt; 0 if more bytes can be read      * from the input.      *      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Returns a value&gt; 0 if more bytes can be read      * from the input.      *      * @throws IOException in case of an I/O error      * @return the number of bytes available      */
 specifier|public
 name|int
 name|available
@@ -89,7 +89,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a single byte. Throws EOFException if no      * more bytes are available.      *      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Read a single byte. Throws EOFException if no      * more bytes are available.      *      * @throws IOException in case of an I/O error      * @return the byte read      */
 specifier|public
 name|byte
 name|readByte
@@ -97,7 +97,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a short value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Read a short value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return the short read      */
 specifier|public
 name|short
 name|readShort
@@ -105,7 +105,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read an integer value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Read an integer value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return the int read      */
 specifier|public
 name|int
 name|readInt
@@ -120,7 +120,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a long value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return to be documented      */
+comment|/**      * Read a long value in variable byte encoding.      *      * @throws IOException in case of an I/O error      * @return the long read      */
 specifier|public
 name|long
 name|readLong
@@ -137,7 +137,7 @@ name|IOException
 throws|,
 name|EOFException
 function_decl|;
-comment|/**      * Read the following count numeric values from the input      * and drop them.      *       * @param count to be documented      * @throws IOException in case of an I/O error      */
+comment|/**      * Read the following count numeric values from the input      * and drop them.      *       * @param count the number of bytes to skip      * @throws IOException in case of an I/O error      */
 specifier|public
 name|void
 name|skip
@@ -158,7 +158,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Copy the next numeric value from the input to the      * specified output stream.      *       * @param os to be documented      * @throws IOException in case of an I/O error      */
+comment|/**      * Copy the next numeric value from the input to the      * specified output stream.      *       * @param os the output stream to copy the data to      * @throws IOException in case of an I/O error      */
 specifier|public
 name|void
 name|copyTo
@@ -169,7 +169,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Copy the count next numeric values from the input to      * the specified output stream.      *       * @param os to be documented      * @param count to be documented      * @throws IOException in case of an I/O error      */
+comment|/**      * Copy the count next numeric values from the input to      * the specified output stream.      *       * @param os the output stream to copy the data to      * @param count the number of bytes to copy      * @throws IOException in case of an I/O error      */
 specifier|public
 name|void
 name|copyTo

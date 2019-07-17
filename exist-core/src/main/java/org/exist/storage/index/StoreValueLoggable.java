@@ -112,6 +112,7 @@ specifier|protected
 name|ByteArray
 name|value
 decl_stmt|;
+comment|/**      * @param transaction the database transaction      * @param fileId the file id      * @param page the page      * @param tid the transaction id      * @param value the value      */
 specifier|public
 name|StoreValueLoggable
 parameter_list|(
@@ -179,7 +180,6 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)      */
 annotation|@
 name|Override
 specifier|public
@@ -235,7 +235,6 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
 annotation|@
 name|Override
 specifier|public
@@ -307,7 +306,6 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
 annotation|@
 name|Override
 specifier|public

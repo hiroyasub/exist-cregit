@@ -228,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Andrzej Taramina  *  */
+comment|/**  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  */
 end_comment
 
 begin_class
@@ -317,7 +317,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FileReadBinary
 parameter_list|(

@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface
@@ -54,7 +54,7 @@ specifier|public
 interface|interface
 name|ResponseWrapper
 block|{
-comment|/** 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 */
+comment|/** 	 * Add a cookie. 	 * 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 */
 specifier|public
 name|void
 name|addCookie
@@ -66,7 +66,7 @@ name|String
 name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 * @param maxAge maxAge of the Cookie 	 */
+comment|/** 	 * Add a cookie. 	 * 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 * @param maxAge maxAge of the Cookie 	 */
 specifier|public
 name|void
 name|addCookie
@@ -81,7 +81,7 @@ name|int
 name|maxAge
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 * @param maxAge maxAge of the Cookie 	 * @param secure security of the Cookie 	 */
+comment|/** 	 * Add a cookie. 	 * 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 * @param maxAge maxAge of the Cookie 	 * @param secure security of the Cookie 	 */
 specifier|public
 name|void
 name|addCookie
@@ -99,7 +99,7 @@ name|boolean
 name|secure
 parameter_list|)
 function_decl|;
-comment|/** 	 * The method<code>addCookie</code> 	 * 	 * @param name Name of the Cookie 	 * @param value Value of the Cookie 	 * @param maxAge an<code>int</code> value 	 * @param secure security of the Cookie 	 * @param domain domain of the cookie 	 * @param path path scope of the cookie 	 */
+comment|/** 	 * Add a cookie. 	 * 	 * @param name Name of the Cookie 	 * @param value Value of the Cookie 	 * @param maxAge an<code>int</code> value 	 * @param secure security of the Cookie 	 * @param domain domain of the cookie 	 * @param path path scope of the cookie 	 */
 specifier|public
 name|void
 name|addCookie
@@ -123,61 +123,60 @@ name|String
 name|path
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a date header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addDateHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|long
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|String
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a int header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addIntHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|int
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 The name of the header. 	 * @return A boolean value indicating whether it contains the header name. 	 */
+comment|/** 	 * Returns true of the response contains the header. 	 * 	 * @param name the header name 	 * @return a boolean indicating whether the header is present 	 */
 specifier|public
 name|boolean
 name|containsHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @return The encoded value 	 */
+comment|/** 	 * Encode a String as a URL. 	 * 	 * @param s the string to encode 	 * @return the encoded value 	 */
 specifier|public
 name|String
 name|encodeURL
 parameter_list|(
 name|String
-name|arg0
+name|s
 parameter_list|)
 function_decl|;
-comment|/***/
 specifier|public
 name|void
 name|flushBuffer
@@ -185,13 +184,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** 	 * @return Returns the default character encoding 	 */
+comment|/** 	 * Get the character encoding. 	 * 	 * @return returns the default character encoding 	 */
 specifier|public
 name|String
 name|getCharacterEncoding
 parameter_list|()
 function_decl|;
-comment|/** 	 * @return Returns the default locale 	 */
+comment|/** 	 * @return returns the default locale 	 */
 specifier|public
 name|Locale
 name|getLocale
@@ -212,40 +211,40 @@ name|String
 name|contentType
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Set a date header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setDateHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|long
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Set a header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|String
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Set an int header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setIntHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|int
-name|arg1
+name|value
 parameter_list|)
 function_decl|;
 name|void
@@ -272,22 +271,22 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @param arg0      */
+comment|/** 	 * Set the HTP Status Code 	 * 	 * @param statusCode the status code. 	 */
 specifier|public
 name|void
 name|setStatusCode
 parameter_list|(
 name|int
-name|arg0
+name|statusCode
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 */
+comment|/** 	 * Set the locale. 	 * 	 * @param locale the locale. 	 */
 specifier|public
 name|void
 name|setLocale
 parameter_list|(
 name|Locale
-name|arg0
+name|locale
 parameter_list|)
 function_decl|;
 specifier|public
@@ -295,12 +294,12 @@ name|void
 name|sendRedirect
 parameter_list|(
 name|String
-name|arg0
+name|url
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** @return the value of Date Header corresponding to given name, 	 * 0 if none has been set. */
+comment|/** 	 * Get a date header. 	 * 	 * @param name the header name 	 * 	 * @return the value of Date Header corresponding to given name,0 if none has been set. 	 */
 specifier|public
 name|long
 name|getDateHeader

@@ -908,7 +908,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic  * XQuery context components.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic  * XQuery context components.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

@@ -317,7 +317,7 @@ specifier|private
 name|long
 name|pageNum
 decl_stmt|;
-comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param broker the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param node the start node where the iterator will be positioned.      * @throws IOException to be documented      */
+comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param broker the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param node the start node where the iterator will be positioned.      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|RawNodeIterator
 parameter_list|(

@@ -358,7 +358,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:matches() function.  *   * Based on the java.util.regex package for regular expression support.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements the fn:matches() function.  *   * Based on the java.util.regex package for regular expression support.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

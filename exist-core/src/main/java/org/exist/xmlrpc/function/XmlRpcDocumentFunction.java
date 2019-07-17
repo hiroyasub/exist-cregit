@@ -196,7 +196,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a document      *      * @param document The database collection      * @param transaction to be documented      * @param broker to be documented      * @return to be documented      * @throws EXistException to be documented      * @throws PermissionDeniedException to be documented      * @throws SAXException to be documented      * @throws IOException to be documented      */
+comment|/**      * Signature for lambda function which takes a document      *      * @param document The database collection      * @param broker the database broker      * @param transaction the database transaction       * @return the result of the function      *      * @throws EXistException if an error occurs with the database      * @throws PermissionDeniedException if the caller has insufficient priviledges      * @throws SAXException if a SAX error occurs      * @throws IOException if an I/O error occurs      */
 name|R
 name|applyXmlRpc
 parameter_list|(

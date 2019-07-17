@@ -152,7 +152,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines all built-in types and their relations.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines all built-in types and their relations.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

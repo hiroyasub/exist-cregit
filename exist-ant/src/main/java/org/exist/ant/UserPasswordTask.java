@@ -82,7 +82,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to set the password of a user.  *  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to set the password of a user.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  */
 end_comment
 
 begin_class

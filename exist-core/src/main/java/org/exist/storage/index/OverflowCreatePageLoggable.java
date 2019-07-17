@@ -84,6 +84,7 @@ specifier|protected
 name|long
 name|prevPage
 decl_stmt|;
+comment|/**      * @param transaction the database transaction      * @param fileId the file id      * @param newPage the new page number      * @param prevPage the pevious page number      */
 specifier|public
 name|OverflowCreatePageLoggable
 parameter_list|(
@@ -142,7 +143,6 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)      */
 annotation|@
 name|Override
 specifier|public
@@ -181,7 +181,6 @@ name|prevPage
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
 annotation|@
 name|Override
 specifier|public
@@ -214,7 +213,6 @@ name|getInt
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
 annotation|@
 name|Override
 specifier|public

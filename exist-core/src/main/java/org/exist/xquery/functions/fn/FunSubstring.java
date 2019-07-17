@@ -1015,7 +1015,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Checks that the end position is valid for the $sourceString 	 *       * @param end a<code>NumericValue</code> value      * @param start a<code>NumericValue</code> value      * @return true if the length is valid, false otherwise      * @exception XPathException if an error occurs      */
+comment|/**      * Checks that the end position is valid for the $sourceString 	 *       * @param end a<code>NumericValue</code> value      * @param start a<code>NumericValue</code> value      * @return true if the length is valid, false otherwise      * @throws XPathException if an error occurs      */
 specifier|private
 name|boolean
 name|validEndPosition

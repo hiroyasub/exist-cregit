@@ -80,6 +80,7 @@ specifier|protected
 name|long
 name|page
 decl_stmt|;
+comment|/**      * @param fileId the file id      * @param transaction the database transaction      * @param pageNum the page number      */
 specifier|public
 name|RemoveEmptyPageLoggable
 parameter_list|(
@@ -111,6 +112,7 @@ operator|=
 name|pageNum
 expr_stmt|;
 block|}
+comment|/**      * @param broker the database broker      * @param transactionId the transaction id      */
 specifier|public
 name|RemoveEmptyPageLoggable
 parameter_list|(

@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author Dannes Wessels  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

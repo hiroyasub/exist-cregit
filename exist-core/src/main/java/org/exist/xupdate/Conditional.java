@@ -266,7 +266,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param broker 	 * @param docs 	 * @param selectStmt 	 * @param namespaces 	 */
+comment|/** 	 * @param broker the database broker. 	 * @param docs the document working set. 	 * @param selectStmt the select statement. 	 * @param namespaces the namespaces. 	 * @param variables the variables. 	 */
 specifier|public
 name|Conditional
 parameter_list|(
@@ -326,7 +326,8 @@ name|mod
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xupdate.Modification#process() 	 */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|process
@@ -599,7 +600,8 @@ literal|0
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xupdate.Modification#getName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName

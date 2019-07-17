@@ -374,7 +374,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * MailStoreFunctions Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
 specifier|public
 name|MailStoreFunctions
 parameter_list|(
@@ -393,7 +392,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-store function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the get-store() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the get-store() function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval

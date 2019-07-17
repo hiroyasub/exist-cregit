@@ -496,7 +496,7 @@ literal|2
 argument_list|)
 return|;
 block|}
-comment|/**      * Encode an element or attribute qname into a lucene field name using the      * internal ids for namespace and local name.      *      * @param qname      * @return encoded qname      */
+comment|/**      * Encode an element or attribute qname into a lucene field name using the      * internal ids for namespace and local name.      *      * @param qname the name      * @param symbols the symbol table      *      * @return the encoded qname      */
 specifier|public
 specifier|static
 name|String
@@ -573,7 +573,7 @@ name|nameId
 argument_list|)
 return|;
 block|}
-comment|/**      * Decode the lucene field name into an element or attribute qname.      *      * @param s      * @return the qname      */
+comment|/**      * Decode the lucene field name into an element or attribute qname.      *      * @param s the encoded qname      * @param symbols the symbol table      *      * @return the qname      */
 specifier|public
 specifier|static
 name|QName
@@ -805,7 +805,7 @@ name|fieldArray
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query      * @param terms      * @throws IOException                   in case of an error      * @throws UnsupportedOperationException in case of an error      */
+comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query the query      * @param terms the terms      * @param reader the index reader      * @param includeFields true to include fields, false to exclude      *      * @throws IOException if an I/O error occurs      * @throws UnsupportedOperationException if the query type is not supported      */
 specifier|public
 specifier|static
 name|void
@@ -1634,7 +1634,7 @@ operator|new
 name|MultiTermExtractor
 argument_list|()
 decl_stmt|;
-comment|/*      * A class for extracting MultiTerms (all of them).      * Subclassing MultiTermQuery.RewriteMethod      * to gain access to its protected method getTermsEnum      */
+comment|/**      * A class for extracting MultiTerms (all of them).      * Subclassing MultiTermQuery.RewriteMethod      * to gain access to its protected method getTermsEnum      */
 specifier|private
 specifier|static
 class|class

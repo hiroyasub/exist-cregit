@@ -282,7 +282,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/**      * @author<a href="mailto:rtroilo@gmail.com">Rafael Troilo</a>      */
+comment|/**      * Create a thumbnail.      *      * @author<a href="mailto:rtroilo@gmail.com">Rafael Troilo</a>      *      * @param image the image      * @param height the height of the thumbnail      * @param width the width of the thumbnail      *      * @return the thumbnail      */
 specifier|protected
 specifier|static
 name|BufferedImage

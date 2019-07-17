@@ -126,7 +126,7 @@ specifier|public
 annotation_defn|@interface
 name|EnsureLocked
 block|{
-comment|/**      * Specifies the mode of the held lock.      *      * {@link LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      * @return to be documented      */
+comment|/**      * Specifies the mode of the held lock.      *      * {@link LockMode#NO_LOCK} is used as the default, to allow {@code modeParam}      * to be used instead.      *      * If neither {@code mode} or {@code modeParam} are specified, and there is not a      * single {@link Lock.LockMode} type parameter that can be used      * then an IllegalArgumentException will be generated if {@link EnsureLockingAspect}      * detects this situation.      *      * @return the lock mode      */
 name|Lock
 operator|.
 name|LockMode
@@ -137,7 +137,7 @@ name|LockMode
 operator|.
 name|NO_LOCK
 function_decl|;
-comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      * @return to be documented      */
+comment|/**      * Specifies that the mode of the held lock is informed      * by a parameter to the method.      *      * The value of this attribute is the (zero-based) index      * of the parameter within the method signature.      *      * @return the mode      */
 name|short
 name|modeParam
 parameter_list|()
@@ -150,7 +150,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      * @return to be documented      */
+comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      *      * @return the lock type      */
 name|Lock
 operator|.
 name|LockType
