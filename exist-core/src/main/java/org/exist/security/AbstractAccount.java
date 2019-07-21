@@ -685,6 +685,24 @@ argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|groups
+operator|.
+name|size
+argument_list|()
+operator|<=
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"You cannot remove the primary group of an account."
+argument_list|)
+throw|;
+block|}
 comment|//remove from the group
 name|groups
 operator|.

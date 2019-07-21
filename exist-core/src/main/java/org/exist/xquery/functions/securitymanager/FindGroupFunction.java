@@ -395,7 +395,7 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|FNS_FIND_GROUPS_WHERE_GROUPNAME_CONTANINS
+name|FNS_FIND_GROUPS_WHERE_GROUPNAME_CONTAINS
 init|=
 operator|new
 name|FunctionSignature

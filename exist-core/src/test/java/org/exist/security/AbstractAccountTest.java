@@ -76,6 +76,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -366,7 +378,7 @@ argument_list|,
 name|partialMockAccount
 argument_list|)
 expr_stmt|;
-comment|//TODO calls on assert from AbstractAccountXQuerty
+comment|//TODO calls on assert from AbstractAccountXQuery
 block|}
 annotation|@
 name|Test
@@ -376,8 +388,6 @@ name|remGroup_calls_assertCanModifyGroupForEachGroup
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
-throws|,
-name|NoSuchMethodException
 throws|,
 name|ConfigurationException
 block|{
@@ -561,6 +571,8 @@ name|mockGroup
 argument_list|)
 expr_stmt|;
 comment|//test
+try|try
+block|{
 name|partialMockAccount
 operator|.
 name|remGroup
@@ -568,6 +580,25 @@ argument_list|(
 name|groupName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|"You cannot remove the primary group of an account."
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|verify
 argument_list|(
 name|mockRealm
