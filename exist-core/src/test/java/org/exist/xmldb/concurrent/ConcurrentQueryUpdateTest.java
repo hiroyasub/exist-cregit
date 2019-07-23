@@ -250,12 +250,12 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|41
+argument_list|,
 name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|,
-literal|41
 argument_list|)
 expr_stmt|;
 for|for

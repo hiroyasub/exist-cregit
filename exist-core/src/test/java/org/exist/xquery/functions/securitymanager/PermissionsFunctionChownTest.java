@@ -11217,6 +11217,11 @@ argument_list|,
 name|USERRM_NAME
 argument_list|)
 expr_stmt|;
+name|transaction
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 annotation|@
