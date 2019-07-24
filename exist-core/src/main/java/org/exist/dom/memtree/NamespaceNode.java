@@ -140,7 +140,6 @@ name|NodeImpl
 implements|implements
 name|Attr
 block|{
-comment|/**      * Creates a new NamespaceNode object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|NamespaceNode
 parameter_list|(

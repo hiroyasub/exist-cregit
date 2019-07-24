@@ -256,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Loren Cahlander  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

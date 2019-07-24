@@ -1289,11 +1289,12 @@ name|getBoost
 argument_list|()
 return|;
 block|}
-comment|/**      * Get boost by matching the config with given attributes      * (e.g. sibling or child atributes)      * if no match, the value from getBoost() is returned      */
+comment|/**      * Get boost by matching the config with given attributes      * (e.g. sibling or child atributes)      * if no match, the value from getBoost() is returned      *      * @param attributes the attributes      *      * @return the boost, or 0 if there is no boost      */
 specifier|public
 name|float
 name|getAttrBoost
 parameter_list|(
+specifier|final
 name|Collection
 argument_list|<
 name|AttrImpl
@@ -1313,6 +1314,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Attr
 name|attr
 range|:

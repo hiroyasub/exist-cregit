@@ -156,7 +156,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialisation of FunctionE which deals with  * local XMLDB operations; Predominantly converts exceptions  * from the database into XMLDBException types  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Specialisation of FunctionE which deals with  * local XMLDB operations; Predominantly converts exceptions  * from the database into XMLDBException types  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -299,7 +299,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a collection      *      * @param collection The database collection      * @param broker The database broker for the XMLDB function      * @param transaction The transaction for the XMLDB function      */
+comment|/**      * Signature for lambda function which takes a collection      *      * @param collection The database collection      * @param broker The database broker for the XMLDB function      * @param transaction The transaction for the XMLDB function      *      * @return the result of apply the function.      *      * @throws XMLDBException if an error occurs whilst applying the function      * @throws PermissionDeniedException if the user has insufficient permissions      * @throws LockException if an error occurs whilst locking a collection or document      * @throws TriggerException if a  trigger raises an error      * @throws IOException if an IO error occurs      * @throws SyntaxException if a syntax error occurs      */
 name|R
 name|applyXmldb
 parameter_list|(

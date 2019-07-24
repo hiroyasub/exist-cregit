@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Represents a traceable change of state  *  * @param<S> Information about the state which was modified  * @param<C> the change which was applied to the state  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Represents a traceable change of state  *  * @param<S> Information about the state which was modified  * @param<C> the change which was applied to the state  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

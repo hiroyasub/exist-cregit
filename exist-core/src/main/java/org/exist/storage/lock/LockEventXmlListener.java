@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A lock event listener which formats events as XML and writes them to a file  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A lock event listener which formats events as XML and writes them to a file  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

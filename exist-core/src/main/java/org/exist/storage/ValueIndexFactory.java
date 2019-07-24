@@ -784,7 +784,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * @param value      * @param offset      * @throws EXistException      */
 specifier|public
 specifier|final
 specifier|static
@@ -815,7 +814,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * @param value      * @param offset      * @param caseSensitive      * @throws EXistException      * @deprecated      */
 specifier|public
 specifier|final
 specifier|static

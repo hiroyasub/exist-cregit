@@ -140,7 +140,6 @@ name|replaceAttribute
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|DynamicAttributeConstructor
 parameter_list|(

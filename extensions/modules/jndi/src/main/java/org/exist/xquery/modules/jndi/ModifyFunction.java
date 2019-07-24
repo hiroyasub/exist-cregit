@@ -306,7 +306,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist JNDI Module Extension ModifyFunction  *   * Modify a JNDI Directory entry  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist JNDI Module Extension ModifyFunction  *   * Modify a JNDI Directory entry  *   * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -445,7 +445,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * ModifyFunction Constructor 	 *  	 * @param context 	The Context of the calling XQuery 	 */
 specifier|public
 name|ModifyFunction
 parameter_list|(
@@ -464,7 +463,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery modify() function, it is really 	 * the main entry point of this class 	 *  	 * @param args				arguments from the get-connection() function call 	 * @param contextSequence 	the Context Sequence to operate on (not used here internally!) 	 * @return 					A xs:long representing a handle to the connection 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -652,7 +652,7 @@ name|EMPTY_SEQUENCE
 operator|)
 return|;
 block|}
-comment|/** 	 * Parses attributes into a JNDI ModificationItem array 	 *  	 * @param arg				The attributes as a sequence of nodes 	 * @return 					The array of ModificationItems 	 */
+comment|/** 	 * Parses attributes into a JNDI ModificationItem array 	 *  	 * @param arg				The attributes as a sequence of nodes 	 * @return 					The array of ModificationItems 	 * 	 * @throws XPathException if a query error occurs 	 */
 specifier|private
 name|ModificationItem
 index|[]

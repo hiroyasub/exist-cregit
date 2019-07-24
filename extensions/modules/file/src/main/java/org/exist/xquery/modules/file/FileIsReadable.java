@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.nio.file.Files#isReadable(Path)  * @author Andrzej Taramina  * @author Loren Cahlander  *  */
+comment|/**  * @see java.nio.file.Files#isReadable(Path)  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author<a href="mailto:loren.cahlander@gmail.com">Loren Cahlander</a>  */
 end_comment
 
 begin_class
@@ -315,7 +315,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FileIsReadable
 parameter_list|(

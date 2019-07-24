@@ -416,7 +416,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A DSL for describing a schedule of  * transaction operations upon the database.  *  * A type-safe builder pattern is provided  * for constructing the schedule. Once  * the schedule is build a scheduler  * can execute it upon the database  * and return the results.  *  * The DSL uses recursive types  * in a similar way to a typed heterogeneous  * list (such as Shapeless's HList) to ensure  * that the each operation in the schedule  * receives the correct input type, i.e.  * the output type of the previous operation.  * At the cost of complexity in implementing  * the DSL, the recursive typing makes use of  * the DSL by the user much simpler and safer.  *  * The recursive type implementation was  * inspired by {@see https://apocalisp.wordpress.com/2008/10/23/heterogeneous-lists-and-the-limits-of-the-java-type-system/}.  *  * Example usage for creating a schedule of  * two transactions, where each will execute in  * its own thread but operationally linear  * according to the schedule:  *  *<pre>  * {@code  *  * import static org.exist.test.TransactionTestDSL.TransactionOperation.*;  * import static org.exist.test.TransactionTestDSL.TransactionScheduleBuilder.biSchedule;  *  * @Test  * public void getDocuments() throws ExecutionException, InterruptedException {  *   final String documentUri = "/db/test/hamlet.xml";  *  *   final Tuple2<DocumentImpl, DocumentImpl> result = biSchedule()  *       .firstT1(getDocument(documentUri))  *                                            .andThenT2(getDocument(documentUri))  *       .andThenT1(commit())  *                                            .andThenT2(commit())  *       .build()  *   .execute(existEmbeddedServer.getBrokerPool());  *  *   assertNotNull(result);  *   assertNotNull(result._1);  *   assertNotNull(result._2);  *  *   assertEquals(documentUri, result._1.getURI().getCollectionPath());  *   assertEquals(documentUri, result._2.getURI().getCollectionPath());  * }  *  * }  *</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
+comment|/**  * A DSL for describing a schedule of  * transaction operations upon the database.  *  * A type-safe builder pattern is provided  * for constructing the schedule. Once  * the schedule is build a scheduler  * can execute it upon the database  * and return the results.  *  * The DSL uses recursive types  * in a similar way to a typed heterogeneous  * list (such as Shapeless's HList) to ensure  * that the each operation in the schedule  * receives the correct input type, i.e.  * the output type of the previous operation.  * At the cost of complexity in implementing  * the DSL, the recursive typing makes use of  * the DSL by the user much simpler and safer.  *  * The recursive type implementation was  * inspired by<a href="https://apocalisp.wordpress.com/2008/10/23/heterogeneous-lists-and-the-limits-of-the-java-type-system/">https://apocalisp.wordpress.com/2008/10/23/heterogeneous-lists-and-the-limits-of-the-java-type-system/</a>.  *  * Example usage for creating a schedule of  * two transactions, where each will execute in  * its own thread but operationally linear  * according to the schedule:  *  *<pre>  *  * import static org.exist.test.TransactionTestDSL.TransactionOperation.*;  * import static org.exist.test.TransactionTestDSL.TransactionScheduleBuilder.biSchedule;  *  * {@code @Test}  * public void getDocuments() throws ExecutionException, InterruptedException {  *   final String documentUri = "/db/test/hamlet.xml";  *  *   final Tuple2{@code<DocumentImpl, DocumentImpl>} result = biSchedule()  *       .firstT1(getDocument(documentUri))  *                                            .andThenT2(getDocument(documentUri))  *       .andThenT1(commit())  *                                            .andThenT2(commit())  *       .build()  *   .execute(existEmbeddedServer.getBrokerPool());  *  *   assertNotNull(result);  *   assertNotNull(result._1);  *   assertNotNull(result._2);  *  *   assertEquals(documentUri, result._1.getURI().getCollectionPath());  *   assertEquals(documentUri, result._2.getURI().getCollectionPath());  * }  *  *</pre>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -701,7 +701,7 @@ name|countDownLatchNum
 init|=
 literal|0
 decl_stmt|;
-comment|/**              * Constructs an initial schedule builder.              *              * @param<T1> The type of the state held for T1 before the              *<pre>operation</pre> has executed              * @param<U1> The type of the state held for T1 after the              *<pre>operation</pre> has executed              * @param<T2> The type of the state held for T2 before the              *<pre>operation</pre> has executed              * @param<U2> The type of the state held for T2 after the              *<pre>operation</pre> has executed              *              * @param operation An operation on either Transaction T1 or T2              */
+comment|/**              * Constructs an initial schedule builder.              *              * @param<T1> The type of the state held for T1 before the              *<pre>operation</pre> has executed              * @param<U1> The type of the state held for T1 after the              *<pre>operation</pre> has executed              * @param<T2> The type of the state held for T2 before the              *<pre>operation</pre> has executed              * @param<U2> The type of the state held for T2 after the              *<pre>operation</pre> has executed              *              * @param operation An operation on either Transaction T1 or T2              *              * @return the builder              */
 specifier|public
 specifier|static
 parameter_list|<
@@ -1791,7 +1791,7 @@ parameter_list|<
 name|U
 parameter_list|>
 block|{
-comment|/**          * Execute the schedule on the database.          *          * @param brokerPool The database          *          * @return The result of executing the schedule.          */
+comment|/**          * Execute the schedule on the database.          *          * @param brokerPool The database          *          * @return The result of executing the schedule.          *          * @throws ExecutionException if the execution fails.          * @throws InterruptedException if the execution is interrupted.          */
 specifier|default
 name|U
 name|execute
@@ -1814,7 +1814,7 @@ name|NULL_SCHEDULE_LISTENER
 argument_list|)
 return|;
 block|}
-comment|/**          * Execute the schedule on the database.          *          * @param brokerPool The database          * @param executionListener A listener which receives execution events.          *          * @return The result of executing the schedule.          */
+comment|/**          * Execute the schedule on the database.          *          * @param brokerPool The database          * @param executionListener A listener which receives execution events.          *          * @return The result of executing the schedule.          *          * @throws ExecutionException if the execution fails.          * @throws InterruptedException if the execution is interrupted.          */
 name|U
 name|execute
 parameter_list|(
@@ -2282,7 +2282,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * A function which describes an operation on the database with a Transaction.      *      * You can think of this as a function<pre>f(T) -> U</pre>      * where the database and transaction are available to the      * function<pre>f</pre>.      *      * @param<T> The initial state before the transaction operation.      * @param<U> The state after the transaction operation.      */
+comment|/**      * A function which describes an operation on the database with a Transaction.      *      * You can think of this as a function<pre>f(T) -&gt; U</pre>      * where the database and transaction are available to the      * function<pre>f</pre>.      *      * @param<T> The initial state before the transaction operation.      * @param<U> The state after the transaction operation.      */
 annotation|@
 name|FunctionalInterface
 interface|interface
@@ -2796,7 +2796,7 @@ return|;
 block|}
 return|;
 block|}
-comment|/**          * Executes this, and then the other Transaction Operation          * on the input type {@code<T>} and returns          * the results as a tuple.          *          * e.g. Tuple2(f(T) -> U, other(T) -> U2)          *          * @param other another transaction operation which also operates on T          *          * @return The tuple of results.          */
+comment|/**          * Executes this, and then the other Transaction Operation          * on the input type {@code<T>} and returns          * the results as a tuple.          *          * e.g.<pre>Tuple2(f(T) -&gt; U, other(T) -&gt; U2)</pre>          *          * @param<U2> thr result of the other operation.          *          * @param other another transaction operation which also operates on T          *          * @return The tuple of results.          */
 specifier|default
 parameter_list|<
 name|U2
@@ -2867,7 +2867,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**          * Returns a composed function that first applies this function to          * its input, and then applies the {@code after} function to the result.          *          * See {@link Function#andThen(Function)}          *          * @param after the after function          *          * @return the composed function          */
+comment|/**          * Returns a composed function that first applies this function to          * its input, and then applies the {@code after} function to the result.          *          * See {@link Function#andThen(Function)}          *          * @param<V> the result of the after operation.          *          * @param after the after function          *          * @return the composed function          */
 specifier|default
 parameter_list|<
 name|V
@@ -2928,7 +2928,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**          * Returns a composed function that first applies the {@code before}          * function to its input, and then applies this function to the result.          *          * See {@link Function#compose(Function)}          *          * @param before the before function.          *          * @return the composed function          */
+comment|/**          * Returns a composed function that first applies the {@code before}          * function to its input, and then applies this function to the result.          *          * See {@link Function#compose(Function)}          *          * @param<V> the input type of the before operation.          *          * @param before the before function.          *          * @return the composed function          */
 specifier|default
 parameter_list|<
 name|V
@@ -2996,7 +2996,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**          * Returns a function that always returns its input argument.          *          * See {@link Function#identity()}          *          * @return the identity operation          */
+comment|/**          * Returns a function that always returns its input argument.          *          * See {@link Function#identity()}          *          * @param<T> the result of the identity operation.          *          * @return the identity operation          */
 specifier|static
 parameter_list|<
 name|T

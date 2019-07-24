@@ -300,7 +300,6 @@ name|Rename
 extends|extends
 name|Modification
 block|{
-comment|/**      * @param context      * @param select      * @param value      */
 specifier|public
 name|Rename
 parameter_list|(

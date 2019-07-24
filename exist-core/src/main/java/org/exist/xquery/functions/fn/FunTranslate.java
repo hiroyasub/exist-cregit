@@ -252,7 +252,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -367,7 +367,6 @@ literal|"the translated string"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunTranslate
 parameter_list|(

@@ -355,7 +355,6 @@ literal|"the xs:QName with the namespace URI given in $uri"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunQName
 parameter_list|(

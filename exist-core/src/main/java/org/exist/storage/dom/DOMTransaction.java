@@ -333,7 +333,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**      * The method<code>start</code>      *      * @return an<code>Object</code> value      * @exception ReadOnlyException if an error occurs      */
+comment|/**      * The method<code>start</code>      *      * @return an<code>Object</code> value      * @throws ReadOnlyException if an error occurs      */
 specifier|public
 specifier|abstract
 name|Object

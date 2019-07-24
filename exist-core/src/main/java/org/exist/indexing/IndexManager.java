@@ -1072,7 +1072,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Shutdowns all registered indexes by calling {@link org.exist.indexing.Index#close()}      * on them.      *      * @throws DBException      */
+comment|/**      * Shutdowns all registered indexes by calling {@link org.exist.indexing.Index#close()}      * on them.      *      * @param systemBroker The broker that will perform the operation      * @throws BrokerPoolServiceException in case of an error in the BrookerPoolService      */
 annotation|@
 name|Override
 specifier|public
@@ -1139,7 +1139,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * Call indexes to flush all data to disk.      *      * @throws DBException      */
+comment|/**      * Call indexes to flush all data to disk.      *      * @throws DBException in case of an eXist-db error      */
 specifier|public
 name|void
 name|sync
@@ -1182,7 +1182,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically destroy the registered indexes by calling {@link org.exist.indexing.Index#remove()}      * on them.      *      * @throws DBException      */
+comment|/**      * Physically destroy the registered indexes by calling {@link org.exist.indexing.Index#remove()}      * on them.      *      * @throws DBException in case of an eXist-db error      */
 specifier|public
 name|void
 name|removeIndexes
@@ -1225,7 +1225,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Reopens the registered index in case they have been closed by a previous operation      * such as {@link org.exist.indexing.Index#close()} by calling {@link org.exist.indexing.Index#open()}      * on them.      *      * @throws DatabaseConfigurationException      */
+comment|/**      * Reopens the registered index in case they have been closed by a previous operation      * such as {@link org.exist.indexing.Index#close()} by calling {@link org.exist.indexing.Index#open()}      * on them.      *      * @throws DatabaseConfigurationException in cse of an database configuration error      */
 specifier|public
 name|void
 name|reopenIndexes

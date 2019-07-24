@@ -390,7 +390,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Write a single entry to the journal      *      * @see Journal#writeToLog(Loggable)      *      * @param loggable The entry to write in the journal      */
+comment|/**      * Write a single entry to the journal      *      * @see Journal#writeToLog(Loggable)      *      * @param loggable The entry to write in the journal      *      * @throws JournalException of the journal entry cannot be written      */
 specifier|public
 specifier|synchronized
 name|void
@@ -418,7 +418,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Write a group of entrys to the journal      *      * @see Journal#writeToLog(Loggable)      * @see Journal#flushToLog(boolean)      *      * @param loggable The entry to write in the journalGroup      */
+comment|/**      * Write a group of entrys to the journal      *      * @see Journal#writeToLog(Loggable)      * @see Journal#flushToLog(boolean)      *      * @param loggable The entry to write in the journalGroup      *      * @throws JournalException of the journal group cannot be written      */
 specifier|public
 specifier|synchronized
 name|void
@@ -460,7 +460,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @see Journal#checkpoint(long, boolean)      *      * Create a new checkpoint. A checkpoint fixes the current database state. All dirty pages      * are written to disk and the journal file is cleaned.      *      * This method is called from      * {@link org.exist.storage.BrokerPool} within pre-defined periods. It      * should not be called from somewhere else. The database needs to      * be in a stable state (all transactions completed, no operations running).      *      * @param transactionId The id of the transaction for the checkpoint      * @param switchFiles Whether a new journal file should be started      *      * @throws JournalException      */
+comment|/**      * @see Journal#checkpoint(long, boolean)      *      * Create a new checkpoint. A checkpoint fixes the current database state. All dirty pages      * are written to disk and the journal file is cleaned.      *      * This method is called from      * {@link org.exist.storage.BrokerPool} within pre-defined periods. It      * should not be called from somewhere else. The database needs to      * be in a stable state (all transactions completed, no operations running).      *      * @param transactionId The id of the transaction for the checkpoint      * @param switchFiles Whether a new journal file should be started      *      * @throws JournalException of the journal checkpoint cannot be written      */
 specifier|public
 specifier|synchronized
 name|void
@@ -524,7 +524,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see Journal#flushToLog(boolean, boolean)      */
+comment|/**      * @param fsync true to use fsync      * @param forceSync true to force an fsync      *      * @see Journal#flushToLog(boolean, boolean)      * @param forceSync en-/disable forced sync      * @param fsync en- / disable file system sync      */
 specifier|public
 specifier|synchronized
 name|void
@@ -584,7 +584,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see Journal#lastWrittenLsn()      */
+comment|/**      * @see Journal#lastWrittenLsn()      *      * @return the last written LSN      */
 specifier|public
 name|Lsn
 name|lastWrittenLsn

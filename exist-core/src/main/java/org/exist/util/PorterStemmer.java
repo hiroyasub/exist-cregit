@@ -99,7 +99,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**    * Add a character to the word being stemmed.  When you are finished     * adding characters, you can call stem(void) to process the word.     */
+comment|/**    * Add a character to the word being stemmed.  When you are finished     * adding characters, you can call stem(void) to process the word.    *    * @param ch the character    */
 specifier|public
 name|void
 name|add
@@ -173,7 +173,7 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
-comment|/**    * After a word has been stemmed, it can be retrieved by toString(),     * or a reference to the internal buffer can be retrieved by getResultBuffer    * and getResultLength (which is generally more efficient.)    */
+comment|/**    * After a word has been stemmed, it can be retrieved by toString(),     * or a reference to the internal buffer can be retrieved by getResultBuffer    * and getResultLength (which is generally more efficient.)    *    * @return the stemmed string    */
 specifier|public
 name|String
 name|toString
@@ -191,7 +191,7 @@ name|i
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the length of the word resulting from the stemming process.    */
+comment|/**    * Returns the length of the word resulting from the stemming process.    *    * @return the length    */
 specifier|public
 name|int
 name|getResultLength
@@ -201,7 +201,7 @@ return|return
 name|i
 return|;
 block|}
-comment|/**    * Returns a reference to a character buffer containing the results of    * the stemming process.  You also need to consult getResultLength()    * to determine the length of the result.    */
+comment|/**    * Returns a reference to a character buffer containing the results of    * the stemming process.  You also need to consult getResultLength()    * to determine the length of the result.    *    * @return the result buffer    */
 specifier|public
 name|char
 index|[]
@@ -1872,7 +1872,7 @@ operator|--
 expr_stmt|;
 block|}
 block|}
-comment|/**     * Stem a word provided as a String.  Returns the result as a String.    */
+comment|/**     * Stem a word provided as a String.  Returns the result as a String.    *    * @param s the word to stem    *    * @return the stemmed string    */
 specifier|public
 name|String
 name|stem
@@ -1932,7 +1932,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Stem a word contained in a char[].  Returns true if the stemming process    * resulted in a word different from the input.  You can retrieve the     * result with getResultLength()/getResultBuffer() or toString().     */
+comment|/**    * Stem a word contained in a char[].  Returns true if the stemming process    * resulted in a word different from the input.  You can retrieve the    * result with getResultLength()/getResultBuffer() or toString().    *    * @param word the word to stem    *    * @return true if the stemmed word is different    */
 specifier|public
 name|boolean
 name|stem
@@ -1953,7 +1953,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/** Stem a word contained in a portion of a char[] array.  Returns    * true if the stemming process resulted in a word different from    * the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/**    * Stem a word contained in a portion of a char[] array.  Returns    * true if the stemming process resulted in a word different from    * the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    *    * @param wordBuffer the buffer containing the word to stem    * @param offset the offset of the word in the buffer    * @param wordLen the length of the word in the buffer    *    * @return true if the stemmed word is different    */
 specifier|public
 name|boolean
 name|stem
@@ -2035,7 +2035,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Stem a word contained in a leading portion of a char[] array.    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/**    * Stem a word contained in a leading portion of a char[] array.    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    *    * @param word the word to stem    * @param wordLen the length of the word to stem    *    * @return true if the stemmed word is different    */
 specifier|public
 name|boolean
 name|stem
@@ -2059,7 +2059,7 @@ name|wordLen
 argument_list|)
 return|;
 block|}
-comment|/** Stem the word placed into the Stemmer buffer through calls to add().    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/**    * Stem the word placed into the Stemmer buffer through calls to add().    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    *    * @return true if the stemmed word is different    */
 specifier|public
 name|boolean
 name|stem
@@ -2128,7 +2128,7 @@ return|return
 name|dirty
 return|;
 block|}
-comment|/** Test program for demonstrating the Stemmer.  It reads a file and    * stems each word, writing the result to standard out.      * Usage: Stemmer file-name     */
+comment|/**    * Test program for demonstrating the Stemmer.  It reads a file and    * stems each word, writing the result to standard out.      * Usage: Stemmer file-name    *    * @param args the arguments    */
 specifier|public
 specifier|static
 name|void

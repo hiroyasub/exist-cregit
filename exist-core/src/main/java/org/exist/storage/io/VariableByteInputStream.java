@@ -50,7 +50,6 @@ specifier|private
 name|InputStream
 name|is
 decl_stmt|;
-comment|/**      *       */
 specifier|public
 name|VariableByteInputStream
 parameter_list|(

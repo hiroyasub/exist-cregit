@@ -256,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension GetHeightFunction   *   * Get's the height of an Image  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension GetHeightFunction   *   * Get's the height of an Image  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

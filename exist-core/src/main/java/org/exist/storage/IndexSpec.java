@@ -285,7 +285,7 @@ name|index
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Read index configurations from an "index" element node.      * The node should have zero or more "create" nodes.      * The "create" elements add a {@link GeneralRangeIndexSpec} to the current configuration.      *        * @param index      * @throws DatabaseConfigurationException      */
+comment|/**      * Read index configurations from an "index" element node.      * The node should have zero or more "create" nodes.      * The "create" elements add a {@link GeneralRangeIndexSpec} to the current configuration.      *        * @param index index configuration      * @param broker the eXist-db DBBroker      * @throws DatabaseConfigurationException in response to an eXist-db configuration error      *      */
 specifier|public
 name|void
 name|read
@@ -566,7 +566,7 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the {@link GeneralRangeIndexSpec} defined for the given      * node path or null if no index has been configured.      *       * @param path      */
+comment|/**      * @return the {@link GeneralRangeIndexSpec} defined for the given      * node path or null if no index has been configured.      *       * @param path given node path      */
 specifier|public
 name|GeneralRangeIndexSpec
 name|getIndexByPath

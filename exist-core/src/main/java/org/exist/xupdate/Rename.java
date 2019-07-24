@@ -206,7 +206,7 @@ name|Rename
 extends|extends
 name|Modification
 block|{
-comment|/**      * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
+comment|/**      * @param broker the database broker.      * @param docs the document working set.      * @param selectStmt the select statement.      * @param namespaces the namespaces.      * @param variables the variables.      */
 specifier|public
 name|Rename
 parameter_list|(
@@ -250,7 +250,8 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xupdate.Modification#process(org.exist.dom.persistent.DocumentSet)      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|process
@@ -571,7 +572,8 @@ return|return
 name|modificationCount
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xupdate.Modification#getName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName

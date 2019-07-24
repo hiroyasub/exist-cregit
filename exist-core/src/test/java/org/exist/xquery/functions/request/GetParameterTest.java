@@ -310,7 +310,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests expected behaviour of request:get-parameter() XQuery function  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
+comment|/**  * Tests expected behaviour of request:get-parameter() XQuery function  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version 1.0  */
 end_comment
 
 begin_class

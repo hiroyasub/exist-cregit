@@ -324,7 +324,7 @@ name|protectedMode
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates a new<code>RemoteXPathQueryService</code> instance.      *      * @param collection a<code>RemoteCollection</code> value      */
+comment|/**      * Creates a new RemoteXPathQueryService instance.      *      * @param leasableXmlRpcClient the XML-RPC client lease      * @param xmlRpcClient the XML-RPC client      * @param collection a RemoteCollection value      */
 specifier|public
 name|RemoteXPathQueryService
 parameter_list|(
@@ -2396,7 +2396,7 @@ parameter_list|)
 block|{
 comment|// TODO: not passed
 block|}
-comment|/**      * Calling this method has no effect. The server loads modules      * relative to its own context.      *      * @see org.exist.xmldb.XQueryService#setModuleLoadPath(java.lang.String)      */
+comment|/**      * Calling this method has no effect. The server loads modules      * relative to its own context.      *      * @param path the module load path.      */
 annotation|@
 name|Override
 specifier|public

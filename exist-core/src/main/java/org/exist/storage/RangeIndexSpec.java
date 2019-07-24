@@ -402,7 +402,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**      * Replace subtypes of string and integer with their      * base type for the index. Using xs:int instead of xs:integer      * for an index does not have any advantage.      */
+comment|/**      * Replace subtypes of string and integer with their      * base type for the index. Using xs:int instead of xs:integer      * for an index does not have any advantage. 	 * 	 * @param type type to search super type for 	 * @return the super type      */
 specifier|protected
 specifier|static
 specifier|final

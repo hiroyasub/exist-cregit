@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple version of a ByteArrayInputStream which  * does not permit mark/reset  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Simple version of a ByteArrayInputStream which  * does not permit mark/reset  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -155,7 +155,7 @@ literal|"let $xml :=<doc>"
 operator|+
 literal|"<?pi test?>"
 operator|+
-literal|"<p>This is a p.</p>"
+literal|"This is a p."
 operator|+
 literal|"</doc>"
 operator|+
@@ -195,7 +195,7 @@ name|assertXMLEqual
 argument_list|(
 name|r
 argument_list|,
-literal|"<doc><?pi test?><p>This is a p.</p></doc>"
+literal|"<doc><?pi test?>This is a p.</doc>"
 argument_list|)
 expr_stmt|;
 block|}

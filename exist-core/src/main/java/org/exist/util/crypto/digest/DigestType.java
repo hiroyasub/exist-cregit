@@ -30,7 +30,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An enumeration of message digest types  * used by eXist-db.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * An enumeration of message digest types  * used by eXist-db.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_enum
@@ -306,7 +306,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**      * Get the digest type by id.      *      * @param id the id of the digest type      *      * @throws IllegalArgumentException if the id is invalid.      */
+comment|/**      * Get the digest type by id.      *      * @param id the id of the digest type      *      * @return the digest type      *      * @throws IllegalArgumentException if the id is invalid.      */
 specifier|public
 specifier|static
 name|DigestType
@@ -363,7 +363,7 @@ return|return
 name|commonNames
 return|;
 block|}
-comment|/**      * Get the digest type by common name.      *      * @param commonName the common name of the digest type      *      * @throws IllegalArgumentException if the common name is invalid.      */
+comment|/**      * Get the digest type by common name.      *      * @param commonName the common name of the digest type      *      * @return the digest type      *      * @throws IllegalArgumentException if the common name is invalid.      */
 specifier|public
 specifier|static
 name|DigestType

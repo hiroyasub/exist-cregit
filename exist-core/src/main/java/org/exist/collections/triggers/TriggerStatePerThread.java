@@ -111,7 +111,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** */
 specifier|public
 specifier|static
 name|boolean
@@ -152,7 +151,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** 	 * @param modifiedDocument 	 *            the document whose modification triggered the trigger 	 */
+comment|/** 	 * @param trigger the trigger that got modified 	 * @param modifiedDocument the document whose modification triggered the trigger 	 * @return true if successfully validated otherwise false 	 */
 specifier|public
 specifier|static
 name|boolean

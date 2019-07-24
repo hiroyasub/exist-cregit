@@ -150,7 +150,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A special function call to a Java method or constructor.  *   * This class handles all function calls who's namespace URI  * starts with "java:".  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A special function call to a Java method or constructor.  *   * This class handles all function calls who's namespace URI  * starts with "java:".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -194,7 +194,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param qname the of the function 	 */
+comment|/** 	 * Create new call on the Java method or constructor identified by the QName. 	 * 	 * @param context current context 	 * @param qname the name of the function 	 * @throws XPathException in case of a static error 	 */
 specifier|public
 name|JavaCall
 parameter_list|(

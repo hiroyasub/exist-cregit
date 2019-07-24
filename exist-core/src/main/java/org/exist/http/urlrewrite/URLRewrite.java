@@ -635,7 +635,7 @@ operator|!
 name|absolute
 return|;
 block|}
-comment|/**      * Resolve the target of this rewrite rule against the current request context.      *      * @return the new target path excluding context path      */
+comment|/**      * Resolve the target of this rewrite rule against the current request context.      *      * @param request the request wrapper      *      * @return the new target path excluding context path      *      * @throws ServletException if an error occurs      */
 specifier|protected
 name|String
 name|resolve

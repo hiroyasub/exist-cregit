@@ -1226,7 +1226,7 @@ operator|=
 name|n
 expr_stmt|;
 block|}
-comment|/**      * Get an iterator over the values      */
+comment|/**      * Get an iterator over the values      *      * @return value iterator      */
 specifier|public
 name|IntRangeSetIterator
 name|iterator
@@ -1297,7 +1297,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Test whether this set has exactly the same members as another set. Note that      * IntRangeSet values are<b>NOT</b> comparable with other implementations of IntSet      */
+comment|/**      * Test whether this set has exactly the same members as another set. Note that      * IntRangeSet values are<b>NOT</b> comparable with other implementations of IntSet      *      * @param other object to compare with      * @return true if other is an IntRangeSet and has the same members      */
 specifier|public
 name|boolean
 name|equals
@@ -1379,7 +1379,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/**      * Construct a hash key that supports the equals() test      */
+comment|/**      * Construct a hash key that supports the equals() test      *      * @return hash key      */
 specifier|public
 name|int
 name|hashCode
@@ -1440,7 +1440,7 @@ return|return
 name|hashCode
 return|;
 block|}
-comment|/**      * Test if this set is a superset of another set      */
+comment|/**      * Test if this set is a superset of another set      *      * @param other the subset      * @return true if this is a superset of other      */
 specifier|public
 name|boolean
 name|containsAll
@@ -1645,7 +1645,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Get the start points of the ranges      */
+comment|/**      * Get the start points of the ranges      *      * @return array of start points      */
 specifier|public
 name|int
 index|[]
@@ -1656,7 +1656,7 @@ return|return
 name|startPoints
 return|;
 block|}
-comment|/**      * Get the end points of the ranges      */
+comment|/**      * Get the end points of the ranges      *      * @return array of end points      */
 specifier|public
 name|int
 index|[]
@@ -1667,7 +1667,7 @@ return|return
 name|endPoints
 return|;
 block|}
-comment|/**      * Get the number of ranges actually in use      */
+comment|/**      * Get the number of ranges actually in use      *      * @return number of ranges in use      */
 specifier|public
 name|int
 name|getNumberOfRanges

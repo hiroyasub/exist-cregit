@@ -2565,7 +2565,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * size writen by {link #serialize(short, boolean)}      */
+comment|/**      * size writen by {link #serialize(short, boolean)}      *      * @return the size in number of bytes      */
 specifier|public
 name|int
 name|getSerializedSize

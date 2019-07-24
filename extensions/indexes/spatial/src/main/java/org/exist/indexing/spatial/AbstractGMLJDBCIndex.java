@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_package
@@ -620,7 +620,7 @@ name|ClassNotFoundException
 throws|,
 name|SQLException
 function_decl|;
-comment|/**      * Shuts down the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
+comment|/**      * Shuts down the JDBC database that contains the indexed spatial data.      *       * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -629,7 +629,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Deletes the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
+comment|/**      * Deletes the JDBC database that contains the indexed spatial data.      *      * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -638,7 +638,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Deletes the spatial data contained in the JDBC database.      *       * @throws DBException      */
+comment|/**      * Deletes the spatial data contained in the JDBC database.      *      * @throws DBException if an error occurs with the database      */
 specifier|protected
 specifier|abstract
 name|void
@@ -647,7 +647,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Convenience method that can be used by the IndexWorker to acquire a connection       * to the JDBC database that contains the indexed spatial data.      *       * @param broker the broker that will use th connection      * @return the connection      */
+comment|/**      * Convenience method that can be used by the IndexWorker to acquire a connection       * to the JDBC database that contains the indexed spatial data.      *       * @param broker the broker that will use th connection      *      * @return the connection      *      * @throws SQLException if a JDBC error occurs      */
 specifier|protected
 specifier|abstract
 name|Connection
@@ -659,7 +659,7 @@ parameter_list|)
 throws|throws
 name|SQLException
 function_decl|;
-comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *       */
+comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *      * @throws SQLException if a JDBC error occurs      */
 specifier|protected
 specifier|abstract
 name|void

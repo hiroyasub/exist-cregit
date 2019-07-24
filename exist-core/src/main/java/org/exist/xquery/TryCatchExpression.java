@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery 3.0 try {...} catch{...} expression.  *   * @author Adam Retter<adam@exist-db.org>  * @author Leif-JÃ¶ran Olsson<ljo@exist-db.org>  * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * XQuery 3.0 try {...} catch{...} expression.  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:ljo@exist-db.org">Leif-JÃ¶ran Olsson</a>  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class
@@ -458,7 +458,7 @@ operator|=
 name|tryTargetExpr
 expr_stmt|;
 block|}
-comment|/**      * Receive catch-clause data from parser.      */
+comment|/**      * Receive catch-clause data from parser.      *      * TODO: check if catchVars are still needed      *      * @param catchErrorList list of errors to catch      * @param catchVars variable names for caught errors: unused (from earlier version of the spec?)      * @param catchExpr the expression to be evaluated if error is caught      */
 specifier|public
 name|void
 name|addCatchClause
@@ -2859,7 +2859,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Data container      */
+comment|/**      * Data container      *      * TODO: catchVars is unused? Remove?      */
 specifier|public
 specifier|static
 class|class

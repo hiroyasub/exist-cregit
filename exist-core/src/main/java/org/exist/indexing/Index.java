@@ -127,7 +127,7 @@ name|BrokerPool
 name|getBrokerPool
 parameter_list|()
 function_decl|;
-comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing and receives the      *<pre>&lt;module id="foo" class="bar"/&gt;</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files (if relevant).      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
+comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing and receives the      *<pre>&lt;module id="foo" class="bar"/&gt;</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files (if relevant).      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException in case of an database configuration error      */
 name|void
 name|configure
 parameter_list|(
@@ -143,14 +143,14 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
-comment|/**      * Opens the index for writing and reading. Will be called during initialization, but also      * if the database has to be restarted.      *      * @throws DatabaseConfigurationException      */
+comment|/**      * Opens the index for writing and reading. Will be called during initialization, but also      * if the database has to be restarted.      *      * @throws DatabaseConfigurationException in case of an database configuration error      */
 name|void
 name|open
 parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
-comment|/**      * Closes the index and all associated resources.      *      * @throws DBException      */
+comment|/**      * Closes the index and all associated resources.      *      * @throws DBException in case of an eXist-db error      */
 annotation|@
 name|Override
 name|void
@@ -159,14 +159,14 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Sync the index. This method should make sure that all index contents are written to disk.      * It will be called during checkpoint events and the system relies on the index to materialize      * all data.      *      * @throws DBException      */
+comment|/**      * Sync the index. This method should make sure that all index contents are written to disk.      * It will be called during checkpoint events and the system relies on the index to materialize      * all data.      *      * @throws DBException in case of an eXist-db error      */
 name|void
 name|sync
 parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Closes the index and removes it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are re-indexed.      */
+comment|/**      * Closes the index and removes it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are re-indexed.      * @throws DBException in case of an eXist-db error      */
 name|void
 name|remove
 parameter_list|()

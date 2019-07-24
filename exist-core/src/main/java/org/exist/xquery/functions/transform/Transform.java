@@ -446,7 +446,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -968,7 +968,6 @@ name|stopOnWarn
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
 specifier|public
 name|Transform
 parameter_list|(
@@ -1263,72 +1262,6 @@ argument_list|)
 condition|)
 block|{
 comment|//transform:transform()
-specifier|final
-name|Transformer
-name|transformer
-init|=
-name|handler
-operator|.
-name|getTransformer
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-literal|"org.exist.xslt.TransformerImpl"
-operator|.
-name|equals
-argument_list|(
-name|transformer
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|context
-operator|.
-name|pushDocumentContext
-argument_list|()
-expr_stmt|;
-specifier|final
-name|Sequence
-name|seq
-init|=
-operator|(
-operator|(
-name|org
-operator|.
-name|exist
-operator|.
-name|xslt
-operator|.
-name|Transformer
-operator|)
-name|transformer
-operator|)
-operator|.
-name|transform
-argument_list|(
-name|args
-index|[
-literal|0
-index|]
-argument_list|)
-decl_stmt|;
-name|context
-operator|.
-name|popDocumentContext
-argument_list|()
-expr_stmt|;
-return|return
-name|seq
-return|;
-block|}
-else|else
-block|{
 specifier|final
 name|ValueSequence
 name|seq
@@ -1632,7 +1565,6 @@ expr_stmt|;
 return|return
 name|seq
 return|;
-block|}
 block|}
 else|else
 block|{

@@ -890,7 +890,7 @@ operator|new
 name|XMLString
 argument_list|()
 decl_stmt|;
-comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       * @param broker      *            The database broker to use.      * @param transaction      *            The transaction to use for indexing      *            privileged access to the db.      * @@throws EXistException      */
+comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       * @param broker The database broker to use.      * @param transaction The transaction to use for indexing privileged access to the db.      *      * @throws EXistException if an error orccurs when constructing the indexer.      */
 specifier|public
 name|Indexer
 parameter_list|(

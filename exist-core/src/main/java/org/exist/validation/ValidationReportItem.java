@@ -13,6 +13,10 @@ name|validation
 package|;
 end_package
 
+begin_comment
+comment|/**  * Helper class for validation (error) messages.  */
+end_comment
+
 begin_class
 specifier|public
 class|class

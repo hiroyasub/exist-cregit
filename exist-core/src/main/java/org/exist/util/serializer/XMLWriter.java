@@ -679,7 +679,7 @@ name|parseCdataSectionElementNames
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set a new writer. Calling this method will reset the state of the object.      *       * @param writer      */
+comment|/**      * Set a new writer. Calling this method will reset the state of the object.      *       * @param writer the writer      */
 specifier|public
 name|void
 name|setWriter

@@ -929,7 +929,6 @@ operator|.
 name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|ModuleInfo
 parameter_list|(

@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SortIndex helps to improve the performance of 'order by' expressions in XQuery.  * The index simply maps node ids to an integer index, which corresponds to the position  * of the node in the pre-ordered set.  *<p>  * The creation and maintenance of the index is handled by the user. XQuery functions  * are provided to create, delete and query an index.  *<p>  * Every sort index has an id by which it is identified and distinguished from other indexes  * on the same node set.  */
+comment|/**  * SortIndex helps to improve the performance of 'order by' expressions in XQuery.  * The index simply maps node ids to an integer index, which corresponds to the position  * of the node in the pre-ordered set.  *  * The creation and maintenance of the index is handled by the user. XQuery functions  * are provided to create, delete and query an index.  *  * Every sort index has an id by which it is identified and distinguished from other indexes  * on the same node set.  */
 end_comment
 
 begin_class

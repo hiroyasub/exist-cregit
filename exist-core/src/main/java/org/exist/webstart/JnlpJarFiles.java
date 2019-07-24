@@ -482,7 +482,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param libDir      */
+comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param libDir the lib folder.      */
 specifier|public
 name|JnlpJarFiles
 parameter_list|(
@@ -634,7 +634,7 @@ return|return
 name|allWebstartJars
 return|;
 block|}
-comment|/**      * Get file reference for JAR file.      *      * @param key      * @return Reference to the jar file, NULL if not existent.      */
+comment|/**      * Get file reference for JAR file.      *      * @param key the key for the JAR file.      *      * @return Reference to the jar file, NULL if not existent.      */
 specifier|public
 name|Path
 name|getJarFile
@@ -705,7 +705,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Get last modified of main JAR file      */
+comment|/**      * Get last modified of main JAR file.      *      * @return the last modified time, or -1 if unknown.      *      * @throws IOException if the last modified time cannot be retrieved.      */
 specifier|public
 name|long
 name|getLastModified

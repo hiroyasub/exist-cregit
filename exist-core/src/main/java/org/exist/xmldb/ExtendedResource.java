@@ -68,28 +68,28 @@ specifier|public
 interface|interface
 name|ExtendedResource
 block|{
-comment|/**      * It returns an object representing the content, in the representation      * which needs less memory.      */
+comment|/**      * It returns an object representing the content, in the representation      * which needs less memory.      *      * @return the content.      *      * @throws XMLDBException if an error occurs whilst retriveing the extended content.      */
 name|Object
 name|getExtendedContent
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * It returns an stream to the content, whichever it is its origin      */
+comment|/**      * It returns an stream to the content, whichever it is its origin.      *      * @return the content.      *      * @throws XMLDBException if an error occurs whilst streaming the content.      */
 name|InputStream
 name|getStreamContent
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * It returns the length of the content, if known.      *      * @return The content length, or -1 if not known.      */
+comment|/**      * It returns the length of the content, if known.      *      * @return The content length, or -1 if not known.      *      * @throws XMLDBException if an error occurs whilst getting the stream's length.      */
 name|long
 name|getStreamLength
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * It saves the resource to the local file given as input parameter.      * Do NOT confuse with set content.      */
+comment|/**      * It saves the resource to the local file given as input parameter.      * Do NOT confuse with set content.      *      * @param localfile the file.      *      * @throws XMLDBException if an error occurs whilst getting the content.      */
 name|void
 name|getContentIntoAFile
 parameter_list|(
@@ -99,7 +99,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * It saves the resource to the local stream given as input parameter.      * Do NOT confuse with set content.      */
+comment|/**      * It saves the resource to the local stream given as input parameter.      * Do NOT confuse with set content.      *      * @param os the stream.      *      * @throws XMLDBException if an error occurs whilst getting the content.      */
 name|void
 name|getContentIntoAStream
 parameter_list|(

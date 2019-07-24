@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for an {@link org.exist.xquery.InternalModule}.   * Functions are defined in an array of {@link org.exist.xquery.FunctionDef}, which  * is passed to the constructor. A single implementation class  * can be registered for more than one function signature, given that the signatures differ  * in name or the number of expected arguments. It is thus possible to implement  * similar XQuery functions in one single class.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  *  */
+comment|/**  * Abstract base class for an {@link org.exist.xquery.InternalModule}.   * Functions are defined in an array of {@link org.exist.xquery.FunctionDef}, which  * is passed to the constructor. A single implementation class  * can be registered for more than one function signature, given that the signatures differ  * in name or the number of expected arguments. It is thus possible to implement  * similar XQuery functions in one single class.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author ljo  *  */
 end_comment
 
 begin_class
@@ -239,7 +239,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * returns a module parameter      */
+comment|/**      * Get a parameter.      *      * @param paramName the name of the parameter      *      * @return the value of tyhe parameter      */
 specifier|protected
 name|List
 argument_list|<

@@ -340,7 +340,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the URL indicated by the parameter named "url".  *   * Any additional parameters will be declared as external variables with the type xs:string  *   * These external variables for the Trigger are accessible to the user XQuery statement  *<code>xxx:type</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collection</code> : the uri of the collection from which the event is triggered  *<code>xxx:uri</code> : the uri of the document or collection from which the event is triggered  *<code>xxx:new-uri</code> : the new uri of the document or collection from which the event is triggered  *<code>xxx:event</code> : the kind of triggered event  * xxx is the namespace prefix within the XQuery, can be set by the variable "bindingPrefix"  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Evgeny Gazdovsky<gazdovsky@gmail.com> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the URL indicated by the parameter named "url".  *   * Any additional parameters will be declared as external variables with the type xs:string  *   * These external variables for the Trigger are accessible to the user XQuery statement  *<code>xxx:type</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collection</code> : the uri of the collection from which the event is triggered  *<code>xxx:uri</code> : the uri of the document or collection from which the event is triggered  *<code>xxx:new-uri</code> : the new uri of the document or collection from which the event is triggered  *<code>xxx:event</code> : the kind of triggered event  * xxx is the namespace prefix within the XQuery, can be set by the variable "bindingPrefix"  *   * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @author<a href="mailto:gazdovsky@gmail.com">Evgeny Gazdovsky</a> */
 end_comment
 
 begin_class
@@ -771,7 +771,7 @@ name|PREPARE_EXCEPTION_MESSAGE
 init|=
 literal|"Error during trigger prepare"
 decl_stmt|;
-comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+comment|/** 	 * {@link org.exist.collections.triggers.Trigger#configure(DBBroker, Txn, Collection, Map)} 	 */
 annotation|@
 name|Override
 specifier|public

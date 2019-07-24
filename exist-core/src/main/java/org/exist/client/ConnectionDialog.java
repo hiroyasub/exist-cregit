@@ -194,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -276,7 +276,7 @@ name|Remote
 block|,
 name|Embedded
 block|}
-comment|/**      * Creates new form ConnectionForm      */
+comment|/**      *  Creates new form ConnectionForm      * @param parent Parent window.      * @param modal modality flag.      * @param defaultConnectionSettings Default connection settings.      * @param embeddedByDefault Set TRUE to have embedded mode selected by default.      * @param disableEmbeddedConnectionType Set to TRUE to force remote connections only.      */
 specifier|public
 name|ConnectionDialog
 parameter_list|(

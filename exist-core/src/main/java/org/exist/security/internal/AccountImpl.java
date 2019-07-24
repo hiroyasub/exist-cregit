@@ -282,7 +282,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a user within the database.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam retter<adam@exist-db.org>  */
+comment|/**  * Represents a user within the database.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam@exist-db.org">Adam retter</a>  */
 end_comment
 
 begin_class
@@ -362,7 +362,7 @@ name|digestPassword
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Create a new user with name and password      *      * @param realm      * @param id      * @param name      * @param password      * @throws ConfigurationException      */
+comment|/**      * Create a new user with name and password      * @param broker the eXist-db DBBroker      * @param realm the security realm      * @param id of the account      * @param name of the account      * @param password of the account      * @throws ConfigurationException if there is an configuration error      */
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -528,7 +528,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new user with name      *      * @param realm      * @param name      *            The account name      * @throws ConfigurationException      */
+comment|/**      * Create a new user with name      *      * @param broker the eXist-db DBBroker      * @param realm the security realm      * @param name of the account      *            The account name      * @throws ConfigurationException if there is an configuration error      */
 specifier|public
 name|AccountImpl
 parameter_list|(

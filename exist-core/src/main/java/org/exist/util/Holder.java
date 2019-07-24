@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Simple strong reference holder.  *  * @param<T> the type held.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Simple strong reference holder.  *  * @param<T> the type held.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

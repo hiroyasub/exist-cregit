@@ -218,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -295,7 +295,6 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * Creates new form AccessControlEntryDialog      */
 specifier|public
 name|AccessControlEntryDialog
 parameter_list|(

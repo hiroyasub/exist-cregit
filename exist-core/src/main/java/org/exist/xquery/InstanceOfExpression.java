@@ -76,7 +76,6 @@ specifier|final
 name|SequenceType
 name|type
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|InstanceOfExpression
 parameter_list|(

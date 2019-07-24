@@ -174,7 +174,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A test case for accessing DOMS remotely  * @author jmv  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/** A test case for accessing DOMS remotely  * @author<a href="mailto:pierrick.brihaye@free.fr">jmv  * @author Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

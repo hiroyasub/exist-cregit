@@ -128,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialisation of BiFunctionE which deals with  * local XMLDB operations; Predominantly converts exceptions  * from the database into XMLDBException types  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Specialisation of BiFunctionE which deals with  * local XMLDB operations; Predominantly converts exceptions  * from the database into XMLDBException types  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -255,7 +255,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XMLDB function      * @param transaction The transaction for the XMLDB function      */
+comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XMLDB function      * @param transaction The transaction for the XMLDB function      *      * @return the result of the function      *      * @throws XMLDBException if an error occurs whilst applying the function      * @throws PermissionDeniedException if the user has insufficient permissions      * @throws IOException if an IO error occurs      * @throws XPathException if an error occurs whilst executing an XPath      * @throws EXistException if any other error occurs      */
 name|R
 name|applyXmldb
 parameter_list|(

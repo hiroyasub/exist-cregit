@@ -406,7 +406,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for XPath doc related functions  *  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * Utilities for XPath doc related functions  *  * @author<a href="mailto:pierrick.brihaye@free.fr">wolf  * @author Pierrick Brihaye</a>  */
 end_comment
 
 begin_comment
@@ -1277,7 +1277,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException      */
+comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|org
@@ -1319,7 +1319,7 @@ name|is
 argument_list|)
 return|;
 block|}
-comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param pool    The broker pool      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException      */
+comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param pool    The broker pool      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|org

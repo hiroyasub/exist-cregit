@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Built-in function fn:substring().  *  *	@author Adam Retter<adam.retter@devon.gov.uk>  *	@author ljo<ellefj@gmail.com>  */
+comment|/**  * Built-in function fn:substring().  *  *	@author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  *	@author<a href="mailto:ellefj@gmail.com">ljo</a>  */
 end_comment
 
 begin_class
@@ -1015,7 +1015,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Checks that the end position is valid for the $sourceString 	 *       * @param end a<code>NumericValue</code> value      * @param start a<code>NumericValue</code> value      * @return true if the length is valid, false otherwise      * @exception XPathException if an error occurs      */
+comment|/**      * Checks that the end position is valid for the $sourceString 	 *       * @param end a<code>NumericValue</code> value      * @param start a<code>NumericValue</code> value      * @return true if the length is valid, false otherwise      * @throws XPathException if an error occurs      */
 specifier|private
 name|boolean
 name|validEndPosition

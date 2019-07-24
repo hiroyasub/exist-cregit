@@ -344,7 +344,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension CropFunction   *   * Crops an Image  *   * Written by Christian Wittern, based on the scale function by Adam and Loren, with help from Rafael Troilo  * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @author Christian Wittern  * @serial 2011-03-05  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension CropFunction   *   * Crops an Image  *   * Written by Christian Wittern, based on the scale function by Adam and Loren, with help from Rafael Troilo  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Loren Cahlander  * @author Christian Wittern  * @serial 2011-03-05  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

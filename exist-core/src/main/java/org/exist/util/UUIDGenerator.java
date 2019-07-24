@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  UUID generator.  *  * {@see http://en.wikipedia.org/wiki/UUID}  *  * @author Adam Retter<adam@evolvedbinary.com>  * @author Dannes Wessels  */
+comment|/**  * UUID generator.  *  * See<a href="http://en.wikipedia.org/wiki/UUID">UUID</a>  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -165,7 +165,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *  Generate random UUID code.      *      * @return UUID code, formatted as f271ec43-bf1f-4030-a269-b11576538f71      */
+comment|/**      * Generate random UUID code.      *      * @return UUID code, formatted as f271ec43-bf1f-4030-a269-b11576538f71      */
 specifier|public
 specifier|static
 name|String
@@ -177,7 +177,7 @@ name|getUUIDversion4
 argument_list|()
 return|;
 block|}
-comment|/**      * Generate a version 4 UUID.      * {@see http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_4_.28random.29}      *      * @return a Version 4 UUID      */
+comment|/**      * Generate a version 4 UUID.      *      * See<a href="http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_4_.28random.29">http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_4_.28random.29</a>.      *      * @return a Version 4 UUID      */
 specifier|public
 specifier|static
 name|String
@@ -194,7 +194,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Generate a version 3 UUID code.      * {@see http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29}      *      * @param name the name to generate a UUID for.      *      * @return a Version 3 UUID      */
+comment|/**      * Generate a version 3 UUID code.      *      * See<a href="http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29">http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29</a>      *      * @param name the name to generate a UUID for.      *      * @return a Version 3 UUID      */
 specifier|public
 specifier|static
 name|String

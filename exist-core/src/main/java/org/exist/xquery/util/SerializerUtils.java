@@ -769,7 +769,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Parse output:serialization-parameters XML fragment into serialization      * properties as defined by the fn:serialize function.      *      * @param parent     the parent expression calling this method      * @param parameters root node of the XML fragment      * @param properties parameters are added to the given properties      */
+comment|/**      * Parse output:serialization-parameters XML fragment into serialization      * properties as defined by the fn:serialize function.      *      * @param parent     the parent expression calling this method      * @param parameters root node of the XML fragment      * @param properties parameters are added to the given properties      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|void

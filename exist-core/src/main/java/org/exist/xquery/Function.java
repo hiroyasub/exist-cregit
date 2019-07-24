@@ -160,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all built-in and user-defined functions.  *<p>  * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *<p>  * User-defined functions extend class {@link org.exist.xquery.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xquery.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *  * @author wolf  */
+comment|/**  * Abstract base class for all built-in and user-defined functions.  *  * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *  * User-defined functions extend class {@link org.exist.xquery.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xquery.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -197,7 +197,7 @@ name|argumentsChecked
 init|=
 literal|true
 decl_stmt|;
-comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *      * @param context      * @param signature      */
+comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *      * @param context the xquery context.      * @param signature the function signature.      */
 specifier|protected
 name|Function
 parameter_list|(
@@ -236,7 +236,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the module to which this function belongs      */
+comment|/**      * Returns the module to which this function belongs.      *      * @return the parent module or null.      */
 specifier|protected
 name|Module
 name|getParentModule
@@ -355,7 +355,7 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/**      * Create a built-in function from the specified class.      *      * @return the created function or null if the class could not be initialized.      */
+comment|/**      * Create a built-in function from the specified class.      *      * @param context the xquery context      * @param ast the ast node      * @param def the function definition      *      * @return the created function or null if the class could not be initialized.      *      * @throws XPathException if the function could not be created      */
 specifier|public
 specifier|static
 name|Function
@@ -634,7 +634,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Set the parent expression of this function, i.e. the      * expression from which the function is called.      *      * @param parent      */
+comment|/**      * Set the parent expression of this function, i.e. the      * expression from which the function is called.      *      * @param parent the parent expression      */
 specifier|public
 name|void
 name|setParent
@@ -651,7 +651,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|/**      * Returns the expression from which this function gets called.      */
+comment|/**      * Returns the expression from which this function gets called.      *      * @return the parent expression      */
 annotation|@
 name|Override
 specifier|public
@@ -663,7 +663,7 @@ return|return
 name|parent
 return|;
 block|}
-comment|/**      * Set the (static) arguments for this function from a list of expressions.      *<p>      * This will also trigger a check on the type and cardinality of the      * passed argument expressions. By default, the method sets the      * argumentsChecked property to false, thus triggering the analyze method to      * perform a type check.      *<p>      * Classes overwriting this method are typically optimized functions and will      * handle type checks for arguments themselves.      *      * @param arguments      * @throws XPathException      */
+comment|/**      * Set the (static) arguments for this function from a list of expressions.      *      * This will also trigger a check on the type and cardinality of the      * passed argument expressions. By default, the method sets the      * argumentsChecked property to false, thus triggering the analyze method to      * perform a type check.      *      * Classes overwriting this method are typically optimized functions and will      * handle type checks for arguments themselves.      *      * @param arguments the function arguments.      *      * @throws XPathException if an error occurs setting the arguments      */
 specifier|public
 name|void
 name|setArguments
@@ -762,7 +762,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**      * @throws XPathException      */
+comment|/**      * Check the fuction arguments.      *      * @throws XPathException if an error occurs when checking the arguments.      */
 specifier|protected
 name|void
 name|checkArguments
@@ -862,7 +862,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Statically check an argument against the sequence type specified in      * the signature.      *      * @param expr      * @param type      * @return The passed expression      * @throws XPathException      */
+comment|/**      * Statically check an argument against the sequence type specified in      * the signature.      *      * @param expr the expression      * @param type the type of the argument      * @param argPosition the position of the argument      * @return The passed expression      * @throws XPathException if an error occurs whilst checking the argument      */
 specifier|protected
 name|Expression
 name|checkArgument
@@ -1854,7 +1854,7 @@ return|return
 name|args
 return|;
 block|}
-comment|/**      * Get an argument expression by its position in the      * argument list.      *      * @param pos      */
+comment|/**      * Get an argument expression by its position in the      * argument list.      *      * @param pos the position of the argument      *      * @return the expression.      */
 specifier|public
 name|Expression
 name|getArgument

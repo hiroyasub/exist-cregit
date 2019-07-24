@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Node serializer (threaded).  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -160,7 +160,7 @@ specifier|final
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
-comment|/**      * Creates a new instance of NodeSerializerRunnable      */
+comment|/**      * Creates a new instance of NodeSerializerRunnable.      *      * @param serializer The serializer.      * @param node       The node to be serialized.      * @param bos        Blocking outputstream.      */
 specifier|public
 name|NodeSerializerRunnable
 parameter_list|(

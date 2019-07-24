@@ -302,7 +302,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunDoctype
 parameter_list|(

@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a User's Java Job.  *  *<p>Should be extended by all classes wishing to schedule as a Job that perform user defined functionality</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a User's Java Job.  *  * Should be extended by all classes wishing to schedule as a Job that perform user defined functionality  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  */
 end_comment
 
 begin_class

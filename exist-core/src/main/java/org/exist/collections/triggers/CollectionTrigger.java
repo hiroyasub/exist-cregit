@@ -76,7 +76,7 @@ name|CollectionTrigger
 extends|extends
 name|Trigger
 block|{
-comment|/**      * This method is called once before the database will actually create, remove or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param broker      * @param txn      * @param uri      * @throws TriggerException      */
+comment|/**      * This method is called once before the database will actually create, remove or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param broker eXist-db broker      * @param txn the transaction      * @param uri of the collection the trigger listens on      * @throws TriggerException if an error in the trigger function is thrown      */
 specifier|public
 name|void
 name|beforeCreateCollection
@@ -93,7 +93,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
-comment|/**      * This method is called after the operation has completed.      *       * @param broker      * @param txn      * @param collection      * @throws TriggerException      */
+comment|/**      * This method is called after the operation has completed.      *      * @param broker eXist-db broker      * @param txn the transaction      * @param collection the trigger listens on      * @throws TriggerException if an error in the trigger function is thrown      */
 specifier|public
 name|void
 name|afterCreateCollection

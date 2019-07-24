@@ -2729,7 +2729,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sets the content for this resource. If value is of type File, it is      * directly passed to the parser when Collection.storeResource is called.      * Otherwise the method tries to convert the value to String.      *       * Passing a File object should be preferred if the document is large. The      * file's content will not be loaded into memory but directly passed to a      * SAX parser.      *       * @param obj the content value to set for the resource.      * @exception XMLDBException with expected error codes.<br />      *<code>ErrorCodes.VENDOR_ERROR</code> for any vendor specific errors      *     that occur.<br />      */
+comment|/**      * Sets the content for this resource. If value is of type File, it is      * directly passed to the parser when Collection.storeResource is called.      * Otherwise the method tries to convert the value to String.      *       * Passing a File object should be preferred if the document is large. The      * file's content will not be loaded into memory but directly passed to a      * SAX parser.      *       * @param obj the content value to set for the resource.      * @throws XMLDBException with expected error codes. See {@link ErrorCodes#VENDOR_ERROR}      *     for any vendor specific errors that occur.      */
 annotation|@
 name|Override
 specifier|public
@@ -3088,7 +3088,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Similar to {@link org.exist.xmldb.LocalXMLResource#getNode()}      * but useful for operations within the XML:DB Local API      * that are already working within a transaction      */
+comment|/**      * Similar to {@link org.exist.xmldb.LocalXMLResource#getNode()}      * but useful for operations within the XML:DB Local API      * that are already working within a transaction.      *      * @param broker the database broker.      * @param transaction the database transaction.      *      * @return a proxy to the node.      *      * @throws XMLDBException if an error occurs whilst getting the node      */
 specifier|public
 name|NodeProxy
 name|getNode

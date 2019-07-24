@@ -135,7 +135,7 @@ name|boolean
 name|remove
 parameter_list|)
 function_decl|;
-comment|/** store and index given text node */
+comment|/** 	 * Store and index given text node 	 * 	 * @param node the text node 	 * @param currentPath the node path 	 */
 name|void
 name|storeText
 parameter_list|(
@@ -146,7 +146,7 @@ name|NodePath
 name|currentPath
 parameter_list|)
 function_decl|;
-comment|/** 	 * The given node is being removed from the database.  	 */
+comment|/** 	 * The given node is being removed from the database. 	 * 	 * @param node the text node 	 * @param currentPath the node path 	 * @param content the content 	 */
 name|void
 name|removeNode
 parameter_list|(
@@ -160,7 +160,7 @@ name|String
 name|content
 parameter_list|)
 function_decl|;
-comment|/** set the current document; generally called before calling an operation */
+comment|/** 	 * set the current document; generally called before calling an operation 	 * 	 * @param document the document 	 */
 name|void
 name|setDocument
 parameter_list|(
@@ -168,7 +168,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 function_decl|;
-comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection 	 */
+comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection the collection 	 */
 name|void
 name|dropIndex
 parameter_list|(
@@ -176,7 +176,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 */
+comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc the document 	 */
 name|void
 name|dropIndex
 parameter_list|(
@@ -184,19 +184,20 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/** remove all pending modifications, for the current document. */
+comment|/** 	 * remove all pending modifications, for the current document. 	 */
 name|void
 name|remove
 parameter_list|()
 function_decl|;
-comment|/* The following methods are rather related to file management : create a dedicated interface ? /*  	/** writes the pending items, for the current document's collection */
+comment|/* The following methods are rather related to file management : create a dedicated interface ? */
+comment|/**      * Writes the pending items, for the current document's collection. 	 * 	 * @throws DBException if an error occurs whilst flushing 	 */
 name|void
 name|flush
 parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 sync() is called from time to time by the background sync daemon. */
+comment|/** 	 * triggers a cache sync, i.e. forces to write out all cached pages. 	 * sync() is called from time to time by the background sync daemon. 	 */
 name|void
 name|sync
 parameter_list|()

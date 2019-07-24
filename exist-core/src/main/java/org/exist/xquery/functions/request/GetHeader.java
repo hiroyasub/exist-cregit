@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Alain Pannetier<alain.m.pannetier@gmail.com>  *   * Adjusted and Committed by Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * @author<a href="mailto:alain.m.pannetier@gmail.com">Alain Pannetier</a>  * @author<a href="adam.retter@devon.gov.uk">Adam Retter</a>  */
 end_comment
 
 begin_class

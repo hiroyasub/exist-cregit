@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:subsequence function.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements the fn:subsequence function.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -654,7 +654,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Creates a Subsequence from a sequence      *      * @param startLoc the starting location value as passed to {@code fn:subsequence}      * @param length the length value as passed to {@code fn:subsequence}, or null for all items      *      * @return the subsequence      */
+comment|/**      * Creates a Subsequence from a sequence      *      * @param sequence the input sequence      * @param startLoc the starting location value as passed to {@code fn:subsequence}      * @param length the length value as passed to {@code fn:subsequence}, or null for all items      *      * @return the subsequence      */
 specifier|public
 specifier|static
 name|Sequence

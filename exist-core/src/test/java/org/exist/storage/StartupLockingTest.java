@@ -228,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple test that Starts the database and checks that no Collection Locks are still held  * once the database is at rest  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Simple test that Starts the database and checks that no Collection Locks are still held  * once the database is at rest  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

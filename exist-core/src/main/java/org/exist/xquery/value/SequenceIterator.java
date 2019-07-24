@@ -52,7 +52,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      * Skip forward over {@code n} items from the current position.      *      * @return the number of items actually skipped over, zero      *     if no items could be skipped, or -1 if this sequence      *     does not support skipping.      */
+comment|/**      * Skip forward over {@code n} items from the current position.      *      * @param n number of items to skip      * @return the number of items actually skipped over, zero      *     if no items could be skipped, or -1 if this sequence      *     does not support skipping.      */
 specifier|default
 name|long
 name|skip

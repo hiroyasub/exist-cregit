@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines an XQuery library module. A module consists of function definitions  * and global variables. It is uniquely identified by a namespace URI and an optional  * default namespace prefix. All functions provided by the module have to be defined   * in the module's namespace.  *   * Modules can be either internal or external: internal modules are collections of Java  * classes, each being a subclass of {@link org.exist.xquery.Function}. External modules  * are defined by the XQuery "module" directive and can be loaded with "import module".  *   * Modules are dynamically loaded by class {@link org.exist.xquery.XQueryContext}, either  * during the initialization phase of the query engine (for the standard library modules) or  * upon an "import module" directive.   *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines an XQuery library module. A module consists of function definitions  * and global variables. It is uniquely identified by a namespace URI and an optional  * default namespace prefix. All functions provided by the module have to be defined   * in the module's namespace.  *   * Modules can be either internal or external: internal modules are collections of Java  * classes, each being a subclass of {@link org.exist.xquery.Function}. External modules  * are defined by the XQuery "module" directive and can be loaded with "import module".  *   * Modules are dynamically loaded by class {@link org.exist.xquery.XQueryContext}, either  * during the initialization phase of the query engine (for the standard library modules) or  * upon an "import module" directive.   *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface
@@ -95,7 +95,7 @@ index|[]
 name|listFunctions
 parameter_list|()
 function_decl|;
-comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname 	 * @return the function signature or null if the function is not defined. 	 */
+comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname the function name 	 * @return the function signature or null if the function is not defined. 	 */
 specifier|public
 name|Iterator
 argument_list|<
@@ -146,7 +146,7 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
-comment|/**      * Returns an iterator over all global variables in this modules, which were      * either declared with "declare variable" (for external modules) or set in the      * module implementation (internal modules).      */
+comment|/**      * Returns an iterator over all global variables in this modules, which were      * either declared with "declare variable" (for external modules) or set in the      * module implementation (internal modules). 	 * 	 * @return an iterator over the names of the global variables      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -155,7 +155,7 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 function_decl|;
-comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param context the xquery context 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
 annotation|@
 name|Deprecated
 name|void
@@ -165,7 +165,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param xqueryContext the xquery context 	 * @param keepGlobals true to keep global declarations 	 */
 specifier|public
 name|void
 name|reset

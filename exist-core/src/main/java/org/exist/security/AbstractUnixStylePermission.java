@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * All code in this class must be side-effect free  * and not carry state, thus ensuring that thus class  * can be used in a local or remote scenario  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * All code in this class must be side-effect free  * and not carry state, thus ensuring that thus class  * can be used in a local or remote scenario  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -742,7 +742,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|execute]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
+comment|/**      * Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|execute]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@throws  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
 annotation|@
 name|Deprecated
 specifier|private

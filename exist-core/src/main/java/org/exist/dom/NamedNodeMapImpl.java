@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -347,7 +347,7 @@ name|arg
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds an INode to the NamedNodeMap      *      * The INode#getQName method is called      * to get the name for the map item      *      * @return The previous node of the same name if it exists      */
+comment|/**      * Adds an INode to the NamedNodeMap      *      * The INode#getQName method is called      * to get the name for the map item      * @param arg INode to add      * @return The previous node of the same name if it exists      */
 specifier|public
 name|Node
 name|setNamedItem

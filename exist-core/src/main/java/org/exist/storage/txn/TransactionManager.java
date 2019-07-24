@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Transaction Manager provides methods to begin, commit, and abort  * transactions.  *  * This implementation of the transaction manager is non-blocking lock-free.  * It makes use of several CAS variables to ensure thread-safe concurrent  * access. The most important of which is {@link #state} which indicates  * either:  *     1) the number of active transactions  *     2) that the Transaction Manager is executing system  *         tasks ({@link #STATE_SYSTEM}), during which time no  *         other transactions are active.  *     3) that the Transaction Manager has (or is)  *         been shutdown ({@link #STATE_SHUTDOWN}).  *  * NOTE: the Transaction Manager may optimistically briefly enter  *     the state {@link #STATE_SYSTEM} to block the initiation of  *     new transactions and then NOT execute system tasks if it  *     detects concurrent active transactions.  *  * System tasks are mutually exclusive with any other operation  * including shutdown. When shutdown is requested, if system tasks  * are executing, then the thread will spin until they are finished.  *   * There's only one TransactionManager per database instance, it can be  * accessed via {@link BrokerPool#getTransactionManager()}.  *  * @author Adam Retter<adam@evolvedbinary.com>  * @author wolf  */
+comment|/**  * The Transaction Manager provides methods to begin, commit, and abort  * transactions.  *  * This implementation of the transaction manager is non-blocking lock-free.  * It makes use of several CAS variables to ensure thread-safe concurrent  * access. The most important of which is {@link #state} which indicates  * either:  *     1) the number of active transactions  *     2) that the Transaction Manager is executing system  *         tasks ({@link #STATE_SYSTEM}), during which time no  *         other transactions are active.  *     3) that the Transaction Manager has (or is)  *         been shutdown ({@link #STATE_SHUTDOWN}).  *  * NOTE: the Transaction Manager may optimistically briefly enter  *     the state {@link #STATE_SYSTEM} to block the initiation of  *     new transactions and then NOT execute system tasks if it  *     detects concurrent active transactions.  *  * System tasks are mutually exclusive with any other operation  * including shutdown. When shutdown is requested, if system tasks  * are executing, then the thread will spin until they are finished.  *   * There's only one TransactionManager per database instance, it can be  * accessed via {@link BrokerPool#getTransactionManager()}.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  * @author wolf  */
 end_comment
 
 begin_class
@@ -1487,7 +1487,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * @deprecated This mixes concerns and should not be here!      */
+comment|/**      * @deprecated This mixes concerns and should not be here!      * @param broker the  eXist-db DBBroker      * @throws IOException in response to an I/O error      */
 annotation|@
 name|Deprecated
 specifier|public

@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements function fn:exactly-one().  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements function fn:exactly-one().  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -322,7 +322,6 @@ literal|"the sole item in $items if it contains exactly one item. Otherwise, an 
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunExactlyOne
 parameter_list|(

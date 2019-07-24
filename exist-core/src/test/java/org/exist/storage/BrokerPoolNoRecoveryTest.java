@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Otmar Humbel<ohumbel@gmail.com>  */
+comment|/**  * @author<a href="mailto:ohumbel@gmail.com">Otmar Humbel</a>  */
 end_comment
 
 begin_class

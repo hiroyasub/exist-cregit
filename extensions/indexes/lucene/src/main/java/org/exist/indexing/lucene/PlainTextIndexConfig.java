@@ -640,7 +640,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**      * Private class representing the<field> element (name, boost, content)      */
+comment|/**      * Private class representing the&lt;field&gt; element (name, boost, content)      */
 specifier|public
 specifier|static
 class|class
@@ -773,7 +773,7 @@ name|store
 return|;
 block|}
 block|}
-comment|/**      * Private class representing the<doc> element (boost).      */
+comment|/**      * Private class representing the&lt;doc&gt; element (boost).      */
 specifier|public
 specifier|static
 class|class

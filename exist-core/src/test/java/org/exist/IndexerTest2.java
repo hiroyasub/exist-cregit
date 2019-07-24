@@ -390,7 +390,7 @@ literal|"<?xml version=\"1.0\"?>\n"
 operator|+
 literal|"<TEI xmlns=\"http://www.tei-c.org/ns/1.0\">\n"
 operator|+
-literal|"<p>Government of new Territory of NevadaâGovernor<name>Nye</name><lb/>and the practical jokersâ<name>Mr. Clemens</name> begins journalistic life<lb/>on<name>Virginia City</name><name>Enterprise</name>.</p>\n"
+literal|"Government of new Territory of NevadaâGovernor<name>Nye</name><lb/>and the practical jokersâ<name>Mr. Clemens</name> begins journalistic life<lb/>on<name>Virginia City</name><name>Enterprise</name>.\n"
 operator|+
 literal|"</TEI>\n"
 decl_stmt|;
@@ -422,7 +422,7 @@ literal|"let $in-memory := "
 operator|+
 literal|"<TEI xmlns=\"http://www.tei-c.org/ns/1.0\">\n"
 operator|+
-literal|"<p>Government of new Territory of NevadaâGovernor<name>Nye</name><lb/>and the practical jokersâ<name>Mr. Clemens</name> begins journalistic life<lb/>on<name>Virginia City</name><name>Enterprise</name>.</p>\n"
+literal|"Government of new Territory of NevadaâGovernor<name>Nye</name><lb/>and the practical jokersâ<name>Mr. Clemens</name> begins journalistic life<lb/>on<name>Virginia City</name><name>Enterprise</name>.\n"
 operator|+
 literal|"</TEI>"
 operator|+

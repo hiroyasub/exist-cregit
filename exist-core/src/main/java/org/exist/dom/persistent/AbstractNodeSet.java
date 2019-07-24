@@ -360,7 +360,7 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy      * @param sizeHint      */
+comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy the proxy object      * @param sizeHint hint about the number of items      */
 annotation|@
 name|Override
 specifier|public
@@ -382,7 +382,7 @@ name|proxy
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other      * @throws XPathException      */
+comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other sequence of items to be added      * @throws XPathException in case of an XPath error      */
 annotation|@
 name|Override
 specifier|public
@@ -613,7 +613,7 @@ name|CollectionIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
 annotation|@
 name|Override
 specifier|public
@@ -642,7 +642,7 @@ name|NO_CONTEXT_ID
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 annotation|@
 name|Override
 specifier|public
@@ -711,7 +711,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the selection.      */
+comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the selection.      */
 annotation|@
 name|Override
 specifier|public
@@ -800,7 +800,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId      */
+comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId the context id      * @return all ancestors having descendants in this node set      */
 annotation|@
 name|Override
 specifier|public
@@ -1216,7 +1216,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
+comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
 annotation|@
 name|Override
 specifier|public
@@ -1698,7 +1698,7 @@ return|return
 name|ancestors
 return|;
 block|}
-comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc      */
+comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc the document to get the hint for      * @return hint about how many nodes in this node set belong to the specified document      */
 annotation|@
 name|Override
 specifier|public
@@ -1716,7 +1716,7 @@ operator|.
 name|NO_SIZE_HINT
 return|;
 block|}
-comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other      */
+comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other to intersect the current node set with      * @return new node set, which represents the intersection of the current node set with the given node set.      */
 annotation|@
 name|Override
 specifier|public
@@ -2188,7 +2188,7 @@ return|return
 name|processInReverseOrder
 return|;
 block|}
-comment|/**      * Return a new node set which represents the union of the      * current node set and the given node set.      *      * @param other      */
+comment|/**      * Return a new node set which represents the union of the      * current node set and the given node set.      *      * @param other NodeSet to unify with current node set      * @return new node set which represents the union of the current node set and the given node set.      */
 specifier|public
 name|NodeSet
 name|union

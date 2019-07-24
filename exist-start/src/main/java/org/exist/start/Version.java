@@ -97,7 +97,7 @@ name|version_string
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * parses version string in the form version[.revision[.subrevision[extension]]]      * into this instance.      */
+comment|/**      * parses version string in the form version[.revision[.subrevision[extension]]]      * into this instance.      *      * @param version_string  Text representation of a version.      */
 specifier|public
 name|void
 name|parse
@@ -356,7 +356,7 @@ name|_suffix
 return|;
 block|}
 comment|// java.lang.Comparable is Java 1.2! Cannot use it
-comment|/**      * Compares with other version. Does not take extension into account,      * as there is no reliable way to order them.      * @return Constants.INFERIOR if this is older version that other,      *         Constants.EQUAL if its same version,      *         Constants.SUPERIOR if it's newer version than other      */
+comment|/**      * Compares with other version. Does not take extension into account,      * as there is no reliable way to order them.      * @param other Version object to be compared.      * @return Constants.INFERIOR if this is older version that other,      *         Constants.EQUAL if its same version,      *         Constants.SUPERIOR if it's newer version than other      */
 specifier|public
 name|int
 name|compare
@@ -474,7 +474,7 @@ return|return
 name|EQUAL
 return|;
 block|}
-comment|/**      * Check whether this verion is in range of versions specified      */
+comment|/**      * Check whether this version is in range of versions specified      *      * @param high Highest version, inclusive.      * @param low Lowest version, inclusive.      * @return TRUE if Version is between high and low (inclusive), otherwise FALSE.      */
 specifier|public
 name|boolean
 name|isInRange

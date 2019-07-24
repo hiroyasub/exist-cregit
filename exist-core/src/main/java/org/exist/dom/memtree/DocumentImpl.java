@@ -532,7 +532,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An in-memory implementation of Document.  *<p/>  *<p>This implementation stores all node data in the document object. Nodes from another document, i.e. a persistent document in the database, can be  * stored as reference nodes, i.e. the nodes are not copied into this document object. Instead a reference is inserted which will only be expanded  * during serialization.</p>  *  * @author wolf  */
+comment|/**  * An in-memory implementation of Document.  *  * This implementation stores all node data in the document object. Nodes from another document, i.e. a persistent document in the database, can be  * stored as reference nodes, i.e. the nodes are not copied into this document object. Instead a reference is inserted which will only be expanded  * during serialization.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -5878,7 +5878,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param node      * @param receiver      * @throws SAXException DOCUMENT ME!      */
+comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param node node to provide document fragment      * @param receiver document builder      * @throws SAXException DOCUMENT ME!      */
 specifier|public
 name|void
 name|copyTo
@@ -6618,7 +6618,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Expand all reference nodes in the current document, i.e. replace them by real nodes. Reference nodes are just pointers to nodes from other      * documents stored in the database. The XQuery engine uses reference nodes to speed up the creation of temporary doc fragments.      *<p/>      *<p>This method creates a new copy of the document contents and expands all reference nodes.</p>      *      * @throws DOMException DOCUMENT ME!      */
+comment|/**      * Expand all reference nodes in the current document, i.e. replace them by real nodes. Reference nodes are just pointers to nodes from other      * documents stored in the database. The XQuery engine uses reference nodes to speed up the creation of temporary doc fragments.      *      * This method creates a new copy of the document contents and expands all reference nodes.      *      * @throws DOMException DOCUMENT ME!      */
 annotation|@
 name|Override
 specifier|public
@@ -7268,7 +7268,7 @@ operator|.
 name|nextReferenceIdx
 expr_stmt|;
 block|}
-comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param serializer      * @param node      * @param receiver      * @throws SAXException      */
+comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param serializer the serializer      * @param node node to be serialized      * @param receiver the receiveer      * @throws SAXException DOCUMENT ME      */
 specifier|public
 name|void
 name|streamTo

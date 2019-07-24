@@ -122,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Command Line Options for the {@link InteractiveClient}  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author wessels  */
+comment|/**  * Command Line Options for the {@link InteractiveClient}  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @author wessels  */
 end_comment
 
 begin_class

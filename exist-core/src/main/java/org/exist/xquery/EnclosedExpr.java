@@ -134,7 +134,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xquery.AttributeConstructor}.  *    * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xquery.AttributeConstructor}.  *    * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -144,7 +144,6 @@ name|EnclosedExpr
 extends|extends
 name|PathExpr
 block|{
-comment|/**      *       */
 specifier|public
 name|EnclosedExpr
 parameter_list|(

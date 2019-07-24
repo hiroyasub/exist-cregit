@@ -237,9 +237,9 @@ argument_list|)
 operator|+
 literal|"'>"
 operator|+
-literal|"<p>Some longer text<b>content</b> in this node. Some longer text<b>content</b> in this node. "
+literal|"Some longer text<b>content</b> in this node. Some longer text<b>content</b> in this node. "
 operator|+
-literal|"Some longer text<b>content</b> in this node. Some longer text<b>content</b> in this node.</p>"
+literal|"Some longer text<b>content</b> in this node. Some longer text<b>content</b> in this node."
 operator|+
 literal|"</node> "
 operator|+

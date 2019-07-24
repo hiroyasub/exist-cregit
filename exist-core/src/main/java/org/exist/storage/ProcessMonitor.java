@@ -1535,7 +1535,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Try to figure out the HTTP request URI by which a query was called.      * Request tracking is not enabled unless {@link #setTrackRequestURI(boolean)}      * is called.      *      * @param watchdog      * @return      */
+comment|/**      * Try to figure out the HTTP request URI by which a query was called.      * Request tracking is not enabled unless {@link #setTrackRequestURI(boolean)}      * is called.      *      * @param watchdog XQuery WatchDog      * @return HTTP request URI by which a query was called      */
 specifier|public
 specifier|static
 name|String

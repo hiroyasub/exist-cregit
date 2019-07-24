@@ -125,7 +125,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-comment|/**      * BlockingOutputStream adapter for this BlockingInputStream.      */
+comment|/**      * @return BlockingOutputStream adapter for this BlockingInputStream.      *      */
 specifier|public
 name|BlockingOutputStream
 name|getOutputStream
@@ -192,7 +192,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**      * Reads up to<code>len</code> bytes of data from the input stream into      * an array of bytes.  An attempt is made to read as many as      *<code>len</code> bytes, but a smaller number may be read.      * The number of bytes actually read is returned as an integer.      *       *<p> This method blocks until input data is available, end of file is      * detected, or an exception is thrown.      *       *       * @param b     the buffer into which the data is read.      * @param off   the start offset in array<code>b</code>      *                   at which the data is written.      * @param len   the maximum number of bytes to read.      * @return the total number of bytes read into the buffer, or      *<code>-1</code> if there is no more data because the end of      *             the stream has been reached.      * @throws IOException  if an I/O error occurs.      * @throws NullPointerException  if<code>b</code> is<code>null</code>.      */
+comment|/**      * Reads up to<code>len</code> bytes of data from the input stream into      * an array of bytes.  An attempt is made to read as many as      *<code>len</code> bytes, but a smaller number may be read.      * The number of bytes actually read is returned as an integer.      *       *  This method blocks until input data is available, end of file is      * detected, or an exception is thrown.      *       *       * @param b     the buffer into which the data is read.      * @param off   the start offset in array<code>b</code>      *                   at which the data is written.      * @param len   the maximum number of bytes to read.      * @return the total number of bytes read into the buffer, or      *<code>-1</code> if there is no more data because the end of      *             the stream has been reached.      * @throws IOException  if an I/O error occurs.      * @throws NullPointerException  if<code>b</code> is<code>null</code>.      */
 annotation|@
 name|Override
 specifier|public
@@ -478,7 +478,7 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Closes this input stream, specifying that an exception has occurred.      * This will cause all producer calls to be unblocked and throw an      * ExistIOException with this exception as its cause.      * Releases the buffer associated with this stream.      *<code>BlockingInputStream</code> specific method.      */
+comment|/**      * Closes this input stream, specifying that an exception has occurred.      * This will cause all producer calls to be unblocked and throw an      * ExistIOException with this exception as its cause.      * Releases the buffer associated with this stream.      *<code>BlockingInputStream</code> specific method.      * @param ex the occurred exception      */
 specifier|public
 specifier|synchronized
 name|void
@@ -496,7 +496,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * The number of bytes that can be read (or skipped over) from      * this input stream without blocking by the next caller of a method for      * this input stream.      *       *       * @return the number of bytes that can be read from this input stream      *             without blocking.      * @throws ExistIOException  if an I/O error occurs.      */
+comment|/**      * The number of bytes that can be read (or skipped over) from      * this input stream without blocking by the next caller of a method for      * this input stream.      *       *       * @return the number of bytes that can be read from this input stream      *             without blocking.      */
 annotation|@
 name|Override
 specifier|public
@@ -851,7 +851,7 @@ name|count
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Equivalent of the<code>close()</code> method of an output stream.      * Renamed to solve the name clash with the<code>close()</code> method      * of the input stream also implemented by this class.      * Closes this output stream.      * A closed stream cannot perform output operations and cannot be reopened.      *<p>      * This method blocks its caller until the corresponding input stream is      * closed or an exception occurs.      *       * @throws IOException  if an I/O error occurs.      */
+comment|/**      * Equivalent of the<code>close()</code> method of an output stream.      * Renamed to solve the name clash with the<code>close()</code> method      * of the input stream also implemented by this class.      * Closes this output stream.      * A closed stream cannot perform output operations and cannot be reopened.      *      * This method blocks its caller until the corresponding input stream is      * closed or an exception occurs.      *       * @throws IOException  if an I/O error occurs.      */
 specifier|synchronized
 name|void
 name|closeOutputStream
@@ -959,7 +959,7 @@ name|closeOutputStream
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Flushes this output stream and forces any buffered output bytes       * to be written out.      *<p>      * This methods blocks its caller until all buffered bytes are actually      * read by the consuming threads.      *       *       * @throws IOException  if an I/O error occurs.      */
+comment|/**      * Flushes this output stream and forces any buffered output bytes       * to be written out.      *      * This methods blocks its caller until all buffered bytes are actually      * read by the consuming threads.      *       *       * @throws IOException  if an I/O error occurs.      */
 specifier|synchronized
 name|void
 name|flushOutputStream

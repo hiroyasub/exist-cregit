@@ -123,7 +123,7 @@ specifier|final
 name|XmlRpcClient
 name|client
 decl_stmt|;
-comment|/**      * Constructor for DatabaseInstanceManagerImpl.      */
+comment|/**      * Constructor for DatabaseInstanceManagerImpl.      *      * @param client the XML-RPC client.      */
 specifier|public
 name|RemoteDatabaseInstanceManager
 parameter_list|(

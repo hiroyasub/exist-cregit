@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to change permissions on a resource.  *  * @author  peter.klotz@blue-elephant-systems.com  * @author  andrzej@chaeron.com  */
+comment|/**  * an ant task to change permissions on a resource.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  * @author  andrzej@chaeron.com  */
 end_comment
 
 begin_class

@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines an internal module implemented in Java. The class maintains a collection of   * Java classes each being a subclass of {@link org.exist.xquery.Function}. For internal  * modules, a new function object is created from its class for each function reference in the  * XQuery script.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines an internal module implemented in Java. The class maintains a collection of   * Java classes each being a subclass of {@link org.exist.xquery.Function}. For internal  * modules, a new function object is created from its class for each function reference in the  * XQuery script.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface
@@ -46,7 +46,7 @@ name|InternalModule
 extends|extends
 name|Module
 block|{
-comment|/** 	 * Prepare the module for use. 	 * 	 * @param context The XQuery Context. 	 */
+comment|/** 	 * Prepare the module for use. 	 * 	 * @param context The XQuery Context. 	 * 	 * @throws XPathException if an XPath error occurs 	 */
 specifier|default
 name|void
 name|prepare
@@ -60,7 +60,7 @@ name|XPathException
 block|{
 comment|// no-op
 block|}
-comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return implementing class for the function 	 */
+comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname function QName to get definition for 	 * @param argCount arity of the function 	 * @return implementing class for the function 	 */
 name|FunctionDef
 name|getFunctionDef
 parameter_list|(
@@ -71,7 +71,7 @@ name|int
 name|argCount
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return all functions defined in this module 	 */
+comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname function QName to match 	 * @return all functions defined in this module 	 */
 name|List
 argument_list|<
 name|FunctionSignature

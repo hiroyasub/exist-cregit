@@ -232,7 +232,6 @@ operator|.
 name|lastModified
 expr_stmt|;
 block|}
-comment|/**      * Copy all relevant fields from other      */
 specifier|public
 name|void
 name|copyOf
@@ -366,7 +365,7 @@ operator|=
 name|mimeType
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of pages currently occupied by this document.      */
+comment|/**      * @return the number of pages currently occupied by this document.      *      */
 specifier|public
 name|int
 name|getPageCount
@@ -376,7 +375,7 @@ return|return
 name|pageCount
 return|;
 block|}
-comment|/**      * Set the number of pages currently occupied by this document.      *      * @param pageCount      */
+comment|/**      * Set the number of pages currently occupied by this document.      *      * @param pageCount number of pages currently occupied by this document      *      */
 specifier|public
 name|void
 name|setPageCount

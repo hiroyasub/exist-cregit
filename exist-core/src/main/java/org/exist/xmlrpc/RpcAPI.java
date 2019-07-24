@@ -160,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines the methods callable through the XMLRPC interface.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  * Defines the methods callable through the XMLRPC interface.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_interface
@@ -223,14 +223,14 @@ name|String
 name|getVersion
 parameter_list|()
 function_decl|;
-comment|/**      * Shut down the database immediately.      *      * @return true if the shutdown succeeded, false otherwise      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Shut down the database immediately.      *      * @return true if the shutdown succeeded, false otherwise      * @throws PermissionDeniedException If the current user does not have the permission to shut down the database      */
 name|boolean
 name|shutdown
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown was scheduled, false otherwise      * @throws PermissionDeniedException      * @deprecated {@see org.exist.xmlrpc.RpcAPI#shutdown(long)      */
+comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown was scheduled, false otherwise      * @throws PermissionDeniedException If the current user does not have the permission to shut down the database      * @deprecated Use {@link org.exist.xmlrpc.RpcAPI#shutdown(long)}      */
 annotation|@
 name|Deprecated
 name|boolean
@@ -242,7 +242,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown succeeded, false otherwise      * @throws PermissionDeniedException      */
+comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown succeeded, false otherwise      * @throws PermissionDeniedException If the current user does not have the permission to shut down the database      */
 name|boolean
 name|shutdown
 parameter_list|(
@@ -268,7 +268,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get the content digest of a resource.      *      * @param path the path to the resource.      * @param digestAlgorithm the digest algorithm      *      * @return the message digest of the content      */
+comment|/**      * Get the content digest of a resource.      *      * @param path the path to the resource.      * @param digestAlgorithm the digest algorithm      *      * @return the message digest of the content      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to access the path      */
 name|Map
 argument_list|<
 name|String
@@ -290,7 +290,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to&gt;=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if&gt;0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|getDocument
@@ -309,7 +309,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output and apply the specified      * stylesheet.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @param stylesheet      * @return The document value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to&gt;=0. Use supplied encoding for output and apply the specified      * stylesheet.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if&gt;0.      * @param encoding character encoding to use.      * @param stylesheet the stylesheet to apply      * @return The document value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|getDocument
@@ -331,7 +331,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve document by name. All optional output parameters are passed as      * key/value pairs int the<code>parameters</code>.      *      * Valid keys may either be taken from      * {@link javax.xml.transform.OutputKeys} or      * {@link org.exist.storage.serializers.EXistOutputKeys}. For example, the      * encoding is identified by the value of key      * {@link javax.xml.transform.OutputKeys#ENCODING}.      *      * @param name the document's name.      * @param parameters Map of parameters.      * @return The document value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Retrieve document by name. All optional output parameters are passed as      * key/value pairs int the<code>parameters</code>.      *      * Valid keys may either be taken from      * {@link javax.xml.transform.OutputKeys} or      * {@link org.exist.storage.serializers.EXistOutputKeys}. For example, the      * encoding is identified by the value of key      * {@link javax.xml.transform.OutputKeys#ENCODING}.      *      * @param name the document's name.      * @param parameters Map of parameters.      * @return The document value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|getDocument
@@ -402,7 +402,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve the specified document, but limit the number of bytes      * transmitted to avoid memory shortage on the server.      *      * @param name      * @param parameters      * @return       * @throws EXistException      * @throws PermissionDeniedException      */
+comment|/**      * Retrieve the specified document, but limit the number of bytes      * transmitted to avoid memory shortage on the server.      *      * @param name the name of the document      * @param parameters the parameters      * @return document data      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|Map
 argument_list|<
 name|String
@@ -479,7 +479,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Does the document identified by<code>name</code> exist in the      * repository?      *      * @param name Description of the Parameter      * @return Description of the Return Value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Does the document identified by<code>name</code> exist in the      * repository?      *      * @param name Description of the Parameter      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|hasDocument
 parameter_list|(
@@ -493,7 +493,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Does the Collection identified by<code>name</code> exist in the      * repository?      *      * @param name Description of the Parameter      * @return Description of the Return Value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Does the Collection identified by<code>name</code> exist in the      * repository?      *      * @param name Description of the Parameter      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|hasCollection
 parameter_list|(
@@ -524,7 +524,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Get a list of all documents contained in the database.      *      * @return list of document paths      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Get a list of all documents contained in the database.      *      * @return list of document paths      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|List
 argument_list|<
 name|String
@@ -536,7 +536,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a list of all documents contained in the collection.      *      * @param collection the collection to use.      * @return list of document paths      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Get a list of all documents contained in the collection.      *      * @param collection the collection to use.      * @return list of document paths      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|List
 argument_list|<
 name|String
@@ -589,7 +589,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Determines whether a Collection exists in the database and whether the      * user may open the collection      *      * @param collectionUri The URI of the collection of interest      *      * @return true if the collection exists and the user can open it, false if      * the collection does not exist      * @throws org.exist.EXistException      * @throws PermissionDeniedException If the user does not have permission to      * open the collection      */
+comment|/**      * Determines whether a Collection exists in the database and whether the      * user may open the collection      *      * @param collectionUri The URI of the collection of interest      *      * @return  true, if the collection exists and the user can open it, and      *          false, if the collection does not exist      *      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|boolean
 name|existsAndCanOpenCollection
 parameter_list|(
@@ -602,7 +602,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Describe a collection: returns a struct with the following fields:      *      *<pre>      *	name				The name of the collection      *      *	owner				The name of the user owning the collection.      *      *	group				The group owning the collection.      *      *	permissions	The permissions that apply to this collection (int value)      *      *	created			The creation date of this collection (long value)      *      *	collections		An array containing the names of all subcollections.      *      *	documents		An array containing a struct for each document in the collection.      *</pre>      *      * Each of the elements in the "documents" array is another struct      * containing the properties of the document:      *      *<pre>      *	name				The full path of the document.      *      *	owner				The name of the user owning the document.      *      *	group				The group owning the document.      *      *	permissions	The permissions that apply to this document (int)      *      *	type					Type of the resource: either "XMLResource" or "BinaryResource"      *</pre>      *      * @param rootCollection Description of the Parameter      * @return The collectionDesc value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Describe a collection: returns a struct with the following fields:      *      *<pre>      *	name				The name of the collection      *      *	owner				The name of the user owning the collection.      *      *	group				The group owning the collection.      *      *	permissions	The permissions that apply to this collection (int value)      *      *	created			The creation date of this collection (long value)      *      *	collections		An array containing the names of all subcollections.      *      *	documents		An array containing a struct for each document in the collection.      *</pre>      *      * Each of the elements in the "documents" array is another struct      * containing the properties of the document:      *      *<pre>      *	name				The full path of the document.      *      *	owner				The name of the user owning the document.      *      *	group				The group owning the document.      *      *	permissions	The permissions that apply to this document (int)      *      *	type					Type of the resource: either "XMLResource" or "BinaryResource"      *</pre>      *      * @param rootCollection the path to the root collection      * @return The collectionDesc value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|Map
 argument_list|<
 name|String
@@ -651,7 +651,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns the number of resources in the collection identified by      * collectionName.      *      * @param collectionName      * @return Number of resources      * @throws EXistException      * @throws PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Returns the number of resources in the collection identified by      * collectionName.      *      * @param collectionName the name fo the collection      * @return Number of resources      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|int
 name|getResourceCount
 parameter_list|(
@@ -665,7 +665,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Retrieve a single node from a document. The node is identified by it's      * internal id.      *      * @param doc the document containing the node      * @param id the node's internal id      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Retrieve a single node from a document. The node is identified by it's      * internal id.      *      * @param doc the document containing the node      * @param id the node's internal id      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|retrieve
@@ -681,7 +681,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a single node from a document. The node is identified by it's      * internal id.      *      * @param doc the document containing the node      * @param id the node's internal id      * @param parameters      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Retrieve a single node from a document. The node is identified by it's      * internal id.      *      * @param doc the document containing the node      * @param id the node's internal id      * @param parameters A map of parameters, controlling the query execution.      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|retrieve
@@ -705,7 +705,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a single node from a document. The node is identified by its      * internal id. It is fetched the first chunk, and the next ones should be      * fetched using getNextChunk or getNextExtendedChunk      *      * @param doc the document containing the node      * @param id the node's internal id      * @param parameters a<code>Map</code> value      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Retrieve a single node from a document. The node is identified by its      * internal id. It is fetched the first chunk, and the next ones should be      * fetched using getNextChunk or getNextExtendedChunk      *      * @param doc the document containing the node      * @param id the node's internal id      * @param parameters A map of parameters, controlling the query execution.      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|Map
 argument_list|<
 name|String
@@ -826,7 +826,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * @deprecated Use {@link #queryPT(byte[], Map)} instead.      */
+comment|/**      * @deprecated Use {@link #queryPT(byte[], Map)} instead.      * @param xpath The XPath to execute      * @param parameters A map of parameters, controlling the query execution.      * @return the result of the query      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 annotation|@
 name|Deprecated
 name|Map
@@ -854,7 +854,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * @deprecated Use {@link #queryPT(byte[], String, String, Map)} instead.      */
+comment|/**      * @deprecated Use {@link #queryPT(byte[], String, String, Map)} instead.       * @param xpath The XPath to execute      * @param docName name of the context document      * @param s_id an id      * @param parameters A map of parameters, controlling the query execution.      * @return the result of the query      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 annotation|@
 name|Deprecated
 name|Map
@@ -890,7 +890,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param parameters Any parameters for controlling the query execution.      */
+comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param parameters A map of parameters, controlling the query execution.      * @return the result of the query      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|Map
 argument_list|<
 name|String
@@ -916,7 +916,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param docName The name of the document to set as the static context.      * @param s_id The node if to set as the static context.      * @param parameters Any parameters for controlling the query execution.      */
+comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param docName The name of the document to set as the static context.      * @param s_id The node if to set as the static context.      * @param parameters A map of parameters, controlling the query execution.      * @return the result of the query      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|Map
 argument_list|<
 name|String
@@ -954,7 +954,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to>0 (true), results are pretty printed.      *      * @param xquery      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters      *      * @return Description of the Return Value      *      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      *      * @deprecated use {@link #queryPT(byte[], Map)} or int {@link #executeQuery(byte[], Map)} instead.      */
+comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to&gt;0 (true), results are pretty printed.      *      * @param xquery The XQuery (or XPath) to execute      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters A map of parameters, controlling the query execution.      *      * @return the result of the query      *      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      *      * @deprecated use {@link #queryPT(byte[], Map)} or int {@link #executeQuery(byte[], Map)} instead.      */
 annotation|@
 name|Deprecated
 name|byte
@@ -984,7 +984,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *      *<table border="1">      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param xquery Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @deprecated use List query() or int executeQuery() instead      */
+comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *      *<table border="1">      *<caption>Fields</caption>      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param xquery The XQuery (or XPath) to execute      * @return result summary fragment      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @deprecated use List query() or int executeQuery() instead      */
 name|Map
 argument_list|<
 name|String
@@ -1001,7 +1001,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns a diagnostic dump of the expression structure after compiling the      * query. The query is read from the query cache if it has already been run      * before.      *      * @param query      * @param parameters      * @return       * @throws EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Returns a diagnostic dump of the expression structure after compiling the      * query. The query is read from the query cache if it has already been run      * before.      *      * @param query The XQuery (or XPath) to execute      * @param parameters A map of parameters, controlling the query execution.      * @return a diagnostic of the compiled query      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|String
 name|printDiagnostics
 parameter_list|(
@@ -1034,7 +1034,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is&gt;0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @return true, if the document is valid XML      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|parse
 parameter_list|(
@@ -1052,7 +1052,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @param overwrite Overwrite an existing document with the same path?      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is&gt;0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @param overwrite Overwrite an existing document with the same path?      * @return true, if the document is valid XML      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|parse
 parameter_list|(
@@ -1134,7 +1134,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * An alternative to parse() for larger XML documents. The document is first      * uploaded chunk by chunk using upload(), then parseLocal() is called to      * actually store the uploaded file.      *      * @param chunk the current chunk      * @param length total length of the file      * @return the name of the file to which the chunk has been appended.      * @throws EXistException      * @throws PermissionDeniedException      * @throws java.io.IOException      */
+comment|/**      * An alternative to parse() for larger XML documents. The document is first      * uploaded chunk by chunk using upload(), then parseLocal() is called to      * actually store the uploaded file.      *      * @param chunk the current chunk      * @param length total length of the file      * @return the name of the file to which the chunk has been appended.      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws IOException If an error occurs writing the file to the disk      */
 name|String
 name|upload
 parameter_list|(
@@ -1152,7 +1152,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * An alternative to parse() for larger XML documents. The document is first      * uploaded chunk by chunk using upload(), then parseLocal() is called to      * actually store the uploaded file.      *      * @param chunk the current chunk      * @param file the name of the file to which the chunk will be appended.      * This should be the file name returned by the first call to upload.      * @param length total length of the file      * @return the name of the file to which the chunk has been appended.      * @throws EXistException      * @throws PermissionDeniedException      * @throws java.io.IOException      */
+comment|/**      * An alternative to parse() for larger XML documents. The document is first      * uploaded chunk by chunk using upload(), then parseLocal() is called to      * actually store the uploaded file.      *      * @param chunk the current chunk      * @param file the name of the file to which the chunk will be appended.      * This should be the file name returned by the first call to upload.      * @param length total length of the file      * @return the name of the file to which the chunk has been appended.      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws IOException If an error occurs writing the file to the disk      */
 name|String
 name|upload
 parameter_list|(
@@ -1210,7 +1210,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Parse a file previously uploaded with upload.      *      * The temporary file will be removed.      *      * @param localFile      * @param docName      * @param replace      * @param mimeType      * @return       * @throws EXistException      * @throws org.exist.security.PermissionDeniedException      * @throws org.xml.sax.SAXException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse a file previously uploaded with upload.      *      * The temporary file will be removed.      *      * @param localFile temporary file name      * @param docName target file name      * @param replace true, will replace an existing file      * @param mimeType the mimeType to check for      * @return true, if the file could be parsed into as being of the type specified      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws SAXException If the file is not valid XML      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|parseLocal
 parameter_list|(
@@ -1325,7 +1325,7 @@ name|SAXException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Store data as a binary resource.      *      * @param data the data to be stored      * @param docName the path to the new document      * @param mimeType      * @param replace if true, an old document with the same path will be      * overwritten      * @return       * @throws EXistException      * @throws PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Store data as a binary resource.      *      * @param data the data to be stored      * @param docName the path to the new document      * @param mimeType the mimeType to check for      * @param replace if true, an old document with the same path will be      * overwritten      * @return true if the file could be stored      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|storeBinary
 parameter_list|(
@@ -1378,7 +1378,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Remove a document from the database.      *      * @param docName path to the document to be removed      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Remove a document from the database.      *      * @param docName path to the document to be removed      * @return true, if the document could be removed      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|remove
 parameter_list|(
@@ -1392,7 +1392,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Remove an entire collection from the database.      *      * @param name path to the collection to be removed.      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Remove an entire collection from the database.      *      * @param name path to the collection to be removed.      * @return true, if the collection could be removed      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException If the URI contains syntax errors      */
 name|boolean
 name|removeCollection
 parameter_list|(
@@ -1406,7 +1406,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Create a new collection on the database.      *      * @param name the path to the new collection.      * @return       * @throws EXistException      * @throws PermissionDeniedException      */
+comment|/**      * Create a new collection on the database.      *      * @param name the path to the new collection.      * @return true, if the collection could be created      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|boolean
 name|createCollection
 parameter_list|(
@@ -1446,7 +1446,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Execute XPath query and return a reference to the result set. The      * returned reference may be used later to get a summary of results or      * retrieve the actual hits.      *      * @param xpath Description of the Parameter      * @param encoding Description of the Parameter      * @param parameters a<code>Map</code> value      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Execute XPath query and return a reference to the result set. The      * returned reference may be used later to get a summary of results or      * retrieve the actual hits.      *      * @param xpath Description of the Parameter      * @param encoding Description of the Parameter      * @param parameters a<code>Map</code> value      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|int
 name|executeQuery
 parameter_list|(
@@ -1509,7 +1509,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Either a reference to a node or the value if a non-node      *      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
+comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Either a reference to a node or the value if a non-node      *      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
 annotation|@
 name|Deprecated
 name|Map
@@ -1536,7 +1536,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      *      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Details of items from the result, including type information.      *      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
+comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      *      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Details of items from the result, including type information.      *      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
 name|Map
 argument_list|<
 name|String
@@ -1561,7 +1561,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a summary of the result set identified by it's result-set-id.      * This method returns a struct with the following fields:      *      *<table border="1">      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param resultId Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @throws org.exist.xquery.XPathException      */
+comment|/**      * Retrieve a summary of the result set identified by it's result-set-id.      * This method returns a struct with the following fields:      *      *<table border="1">      *<caption>Fields</caption>      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param resultId the ID of the resultset      * @return the summary document fragment      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws XPathException If an error occurs while running the query      */
 name|Map
 argument_list|<
 name|String
@@ -1598,7 +1598,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Get the number of hits in the result set identified by it's      * result-set-id.      *      * @param resultId Description of the Parameter      * @return The hits value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Get the number of hits in the result set identified by it's      * result-set-id.      *      * @param resultId Description of the Parameter      * @return The hits value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|int
 name|getHits
 parameter_list|(
@@ -1610,7 +1610,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a single result from the result-set identified by resultId. The      * XML fragment at position num in the result set is returned.      *      * @param resultId Description of the Parameter      * @param num Description of the Parameter      * @param parameters      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Retrieve a single result from the result-set identified by resultId. The      * XML fragment at position num in the result set is returned.      *      * @param resultId Description of the Parameter      * @param num Description of the Parameter      * @param parameters controlling the execution and return of the query      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|byte
 index|[]
 name|retrieve
@@ -1634,7 +1634,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a single result from the result-set identified by resultId. The      * XML fragment at position num in the result set is returned. It is fetched      * the first chunk, and the next ones should be fetched using getNextChunk      * or getNextExtendedChunk      *      * @param resultId Description of the Parameter      * @param num Description of the Parameter      * @param parameters a<code>Map</code> value      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      */
+comment|/**      * Retrieve a single result from the result-set identified by resultId. The      * XML fragment at position num in the result set is returned. It is fetched      * the first chunk, and the next ones should be fetched using getNextChunk      * or getNextExtendedChunk      *      * @param resultId Description of the Parameter      * @param num Description of the Parameter      * @param parameters controlling the execution and return of the query      * @return Description of the Return Value      * @throws EXistException If an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 name|Map
 argument_list|<
 name|String

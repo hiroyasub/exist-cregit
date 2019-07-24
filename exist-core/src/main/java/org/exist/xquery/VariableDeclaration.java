@@ -138,7 +138,6 @@ name|analyzeDone
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|VariableDeclaration
 parameter_list|(
@@ -184,7 +183,7 @@ return|return
 name|qname
 return|;
 block|}
-comment|/** 	 * Set the sequence type of the variable. 	 *  	 * @param type 	 */
+comment|/** 	 * Set the sequence type of the variable. 	 *  	 * @param type the sequence type 	 */
 specifier|public
 name|void
 name|setSequenceType
@@ -316,7 +315,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Analyze just the expression. For dynamically imported modules this needs to be done one time      * after import.      *      * @param contextInfo      * @throws XPathException      */
+comment|/**      * Analyze just the expression. For dynamically imported modules this needs to be done one time      * after import.      *      * @param contextInfo context information      * @throws XPathException in case of static error      */
 specifier|public
 name|void
 name|analyzeExpression

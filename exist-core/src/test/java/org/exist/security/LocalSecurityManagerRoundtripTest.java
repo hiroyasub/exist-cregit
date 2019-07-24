@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Security Manager round trip tests against the XML:DB Local API  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Security Manager round trip tests against the XML:DB Local API  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

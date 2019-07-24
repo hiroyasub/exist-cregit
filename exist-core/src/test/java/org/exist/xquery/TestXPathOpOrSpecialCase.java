@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the simplest test that demonstrates the<tt>Predicate</tt>/<tt>OpOr</tt>  * bug. Right now, there is only one test - at the very bottom of the   * source code.   * @author Jason Smith  */
+comment|/**  * This is the simplest test that demonstrates the<code>Predicate</code>/<code>OpOr</code>  * bug. Right now, there is only one test - at the very bottom of the   * source code.   * @author Jason Smith  */
 end_comment
 
 begin_class
@@ -159,7 +159,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|/** Database test collection (<tt>/db/blah</tt>). */
+comment|/** Database test collection (<code>/db/blah</code>). */
 specifier|private
 name|Collection
 name|testCollection
@@ -247,7 +247,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Given an essentially empty XML document at path<tt>/db/blah/blah.xml</tt>, 	 * query the document with a bogus predicate containing an<tt>or<tt> operation; 	 * expect<tt>org.exist.xquery.XPathException: exerr:ERROR cannot convert xs:boolean('false') to a node set</tt>. 	 */
+comment|/** 	 * Given an essentially empty XML document at path<code>/db/blah/blah.xml</code>, 	 * query the document with a bogus predicate containing an<code>or<code> operation; 	 * expect<code>org.exist.xquery.XPathException: exerr:ERROR cannot convert xs:boolean('false') to a node set</code>. 	 */
 annotation|@
 name|Test
 specifier|public

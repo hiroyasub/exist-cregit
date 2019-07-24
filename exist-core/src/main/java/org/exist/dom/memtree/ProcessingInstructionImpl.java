@@ -152,7 +152,6 @@ name|NodeImpl
 implements|implements
 name|ProcessingInstruction
 block|{
-comment|/**      * Creates a new ProcessingInstructionImpl object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|(

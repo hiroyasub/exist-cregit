@@ -176,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Node serializer.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class

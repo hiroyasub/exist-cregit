@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a traceable history of state changes  *  * @param<S> Information about the state which was modified  * @param<C> the change which was applied to the state  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Represents a traceable history of state changes  *  * @param<S> Information about the state which was modified  * @param<C> the change which was applied to the state  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -78,7 +78,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Add a state change to the tail      */
+comment|/**      * Add a state change to the tail.      *      * @param stateChange the state change      */
 specifier|public
 name|void
 name|add

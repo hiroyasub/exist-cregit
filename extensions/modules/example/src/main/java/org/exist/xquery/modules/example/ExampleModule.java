@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author ljo  */
 end_comment
 
 begin_class

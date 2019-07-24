@@ -70,7 +70,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Execute this task. 	 *  	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException 	 */
+comment|/** 	 * Execute this task. 	 *  	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException if a database error occurs 	 */
 name|void
 name|execute
 parameter_list|(

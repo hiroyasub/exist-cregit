@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -216,7 +216,7 @@ name|ValueComparison
 extends|extends
 name|GeneralComparison
 block|{
-comment|/** 	 * @param context 	 * @param relation 	 */
+comment|/** 	 * Construct a ValueComparison using the given relation. 	 * 	 * @param context current context 	 * @param relation the relation to compare by 	 */
 specifier|public
 name|ValueComparison
 parameter_list|(
@@ -235,7 +235,7 @@ name|relation
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param context 	 * @param left 	 * @param right 	 * @param relation 	 */
+comment|/** 	 * Construct a ValueComparison comparing the given expressions using the given relation 	 * 	 * @param context current context 	 * @param left left hand operand 	 * @param right right hand operand 	 * @param relation the relation to compare by 	 */
 specifier|public
 name|ValueComparison
 parameter_list|(
@@ -783,7 +783,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
+comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 * 	 * @param collator the collator to use 	 * @param lv left hand operand value 	 * @param rv right hand operand value 	 * @param truncation should strings be truncated before comparison 	 *                   ({@link StringTruncationOperator#NONE} by default) 	 * @param relation the relation to compare by 	 * @return the result of the comparison 	 * @throws XPathException in case of dynamic error 	 */
 specifier|public
 specifier|static
 name|boolean

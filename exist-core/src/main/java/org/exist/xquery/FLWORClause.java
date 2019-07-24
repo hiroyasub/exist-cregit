@@ -64,12 +64,12 @@ name|Expression
 name|expr
 parameter_list|)
 function_decl|;
-comment|/**      * Get the return expression of the clause.      *      * @return      */
+comment|/**      * Get the return expression of the clause.      *      * @return the return expression      */
 name|Expression
 name|getReturnExpression
 parameter_list|()
 function_decl|;
-comment|/**      * Set the previous FLWOR clause if this is not the      * top clause.      *      * @param clause      */
+comment|/**      * Set the previous FLWOR clause if this is not the      * top clause.      *      * @param clause the previous clause      */
 name|void
 name|setPreviousClause
 parameter_list|(
@@ -82,7 +82,7 @@ name|FLWORClause
 name|getPreviousClause
 parameter_list|()
 function_decl|;
-comment|/**      * Called by a for clause before it starts iteration, passing in      * the sequence of items to be iterated. Used by {@link WhereClause}      * to filter the input sequence in advance if possible.      *      * @param seq the sequence of items to be iterated by the current for      * @return post-processed result sequence      * @throws XPathException      */
+comment|/**      * Called by a for clause before it starts iteration, passing in      * the sequence of items to be iterated. Used by {@link WhereClause}      * to filter the input sequence in advance if possible.      *      * @param seq the sequence of items to be iterated by the current for      * @return post-processed result sequence      * @throws XPathException if an error occurs during pre-evaluation      */
 name|Sequence
 name|preEval
 parameter_list|(
@@ -92,7 +92,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Called by the top FLWOR expression when it finished iteration.      * Implemented by {@link GroupByClause}, which first collects      * tuples into groups, then processes them in this method.      *      * @param seq the return sequence of the top FLWOR expression      * @return post-processed result sequence      * @throws XPathException      */
+comment|/**      * Called by the top FLWOR expression when it finished iteration.      * Implemented by {@link GroupByClause}, which first collects      * tuples into groups, then processes them in this method.      *      * @param seq the return sequence of the top FLWOR expression      * @return post-processed result sequence      * @throws XPathException if an error occurs during post-evaluation      */
 name|Sequence
 name|postEval
 parameter_list|(
@@ -102,7 +102,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Create a new local variable for the FLWOR clause.      * Tracks the variables for this expression.      *      * @param name the name of the variable      * @return a new local variable, registered in the context      * @throws XPathException      */
+comment|/**      * Create a new local variable for the FLWOR clause.      * Tracks the variables for this expression.      *      * @param name the name of the variable      * @return a new local variable, registered in the context      * @throws XPathException if an error occurs whilst creating the variable      */
 name|LocalVariable
 name|createVariable
 parameter_list|(

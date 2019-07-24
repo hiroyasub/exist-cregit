@@ -619,7 +619,7 @@ name|Modification
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Constructor for Modification. 	 */
+comment|/** 	 * Constructor for Modification. 	 * 	 * @param broker the database broker 	 * @param docs the document set 	 * @param selectStmt the select statement 	 * @param namespaces the namespace bindings 	 * @param variables the variable bindings 	 */
 specifier|public
 name|Modification
 parameter_list|(
@@ -704,13 +704,11 @@ operator|=
 operator|new
 name|Int2ObjectOpenHashMap
 argument_list|<>
-argument_list|(
-literal|97
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// DESIGN_QUESTION : wouldn't that be nice to apply selectStmt right here ?
 block|}
-comment|/**      * Process the modification. This is the main method that has to be implemented       * by all subclasses.      *       * @param transaction       * @throws PermissionDeniedException       * @throws LockException       * @throws EXistException       * @throws XPathException       */
+comment|/**      * Process the modification. This is the main method that has to be implemented       * by all subclasses.      *       * @param transaction the database transaction 	 * @return long the number of updates processed 	 *      * @throws PermissionDeniedException if the caller has insufficient priviledges      * @throws LockException if a lock error occurs      * @throws EXistException if the database raises an error      * @throws XPathException if the XPath raises an error 	 * @throws TriggerException if a trigger raises an error 	 */
 specifier|public
 specifier|abstract
 name|long
@@ -749,7 +747,7 @@ operator|=
 name|nodes
 expr_stmt|;
 block|}
-comment|/** 	 * Evaluate the select expression. 	 *  	 * @param docs 	 * @return The selected nodes. 	 * @throws PermissionDeniedException 	 * @throws EXistException 	 * @throws XPathException 	 */
+comment|/** 	 * Evaluate the select expression. 	 *  	 * @param docs the documents to evaludate the expression over 	 * 	 * @return The selected nodes. 	 * 	 * @throws PermissionDeniedException if the caller has insufficient priviledges 	 * @throws EXistException if the database raises an error 	 * @throws XPathException if the XPath raises an error 	 */
 specifier|protected
 name|NodeList
 name|select
@@ -1022,7 +1020,7 @@ name|toNodeSet
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param context 	 * @throws XPathException 	 */
+comment|/** 	 * @param context the xquery context 	 * @throws XPathException if an error occurs whilst declaring the variables 	 */
 specifier|protected
 name|void
 name|declareVariables
@@ -1107,7 +1105,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param context 	 */
+comment|/** 	 * @param context the xquery context 	 * @throws XPathException if an error occurs whilst declaring the namespaces 	 */
 specifier|protected
 name|void
 name|declareNamespaces
@@ -1193,7 +1191,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Acquire a lock on all documents processed by this modification. We have 	 * to avoid that node positions change during the operation. 	 * feature trigger_update : 	 * At the same time we leverage on the fact that it's called before  	 * database modification to call the eventual triggers. 	 *  	 * @return The selected document nodes. 	 *  	 * @throws LockException 	 * @throws PermissionDeniedException 	 * @throws EXistException 	 * @throws XPathException  	 * @throws TriggerException  	 */
+comment|/** 	 * Acquire a lock on all documents processed by this modification. We have 	 * to avoid that node positions change during the operation. 	 * feature trigger_update : 	 * At the same time we leverage on the fact that it's called before  	 * database modification to call the eventual triggers. 	 * 	 * @param transaction the database transaction. 	 *  	 * @return The selected document nodes. 	 * 	 * @throws LockException if a lock error occurs 	 * @throws PermissionDeniedException if the caller has insufficient priviledges 	 * @throws EXistException if the database raises an error 	 * @throws XPathException if the XPath raises an error 	 * @throws TriggerException if a trigger raises an error 	 */
 specifier|protected
 specifier|final
 name|StoredNode
@@ -1360,7 +1358,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Release all acquired document locks; 	 * feature trigger_update : 	 * at the same time we leverage on the fact that it's called after  	 * database modification to call the eventual triggers 	 * @throws TriggerException  	 */
+comment|/** 	 * Release all acquired document locks; 	 * feature trigger_update : 	 * at the same time we leverage on the fact that it's called after  	 * database modification to call the eventual triggers 	 * 	 * @param transaction the database transaction. 	 * 	 * @throws TriggerException if a trigger raises an error 	 */
 specifier|protected
 specifier|final
 name|void
@@ -1441,7 +1439,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 *   	 * @param docs 	 */
+comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 * 	 * @param transaction the database transaction. 	 * @param docs the documents 	 * 	 * @throws EXistException if an error occurs 	 */
 specifier|protected
 name|void
 name|checkFragmentation
@@ -1562,7 +1560,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction The database transaction 	 * @param doc The document to trigger for 	 * 	 * @throws TriggerException if a trigger raises an error 	 */
 specifier|private
 name|void
 name|prepareTrigger
@@ -1623,7 +1621,7 @@ name|trigger
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  	 * Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/**  	 * Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction The transaction 	 * @param doc The document to trigger for 	 * 	 * @throws TriggerException if a trigger raises an error 	 */
 specifier|private
 name|void
 name|finishTrigger

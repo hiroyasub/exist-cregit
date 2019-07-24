@@ -164,7 +164,7 @@ specifier|final
 name|Mode
 name|mode
 decl_stmt|;
-comment|/**      * Creates a new instance of Handler      */
+comment|/**      * Creates a new instance of Handler      *      * @param mode Data buffer mode.      */
 specifier|public
 name|Handler
 parameter_list|(

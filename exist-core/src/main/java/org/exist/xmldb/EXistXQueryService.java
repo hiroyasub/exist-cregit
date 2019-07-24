@@ -118,7 +118,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Execute XQuery expressions on the database.  *  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Execute XQuery expressions on the database.  *  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface
@@ -163,7 +163,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Tries to compile the specified XQuery and returns a handle to the compiled      * code, which can then be passed to {@link #execute(CompiledExpression)}.      * If a static error is detected, an {@link XPathException} will be thrown.      *      * @param query The XQuery to compile      *      * @return a compiled representation of the query      *      * @throws XMLDBException if an error occurs whilst compiling the query,      *     or a static error is detected      */
+comment|/**      * Tries to compile the specified XQuery and returns a handle to the compiled      * code, which can then be passed to {@link #execute(CompiledExpression)}.      * If a static error is detected, an {@link XPathException} will be thrown.      *      * @param query The XQuery to compile      *      * @return a compiled representation of the query      *      * @throws XMLDBException if an error occurs whilst compiling the query,      *     or a static error is detected.      * @throws XPathException if an error occurs whilst executing the query.      */
 name|CompiledExpression
 name|compileAndCheck
 parameter_list|(
@@ -264,7 +264,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Clears any previously declared variables      */
+comment|/**      * Clears any previously declared variables      *      * @throws XMLDBException if an error occurs whilst clearning the variables.      */
 name|void
 name|clearVariables
 parameter_list|()

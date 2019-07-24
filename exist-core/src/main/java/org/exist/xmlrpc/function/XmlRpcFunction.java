@@ -112,7 +112,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialisation of BiFunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Specialisation of BiFunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -188,7 +188,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XML-RPC function      * @param transaction The transaction for the XML-RPC function      */
+comment|/**      * Signature for lambda function which takes a broker and transaction      *      * @param broker The database broker for the XML-RPC function      * @param transaction The transaction for the XML-RPC function      *      * @return the result of the function      *      * @throws EXistException if an error occurs with the database      * @throws PermissionDeniedException if the caller has insufficient priviledges      * @throws IOException if an I/O error occurs      * @throws SAXException if a SAX error occurs      * @throws LockException if a lock error occurs      */
 name|R
 name|applyXmlRpc
 parameter_list|(

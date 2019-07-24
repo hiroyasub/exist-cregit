@@ -260,7 +260,7 @@ name|Replace
 extends|extends
 name|Modification
 block|{
-comment|/** 	 * @param broker 	 * @param docs 	 * @param selectStmt 	 * @param namespaces 	 * @param variables 	 */
+comment|/**      * @param broker the database broker.      * @param docs the document working set.      * @param selectStmt the select statement.      * @param namespaces the namespaces.      * @param variables the variables. 	 */
 specifier|public
 name|Replace
 parameter_list|(
@@ -304,7 +304,8 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xupdate.Modification#process() 	 */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|process
@@ -770,7 +771,8 @@ return|return
 name|modifications
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xupdate.Modification#getName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName

@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for handling Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<D> The type of the persistent  * or in-memory document  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Interface for handling Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<D> The type of the persistent  * or in-memory document  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -51,7 +51,7 @@ name|NodeId
 name|getNodeId
 parameter_list|()
 function_decl|;
-comment|/**      * Get the type of the node      */
+comment|/**      * Get the type of the node      * @return the type of the node as short value      */
 specifier|public
 name|short
 name|getNodeType

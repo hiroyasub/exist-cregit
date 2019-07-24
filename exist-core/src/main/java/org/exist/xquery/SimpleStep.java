@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a primary expression in a simple path step like  * foo//$x. The class is mainly used to wrap variable references inside  * a path expression.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Represents a primary expression in a simple path step like  * foo//$x. The class is mainly used to wrap variable references inside  * a path expression.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -99,7 +99,6 @@ specifier|final
 name|Expression
 name|expression
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param axis 	 */
 specifier|public
 name|SimpleStep
 parameter_list|(

@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface defined requirements for a Scheduleable job.  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Interface defined requirements for a Scheduleable job.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

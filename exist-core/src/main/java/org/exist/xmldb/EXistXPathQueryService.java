@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extends {@link org.xmldb.api.modules.XPathQueryService} by additional  * methods specific to eXist.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Extends {@link org.xmldb.api.modules.XPathQueryService} by additional  * methods specific to eXist.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_interface
@@ -153,14 +153,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Clears any previously declared variables      */
+comment|/**      * Clears any previously declared variables      *      * @throws XMLDBException if an error occurs whilst clearning the variables.      */
 name|void
 name|clearVariables
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Execute all following queries in a protected environment. Acquire a write lock      * on all resources in the current collection (i.e. the one from which this service      * was obtained) before executing the query. If a query spans multiple collections,      * call beginProtected on the outer collection which contains all the other      * collections.      *      * It is thus guaranteed that documents referenced by the      * query or the result set are not modified by other threads      * until {@link #endProtected} is called.      */
+comment|/**      * Execute all following queries in a protected environment. Acquire a write lock      * on all resources in the current collection (i.e. the one from which this service      * was obtained) before executing the query. If a query spans multiple collections,      * call beginProtected on the outer collection which contains all the other      * collections.      *      * It is thus guaranteed that documents referenced by the      * query or the result set are not modified by other threads      * until {@link #endProtected} is called.      *      * @throws XMLDBException if an error occurs whilst begining protected mode.      */
 name|void
 name|beginProtected
 parameter_list|()

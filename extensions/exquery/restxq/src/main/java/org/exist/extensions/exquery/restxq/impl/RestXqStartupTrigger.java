@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Loads the RESTXQ Registry from disk during database startup  * where the user account will be SYSTEM and has read access to  * all queries  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Loads the RESTXQ Registry from disk during database startup  * where the user account will be SYSTEM and has read access to  * all queries  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

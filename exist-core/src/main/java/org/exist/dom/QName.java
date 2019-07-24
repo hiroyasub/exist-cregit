@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class
@@ -1085,7 +1085,7 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract the local name from a QName string.      *      * @param qname The QName from which to extract the local name.      *      * @throws IllegalQNameException if the qname starts with a leading : or ends with a :      */
+comment|/**      * Extract the local name from a QName string.      *      * @param qname The QName from which to extract the local name.      * @return the local name of the given QName string      * @throws IllegalQNameException if the qname starts with a leading : or ends with a :      */
 specifier|public
 specifier|static
 name|String
@@ -1320,7 +1320,7 @@ argument_list|(
 literal|"\\{([^&{}]*)\\}([^&{}:]+)"
 argument_list|)
 decl_stmt|;
-comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form e.g. `prefix:local-part`.      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName      *      * @throws IllegalQNameException if the qname is invalid      */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *      * @param context the xquery context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form e.g. `prefix:local-part`.      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return parsed QName      *      * @throws IllegalQNameException if the qname is invalid      */
 specifier|public
 specifier|static
 name|QName
@@ -1501,7 +1501,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an optional existing prefix.      *      * This method uses the default element namespace for qnames without prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form      *              e.g. `prefix:local-part` or `local-part`.      * @throws IllegalQNameException if no namespace URI is mapped to the prefix      */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an optional existing prefix.      *      * This method uses the default element namespace for qnames without prefix.      *      * @param context the xquery context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form      *              e.g. `prefix:local-part` or `local-part`.      * @throws IllegalQNameException if no namespace URI is mapped to the prefix      * @return the parse QName      */
 specifier|public
 specifier|static
 name|QName
@@ -1953,7 +1953,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @throws IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName
@@ -2046,7 +2046,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context the xquery context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @throws IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName

@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A lock event listener which sends events to Log4j  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A lock event listener which sends events to Log4j  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

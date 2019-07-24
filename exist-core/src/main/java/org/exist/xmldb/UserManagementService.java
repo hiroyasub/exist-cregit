@@ -154,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An eXist-specific service which provides methods to manage users and  * permissions.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * @author Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * An eXist-specific service which provides methods to manage users and  * permissions.  *  * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  * @author Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -178,7 +178,7 @@ name|String
 name|getVersion
 parameter_list|()
 function_decl|;
-comment|/**      * Set permissions for the specified collection.      *      * @param child      * @param perm      * @throws XMLDBException      */
+comment|/**      * Set permissions for the specified collection.      *      * @param child the child collection      * @param perm the new permissions      *      * @throws XMLDBException if an error occurs whilst setting the permissions      */
 name|void
 name|setPermissions
 parameter_list|(
@@ -215,7 +215,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Set permissions for the specified resource.      *      * @param resource      * @param perm      * @throws XMLDBException      */
+comment|/**      * Set permissions for the specified resource.      *      * @param resource the child resource.      * @param perm the new permissions      *      * @throws XMLDBException if an error occurs whilst setting the permissions      */
 name|void
 name|setPermissions
 parameter_list|(
@@ -252,7 +252,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner gid of the current collection.      *      * @param group The group      * @throws XMLDBException      */
+comment|/**      * Change owner gid of the current collection.      *      * @param group The group      *      * @throws XMLDBException if an error occurs whilst changing the group.      */
 name|void
 name|chgrp
 parameter_list|(
@@ -262,7 +262,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner uid of the current collection.      *      * @param u The user      * @throws XMLDBException      */
+comment|/**      * Change owner uid of the current collection.      *      * @param u The user      *      * @throws XMLDBException if an error occurs whilst changing the owner.      */
 name|void
 name|chown
 parameter_list|(
@@ -272,7 +272,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner uid and gid of the current collection.      *      * @param u     The user      * @param group The group      * @throws XMLDBException      */
+comment|/**      * Change owner uid and gid of the current collection.      *      * @param u The user      * @param group The group      *      * @throws XMLDBException if an error occurs whilst changing the owner.      */
 name|void
 name|chown
 parameter_list|(
@@ -285,7 +285,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner gid of the specified resource.      *      * @param res   The resource      * @param group The group      * @throws XMLDBException      */
+comment|/**      * Change owner gid of the specified resource.      *      * @param res The resource      * @param group The group      *      * @throws XMLDBException if an error occurs whilst changing the group.      */
 name|void
 name|chgrp
 parameter_list|(
@@ -298,7 +298,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner uid of the specified resource.      *      * @param res The resource      * @param u   The user      * @throws XMLDBException      */
+comment|/**      * Change owner uid of the specified resource.      *      * @param res The resource      * @param u The user      *      * @throws XMLDBException if an error occurs whilst changing the owner.      */
 name|void
 name|chown
 parameter_list|(
@@ -311,7 +311,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change owner uid and gid of the specified resource.      *      * @param res   The resource      * @param u     The user      * @param group The group      * @throws XMLDBException      */
+comment|/**      * Change owner uid and gid of the specified resource.      *      * @param res The resource      * @param u The user      * @param group The group      *      * @throws XMLDBException if an error occurs whilst changing the owner.      */
 name|void
 name|chown
 parameter_list|(
@@ -327,7 +327,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change permissions for the specified resource.      *<p>      * Permissions are specified in a string according to the      * following format:      *<p>      *<pre>[user|group|other]=[+|-][read|write|update]</pre>      *      * For example, to grant all permissions to the group and      * deny everything to others:      *      * group=+write,+read,+update,other=-read      *      * The changes are applied to the permissions currently      * active for this resource.      *      * @param resource Description of the Parameter      * @param modeStr  Description of the Parameter      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Change permissions for the specified resource.      *      * Permissions are specified in a string according to the      * following format:      *      *<pre>[user|group|other]=[+|-][read|write|update]</pre>      *      * For example, to grant all permissions to the group and      * deny everything to others:      *      * group=+write,+read,+update,other=-read      *      * The changes are applied to the permissions currently      * active for this resource.      *      * @param resource Description of the Parameter      * @param modeStr  Description of the Parameter      *      * @throws XMLDBException if an error occurs whilst changing the mode.      */
 name|void
 name|chmod
 parameter_list|(
@@ -340,7 +340,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change permissions for the current collection      *      * @param modeStr String describing the permissions to      *                grant or deny.      * @throws XMLDBException      */
+comment|/**      * Change permissions for the current collection      *      * @param modeStr String describing the permissions to      *                grant or deny.      *      * @throws XMLDBException if an error occurs whilst changing the mode.      */
 name|void
 name|chmod
 parameter_list|(
@@ -359,7 +359,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Change permissions for the specified resource.      */
+comment|/**      * Change permissions for the specified resource.      *      * @param resource the resource      * @param mode the mode      *      * @throws XMLDBException if an error occurs whilst changing the mode.      */
 name|void
 name|chmod
 parameter_list|(
@@ -372,7 +372,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Lock the specified resource for the specified user.      *<p>      * A locked resource cannot be changed by other users (except      * users in group DBA) until the lock is released. Users with admin      * privileges can always change a resource.      *      * @param res      * @param u      * @throws XMLDBException      */
+comment|/**      * Lock the specified resource for the specified user.      *      * A locked resource cannot be changed by other users (except      * users in group DBA) until the lock is released. Users with admin      * privileges can always change a resource.      *      * @param res the resource      * @param u the user      *      * @throws XMLDBException if an error occurs whilst locking the resource.      */
 name|void
 name|lockResource
 parameter_list|(
@@ -385,7 +385,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Check if the resource has a user lock.      *<p>      * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *      * @param res      * @return Name of the owner of the lock      * @throws XMLDBException      */
+comment|/**      * Check if the resource has a user lock.      *      * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *      * @param res the resource      *      * @return Name of the owner of the lock      *      * @throws XMLDBException if an error occurs whilst detemining if the resource has a user lock.      */
 name|String
 name|hasUserLock
 parameter_list|(
@@ -395,7 +395,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Unlock the specified resource.      *<p>      * The current user has to be same who locked the resource.      * Exception: admin users can always unlock a resource.      *      * @param res      * @throws XMLDBException      */
+comment|/**      * Unlock the specified resource.      *      * The current user has to be same who locked the resource.      * Exception: admin users can always unlock a resource.      *      * @param res the resource      *      * @throws XMLDBException if an error occurs whilst unlocking the resource.      */
 name|void
 name|unlockResource
 parameter_list|(
@@ -405,7 +405,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Add a new account to the database      *      * @param account The feature to be added to the Account      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Add a new account to the database      *      * @param account The feature to be added to the Account      *      * @throws XMLDBException if an error occurs whilst adding an account.      */
 name|void
 name|addAccount
 parameter_list|(
@@ -415,7 +415,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Update existing account information      *      * @param account Description of the Parameter      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Update existing account information      *      * @param account Description of the Parameter      *      * @throws XMLDBException if an error occurs whilst updating an account.      */
 name|void
 name|updateAccount
 parameter_list|(
@@ -425,7 +425,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Update existing group information      *      * @param group The group to update      * @throws XMLDBException if the group could not be updated      */
+comment|/**      * Update existing group information      *      * @param group The group to update      *      * @throws XMLDBException if the group could not be updated      */
 name|void
 name|updateGroup
 parameter_list|(
@@ -435,7 +435,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get a account record from the database      *      * @param name Description of the Parameter      * @return The user value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Get a account record from the database      *      * @param name Description of the Parameter      *      * @return The user value      *      * @throws XMLDBException if an error occurs whilst getting an account.      */
 name|Account
 name|getAccount
 parameter_list|(
@@ -481,7 +481,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Retrieve a list of all existing accounts.      *      * @return The accounts value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Retrieve a list of all existing accounts.      *      * @return The accounts.      *      * @throws XMLDBException if an error occurs whilst getting the accounts.      */
 name|Account
 index|[]
 name|getAccounts
@@ -498,7 +498,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Retrieve a list of all existing groups.      *<p>      * Please note: new groups are created automatically if a new group      * is assigned to a user. You can't add or remove them.      *      * @return List of all existing groups.      * @throws XMLDBException      */
+comment|/**      * Retrieve a list of all existing groups.      *      * Please note: new groups are created automatically if a new group      * is assigned to a user. You can't add or remove them.      *      * @return List of all existing groups.      *      * @throws XMLDBException if an error occurs whilst getting the groups.      */
 name|String
 index|[]
 name|getGroups
@@ -506,7 +506,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get a property defined by this service.      *      * @param property Description of the Parameter      * @return The property value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Get a property defined by this service.      *      * @param property the name of the property.      *      * @return The property value      *      * @throws XMLDBException if an error occurs whilst getting the property.      */
 annotation|@
 name|Override
 name|String
@@ -518,7 +518,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Set a property for this service.      *      * @param property The new property value      * @param value    The new property value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Set a property for this service.      *      * @param property The new property value      * @param value    The new property value      *      * @throws XMLDBException if an error occurs whilst setting the property.      */
 annotation|@
 name|Override
 name|void
@@ -533,7 +533,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Set the current collection for this service      *      * @param collection The new collection value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Set the current collection for this service      *      * @param collection The new collection value      *      * @throws XMLDBException if an error occurs whilst setting the collection.      */
 annotation|@
 name|Override
 name|void
@@ -545,7 +545,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get permissions for the specified collections      *      * @param coll Description of the Parameter      * @return The permissions value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Get permissions for the specified collections      *      * @param coll Description of the Parameter      *      * @return The permissions value      *      * @throws XMLDBException if an error occurs whilst getting the permissions.      */
 name|Permission
 name|getPermissions
 parameter_list|(
@@ -555,7 +555,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get the permissions of the sub-collection      */
+comment|/**      * Get the permissions of the sub-collection.      *      * @param parent the parent collection      * @param name the name of the sub-collection      *      * @return the permissions of the sub-collection.      *      * @throws XMLDBException if an error occurs whilst getting the permissions.      */
 name|Permission
 name|getSubCollectionPermissions
 parameter_list|(
@@ -568,7 +568,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get the permissions of the sub-resource      */
+comment|/**      * Get the permissions of the sub-resource.      *      * @param parent the parent collection      * @param name the name of the sub-resource      *      * @return the permissions of the sub-resource.      *      * @throws XMLDBException if an error occurs whilst getting the permissions.      */
 name|Permission
 name|getSubResourcePermissions
 parameter_list|(
@@ -593,7 +593,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get permissions for the specified resource      *      * @param res Description of the Parameter      * @return The permissions value      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Get permissions for the specified resource      *      * @param res Description of the Parameter      *      * @return The permissions value      *      * @throws XMLDBException if an error occurs whilst getting the permissions.      */
 name|Permission
 name|getPermissions
 parameter_list|(
@@ -603,7 +603,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get permissions for all resources contained in the current      * collection. Returns a list of permissions in the same order      * as Collection.listResources().      *      * @return Permission[]      * @throws XMLDBException      */
+comment|/**      * Get permissions for all resources contained in the current      * collection. Returns a list of permissions in the same order      * as Collection.listResources().      *      * @return Permission[]      *      * @throws XMLDBException if an error occurs whilst listing the permissions.      */
 name|Permission
 index|[]
 name|listResourcePermissions
@@ -611,7 +611,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get permissions for all child collections contained in the current      * collection. Returns a list of permissions in the same order      * as Collection.listChildCollections().      *      * @return Permission[]      * @throws XMLDBException      */
+comment|/**      * Get permissions for all child collections contained in the current      * collection. Returns a list of permissions in the same order      * as Collection.listChildCollections().      *      * @return Permission[]      *      * @throws XMLDBException if an error occurs whilst listing the permissions.      */
 name|Permission
 index|[]
 name|listCollectionPermissions
@@ -619,7 +619,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Delete a user from the database      *      * @param account User      * @throws XMLDBException      */
+comment|/**      * Delete a user from the database.      *      * @param account the user account.      *      * @throws XMLDBException if an error occurs whilst removing the account.      */
 name|void
 name|removeAccount
 parameter_list|(
@@ -638,7 +638,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Update the specified user without update user's password      * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *      * @param user Description of the Parameter      * @throws XMLDBException Description of the Exception      */
+comment|/**      * Update the specified user without update user's password      * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *      * @param user the user      *      * @throws XMLDBException if an error occurs whilst adding the group.      */
 name|void
 name|addUserGroup
 parameter_list|(

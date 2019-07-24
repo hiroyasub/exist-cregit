@@ -1638,7 +1638,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Check every collection in the context sequence for an existing range index by QName.      *      * @param contextSequence      * @return the type of a usable index or {@link org.exist.xquery.value.Type#ITEM} if there is no common      *  index.      */
+comment|/**      * Check every collection in the context sequence for an existing range index by QName.      *      * @param context current context      * @param contextSequence context sequence      * @param qname QName indicating the index to check      * @return the type of a usable index or {@link org.exist.xquery.value.Type#ITEM} if there is no common      *  index.      */
 specifier|public
 specifier|static
 name|int

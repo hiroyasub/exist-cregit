@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Exception caused by a BrokerPoolService  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Exception caused by a BrokerPoolService  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

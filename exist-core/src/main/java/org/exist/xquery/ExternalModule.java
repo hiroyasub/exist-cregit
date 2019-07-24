@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_interface
@@ -120,7 +120,7 @@ argument_list|>
 name|getMetadata
 parameter_list|()
 function_decl|;
-comment|/**      * Declare a new function. Called by the XQuery compiler      * when parsing a library module for every function declaration.      *       * @param func      */
+comment|/**      * Declare a new function. Called by the XQuery compiler      * when parsing a library module for every function declaration.      *       * @param func the function to add      */
 specifier|public
 name|void
 name|declareFunction
@@ -129,7 +129,7 @@ name|UserDefinedFunction
 name|func
 parameter_list|)
 function_decl|;
-comment|/**      * Try to find the function identified by qname. Returns null      * if the function is undefined.      *       * @param qname      */
+comment|/**      * Try to find the function identified by qname. Returns null      * if the function is undefined.      *       * @param qname the name of the function to look for      * @param arity arity of the function to look for      * @param callerContext context of the caller - needed to check if      *                      found function should be visible      * @throws XPathException in case of a dynamic error      * @return the function found      */
 specifier|public
 name|UserDefinedFunction
 name|getFunction
@@ -159,7 +159,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Analyze declared variables. Needs to be called when the module was imported dynamically.      *      * @throws XPathException      */
+comment|/**      * Analyze declared variables. Needs to be called when the module was imported dynamically.      *      * @throws XPathException in case of static errors      */
 specifier|public
 name|void
 name|analyzeGlobalVars
@@ -181,7 +181,7 @@ name|Source
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/**      * Set the source object this module has been read from.      *       * This is required to check the validity of a compiled expression.      * @param source      */
+comment|/**      * Set the source object this module has been read from.      *       * This is required to check the validity of a compiled expression.      * @param source the source instance      */
 specifier|public
 name|void
 name|setSource
@@ -195,7 +195,7 @@ name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
-comment|/**      * Set the XQueryContext of this module. This will be a sub-context      * of the main context as parts of the static context are shared.       *       * @param context      */
+comment|/**      * Set the XQueryContext of this module. This will be a sub-context      * of the main context as parts of the static context are shared.       *       * @param context the context to set      */
 specifier|public
 name|void
 name|setContext
@@ -204,7 +204,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/**      * Is this module still valid or should it be reloaded from its source?      */
+comment|/**      * Is this module still valid or should it be reloaded from its source?      *      * @param broker the broker to use for checking      * @return true if module should be reloaded      */
 specifier|public
 name|boolean
 name|moduleIsValid

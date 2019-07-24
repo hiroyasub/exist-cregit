@@ -134,7 +134,7 @@ return|return
 name|term
 return|;
 block|}
-comment|/**      * Returns the overall frequency of this term      * in the document set.      */
+comment|/**      * Returns the overall frequency of this term      * in the document set. 	 * 	 * @return the occurrences      */
 specifier|public
 name|int
 name|getOccurrences
@@ -213,7 +213,7 @@ name|docs
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of documents from the set in      * which the term has been found.      */
+comment|/**      * Returns the number of documents from the set in      * which the term has been found. 	 * 	 * @return the number of documents      */
 specifier|public
 name|int
 name|getDocuments

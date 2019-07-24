@@ -141,7 +141,7 @@ argument_list|(
 literal|"exist.start.debug"
 argument_list|)
 decl_stmt|;
-comment|/**      * If the passed file name contains a %latest% token,      * find the latest version of that file. Otherwise, return      * the passed file name unmodified.      *       * @param filename Path relative to exist home dir of      * a jar file that should be added to the classpath.      */
+comment|/**      * If the passed file name contains a %latest% token,      * find the latest version of that file. Otherwise, return      * the passed file name unmodified.      *       * @param filename Path relative to exist home dir of      * a jar file that should be added to the classpath.      * @return Resolved filename.      */
 specifier|public
 name|String
 name|getResolvedFileName

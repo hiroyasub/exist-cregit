@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generic unicode textreader, which will use BOM mark  * to identify the encoding to be used. If BOM is not found  * then use a given default or system encoding.  This is a bug fix   * workaround for a known issue with InputStreamReader not detecting and  * ignoring the UTF-* BOM (EF BB BF).  *  * http://www.unicode.org/unicode/faq/utf_bom.html  * BOMs:  *   00 00 FE FF    = UTF-32, big-endian  *   FF FE 00 00    = UTF-32, little-endian  *   EF BB BF       = UTF-8,  *   FE FF          = UTF-16, big-endian  *   FF FE          = UTF-16, little-endian  *   * Win2k Notepad:  *   Unicode format = UTF-16LE  *  * Based on code by Thomas Weidenfeller and  Aki Nieminen  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2008-03-06  * @version 1.1  */
+comment|/**  * Generic unicode textreader, which will use BOM mark  * to identify the encoding to be used. If BOM is not found  * then use a given default or system encoding.  This is a bug fix   * workaround for a known issue with InputStreamReader not detecting and  * ignoring the UTF-* BOM (EF BB BF).  *  * http://www.unicode.org/unicode/faq/utf_bom.html  * BOMs:  *   00 00 FE FF    = UTF-32, big-endian  *   FF FE 00 00    = UTF-32, little-endian  *   EF BB BF       = UTF-8,  *   FE FF          = UTF-16, big-endian  *   FF FE          = UTF-16, little-endian  *   * Win2k Notepad:  *   Unicode format = UTF-16LE  *  * Based on code by Thomas Weidenfeller and  Aki Nieminen  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @serial 2008-03-06  * @version 1.1  */
 end_comment
 
 begin_class
@@ -161,7 +161,7 @@ name|defaultEnc
 operator|)
 return|;
 block|}
-comment|/**     * Get stream encoding or NULL if stream is uninitialized.     * Call init() or read() method to initialize it.     */
+comment|/**      * Get stream encoding or NULL if stream is uninitialized.      * Call init() or read() method to initialize it. 	 * 	 * @return the encoding      */
 specifier|public
 name|String
 name|getEncoding
@@ -193,7 +193,7 @@ name|ret
 operator|)
 return|;
 block|}
-comment|/**     * Read-ahead four bytes and check for BOM marks. Extra bytes are     * unread back to the stream, only BOM bytes are skipped.     */
+comment|/**      * Read-ahead four bytes and check for BOM marks. Extra bytes are      * unread back to the stream, only BOM bytes are skipped. 	 * 	 * @throws IOException if an I/O error occurs      */
 specifier|protected
 name|void
 name|init

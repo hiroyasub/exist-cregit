@@ -114,7 +114,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/**      * Create a new object as a clone of other.      *       * @param other      */
+comment|/**      * Create a new object as a clone of other.      *       * @param other object to clone      */
 specifier|public
 name|AnalyzeContextInfo
 parameter_list|(
@@ -229,7 +229,7 @@ return|return
 name|flags
 return|;
 block|}
-comment|/**      * Sets the processing flags to be passed to a child expression.      *       * @param flags      */
+comment|/**      * Sets the processing flags to be passed to a child expression.      *       * @param flags processing flags to be passed to child expression      */
 specifier|public
 name|void
 name|setFlags
@@ -272,7 +272,7 @@ operator|~
 name|flag
 expr_stmt|;
 block|}
-comment|/**      * Returns the parent of the current expression.      */
+comment|/**      * Returns the parent of the current expression.      *      * @return the parent expression      */
 specifier|public
 name|Expression
 name|getParent

@@ -2492,7 +2492,7 @@ literal|16
 argument_list|)
 return|;
 block|}
-comment|/**      * Find the journal file with the highest file number.      *      * @param files the journal files to consider.      */
+comment|/**      * Find the journal file with the highest file number.      *      * @param files the journal files to consider.      *      * @return the number of the last journal file      */
 specifier|public
 specifier|static
 name|int
@@ -2604,7 +2604,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the file corresponding to the specified      * file number.      *      * @param fileNum the journal file number.      */
+comment|/**      * Returns the file corresponding to the specified      * file number.      *      * @param fileNum the journal file number.      *      * @return the journal file      */
 specifier|public
 name|Path
 name|getFile

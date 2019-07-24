@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The base class for all persistent DOM nodes in the database.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * The base class for all persistent DOM nodes in the database.  *  * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -301,7 +301,7 @@ specifier|final
 name|short
 name|nodeType
 decl_stmt|;
-comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      */
+comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      * return new StoredNode      */
 specifier|protected
 name|StoredNode
 parameter_list|(
@@ -423,7 +423,7 @@ operator|.
 name|ownerDocument
 expr_stmt|;
 block|}
-comment|/**      * Extracts just the details of the StoredNode      */
+comment|/**      * Extracts just the details of the StoredNode      * @return details of the stored node      *      */
 specifier|public
 name|StoredNode
 name|extract
@@ -483,7 +483,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class.      *      * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class.      *      * @param data the byte array to read a node from      * @param start where to start      * @param len how much to read      * @param doc the doc to store the result in      * @return StoredNode of given byte array      */
 specifier|public
 specifier|static
 name|StoredNode
@@ -522,7 +522,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *      * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *      * @param data the byte array to read a node from       * @param start where to start      * @param len how much to read      * @param doc the doc to store the result in      * @param pooled if true the node will be allocated in the pool      * @return StoredNode of given byte array      */
 specifier|public
 specifier|static
 name|StoredNode

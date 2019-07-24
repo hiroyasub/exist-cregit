@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to check for the existence of a collection or resource to be used as a ant condition.  *  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * An ant task to check for the existence of a collection or resource to be used as a ant condition.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  */
 end_comment
 
 begin_class
@@ -132,7 +132,8 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * DOCUMENT ME!      *      * @return  returns true if the eval is successful.      *      * @throws  BuildException      *      * @see     org.apache.tools.ant.taskdefs.condition.Condition#eval()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|eval
@@ -302,7 +303,7 @@ name|exist
 operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  resource      */
+comment|/**      * Set the resource.      *      * @param resource the resource.      */
 specifier|public
 name|void
 name|setResource

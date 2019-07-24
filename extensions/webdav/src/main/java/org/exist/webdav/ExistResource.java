@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generic class representing an eXist Resource.  *  * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * Generic class representing an eXist Resource.  *  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class
@@ -335,7 +335,7 @@ operator|=
 name|config
 expr_stmt|;
 block|}
-comment|/**      * Authenticate subject with password. NULL is returned when      * the subject could not be authenticated.      */
+comment|/**      * Authenticate subject with password. NULL is returned when      * the subject could not be authenticated.      *      * @param username Username      * @param password Password      * @return Authenticated subject, or NULL when authentication failed.      */
 specifier|protected
 name|Subject
 name|authenticate

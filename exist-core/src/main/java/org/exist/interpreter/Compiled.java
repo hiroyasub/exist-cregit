@@ -89,7 +89,7 @@ name|Context
 name|context
 parameter_list|)
 function_decl|;
-comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *       * @param contextSequence      * @throws XPathException      */
+comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *      * @param contextSequence the context sequence.      *      * @throws XPathException if an error occurs during evaluation.      */
 specifier|public
 name|Sequence
 name|eval

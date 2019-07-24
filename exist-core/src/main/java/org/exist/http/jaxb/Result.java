@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Java class for anonymous complex type.  *   *<p>The following schema fragment specifies the expected content contained within this class.  *   *<pre>  *&lt;complexType>  *&lt;complexContent>  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">  *&lt;choice>  *&lt;element ref="{http://exist.sourceforge.net/NS/exist}collection"/>  *&lt;element name="value" maxOccurs="unbounded" minOccurs="0">  *&lt;complexType>  *&lt;complexContent>  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">  *&lt;sequence>  *&lt;any processContents='skip'/>  *&lt;/sequence>  *&lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />  *&lt;/restriction>  *&lt;/complexContent>  *&lt;/complexType>  *&lt;/element>  *&lt;/choice>  *&lt;attGroup ref="{http://exist.sourceforge.net/NS/exist}queryAttrs"/>  *&lt;/restriction>  *&lt;/complexContent>  *&lt;/complexType>  *</pre>  *   *   */
+comment|/**  * Java class for anonymous complex type.  *   * The following schema fragment specifies the expected content contained within this class.  *   *<pre>  *&lt;complexType&gt;  *&lt;complexContent&gt;  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;  *&lt;choice&gt;  *&lt;element ref="{http://exist.sourceforge.net/NS/exist}collection"/&gt;  *&lt;element name="value" maxOccurs="unbounded" minOccurs="0"&gt;  *&lt;complexType&gt;  *&lt;complexContent&gt;  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;  *&lt;sequence&gt;  *&lt;any processContents='skip'/&gt;  *&lt;/sequence&gt;  *&lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;  *&lt;/restriction&gt;  *&lt;/complexContent&gt;  *&lt;/complexType&gt;  *&lt;/element&gt;  *&lt;/choice&gt;  *&lt;attGroup ref="{http://exist.sourceforge.net/NS/exist}queryAttrs"/&gt;  *&lt;/restriction&gt;  *&lt;/complexContent&gt;  *&lt;/complexType&gt;  *</pre>  *   *   */
 end_comment
 
 begin_class
@@ -317,7 +317,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      * Gets the value of the value property.      *       *<p>      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *       *<p>      * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *       *<p>      * Objects of the following type(s) are allowed in the list      * {@link Result.Value }      *       *       */
+comment|/**      * Gets the value of the value property.      *       *       * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the value property.      *       *       * For example, to add a new item, do as follows:      *<pre>      *    getValue().add(newItem);      *</pre>      *       *       *       * Objects of the following type(s) are allowed in the list      * {@link Result.Value }      *       * @return the result values      */
 specifier|public
 name|List
 argument_list|<
@@ -483,7 +483,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      *<p>Java class for anonymous complex type.      *       *<p>The following schema fragment specifies the expected content contained within this class.      *       *<pre>      *&lt;complexType>      *&lt;complexContent>      *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">      *&lt;sequence>      *&lt;any processContents='skip'/>      *&lt;/sequence>      *&lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />      *&lt;/restriction>      *&lt;/complexContent>      *&lt;/complexType>      *</pre>      *       *       */
+comment|/**      * Java class for anonymous complex type.      *       * The following schema fragment specifies the expected content contained within this class.      *       *<pre>      *&lt;complexType&gt;      *&lt;complexContent&gt;      *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;      *&lt;sequence&gt;      *&lt;any processContents='skip'/&gt;      *&lt;/sequence&gt;      *&lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;      *&lt;/restriction&gt;      *&lt;/complexContent&gt;      *&lt;/complexType&gt;      *</pre>      *       *       */
 annotation|@
 name|XmlAccessorType
 argument_list|(
@@ -535,7 +535,7 @@ specifier|protected
 name|String
 name|type
 decl_stmt|;
-comment|/**          * Gets the value of the content property.          *           *<p>          * This accessor method returns a reference to the live list,          * not a snapshot. Therefore any modification you make to the          * returned list will be present inside the JAXB object.          * This is why there is not a<CODE>set</CODE> method for the content property.          *           *<p>          * For example, to add a new item, do as follows:          *<pre>          *    getContent().add(newItem);          *</pre>          *           *           *<p>          * Objects of the following type(s) are allowed in the list          * {@link Element }          * {@link String }          *           *           */
+comment|/**          * Gets the value of the content property.          *           *           * This accessor method returns a reference to the live list,          * not a snapshot. Therefore any modification you make to the          * returned list will be present inside the JAXB object.          * This is why there is not a<CODE>set</CODE> method for the content property.          *           *           * For example, to add a new item, do as follows:          *<pre>          *    getContent().add(newItem);          *</pre>          *           *           *           * Objects of the following type(s) are allowed in the list          * {@link Element }          * {@link String }          *          * @return the content list          */
 specifier|public
 name|List
 argument_list|<

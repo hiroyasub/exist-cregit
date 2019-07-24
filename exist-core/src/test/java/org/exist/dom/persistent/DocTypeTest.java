@@ -518,7 +518,7 @@ literal|"<title>abc</title>"
 operator|+
 literal|"<shortdesc>def</shortdesc>"
 operator|+
-literal|"<body><p>ghi</p></body>"
+literal|"<body>ghi</body>"
 operator|+
 literal|"</topic>"
 decl_stmt|;

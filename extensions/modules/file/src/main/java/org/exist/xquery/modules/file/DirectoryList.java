@@ -322,7 +322,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryList  *  * Enumerate a list of files, including their size and modification time, found  * in a specified directory, using a pattern  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see  * org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  * org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryList  *  * Enumerate a list of files, including their size and modification time, found  * in a specified directory, using a pattern  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see  * org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  * org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

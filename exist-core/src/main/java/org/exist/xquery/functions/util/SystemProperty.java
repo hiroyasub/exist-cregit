@@ -259,7 +259,6 @@ literal|"the value of the named system property"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
 specifier|public
 name|SystemProperty
 parameter_list|(

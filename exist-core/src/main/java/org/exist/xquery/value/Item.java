@@ -134,24 +134,24 @@ specifier|public
 interface|interface
 name|Item
 block|{
-comment|/**      * Return the type of this item according to the type constants defined in class      * {@link Type}.      */
+comment|/**      * Return the type of this item according to the type constants defined in class      * {@link Type}.      *      * @return constant indicating the type: {@link Type}      */
 name|int
 name|getType
 parameter_list|()
 function_decl|;
-comment|/**      * Return the string value of this item (see the definition of string value in XPath).      */
+comment|/**      * Return the string value of this item (see the definition of string value in XPath).      *      * @return string value      * @throws XPathException on dynamic errors      */
 name|String
 name|getStringValue
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Convert this item into a sequence, containing only the item.      */
+comment|/**      * Convert this item into a sequence, containing only the item.      *      * @return item converted to sequence      */
 name|Sequence
 name|toSequence
 parameter_list|()
 function_decl|;
-comment|/**      * Clean up any resources used by the items in this sequence.      */
+comment|/**      * Clean up any resources used by the items in this sequence.      *      * @param context current context      * @param contextSequence the sequence to clean up      */
 name|void
 name|destroy
 parameter_list|(
@@ -162,7 +162,7 @@ name|Sequence
 name|contextSequence
 parameter_list|)
 function_decl|;
-comment|/**      * Convert this item into an atomic value, whose type corresponds to      * the specified target type. requiredType should be one of the type      * constants defined in {@link Type}. An {@link XPathException} is thrown      * if the conversion is impossible.      *      * @param requiredType      * @throws XPathException      */
+comment|/**      * Convert this item into an atomic value, whose type corresponds to      * the specified target type. requiredType should be one of the type      * constants defined in {@link Type}. An {@link XPathException} is thrown      * if the conversion is impossible.      *      * @param requiredType the required type, see {@link Type}      * @return the converted value      * @throws XPathException in case of a dynamic error      */
 name|AtomicValue
 name|convertTo
 parameter_list|(
@@ -230,7 +230,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Nodes may implement this method to be informed of storage address      * and node id changes after updates.      *      * @param oldNodeId      * @param newNode      * @see org.exist.storage.UpdateListener      */
+comment|/**      * Nodes may implement this method to be informed of storage address      * and node id changes after updates.      *      * @param oldNodeId the old node id      * @param newNode the new node      * @see org.exist.storage.UpdateListener      */
 name|void
 name|nodeMoved
 parameter_list|(

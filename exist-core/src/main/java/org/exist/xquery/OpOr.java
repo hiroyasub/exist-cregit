@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Boolean operator "or".  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Boolean operator "or".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class

@@ -238,7 +238,6 @@ literal|"the document nodes from the specified collections excluding sub-collect
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunXCollection
 parameter_list|(

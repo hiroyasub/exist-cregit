@@ -605,7 +605,7 @@ name|needsSync
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Create a collection with no parent (root collection).      *      * @param user      * @param brokerPool      * @param collection      * @throws XMLDBException      */
+comment|/**      * Create a collection with no parent (root collection).      *      * @param user the user      * @param brokerPool the broker pool      * @param collection the collection      * @throws XMLDBException if an error occurs opening the collection      */
 specifier|public
 name|LocalCollection
 parameter_list|(
@@ -636,10 +636,11 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a collection identified by its name. Load the collection from the database.      *      * @param user      * @param brokerPool      * @param parent      * @param name      * @throws XMLDBException      */
+comment|/**      * Create a collection identified by its name. Load the collection from the database.      *      * @param user the user      * @param brokerPool the broker pool      * @param parent the parent collection      * @param name the name of this collection      * @throws XMLDBException if an error occurs opening the collection      */
 specifier|public
 name|LocalCollection
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
@@ -1946,7 +1947,6 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Possible services: XPathQueryService, XQueryService,      * CollectionManagementService (CollectionManager), UserManagementService,      * DatabaseInstanceManager, XUpdateQueryService,  IndexQueryService,      * ValidationService. */
 annotation|@
 name|Override
 specifier|public
@@ -2309,7 +2309,7 @@ name|listChildCollections
 argument_list|()
 return|;
 block|}
-comment|/**      * Retrieve the list of resources in the collection      *       * @throws XMLDBException if and invalid collection was specified, or if permission is denied      */
+comment|/**      * Retrieve the list of resources in the collection.      *      * @return the list of resources.      *       * @throws XMLDBException if and invalid collection was specified, or if permission is denied      */
 annotation|@
 name|Override
 specifier|public
@@ -3749,7 +3749,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Determines if a HTML reader should be used for the resource.      *      * @param broker the database broker      * @param transaction the current transaction      * @param res the html resource      *      * @return true if a HTML reader should be used.      */
+comment|/**      * Determines if a HTML reader should be used for the resource.      *      * @param broker the database broker      * @param transaction the current transaction      * @param res the html resource      *      * @return true if a HTML reader should be used.      *      * @throws XMLDBException if the HTML Reader cannot be configured.      */
 specifier|private
 name|boolean
 name|useHtmlReader
@@ -4123,7 +4123,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @return A function to receive a read-only operation to perform against the collection      */
+comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param<R> the return type.      *      * @return A function to receive a read-only operation to perform against the collection      *      * @throws XMLDBException if the collection could not be read      */
 specifier|protected
 parameter_list|<
 name|R
@@ -4177,7 +4177,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param errorCode The error code to use in the XMLDBException if the collection does not exist, see {@link ErrorCodes}      * @return A function to receive a read-only operation to perform against the collection      *      * @throws XMLDBException if the collection could not be read      */
+comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param<R> the return type.      * @param errorCode The error code to use in the XMLDBException if the collection does not exist, see {@link ErrorCodes}      * @return A function to receive a read-only operation to perform against the collection      *      * @throws XMLDBException if the collection could not be read      */
 end_comment
 
 begin_function
@@ -4243,7 +4243,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive a read-only operation to perform against the collection      */
+comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param<R> the return type.      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive a read-only operation to perform against the collection      */
 end_comment
 
 begin_function
@@ -4315,7 +4315,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param errorCode The error code to use in the XMLDBException if the collection does not exist, see {@link ErrorCodes}      * @return A function to receive a read-only operation to perform against the collection      *      * @throws XMLDBException if the collection could not be read      */
+comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @param<R> the return type.      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param errorCode The error code to use in the XMLDBException if the collection does not exist, see {@link ErrorCodes}      * @return A function to receive a read-only operation to perform against the collection      *      * @throws XMLDBException if the collection could not be read      */
 end_comment
 
 begin_function
@@ -4393,7 +4393,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read/write operations against this collection      *      * NOTE this read/write will occur using the database user set on the collection      *      * @return A function to receive a read/write operation to perform against the collection      */
+comment|/**      * Higher-order-function for performing read/write operations against this collection      *      * NOTE this read/write will occur using the database user set on the collection      *      * @param<R> the return type.      *      * @return A function to receive a read/write operation to perform against the collection      *      * @throws XMLDBException if the collection could not be modified      */
 end_comment
 
 begin_function
@@ -4453,7 +4453,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read/write operations against this collection      *      * NOTE this read/write will occur using the database user set on the collection      *      * @param broker The database broker to use when accessing the collection      * @param transaction The transaction to use when accessing the collection      * @return A function to receive a read/write operation to perform against the collection      */
+comment|/**      * Higher-order-function for performing read/write operations against this collection      *      * NOTE this read/write will occur using the database user set on the collection      *      * @param<R> the return type.      * @param broker The database broker to use when accessing the collection      * @param transaction The transaction to use when accessing the collection      *      * @return A function to receive a read/write operation to perform against the collection      *      * @throws XMLDBException if the collection could not be modified      */
 end_comment
 
 begin_function
@@ -4525,7 +4525,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing lockable operations on this collection      *      * @param lockMode      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive an operation to perform on the locked database collection      */
+comment|/**      * Higher-order function for performing lockable operations on this collection      *      * @param<R> the return type.      * @param lockMode the lock mode      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      *      * @return A function to receive an operation to perform on the locked database collection      *      * @throws XMLDBException if the the operation raises an error      */
 end_comment
 
 begin_function

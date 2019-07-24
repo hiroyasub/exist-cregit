@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author Wolfgang<wolfgang@exist-db.org>  *  * @param<T> The type that implements {@link Cacheable}  */
+comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  *  * @param<T> The type that implements {@link Cacheable}  */
 end_comment
 
 begin_interface
@@ -101,7 +101,7 @@ name|boolean
 name|hasDirtyItems
 parameter_list|()
 function_decl|;
-comment|/**      * Call release on all items, but without      * actually removing them from the cache.      *       * This gives the items a chance to write all      * unwritten data to disk.      */
+comment|/**      * Call release on all items, but without      * actually removing them from the cache.      *       * This gives the items a chance to write all      * unwritten data to disk.      * @return true if flush was successful otherwise false      */
 name|boolean
 name|flush
 parameter_list|()
@@ -132,12 +132,12 @@ name|CacheManager
 name|manager
 parameter_list|)
 function_decl|;
-comment|/**      * Get the number of buffers currently used.      *       */
+comment|/**      * Get the number of buffers currently used.      * @return number of buffers currently used.      */
 name|int
 name|getUsedBuffers
 parameter_list|()
 function_decl|;
-comment|/**      * Get the number of times where an object has been successfully      * loaded from the cache.      */
+comment|/**      * Get the number of times where an object has been successfully      * loaded from the cache.      *      * @return number of times where an object has been successfully      * loaded from the cache.      */
 name|int
 name|getHits
 parameter_list|()

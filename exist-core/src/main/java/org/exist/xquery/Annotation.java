@@ -22,7 +22,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an XQuery 3.0 Annotation  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Represents an XQuery 3.0 Annotation  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -127,7 +127,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**      * Get the signature of the function on which this      * annotation was placed      */
+comment|/**      * Get the signature of the function on which this      * annotation was placed      *      * @return the function signature      */
 specifier|public
 name|FunctionSignature
 name|getFunctionSignature

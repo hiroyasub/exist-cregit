@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a value of type xs:dateTime.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * Represents a value of type xs:dateTime.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class

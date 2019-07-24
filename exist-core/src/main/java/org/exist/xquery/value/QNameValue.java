@@ -112,7 +112,7 @@ specifier|final
 name|String
 name|stringValue
 decl_stmt|;
-comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *      * @param context      * @param name      * @throws XPathException      */
+comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *      * @param context current context      * @param name name string to parse into QName      * @throws XPathException in case of dynamic error      */
 specifier|public
 name|QNameValue
 parameter_list|(
@@ -229,7 +229,7 @@ operator|.
 name|QNAME
 return|;
 block|}
-comment|/**      * Returns the wrapped QName object.      */
+comment|/**      * Returns the wrapped QName object.      *      * @return the wrapped QName      */
 specifier|public
 name|QName
 name|getQName

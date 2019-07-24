@@ -324,7 +324,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Instantiates an appropriate Permission class based on the current configuration  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Instantiates an appropriate Permission class based on the current configuration  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -347,7 +347,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Get the Default Resource permissions for the current Subject      * this includes incorporating their umask      */
+comment|/**      * Get the Default Resource permissions for the current Subject      * this includes incorporating their umask      * @param sm the security manager      * @return a new Permission object, that the caller is free to modify.      */
 specifier|public
 specifier|static
 name|Permission
@@ -475,7 +475,7 @@ name|mode
 argument_list|)
 return|;
 block|}
-comment|/**      * Get permissions for the current Subject      */
+comment|/**      * Get permissions for the current Subject      * @param sm the security manager.      * @param mode mode for the resource.      * @return a new Permission object, that the caller is free to modify.      */
 specifier|public
 specifier|static
 name|Permission
@@ -528,7 +528,7 @@ name|mode
 argument_list|)
 return|;
 block|}
-comment|/**      * Get permissions for the user, group and mode      */
+comment|/**      * Get permissions for the user, group and mode      * @param sm the security manager.      * @param userId id of the user      * @param groupId id of the group      * @param mode mode for the resource.      * @return a new Permission object, that the caller is free to modify.       */
 specifier|public
 specifier|static
 name|Permission

@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages the permissions assigned to a resource. This includes  * the user who owns the resource, the owner group and the permissions  * for owner, group and others.  *  * Permissions are encoded into a 52 bit vector with the following convention -  *  * [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]  * @see UnixStylePermission#encodeAsBitVector(int, int, int) for more details  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Manages the permissions assigned to a resource. This includes  * the user who owns the resource, the owner group and the permissions  * for owner, group and others.  *  * Permissions are encoded into a 52 bit vector with the following convention -  *  * [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]  * @see UnixStylePermission#encodeAsBitVector(int, int, int) for more details  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -239,7 +239,7 @@ operator|=
 name|vector
 expr_stmt|;
 block|}
-comment|/**      * Construct a permission with given user, group and permissions      */
+comment|/**      * Construct a permission with given user, group and permissions      * @param sm the security manager      * @param ownerId the owner      * @param groupId id of the group      * @param mode mode for the resource.       */
 specifier|public
 name|UnixStylePermission
 parameter_list|(
@@ -2005,7 +2005,7 @@ return|return
 name|vector
 return|;
 block|}
-comment|/**      * should return max of 52 bits - e.g. The maximum numeric value - 4503599627370495      * exact encoding is [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]      */
+comment|/**      * should return max of 52 bits - e.g. The maximum numeric value - 4503599627370495      * exact encoding is [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]      * @param userId id of the user      * @param groupId id of the group      * @param mode mode for the resource.      * @return the encoded bit vector      */
 specifier|protected
 specifier|final
 name|long

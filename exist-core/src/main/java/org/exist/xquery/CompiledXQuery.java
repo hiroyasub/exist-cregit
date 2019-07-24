@@ -94,7 +94,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *       * @param contextSequence      * @throws XPathException      */
+comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *       * @param contextSequence the context sequence      *      * @return the result.      *      * @throws XPathException if an error occurs during evaluation.      */
 specifier|public
 name|Sequence
 name|eval
@@ -105,13 +105,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Is the compiled expression still valid? Returns false if, for example,      * the source code of one of the imported modules has changed.      */
+comment|/**      * Is the compiled expression still valid? Returns false if, for example,      * the source code of one of the imported modules has changed.      *      * @return true if the compiled query is valid      */
 specifier|public
 name|boolean
 name|isValid
 parameter_list|()
 function_decl|;
-comment|/**      * Writes a diagnostic dump of the expression structure to the      * specified writer.      */
+comment|/**      * Writes a diagnostic dump of the expression structure to the      * specified writer.      *      * @param writer the writer to dump the query to.      */
 specifier|public
 name|void
 name|dump

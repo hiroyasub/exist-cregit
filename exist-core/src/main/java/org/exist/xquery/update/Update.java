@@ -1277,8 +1277,6 @@ parameter_list|(
 specifier|final
 name|LockException
 decl||
-name|PermissionDeniedException
-decl||
 name|EXistException
 decl||
 name|TriggerException

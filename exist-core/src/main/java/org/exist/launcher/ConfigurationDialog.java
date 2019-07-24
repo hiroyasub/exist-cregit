@@ -306,7 +306,7 @@ name|beforeStart
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates new form ConfigurationDialog      */
+comment|/**      * Creates new form ConfigurationDialog      *      * @param callback a callback for after when the configuration is saved      *     and the dialog is dismissed.      */
 specifier|public
 name|ConfigurationDialog
 parameter_list|(
@@ -2039,7 +2039,7 @@ name|jLabel8
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Memory settings only become effective after restart and only apply when eXist-db is started via the system tray launcher.</p></html>"
+literal|"<html>Memory settings only become effective after restart and only apply when eXist-db is started via the system tray launcher.</html>"
 argument_list|)
 expr_stmt|;
 name|jLabel8
@@ -2258,7 +2258,7 @@ name|lbStartupMsg
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>It seems you are starting eXist-db for the first time. Please configure your memory settings below.</p></html>"
+literal|"<html>It seems you are starting eXist-db for the first time. Please configure your memory settings below.</html>"
 argument_list|)
 expr_stmt|;
 name|lbStartupMsg
@@ -2387,7 +2387,7 @@ name|jLabel9
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Changing the data directory will create an empty database in the new location (unless there's already data in it).</p></html>"
+literal|"<html>Changing the data directory will create an empty database in the new location (unless there's already data in it).</html>"
 argument_list|)
 expr_stmt|;
 name|jLabel9
@@ -2718,7 +2718,7 @@ name|jLabel11
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Total cache size should not exceed 1/3 of max memory unless you have more than 2GB available. These sizes are in megabytes.</p></html>"
+literal|"<html>Total cache size should not exceed 1/3 of max memory unless you have more than 2GB available. These sizes are in megabytes.</html>"
 argument_list|)
 expr_stmt|;
 name|jLabel11
@@ -3072,7 +3072,7 @@ name|lbStartupWarn
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>After startup, use dashboard or Java client to set a password for admin (empty by default).</p></html>"
+literal|"<html>After startup, use dashboard or Java client to set a password for admin (empty by default).</html>"
 argument_list|)
 expr_stmt|;
 name|gridBagConstraints
@@ -3617,9 +3617,9 @@ name|jLabel15
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Set the ports used by the integrated web server. Please make sure "
+literal|"<html>Set the ports used by the integrated web server. Please make sure "
 operator|+
-literal|"those ports are not used by other processes.</p></html>"
+literal|"those ports are not used by other processes.</html>"
 argument_list|)
 expr_stmt|;
 name|jLabel15

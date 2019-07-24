@@ -29,7 +29,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Set the primary group of the user      * If the user is not already in the group      * they will also be added      *      * @param group The primary group      * @throws PermissionDeniedException      */
+comment|/**      * Set the primary group of the user      * If the user is not already in the group      * they will also be added      *      * @param group The primary group      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setPrimaryGroup
 parameter_list|(

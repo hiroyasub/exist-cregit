@@ -326,7 +326,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -395,7 +395,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Returns a copy of the known dependency tree      */
+comment|/**      * Returns a copy of the known dependency tree      * @return copy of the known dependency tree      */
 specifier|public
 name|Map
 argument_list|<
@@ -493,7 +493,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Returns a copy of the current known missing dependencies      */
+comment|/**      * Returns a copy of the current known missing dependencies      * @return copy of the current known missing dependencies      */
 specifier|public
 name|Map
 argument_list|<
@@ -586,7 +586,7 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Returns a copy of the current known invalid queries      */
+comment|/**      * Returns a copy of the current known invalid queries      * @return a copy of the current known invalid queries      */
 specifier|public
 name|Set
 argument_list|<

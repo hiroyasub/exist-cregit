@@ -22,7 +22,7 @@ specifier|public
 interface|interface
 name|ExpressionVisitor
 block|{
-comment|/**      * Default fallback method if no other method matches      * the object's type.      *       * @param expression      */
+comment|/**      * Default fallback method if no other method matches      * the object's type.      *       * @param expression the expression to visit      */
 name|void
 name|visit
 parameter_list|(
@@ -30,7 +30,7 @@ name|Expression
 name|expression
 parameter_list|)
 function_decl|;
-comment|/** Found a PathExpr */
+comment|/**      * Found a PathExpr      *      * @param expression the expression found      */
 name|void
 name|visitPathExpr
 parameter_list|(
@@ -38,7 +38,7 @@ name|PathExpr
 name|expression
 parameter_list|)
 function_decl|;
-comment|/** Found a LocationStep */
+comment|/**      * Found a LocationStep      *      * @param locationStep the expression to visit      */
 name|void
 name|visitLocationStep
 parameter_list|(

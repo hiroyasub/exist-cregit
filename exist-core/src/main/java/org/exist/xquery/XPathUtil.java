@@ -354,7 +354,7 @@ specifier|public
 class|class
 name|XPathUtil
 block|{
-comment|/**      * Convert Java object to an XQuery sequence. Objects of type Sequence are      * directly returned, other objects are converted into the corresponding      * internal types.      *      * @param obj The java object      * @param context XQuery context      * @return XQuery sequence      * @throws XPathException      */
+comment|/**      * Convert Java object to an XQuery sequence. Objects of type Sequence are      * directly returned, other objects are converted into the corresponding      * internal types.      *      * @param obj The java object      * @param context XQuery context      * @return XQuery sequence      * @throws XPathException in case of an error      */
 specifier|public
 specifier|final
 specifier|static

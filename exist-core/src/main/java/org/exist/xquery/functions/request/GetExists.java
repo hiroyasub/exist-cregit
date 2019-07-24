@@ -186,7 +186,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines if the HTTP Request is set in the XQuery Context.  *  * @author Andrzej Taramina<andrzej@chaeron.com>  */
+comment|/**  * Determines if the HTTP Request is set in the XQuery Context.  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  */
 end_comment
 
 begin_class

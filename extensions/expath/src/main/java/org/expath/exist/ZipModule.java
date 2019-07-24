@@ -58,7 +58,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @version EXPath Zip Client Module Candidate 12 October 2010 http://expath.org/spec/zip/20101012  */
+comment|/**  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  * @version EXPath Zip Client Module Candidate 12 October 2010 http://expath.org/spec/zip/20101012  */
 end_comment
 
 begin_class

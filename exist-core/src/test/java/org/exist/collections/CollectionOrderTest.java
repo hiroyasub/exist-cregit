@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests around the ordering of Collections and Documents  * within a Collection  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Tests around the ordering of Collections and Documents  * within a Collection  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

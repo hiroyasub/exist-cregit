@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.nio.file.Files#exists(Path, LinkOption...)  *  * @author Andrzej Taramina  *  */
+comment|/**  * @see java.nio.file.Files#exists(Path, LinkOption...)  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  *  */
 end_comment
 
 begin_class
@@ -327,7 +327,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FileExists
 parameter_list|(

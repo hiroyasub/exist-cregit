@@ -114,7 +114,6 @@ name|ReferenceNode
 extends|extends
 name|NodeImpl
 block|{
-comment|/**      * Creates a new ReferenceNode object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|ReferenceNode
 parameter_list|(

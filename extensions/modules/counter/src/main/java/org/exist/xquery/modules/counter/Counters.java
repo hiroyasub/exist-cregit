@@ -204,7 +204,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Jasper Linthorst (jasper.linthorst@gmail.com)  *  */
+comment|/**  * @author<a href="mailto:jasper.linthorst@gmail.com">Jasper Linthorst</a>  */
 end_comment
 
 begin_class
@@ -301,7 +301,7 @@ name|loadStore
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Loads data from the on-disk counter store      */
+comment|/**      * Loads data from the on-disk counter store      *      * @throws EXistException if an error occurs      */
 specifier|private
 name|void
 name|loadStore
@@ -437,7 +437,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *  Get singleton of Counters object.      */
+comment|/**      * Get singleton of Counters object.      *      * @param dataDir the data directory      *      * @return the counters instance      *      * @throws EXistException if an error occurs      */
 specifier|public
 specifier|static
 name|Counters
@@ -497,7 +497,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new Counter, initializes it to 0 and returns the current value in a long.      *       * @param counterName      * @return the initial value of the newly created counter      * @throws EXistException      */
+comment|/**      * Creates a new Counter, initializes it to 0 and returns the current value in a long.      *       * @param counterName the name of the counter      *      * @return the initial value of the newly created counter      *      * @throws EXistException if an error occurs      */
 specifier|public
 name|long
 name|createCounter
@@ -521,7 +521,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new Counter, initializes it to initValue and returns the current value in a long.      * If there already is a counter with the same name, the current value of this counter is returned.      *       * @param counterName      * @param initValue      * @return the current value of the named counter      * @throws EXistException       */
+comment|/**      * Creates a new Counter, initializes it to initValue and returns the current value in a long.      * If there already is a counter with the same name, the current value of this counter is returned.      *       * @param counterName the name of the counter      * @param initValue the initial value for the counter      *      * @return the current value of the named counter      *      * @throws EXistException if an error occurs      */
 specifier|public
 specifier|synchronized
 name|long
@@ -601,7 +601,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Removes a counter by the specified name.      *       * @param counterName      * @return true if the counter is removed      * @throws EXistException       */
+comment|/**      * Removes a counter by the specified name.      *      * @param counterName the name of the counter      *      * @return true if the counter is removed      *      * @throws EXistException if an error occurs      */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -665,7 +665,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Retrieves the next value of a counter (specified by name).      *       * @param counterName      * @return the next counter value or -1 if the counter does not exist.      * @throws EXistException      */
+comment|/**      * Retrieves the next value of a counter (specified by name).      *      * @param counterName the name of the counter      *      * @return the next counter value or -1 if the counter does not exist.      *      * @throws EXistException if an error occurs      */
 specifier|public
 specifier|synchronized
 name|long

@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract for functions in the {@link ResponseModule}  * which need access to the http response, and  * should raise an {@link ErrorCodes#XPDY0002} if  * the request is not available.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Abstract for functions in the {@link ResponseModule}  * which need access to the http response, and  * should raise an {@link ErrorCodes#XPDY0002} if  * the request is not available.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

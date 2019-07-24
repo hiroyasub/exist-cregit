@@ -1262,7 +1262,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *         Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *         Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -2288,7 +2288,7 @@ literal|" retries"
 argument_list|)
 throw|;
 block|}
-comment|/**      * @deprecated Use compileQuery lambda instead!      */
+comment|/**      * @deprecated Use compileQuery lambda instead!      * @param broker the broker to use      * @param source the xquery to compile      * @param parameters context for the compilation of the query      * @return the compiled query      * @throws XPathException If the query contains errors      * @throws IOException If an error occurs reading of writing to the disk      * @throws PermissionDeniedException If the current user is not allowed to perform the action      */
 annotation|@
 name|Deprecated
 specifier|private
@@ -2873,7 +2873,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if the XQuery contains pragmas that define serialization settings.      * If yes, copy the corresponding settings to the current set of output      * properties.      *      * @param context      * @param parameters      * @throws org.exist.xquery.XPathException      */
+comment|/**      * Check if the XQuery contains pragmas that define serialization settings.      * If yes, copy the corresponding settings to the current set of output      * properties.      *      * @param context the context      * @param parameters serialization options      * @throws XPathException If the query contains errors      */
 specifier|protected
 name|void
 name|checkPragmas
@@ -4422,7 +4422,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * The method<code>describeCollection</code>      *<p>      * Returns details of a collection - collections (list of sub-collections) -      * name - created - owner - group - permissions - acl      *<p>      * If you do not have read access on the collection, the list of      * sub-collections will be empty, an exception will not be thrown!      *      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Map</code> value      * @throws Exception if an error occurs      */
+comment|/**      * The method<code>describeCollection</code>      *      * Returns details of a collection - collections (list of sub-collections) -      * name - created - owner - group - permissions - acl      *      * If you do not have read access on the collection, the list of      * sub-collections will be empty, an exception will not be thrown!      *      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Map</code> value      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 specifier|private
 name|Map
 argument_list|<
@@ -7457,7 +7457,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a unique name for a database resource Uniqueness is only      * guaranteed within the eXist instance      *<p>      * The name is based on a hex encoded string of a random integer and will      * have the format xxxxxxxx.xml where x is in the range 0 to 9 and a to f      *      * @return the unique resource name      */
+comment|/**      * Creates a unique name for a database resource Uniqueness is only      * guaranteed within the eXist instance      *      * The name is based on a hex encoded string of a random integer and will      * have the format xxxxxxxx.xml where x is in the range 0 to 9 and a to f      *      * @param collUri URI of the collection to create the resource in      * @return the unique resource name      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 specifier|private
 name|String
 name|createResourceId
@@ -10242,7 +10242,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Parse a file previously uploaded with upload.      *<p>      * The temporary file will be removed.      *      * @param localFile      * @param documentPath      * @param overwrite      * @param mimeType      * @return      * @throws EXistException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse a file previously uploaded with upload.      *      * The temporary file will be removed.      *      * @param localFile the name of the temporary, uploaded file      * @param documentPath target of the parsed file      * @param overwrite true, if an existing file should be overwritten      * @param mimeType the mimeType of the uploaded file      * @return true, if the file is valid      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException if documentPath is not valid      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -10287,7 +10287,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Parse a file previously uploaded with upload, forcing it to XML or      * Binary.      *<p>      * The temporary file will be removed.      *      * @param localFile      * @param documentPath      * @param overwrite      * @param mimeType      * @param isXML      * @return      * @throws EXistException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse a file previously uploaded with upload, forcing it to XML or      * Binary.      *      * The temporary file will be removed.      *      * @param localFile the name of the temporary, uploaded file      * @param documentPath target of the parsed file      * @param overwrite true, if an existing file should be overwritten      * @param mimeType the mimeType of the uploaded file      * @param isXML true, if the file is XML      * @return true, if the file is valid      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      * @throws URISyntaxException if documentPath is not valid      */
 specifier|public
 name|boolean
 name|parseLocalExt
@@ -12553,7 +12553,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * @deprecated Use {@link #queryPT(String, XmldbURI, String, Map)} instead.      */
+comment|/**      * @deprecated Use {@link #queryPT(String, XmldbURI, String, Map)} instead.      * @param xpath the query to execute      * @param documentPath the collection to query      * @param s_id an id      * @param parameters map of options      * @return the result of the query      * @throws URISyntaxException if documentPath is invalid      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 specifier|public
 name|Map
 argument_list|<
@@ -12617,7 +12617,7 @@ name|parameters
 argument_list|)
 return|;
 block|}
-comment|/**      * @deprecated Use {@link #queryPT(String, XmldbURI, String, Map)} instead.      */
+comment|/**      * @deprecated Use {@link #queryPT(String, XmldbURI, String, Map)} instead.      * @param xpath the query to execute      * @param docUri the document to query      * @param s_id an id      * @param parameters map of options      * @return the result of the query      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 specifier|private
 name|Map
 argument_list|<
@@ -20227,7 +20227,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *<p>      * modified by Chris Tomlinson based on above updateAccount - it appears      * that this code can rely on the SecurityManager to enforce policy about      * whether user is or is not permitted to update the Account with name.      *<p>      * This is called via RemoteUserManagementService.addUserGroup(Account)      *      * @param name      * @return      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *      * modified by Chris Tomlinson based on above updateAccount - it appears      * that this code can rely on the SecurityManager to enforce policy about      * whether user is or is not permitted to update the Account with name.      *      * This is called via RemoteUserManagementService.addUserGroup(Account)      *      * @param name user name to update      * @param groups list of groups the user is added to      * @return true, if action succeeded      */
 annotation|@
 name|Override
 specifier|public
@@ -20245,10 +20245,6 @@ name|String
 argument_list|>
 name|groups
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 try|try
 block|{
@@ -20382,7 +20378,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *<p>      * modified by Chris Tomlinson based on above updateAccount - it appears      * that this code can rely on the SecurityManager to enforce policy about      * whether user is or is not permitted to update the Account with name.      *<p>      * This is called via RemoteUserManagementService.removeGroup(Account,      * String)      *      * @param name      * @param groups      * @param rgroup      * @return      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *      * modified by Chris Tomlinson based on above updateAccount - it appears      * that this code can rely on the SecurityManager to enforce policy about      * whether user is or is not permitted to update the Account with name.      *      * This is called via RemoteUserManagementService.removeGroup(Account,      * String)      *      * @param name username to update      * @param groups a list of groups      * @param rgroup the user will be removed from this group      * @return true, if the action succeeded      */
 specifier|public
 name|boolean
 name|updateAccount
@@ -20402,10 +20398,6 @@ specifier|final
 name|String
 name|rgroup
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 try|try
 block|{
@@ -23330,7 +23322,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Validate if specified document is Valid.      *      * @param documentPath Path to XML document in database      * @return TRUE if document is valid, FALSE if not or errors or.....      * @throws java.net.URISyntaxException      * @throws PermissionDeniedException   User is not allowed to perform action.      * @throws org.exist.EXistException      */
+comment|/**      * Validate if specified document is Valid.      *      * @param documentPath Path to XML document in database      * @return true, if document is valid, false if anything fails      * @throws URISyntaxException if the documentPath is invalid      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -23376,8 +23368,6 @@ name|docUri
 parameter_list|)
 throws|throws
 name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 try|try
 block|{
@@ -27261,7 +27251,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing read locked operations on a collection      *      * @param uri The full XmldbURI of the collection      * @return A function to receive an operation to perform on the locked database collection      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing read locked operations on a collection      *      * @param uri The full XmldbURI of the collection      * @param<R> the return type of the function      * @return A function to receive an operation to perform on the locked database collection      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27322,7 +27312,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing read locked operations on a collection      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @return A function to receive an operation to perform on the locked database collection      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing read locked operations on a collection      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @param<R> the return type of the function      * @return A function to receive an operation to perform on the locked database collection      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27380,7 +27370,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing write locked operations on a collection      *      * @param uri The full XmldbURI of the collection      * @return A function to receive an operation to perform on the locked database collection      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing write locked operations on a collection      *      * @param uri The full XmldbURI of the collection      * @param<R> the return type of the function      * @return A function to receive an operation to perform on the locked database collection      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27441,7 +27431,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing write locked operations on a collection      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @return A function to receive an operation to perform on the locked database collection      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing write locked operations on a collection      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @param<R> the return type of the function      * @return A function to receive an operation to perform on the locked database collection      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27499,7 +27489,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing lockable operations on a collection      *      * @param lockMode      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @return A function to receive an operation to perform on the locked database collection      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing lockable operations on a collection      *      * @param lockMode    any of {@link LockMode}      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the collection      * @param<R> the return type of the function      * @return A function to receive an operation to perform on the locked database collection      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27623,7 +27613,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing read locked operations on a document      *      * @param uri The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing read locked operations on a document      *      * @param uri The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27684,7 +27674,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing read locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing read locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27742,7 +27732,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param uri The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param uri The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      */
 end_comment
 
 begin_function
@@ -27769,10 +27759,6 @@ specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 return|return
 name|writeOp
@@ -27803,7 +27789,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27861,7 +27847,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param collection  The collection in which the document resides      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing write locked operations on a document      *      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param collection  The collection in which the document resides      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -27929,7 +27915,7 @@ comment|//TODO(AR) consider interleaving the collection and document access, i.e
 end_comment
 
 begin_comment
-comment|/**      * Higher-order function for performing lockable operations on a document      *      * @param lockMode      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing lockable operations on a document      *      * @param lockMode    any of {@link LockMode}      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      */
 end_comment
 
 begin_function
@@ -27968,10 +27954,6 @@ specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 return|return
 name|withOp
@@ -28028,7 +28010,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing lockable operations on a document      *      * @param lockMode      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param collection  The collection in which the document resides      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order function for performing lockable operations on a document      *      * @param lockMode    any of {@link LockMode}      * @param broker      The broker to use for the operation      * @param transaction The transaction to use for the operation      * @param collection  The collection in which the document resides      * @param uri         The full XmldbURI of the document      * @return A function to receive an operation to perform on the locked database document      */
 end_comment
 
 begin_function
@@ -28071,10 +28053,6 @@ specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
 block|{
 return|return
 name|readOp
@@ -28185,7 +28163,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database as the SYSTEM_USER.      *      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database as the SYSTEM_USER.      *      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -28229,7 +28207,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database.      *<p>      * Performs the operation as the current user of the RpcConnection      *      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database.      *      * Performs the operation as the current user of the RpcConnection      *      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function
@@ -28264,7 +28242,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database      *      * @param user        The user to execute the operation as      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Higher-order-function for performing an XMLDB operation on      * the database      *      * @param user        The user to execute the operation as      * @param dbOperation The operation to perform on the database      * @param<R>         The return type of the operation      * @throws EXistException if an internal error occurs      * @throws PermissionDeniedException If the current user is not allowed to perform this action      */
 end_comment
 
 begin_function

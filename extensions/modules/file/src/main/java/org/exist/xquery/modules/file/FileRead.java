@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  * @author Loren Cahlander  */
+comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author<a href="mailto:loren.cahlander@gmail.com">Loren Cahlander</a>  */
 end_comment
 
 begin_class
@@ -420,7 +420,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FileRead
 parameter_list|(

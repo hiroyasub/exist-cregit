@@ -234,7 +234,7 @@ name|int
 name|getExpressionId
 parameter_list|()
 function_decl|;
-comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *       * @throws XPathException      */
+comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *      * @param contextInfo the context infomation.      *       * @throws XPathException if an error occurs during the analysis.      */
 specifier|public
 name|void
 name|analyze
@@ -245,7 +245,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Evaluate the expression represented by this object.      *      * Depending on the context in which this expression is executed,      * either the context sequence, the context item or both of them may      * be set. An implementing class should know how to handle this.      *      * The general contract is as follows: if the {@link Dependency#CONTEXT_ITEM}      * bit is set in the bit field returned by {@link #getDependencies()}, the eval method will      * be called once for every item in the context sequence. The<b>contextItem</b>      * parameter will be set to the current item. Otherwise, the eval method will only be called      * once for the whole context sequence and<b>contextItem</b> will be null.      *      * eXist tries to process the entire context set in one, single step whenever      * possible. Thus, most classes only expect context to contain a list of      * nodes which represents the current context of the expression.      *      * The position() function in XPath is an example for an expression,      * which requires both, context sequence and context item to be set.      *      * The context sequence might be a node set, a sequence of atomic values or a single      * node or atomic value.      *      * @param contextSequence the current context sequence.      * @param contextItem a single item, taken from context. This defines the item,      * the expression should work on.      */
+comment|/**      * Evaluate the expression represented by this object.      *      * Depending on the context in which this expression is executed,      * either the context sequence, the context item or both of them may      * be set. An implementing class should know how to handle this.      *      * The general contract is as follows: if the {@link Dependency#CONTEXT_ITEM}      * bit is set in the bit field returned by {@link #getDependencies()}, the eval method will      * be called once for every item in the context sequence. The<b>contextItem</b>      * parameter will be set to the current item. Otherwise, the eval method will only be called      * once for the whole context sequence and<b>contextItem</b> will be null.      *      * eXist tries to process the entire context set in one, single step whenever      * possible. Thus, most classes only expect context to contain a list of      * nodes which represents the current context of the expression.      *      * The position() function in XPath is an example for an expression,      * which requires both, context sequence and context item to be set.      *      * The context sequence might be a node set, a sequence of atomic values or a single      * node or atomic value.      *      * @param contextSequence the current context sequence.      * @param contextItem a single item, taken from context. This defines the item,      * the expression should work on.      *      * @return the result sequence.      *      * @throws XPathException if an error occurs during evaluation.      */
 specifier|public
 name|Sequence
 name|eval
@@ -259,7 +259,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Evaluate the expression represented by this object.      *      * An overloaded method which just passes the context sequence depending on the      * expression context.      */
+comment|/**      * Evaluate the expression represented by this object.      *      * An overloaded method which just passes the context sequence depending on the      * expression context.      *      * @param contextSequence the current context sequence.      *      * @return the result sequence.      *      * @throws XPathException if an error occurs during evaluation.      */
 specifier|public
 name|Sequence
 name|eval
@@ -283,13 +283,13 @@ name|int
 name|getPrimaryAxis
 parameter_list|()
 function_decl|;
-comment|/**      * The static return type of the expression.      *      * This method should return one of the type constants defined in class      * {@link org.exist.xquery.value.Type}. If the return type cannot be determined      * statically, return Type.ITEM.      */
+comment|/**      * The static return type of the expression.      *      * This method should return one of the type constants defined in class      * {@link org.exist.xquery.value.Type}. If the return type cannot be determined      * statically, return Type.ITEM.      *      * @return the type.      */
 specifier|public
 name|int
 name|returnsType
 parameter_list|()
 function_decl|;
-comment|/**      * The expected cardinality of the return value of the expression.      *      * Should return a bit mask with bits set as defined in class {@link Cardinality}.      */
+comment|/**      * The expected cardinality of the return value of the expression.      *      * Should return a bit mask with bits set as defined in class {@link Cardinality}.      *      * @return the cardinality.      */
 specifier|public
 name|int
 name|getCardinality
@@ -306,7 +306,7 @@ name|Expression
 name|simplify
 parameter_list|()
 function_decl|;
-comment|/**      * Called to inform an expression that it should reset to its initial state.      *      * All cached data in the expression object should be dropped. For example,      * the xmldb:document() function calls this method whenever the input document      * set has changed.      * @param postOptimization      */
+comment|/**      * Called to inform an expression that it should reset to its initial state.      *      * All cached data in the expression object should be dropped. For example,      * the xmldb:document() function calls this method whenever the input document      * set has changed.      *      * @param postOptimization true if post optimisation should be undertaken.      */
 specifier|public
 name|void
 name|resetState
@@ -315,13 +315,13 @@ name|boolean
 name|postOptimization
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the expression object has not yet been reset, so      * {@link #resetState(boolean)} should be called.      */
+comment|/**      * Returns true if the expression object has not yet been reset, so      * {@link #resetState(boolean)} should be called.      *      * @return true if the expression needs reseting.      */
 specifier|public
 name|boolean
 name|needsReset
 parameter_list|()
 function_decl|;
-comment|/**      * Start traversing the expression tree using the specified {@link ExpressionVisitor}.      * @param visitor      */
+comment|/**      * Start traversing the expression tree using the specified {@link ExpressionVisitor}.      *      * @param visitor the visitor      */
 specifier|public
 name|void
 name|accept

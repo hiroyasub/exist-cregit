@@ -248,7 +248,7 @@ name|configuration
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *       *       * @param factory       * @param maxIdle       * @param initIdleCapacity       */
+comment|/**      * Constructs an XML Reader Pool.      *      * @param factory the object factory      * @param maxIdle the max idle time for a reader      * @param initIdleCapacity the initial capacity      */
 specifier|public
 name|XMLReaderPool
 parameter_list|(

@@ -236,7 +236,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Inflate uncompression  *   * @author Olaf Schreck<olaf@existsolutions.com>  * @version 1.0  */
+comment|/**  * Inflate uncompression  *   * @author<a href="mailto:olaf@existsolutions.com">Olaf Schreck</a>  * @version 1.0  */
 end_comment
 
 begin_class

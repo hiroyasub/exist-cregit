@@ -139,12 +139,12 @@ name|String
 name|type
 parameter_list|()
 function_decl|;
-comment|/**      * Returns a unique key to identify the source, usually      * an URI.      *       */
+comment|/**      * Returns a unique key to identify the source, usually      * an URI.      * @return unique key to identify the source, usually an URI      */
 name|Object
 name|getKey
 parameter_list|()
 function_decl|;
-comment|/**      * Is this source object still valid?      *       * Returns {@link Validity#UNKNOWN} if the validity of      * the source cannot be determined.      *       * The {@link DBBroker} parameter is required by      * some implementations as they have to read      * resources from the database.      *       * @param broker      */
+comment|/**      * Is this source object still valid?      *       * Returns {@link Validity#UNKNOWN} if the validity of      * the source cannot be determined.      *       * The {@link DBBroker} parameter is required by      * some implementations as they have to read      * resources from the database.      *       * @param broker eXist-db broker      * @return Validity of the source object      */
 name|Validity
 name|isValid
 parameter_list|(
@@ -152,7 +152,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/**      * Checks if the source object is still valid      * by comparing it to another version of the      * same source. It depends on the concrete      * implementation how the sources are compared.      *       * Use this method if {@link #isValid(DBBroker)}      * return {@link Validity#UNKNOWN}.      *       * @param other      */
+comment|/**      * Checks if the source object is still valid      * by comparing it to another version of the      * same source. It depends on the concrete      * implementation how the sources are compared.      *       * Use this method if {@link #isValid(DBBroker)}      * return {@link Validity#UNKNOWN}.      *       * @param other source      * @return Validity of the other source object      */
 name|Validity
 name|isValid
 parameter_list|(
@@ -160,7 +160,7 @@ name|Source
 name|other
 parameter_list|)
 function_decl|;
-comment|/**      * Returns a {@link Reader} to read the contents      * of the source.      *       * @throws IOException      */
+comment|/**      * Returns a {@link Reader} to read the contents      * of the source.      * @return Reader to read the contents of the source      * @throws IOException in case of an I/O error      */
 name|Reader
 name|getReader
 parameter_list|()
@@ -179,7 +179,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Returns the character encoding of the underlying source or null if unknown.      *      * @return the character encoding      * @throws IOException      */
+comment|/**      * Returns the character encoding of the underlying source or null if unknown.      *      * @return the character encoding      * @throws IOException in case of an I/O error      */
 annotation|@
 name|Nullable
 name|Charset
@@ -188,7 +188,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Set a timestamp for this source. This is used      * by {@link org.exist.storage.XQueryPool} to      * check if a source has timed out.      *       * @param timestamp      */
+comment|/**      * Set a timestamp for this source. This is used      * by {@link org.exist.storage.XQueryPool} to      * check if a source has timed out.      *       * @param timestamp for the source      */
 name|void
 name|setCacheTimestamp
 parameter_list|(
@@ -200,7 +200,7 @@ name|long
 name|getCacheTimestamp
 parameter_list|()
 function_decl|;
-comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      */
+comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      * @throws PermissionDeniedException if user has not sufficient rights      */
 name|void
 name|validate
 parameter_list|(

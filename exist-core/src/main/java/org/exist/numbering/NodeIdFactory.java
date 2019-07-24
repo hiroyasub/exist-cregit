@@ -65,7 +65,7 @@ name|NodeId
 name|createInstance
 parameter_list|()
 function_decl|;
-comment|/**      * Create a new NodeId, initialized with the given      * base id.      *       * @param id      * @return nodeId      */
+comment|/**      * Create a new NodeId, initialized with the given      * base id.      *       * @param id the initial, first level value to initialize the NodeId with      * @return nodeId a new NodeId instance      */
 name|NodeId
 name|createInstance
 parameter_list|(
@@ -119,7 +119,7 @@ name|String
 name|string
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the number of bytes occupied by the NodeId stored      * in the byte array at the given startOffset. This method is      * similar to {@link #createFromData(int, byte[], int)}, but it      * just returns the number of bytes.      *      * @param units      * @param data      * @param startOffset      * @return number of bytes      */
+comment|/**      * Returns the number of bytes occupied by the NodeId stored      * in the byte array at the given startOffset. This method is      * similar to {@link #createFromData(int, byte[], int)}, but it      * just returns the number of bytes.      *      * @param units the number of units to be read      * @param data the byte array containing the data      * @param startOffset offset into the byte array to start reading from      * @return number of bytes      */
 name|int
 name|lengthInBytes
 parameter_list|(

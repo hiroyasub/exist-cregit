@@ -1123,7 +1123,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Gets the last exported backup      */
+comment|/**      * Gets the last exported backup      *      * @return the last exported backup, or null      */
 specifier|public
 name|Path
 name|getLastExportedBackup

@@ -307,7 +307,7 @@ return|return
 name|resources
 return|;
 block|}
-comment|/**      * Adds a resource to the container      *      * @param resource The resource to be added to the object      * @throws org.xmldb.api.base.XMLDBException      */
+comment|/**      * Adds a resource to the container      *      * @param resource The resource to be added to the object      * @param resource the resource to add.      *      * @throws XMLDBException if an error occurs whilst add the resource.      */
 annotation|@
 name|Override
 specifier|public
@@ -384,7 +384,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Make the container empty      *      * @throws XMLDBException      */
+comment|/**      * Make the container empty      *      * @throws XMLDBException if an error occurs whilst clearing the resource set.      */
 annotation|@
 name|Override
 specifier|public
@@ -400,7 +400,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Gets the iterator property      *      * @return The iterator value      * @throws XMLDBException      */
+comment|/**      * Get an iterator over the resource set.      *      * @return The iterator      *      * @throws XMLDBException if an error occurs whilst getting the iterator.      */
 annotation|@
 name|Override
 specifier|public
@@ -416,7 +416,7 @@ name|NewResourceIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Gets the iterator property, starting from a given position      *      * @param start starting position>0 for the iterator      * @return The iterator value      * @throws XMLDBException thrown if pos is out of range      */
+comment|/**      * Gets the iterator property, starting from a given position      *      * @param start starting position&gt; 0 for the iterator      *      * @return The iterator value      *      * @throws XMLDBException thrown if pos is out of range      */
 specifier|public
 name|ResourceIterator
 name|getIterator
@@ -436,7 +436,7 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**      * Gets the membersAsResource property of the object      *      * @return The membersAsResource value      * @exception XMLDBException Description of the Exception      */
+comment|/**      * Gets the membersAsResource property of the object      *      * @return The membersAsResource value      *      * @throws XMLDBException Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
@@ -456,7 +456,7 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      * Gets the resource at a given position.      *      * @param pos position> 0      * @return The resource value      * @exception XMLDBException thrown if pos is out of range      */
+comment|/**      * Gets the resource at a given position.      *      * @param pos position&gt; 0      * @return The resource value      * @throws XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -520,7 +520,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Gets the size property      *      * @return The size value      * @exception XMLDBException      */
+comment|/**      * Gets the size property.      *      * @return The size value      *      * @throws XMLDBException if an error occurs getting the size.      */
 annotation|@
 name|Override
 specifier|public
@@ -540,7 +540,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      * Removes the resource at a given position.      *      * @param pos position> 0      * @exception XMLDBException thrown if pos is out of range      */
+comment|/**      * Removes the resource at a given position.      *      * @param pos position&gt; 0      * @throws XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -619,7 +619,7 @@ operator|=
 name|start
 expr_stmt|;
 block|}
-comment|/**          * Classical loop test.          *          * @return Description of the Return Value          * @exception XMLDBException Description of the Exception          */
+comment|/**          * Classical loop test.          *          * @return Description of the Return Value          * @throws XMLDBException Description of the Exception          */
 annotation|@
 name|Override
 specifier|public
@@ -638,7 +638,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**          * Classical accessor to next Resource          *          * @return the next Resource          * @exception XMLDBException          */
+comment|/**          * Classical accessor to next Resource          *          * @return the next Resource          * @throws XMLDBException          */
 annotation|@
 name|Override
 specifier|public

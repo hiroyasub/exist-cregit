@@ -130,7 +130,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *      */
+comment|/**      * @param xmlSerializer the serializer      */
 specifier|public
 name|ExtendedDOMStreamer
 parameter_list|(
@@ -149,7 +149,7 @@ operator|=
 name|xmlSerializer
 expr_stmt|;
 block|}
-comment|/**      * @param contentHandler      * @param lexicalHandler      */
+comment|/**      * @param xmlSerializer the serializer      * @param contentHandler the content handler      * @param lexicalHandler the lexical handler      */
 specifier|public
 name|ExtendedDOMStreamer
 parameter_list|(

@@ -184,7 +184,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This abstract class really just contains the static  * methods for {@link BrokerPool} to help us organise the  * code into smaller understandable chunks and reduce the  * complexity when understanding the concurrency  * constraints between one and many BrokerPools  *  * @author Adam Retter<adam@exist-db.org>  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * This abstract class really just contains the static  * methods for {@link BrokerPool} to help us organise the  * code into smaller understandable chunks and reduce the  * complexity when understanding the concurrency  * constraints between one and many BrokerPools  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_class
@@ -308,7 +308,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
+comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      * @throws DatabaseConfigurationException If configuration fails.      */
 specifier|public
 specifier|static
 name|void
@@ -343,7 +343,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      * @param statusObserver    Observes the status of this database instance      *      * @throws EXistException If the initialization fails.      */
+comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      * @param statusObserver    Observes the status of this database instance      *      * @throws EXistException If the initialization fails.      * @throws DatabaseConfigurationException If configuration fails.      */
 specifier|public
 specifier|static
 name|void

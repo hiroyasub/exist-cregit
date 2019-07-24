@@ -226,7 +226,7 @@ name|getLocalPart
 argument_list|()
 return|;
 block|}
-comment|/**      * @deprecated use #setQName(qname) instead      */
+comment|/**      * @deprecated use #setQName(qname) instead      * @param name qname of the node      */
 annotation|@
 name|Deprecated
 specifier|public

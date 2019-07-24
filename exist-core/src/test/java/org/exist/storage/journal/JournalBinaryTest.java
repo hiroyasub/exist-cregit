@@ -404,7 +404,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test expectations to check that the correct entries  * are written to the journal during  * various Binary operations.  *  * Actual JUnit test cases are defined in the  * subclass {@link AbstractJournalTest}.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Test expectations to check that the correct entries  * are written to the journal during  * various Binary operations.  *  * Actual JUnit test cases are defined in the  * subclass {@link AbstractJournalTest}.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

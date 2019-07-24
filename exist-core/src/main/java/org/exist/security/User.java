@@ -47,7 +47,7 @@ name|MD5_ENCODING
 init|=
 literal|2
 decl_stmt|;
-comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws PermissionDeniedException is user has not sufficient rights      */
 specifier|public
 name|Group
 name|addGroup
@@ -58,7 +58,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws PermissionDeniedException is user has not sufficient rights      */
 specifier|public
 name|Group
 name|addGroup
@@ -69,7 +69,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Remove the user to a group      *      * @param group The group to remove the user from      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Remove the user to a group      *      * @param group The group to remove the user from      * @throws PermissionDeniedException is user has not sufficient rights      */
 specifier|public
 name|void
 name|remGroup
@@ -118,7 +118,7 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
-comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated {@see org.exist.security.User#setCredential(org.exist.security.Credential)}      */
+comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated See {@link org.exist.security.User#setCredential(org.exist.security.Credential)}      */
 annotation|@
 name|Deprecated
 specifier|public

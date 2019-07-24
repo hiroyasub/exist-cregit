@@ -226,7 +226,6 @@ name|initialized
 init|=
 literal|true
 decl_stmt|;
-comment|/** 	 *  	 */
 specifier|public
 name|VariableImpl
 parameter_list|(

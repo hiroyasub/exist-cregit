@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Monitors active {@link FilterInputStreamCacheMonitor} instances.  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Monitors active {@link FilterInputStreamCacheMonitor} instances.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

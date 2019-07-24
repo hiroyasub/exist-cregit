@@ -694,7 +694,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class for handling all Lucene operations.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Dannes Wessels (dannes@exist-db.org)  * @author Leif-JÃ¶ran Olsson (ljo@exist-db.org)  */
+comment|/**  * Class for handling all Lucene operations.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  * @author<a href="mailto:ljo@exist-db.org">Leif-JÃ¶ran Olsson</a>  */
 end_comment
 
 begin_class
@@ -2384,7 +2384,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Query the index. Returns a node set containing all matching nodes. Each node      * in the node set has a {@link LuceneMatch}      * element attached, which stores the score and a link to the query which generated it.      *      * @param contextId current context id, identify to track the position inside nested XPath predicates      * @param docs query will be restricted to documents in this set      * @param contextSet if specified, returned nodes will be descendants of the nodes in this set      * @param qnames query will be restricted to nodes with the qualified names given here      * @param queryStr a lucene query string      * @param axis which node is returned: the node in which a match was found or the corresponding ancestor      *  from the contextSet      * @return node set containing all matching nodes      *       * @throws IOException      * @throws ParseException      */
+comment|/**      * Query the index. Returns a node set containing all matching nodes. Each node      * in the node set has a {@link LuceneMatch}      * element attached, which stores the score and a link to the query which generated it.      *      * @param contextId current context id, identify to track the position inside nested XPath predicates      * @param docs query will be restricted to documents in this set      * @param contextSet if specified, returned nodes will be descendants of the nodes in this set      * @param qnames query will be restricted to nodes with the qualified names given here      * @param queryStr a lucene query string      * @param axis which node is returned: the node in which a match was found or the corresponding ancestor      *  from the contextSet      * @param options the query options      *      * @return node set containing all matching nodes      *       * @throws IOException if an I/O error occurs      * @throws ParseException if the query cannot be parsed      * @throws XPathException if an error occurs executing the query      */
 specifier|public
 name|NodeSet
 name|query
@@ -2643,7 +2643,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Query the index. Returns a node set containing all matching nodes. Each node      * in the node set has a {@link LuceneMatch}      * element attached, which stores the score and a link to the query which generated it.      *      * @param contextId current context id, identify to track the position inside nested XPath predicates      * @param docs query will be restricted to documents in this set      * @param contextSet if specified, returned nodes will be descendants of the nodes in this set      * @param qnames query will be restricted to nodes with the qualified names given here      * @param queryRoot an XML representation of the query, see {@link XMLToQuery}.      * @param axis which node is returned: the node in which a match was found or the corresponding ancestor      *  from the contextSet      * @return node set containing all matching nodes      *      * @throws IOException      * @throws ParseException      */
+comment|/**      * Query the index. Returns a node set containing all matching nodes. Each node      * in the node set has a {@link LuceneMatch}      * element attached, which stores the score and a link to the query which generated it.      *      * @param contextId current context id, identify to track the position inside nested XPath predicates      * @param docs query will be restricted to documents in this set      * @param contextSet if specified, returned nodes will be descendants of the nodes in this set      * @param qnames query will be restricted to nodes with the qualified names given here      * @param queryRoot an XML representation of the query, see {@link XMLToQuery}.      * @param axis which node is returned: the node in which a match was found or the corresponding ancestor      *  from the contextSet      * @param options the query options      *      * @return node set containing all matching nodes      *      * @throws IOException if an I/O error occurs      * @throws ParseException if the query cannot be parsed      * @throws XPathException if an error occurs executing the query      */
 specifier|public
 name|NodeSet
 name|query
@@ -3305,7 +3305,7 @@ return|return
 name|facets
 return|;
 block|}
-comment|/**          * Compute facets based on the given {@link FacetsCollector}.          */
+comment|/**          * Compute facets based on the given {@link FacetsCollector}.          *          * @param reader the taxonomy reader          * @param config the facets configuration          * @param collector the facets collector          *          * @throws IOException if an I/O error occurs          */
 specifier|public
 name|void
 name|compute
@@ -3867,7 +3867,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  SOLR      * @param toBeMatchedURIs      * @param queryText      * @return search report      */
+comment|/**      * SOLR      *      * @param toBeMatchedURIs the URIs to match      * @param queryText the query      * @param fieldsToGet the fields to get      * @param options the search options      *      * @return search report      *      * @throws XPathException if an error occurs executing the query      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|NodeImpl
 name|search
@@ -4780,7 +4780,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      *  Check if Lucene found document matches specified documents or collections.      * Collections should end with "/".      *       * @param docUri    The uri of the document found by lucene      * @param toBeMatchedUris     List of document and collection URIs      * @return TRUE if documenturi is matched or is in collection.      */
+comment|/**      * Check if Lucene found document matches specified documents or collections.      * Collections should end with "/".      *       * @param docUri The uri of the document found by lucene      * @param toBeMatchedUris List of document and collection URIs      *      * @return true if {@code docUri} is matched or is in collection, false otherwise      */
 specifier|private
 name|boolean
 name|isDocumentMatch
@@ -5564,7 +5564,7 @@ name|match
 return|;
 block|}
 block|}
-comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @return List of QName objects on which indexes are defined      */
+comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @param qnames the qnames to find the findexes for      *      * @return List of QName objects on which indexes are defined      *      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|List
 argument_list|<
@@ -5572,6 +5572,7 @@ name|QName
 argument_list|>
 name|getDefinedIndexes
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -5581,6 +5582,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -5609,6 +5611,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
@@ -5655,6 +5658,7 @@ operator|.
 name|WILDCARD
 argument_list|)
 condition|)
+block|{
 name|getDefinedIndexesFor
 argument_list|(
 name|qname
@@ -5662,7 +5666,9 @@ argument_list|,
 name|indexes
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|indexes
 operator|.
 name|add
@@ -5670,6 +5676,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|indexes
@@ -5908,7 +5915,9 @@ return|return
 name|match
 return|;
 block|}
-comment|/**      * Return the analyzer to be used for the given field or qname. Either field      * or qname should be specified.      */
+comment|/**      * Return the analyzer to be used for the given field or qname. Either field      * or qname should be specified.      *      * @param config the lucene config      * @param field the analyzer field      * @param qname the analyzer qname      *      * @return the analyzer or null      */
+annotation|@
+name|Nullable
 specifier|protected
 name|Analyzer
 name|getAnalyzer
@@ -5939,6 +5948,7 @@ name|field
 operator|==
 literal|null
 condition|)
+block|{
 name|analyzer
 operator|=
 name|config
@@ -5948,7 +5958,9 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|analyzer
 operator|=
 name|config
@@ -5958,15 +5970,18 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|analyzer
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|analyzer
 return|;
+block|}
 block|}
 return|return
 name|index
@@ -5975,7 +5990,9 @@ name|getDefaultAnalyzer
 argument_list|()
 return|;
 block|}
-comment|/**      * Return the first configuration found for documents in the document set.      */
+comment|/**      * Return the first configuration found for documents in the document set.      *      * @param broker the database broker      * @param docs the document set      *      * @return the lucene config or null      */
+annotation|@
+name|Nullable
 specifier|protected
 name|LuceneConfig
 name|getLuceneConfig
@@ -7271,27 +7288,33 @@ name|frequency
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Adds the passed character sequence to the lucene index. We      * create one lucene document per XML node, using 2 fields to identify      * the node:      *      *<ul>      *<li>docId: eXist-internal document id of the node, stored as string.</li>      *<li>nodeId: the id of the node, stored in binary compressed form.</li>      *</ul>      *      * The text is indexed into a field whose name encodes the qualified name of      * the node. The qualified name is stored as a hex sequence pointing into the      * global symbol table.      *      * @param nodeId      * @param qname      * @param content      */
+comment|/**      * Adds the passed character sequence to the lucene index. We      * create one lucene document per XML node, using 2 fields to identify      * the node:      *      *<ul>      *<li>docId: eXist-internal document id of the node, stored as string.</li>      *<li>nodeId: the id of the node, stored in binary compressed form.</li>      *</ul>      *      * The text is indexed into a field whose name encodes the qualified name of      * the node. The qualified name is stored as a hex sequence pointing into the      * global symbol table.      *      * @param nodeId the node if      * @param qname the qname of the node      * @param path the node path      * @param config the lucene index config      * @param content the content of the node      */
 specifier|protected
 name|void
 name|indexText
 parameter_list|(
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|NodePath
 name|path
 parameter_list|,
+specifier|final
 name|LuceneIndexConfig
 name|config
 parameter_list|,
+specifier|final
 name|CharSequence
 name|content
 parameter_list|)
 block|{
+specifier|final
 name|PendingDoc
 name|pending
 init|=
@@ -7320,11 +7343,12 @@ name|pending
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Adds the passed character sequence to the lucene index.      * This version uses the AttrImpl for node specific attribute match boosting.      *      * @param attribs      * @param nodeId      * @param qname      * @param path      * @param config      * @param content      */
+comment|/**      * Adds the passed character sequence to the lucene index.      * This version uses the AttrImpl for node specific attribute match boosting.      *      * @param attribs the attributes      * @param nodeId the node id      * @param qname the qname of the node      * @param path the path of the node      * @param config the lucene index config      * @param content the content of the node      */
 specifier|protected
 name|void
 name|indexText
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|util
@@ -7335,22 +7359,28 @@ name|AttrImpl
 argument_list|>
 name|attribs
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|NodePath
 name|path
 parameter_list|,
+specifier|final
 name|LuceneIndexConfig
 name|config
 parameter_list|,
+specifier|final
 name|CharSequence
 name|content
 parameter_list|)
 block|{
+specifier|final
 name|PendingDoc
 name|pending
 init|=
@@ -7385,6 +7415,7 @@ specifier|private
 name|void
 name|addPending
 parameter_list|(
+specifier|final
 name|PendingDoc
 name|pending
 parameter_list|)
@@ -9156,7 +9187,7 @@ operator|.
 name|this
 return|;
 block|}
-comment|/* 	 * delay indexing of attributes until we have them all to calculate boost 	 */
+comment|/**          * Delay indexing of attributes until we have them all to calculate boost          *          * @param attr the attribute to be indexed          * @param path the node path          * @param conf the index config          */
 specifier|private
 name|void
 name|appendAttrToBeIndexedLater
@@ -9205,7 +9236,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * put pending attribute nodes in indexing cache 	 * and then clear pending attributes 	 */
+comment|/**          * Put pending attribute nodes in indexing cache          * and then clear pending attributes          */
 specifier|private
 name|void
 name|indexPendingAttrs

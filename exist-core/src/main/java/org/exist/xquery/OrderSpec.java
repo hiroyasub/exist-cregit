@@ -103,7 +103,6 @@ name|collator
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 *  	 */
 specifier|public
 name|OrderSpec
 parameter_list|(

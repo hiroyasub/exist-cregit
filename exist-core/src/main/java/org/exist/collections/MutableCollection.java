@@ -941,7 +941,7 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Deserializes a Collection object      *      * Counterpart method to {@link #serialize(VariableByteOutputStream)}      *      * @param broker The database broker      * @param path The path of the Collection      * @param inputStream The input stream to deserialize the Collection from      *      * @return The Collection Object      */
+comment|/**      * Deserializes a Collection object      *      * Counterpart method to {@link #serialize(VariableByteOutputStream)}      *      * @param broker The database broker      * @param path The path of the Collection      * @param inputStream The input stream to deserialize the Collection from      * @throws PermissionDeniedException is user does not have sufficient rights      * @throws IOException if an I/O error happens      * @throws LockException in case dbbroker is locked      *      * @return The Collection Object      */
 specifier|public
 specifier|static
 name|MutableCollection

@@ -158,7 +158,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author Loren Cahlander  */
+comment|/**  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author Loren Cahlander  */
 end_comment
 
 begin_class

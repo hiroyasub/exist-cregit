@@ -94,7 +94,6 @@ name|SequenceConstructor
 extends|extends
 name|PathExpr
 block|{
-comment|/**      * @param context      */
 specifier|public
 name|SequenceConstructor
 parameter_list|(

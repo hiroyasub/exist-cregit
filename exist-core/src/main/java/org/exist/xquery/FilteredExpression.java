@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * FilteredExpression represents a primary expression with a predicate. Examples:  * for $i in (1 to 10)[$i mod 2 = 0], $a[1], (doc("test.xml")//section)[2]. Other predicate  * expressions are handled by class {@link org.exist.xquery.LocationStep}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * FilteredExpression represents a primary expression with a predicate. Examples:  * for $i in (1 to 10)[$i mod 2 = 0], $a[1], (doc("test.xml")//section)[2]. Other predicate  * expressions are handled by class {@link org.exist.xquery.LocationStep}.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -132,7 +132,6 @@ specifier|private
 name|Expression
 name|parent
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|FilteredExpression
 parameter_list|(

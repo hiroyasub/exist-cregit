@@ -142,7 +142,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this class to build a new in-memory DOM document.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Use this class to build a new in-memory DOM document.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class

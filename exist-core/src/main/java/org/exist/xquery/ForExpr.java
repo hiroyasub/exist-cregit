@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents an XQuery "for" expression.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -131,7 +131,7 @@ operator|.
 name|FOR
 return|;
 block|}
-comment|/**      * A "for" expression may have an optional positional variable whose      * QName can be set via this method.      *       * @param var      */
+comment|/**      * A "for" expression may have an optional positional variable whose      * QName can be set via this method.      *       * @param var the name of the variable to set      */
 specifier|public
 name|void
 name|setPositionalVariable

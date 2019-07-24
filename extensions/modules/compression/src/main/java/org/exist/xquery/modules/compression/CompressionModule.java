@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for compression and de-compression functions  *   * @author Adam Retter<adam@exist-db.org>  * @author ljo  */
+comment|/**  * XQuery Extension module for compression and de-compression functions  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author ljo  */
 end_comment
 
 begin_class

@@ -36,7 +36,7 @@ specifier|public
 interface|interface
 name|BTreeCallback
 block|{
-comment|/**     * indexInfo is a callback method for index enumeration.     *     * @param value The Value being reported     * @param pointer The data pointer being reported     * @return false to cancel the enumeration     */
+comment|/**     * indexInfo is a callback method for index enumeration.     *     * @param value The Value being reported     * @param pointer The data pointer being reported     * @return false to cancel the enumeration     * @throws TerminatedException if the callback is terminated     */
 name|boolean
 name|indexInfo
 parameter_list|(

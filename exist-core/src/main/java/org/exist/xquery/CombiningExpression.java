@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for the XQuery/XPath combining operators "union", "intersect"  * and "except".  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Abstract base class for the XQuery/XPath combining operators "union", "intersect"  * and "except".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -372,7 +372,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Combine the left and right sequences in some manner 	 * 	 * @param ls Left sequence 	 * @param rs Right sequence 	 * 	 * @return The combined result 	 */
+comment|/** 	 * Combine the left and right sequences in some manner 	 * 	 * @param ls Left sequence 	 * @param rs Right sequence 	 * 	 * @throws XPathException in case of a dynamic error 	 * @return The combined result 	 */
 specifier|protected
 specifier|abstract
 name|Sequence

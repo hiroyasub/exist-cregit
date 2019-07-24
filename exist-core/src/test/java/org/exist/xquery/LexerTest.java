@@ -328,13 +328,13 @@ name|xml
 init|=
 literal|"<text><body>"
 operator|+
-literal|"<p>\u660E&#x660E;</p>"
+literal|"\u660E&#x660E;"
 operator|+
-literal|"<p>&#xC5F4;&#xB2E8;&#xACC4;</p>"
+literal|"&#xC5F4;&#xB2E8;&#xACC4;"
 operator|+
-literal|"<p>\u4ED6\u4E3A\u8FD9\u9879\u5DE5\u7A0B\u6295"
+literal|"\u4ED6\u4E3A\u8FD9\u9879\u5DE5\u7A0B\u6295"
 operator|+
-literal|"\u5165\u4E86\u5341\u4E09\u5E74\u65F6\u95F4\u3002</p>"
+literal|"\u5165\u4E86\u5341\u4E09\u5E74\u65F6\u95F4\u3002"
 operator|+
 literal|"</body></text>"
 decl_stmt|;

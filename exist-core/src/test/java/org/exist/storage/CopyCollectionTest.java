@@ -328,7 +328,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests to ensure that collection content and attributes  * are correctly copied under various circumstances.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Tests to ensure that collection content and attributes  * are correctly copied under various circumstances.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

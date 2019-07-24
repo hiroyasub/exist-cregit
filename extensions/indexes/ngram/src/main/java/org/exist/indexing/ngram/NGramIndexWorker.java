@@ -3945,7 +3945,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Split the given text string into ngrams. The size of an ngram is determined      * by counting the codepoints, not the characters. The resulting strings may      * thus be longer than the ngram size.      *      * @param text the text to tokenize      */
+comment|/**      * Split the given text string into ngrams. The size of an ngram is determined      * by counting the codepoints, not the characters. The resulting strings may      * thus be longer than the ngram size.      *      * @param text the text to tokenize      *      * @return the tokenized text      */
 specifier|public
 name|String
 index|[]

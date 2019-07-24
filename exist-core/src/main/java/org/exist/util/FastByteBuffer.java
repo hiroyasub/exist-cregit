@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Copied this class from Xalan and adopted it for eXist. Bare-bones, unsafe,  *  fast string buffer. No thread-safety, no parameter range checking, exposed  *  fields. Note that in typical applications, thread-safety of a StringBuffer  *  is a somewhat dubious concept in any case.<p>  *  *  Note that Stree and DTM used a single FastStringBuffer as a string pool, by  *  recording start and length indices within this single buffer. This minimizes  *  heap overhead, but of course requires more work when retrieving the data.  *<p>  *  *  FastStringBuffer operates as a "chunked buffer". Doing so reduces the need  *  to recopy existing information when an append exceeds the space available;  *  we just allocate another chunk and flow across to it. (The array of chunks  *  may need to grow, admittedly, but that's a much smaller object.) Some excess  *  recopying may arise when we extract Strings which cross chunk boundaries;  *  larger chunks make that less frequent.<p>  *  *  The size values are parameterized, to allow tuning this code. In theory,  *  Result Tree Fragments might want to be tuned differently from the main  *  document's text.<p>  *  *  %REVIEW% An experiment in self-tuning is included in the code (using nested  *  FastStringBuffers to achieve variation in chunk sizes), but this  *  implementation has proven to be problematic when data may be being copied  *  from the FSB into itself. We should either re-architect that to make this  *  safe (if possible) or remove that code and clean up for  *  performance/maintainability reasons.<p>  *  */
+comment|/**  *  Copied this class from Xalan and adopted it for eXist. Bare-bones, unsafe,  *  fast string buffer. No thread-safety, no parameter range checking, exposed  *  fields. Note that in typical applications, thread-safety of a StringBuffer  *  is a somewhat dubious concept in any case.  *  *  Note that Stree and DTM used a single FastStringBuffer as a string pool, by  *  recording start and length indices within this single buffer. This minimizes  *  heap overhead, but of course requires more work when retrieving the data.  *  *  *  FastStringBuffer operates as a "chunked buffer". Doing so reduces the need  *  to recopy existing information when an append exceeds the space available;  *  we just allocate another chunk and flow across to it. (The array of chunks  *  may need to grow, admittedly, but that's a much smaller object.) Some excess  *  recopying may arise when we extract Strings which cross chunk boundaries;  *  larger chunks make that less frequent.  *  *  The size values are parameterized, to allow tuning this code. In theory,  *  Result Tree Fragments might want to be tuned differently from the main  *  document's text.  *  *  %REVIEW% An experiment in self-tuning is included in the code (using nested  *  FastStringBuffers to achieve variation in chunk sizes), but this  *  implementation has proven to be problematic when data may be being copied  *  from the FSB into itself. We should either re-architect that to make this  *  safe (if possible) or remove that code and clean up for  *  performance/maintainability reasons.  *  */
 end_comment
 
 begin_class
@@ -89,7 +89,7 @@ name|m_innerFSB
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Field m_lastChunk is an index into m_array[], pointing to the last chunk      *  of the Chunked Array currently in use. Note that additional chunks may      *  actually be allocated, eg if the FastStringBuffer had previously been      *  truncated or if someone issued an ensureSpace request.<p>      *      *  The insertion point for append operations is addressed by the      *  combination of m_lastChunk and m_firstFree.      */
+comment|/**      *  Field m_lastChunk is an index into m_array[], pointing to the last chunk      *  of the Chunked Array currently in use. Note that additional chunks may      *  actually be allocated, eg if the FastStringBuffer had previously been      *  truncated or if someone issued an ensureSpace request.      *      *  The insertion point for append operations is addressed by the      *  combination of m_lastChunk and m_firstFree.      */
 name|int
 name|m_lastChunk
 init|=
@@ -107,7 +107,7 @@ name|m_rebundleBits
 init|=
 literal|2
 decl_stmt|;
-comment|/**      *  Construct a FastStringBuffer, with allocation policy as per parameters.      *<p>      *      *  For coding convenience, I've expressed both allocation sizes in terms of      *  a number of bits. That's needed for the final size of a chunk, to permit      *  fast and efficient shift-and-mask addressing. It's less critical for the      *  inital size, and may be reconsidered.<p>      *      *  An alternative would be to accept integer sizes and round to powers of      *  two; that really doesn't seem to buy us much, if anything.      *      *@param  initChunkBits  Length in characters of the initial allocation of a      *      chunk, expressed in log-base-2. (That is, 10 means allocate 1024      *      characters.) Later chunks will use larger allocation units, to trade      *      off allocation speed of large document against storage efficiency of      *      small ones.      *@param  maxChunkBits   Number of character-offset bits that should be used      *      for addressing within a chunk. Maximum length of a chunk is      *      2^chunkBits characters.      *@param  rebundleBits   Number of character-offset bits that addressing      *      should advance before we attempt to take a step from initChunkBits      *      to maxChunkBits      */
+comment|/**      *  Construct a FastStringBuffer, with allocation policy as per parameters.      *      *  For coding convenience, I've expressed both allocation sizes in terms of      *  a number of bits. That's needed for the final size of a chunk, to permit      *  fast and efficient shift-and-mask addressing. It's less critical for the      *  inital size, and may be reconsidered.      *      *  An alternative would be to accept integer sizes and round to powers of      *  two; that really doesn't seem to buy us much, if anything.      *      *@param  initChunkBits  Length in characters of the initial allocation of a      *      chunk, expressed in log-base-2. (That is, 10 means allocate 1024      *      characters.) Later chunks will use larger allocation units, to trade      *      off allocation speed of large document against storage efficiency of      *      small ones.      *@param  maxChunkBits   Number of character-offset bits that should be used      *      for addressing within a chunk. Maximum length of a chunk is      *      2^chunkBits characters.      *@param  rebundleBits   Number of character-offset bits that addressing      *      should advance before we attempt to take a step from initChunkBits      *      to maxChunkBits      */
 specifier|public
 name|FastByteBuffer
 parameter_list|(
@@ -212,7 +212,7 @@ index|]
 expr_stmt|;
 comment|//m_array[0] = ByteArrayPool.getByteArray(m_chunkSize);
 block|}
-comment|/**      *  Construct a FastStringBuffer, using a default rebundleBits value.      *  NEEDSDOC      *      *@param  initChunkBits  NEEDSDOC      *@param  maxChunkBits      */
+comment|/**      * Construct a FastStringBuffer, using a default rebundleBits value.      *      * @param initChunkBits the initial number of chunk bits      * @param maxChunkBits the maximum number of chunk bits      */
 specifier|public
 name|FastByteBuffer
 parameter_list|(
@@ -233,7 +233,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Construct a FastStringBuffer, using default maxChunkBits and      *  rebundleBits values.<p>      *      *  ISSUE: Should this call assert initial size, or fixed size? Now      *  configured as initial, with a default for fixed.      *      *@param  initChunkBits      */
+comment|/**      * Construct a FastStringBuffer, using default maxChunkBits and      * rebundleBits values.      *      * ISSUE: Should this call assert initial size, or fixed size? Now      * configured as initial, with a default for fixed.      *      * @param initChunkBits the initial chunk size in bits      */
 specifier|public
 name|FastByteBuffer
 parameter_list|(
@@ -251,7 +251,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  Construct a FastStringBuffer, using a default allocation policy. */
+comment|/**      * Construct a FastStringBuffer, using a default allocation policy.      */
 specifier|public
 name|FastByteBuffer
 parameter_list|()
@@ -272,7 +272,7 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Encapsulation c'tor. After this is called, the source FastStringBuffer      *  will be reset to use the new object as its m_innerFSB, and will have had      *  its chunk size reset appropriately. IT SHOULD NEVER BE CALLED EXCEPT      *  WHEN source.length()==1<<(source.m_chunkBits+source.m_rebundleBits)      *  NEEDSDOC      *      *@param  source      */
+comment|/**      *  Encapsulation c'tor. After this is called, the source FastStringBuffer      *  will be reset to use the new object as its m_innerFSB, and will have had      *  its chunk size reset appropriately. IT SHOULD NEVER BE CALLED EXCEPT      *  WHEN source.length()==1<<(source.m_chunkBits+source.m_rebundleBits)      *  NEEDSDOC      *      * @param source the source buffer      */
 specifier|private
 name|FastByteBuffer
 parameter_list|(
@@ -401,7 +401,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**      *  Append a single character onto the FastStringBuffer, growing the storage      *  if necessary.<p>      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[][] may no longer be valid.... though in fact they should be in      *  this instance.      *      *@param  value  character to be appended.      */
+comment|/**      *  Append a single character onto the FastStringBuffer, growing the storage      *  if necessary.      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[][] may no longer be valid.... though in fact they should be in      *  this instance.      *      * @param value character to be appended.      */
 specifier|public
 specifier|final
 name|void
@@ -578,7 +578,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      *  Append the contents of the array onto the buffer.      *      *@param  chars  Description of the Parameter      */
+comment|/**      * Append the contents of the array onto the buffer.      *      * @param chars Description of the Parameter      */
 specifier|public
 specifier|final
 name|void
@@ -601,7 +601,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Append part of the contents of a Character Array onto the      *  FastStringBuffer, growing the storage if necessary.<p>      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[] may no longer be valid.      *      *@param  chars   character array from which data is to be copied      *@param  start   offset in chars of first character to be copied,      *      zero-based.      *@param  length  number of characters to be copied      */
+comment|/**      *  Append part of the contents of a Character Array onto the      *  FastStringBuffer, growing the storage if necessary.      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[] may no longer be valid.      *      * @param  chars   character array from which data is to be copied      * @param  start   offset in chars of first character to be copied,      *      zero-based.      * @param  length  number of characters to be copied      */
 specifier|public
 specifier|final
 name|void
@@ -833,7 +833,7 @@ operator|+=
 name|available
 expr_stmt|;
 block|}
-comment|/**      *  Append the contents of another FastStringBuffer onto this      *  FastStringBuffer, growing the storage if necessary.<p>      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[] may no longer be valid.      *      *@param  value  FastStringBuffer whose contents are to be appended.      */
+comment|/**      *  Append the contents of another FastStringBuffer onto this      *  FastStringBuffer, growing the storage if necessary.      *      *  NOTE THAT after calling append(), previously obtained references to      *  m_array[] may no longer be valid.      *      * @param  value  FastStringBuffer whose contents are to be appended.      */
 specifier|public
 specifier|final
 name|void
@@ -1902,7 +1902,7 @@ name|m_chunkSize
 index|]
 expr_stmt|;
 block|}
-comment|/**      *  Directly set how much of the FastStringBuffer's storage is to be      *  considered part of its content. This is a fast but hazardous operation.      *  It is not protected against negative values, or values greater than the      *  amount of storage currently available... and even if additional storage      *  does exist, its contents are unpredictable. The only safe use for our      *  setLength() is to truncate the FastStringBuffer to a shorter string.      *      *@param  l  New length. If l<0 or l>=getLength(), this operation will not      *      report an error but future operations will almost certainly fail.      */
+comment|/**      *  Directly set how much of the FastStringBuffer's storage is to be      *  considered part of its content. This is a fast but hazardous operation.      *  It is not protected against negative values, or values greater than the      *  amount of storage currently available... and even if additional storage      *  does exist, its contents are unpredictable. The only safe use for our      *  setLength() is to truncate the FastStringBuffer to a shorter string.      *      *@param  l  New length. If {@code l< 0 || l>= getLength()}, this operation will not      *      report an error but future operations will almost certainly fail.      */
 specifier|public
 specifier|final
 name|void

@@ -384,7 +384,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Write document to local database (embedded) using output stream.  *  * @author Adam Retter<adam@exist-db.org>  * @author Dannes Wessels  */
+comment|/**  * Write document to local database (embedded) using output stream.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Dannes Wessels  */
 end_comment
 
 begin_class

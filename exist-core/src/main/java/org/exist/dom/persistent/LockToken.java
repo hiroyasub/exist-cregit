@@ -231,7 +231,7 @@ name|resourceType
 expr_stmt|;
 block|}
 comment|// Getters and setters
-comment|/**      * Get type of lock.      */
+comment|/**      * @return the type of lock.      */
 specifier|public
 name|LockType
 name|getType

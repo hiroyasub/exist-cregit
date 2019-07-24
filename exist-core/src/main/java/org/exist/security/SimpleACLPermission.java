@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple ACL (Access Control List) implementation  * which extends UnixStylePermission with additional  * ACEs (Access Control Entries).  *  * everyone has READ_ACL  * WRITE access implies WRITE_ACL  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * A simple ACL (Access Control List) implementation  * which extends UnixStylePermission with additional  * ACEs (Access Control Entries).  *  * everyone has READ_ACL  * WRITE access implies WRITE_ACL  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see org.exist.util.FileUtils#deleteQuietly(Path)  *  * @author Andrzej Taramina  *  */
+comment|/**  * @see org.exist.util.FileUtils#deleteQuietly(Path)  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  */
 end_comment
 
 begin_class
@@ -315,7 +315,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|FileDelete
 parameter_list|(

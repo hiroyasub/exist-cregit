@@ -142,7 +142,6 @@ specifier|private
 name|Expression
 name|content
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|DynamicPIConstructor
 parameter_list|(

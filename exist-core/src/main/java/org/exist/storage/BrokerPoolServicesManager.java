@@ -130,7 +130,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class simply maintains a list of {@link BrokerPoolService}  * and provides methods to {@BrokerPool} to manage the lifecycle of  * those services.  *  * This class should only be accessed from {@link BrokerPool}  * and the order of method invocation (service state change)  * is significant and must follow the order:  *  *      register -> configure -> prepare ->  *          system -> pre-multi-user -> multi-user  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * This class simply maintains a list of {@link BrokerPoolService}  * and provides methods to {@BrokerPool} to manage the lifecycle of  * those services.  *  * This class should only be accessed from {@link BrokerPool}  * and the order of method invocation (service state change)  * is significant and must follow the order:  *  *      register -> configure -> prepare ->  *          system -> pre-multi-user -> multi-user  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

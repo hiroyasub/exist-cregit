@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * JMX MXBean for examining the CollectionCache  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * JMX MXBean for examining the CollectionCache  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collects statistics about the distribution of elements in a document or  * even the entire database. The class creates a graph structure which describes  * all possible element paths and their frequency. For example, for a TEI document, a typical  * path could be:  *  *<pre>TEI[44,63330] -> text[44,62757] -> body[44,44206] -> div[300,5584] -> p[5336,820]</pre>  *  * which means there are 44 TEI, text and body elements in the db with 300 div children and  * 5336 paragraphs below them. The second number indicates the size of the largest element,  * expressed as the number of descendant elements below the node. The largest p node in this  * distribution has 820 elements below it.  */
+comment|/**  * Collects statistics about the distribution of elements in a document or  * even the entire database. The class creates a graph structure which describes  * all possible element paths and their frequency. For example, for a TEI document, a typical  * path could be:  *  *<pre>TEI[44,63330] -&gt; text[44,62757] -gt; body[44,44206] -gt; div[300,5584] -gt; p[5336,820]</pre>  *  * which means there are 44 TEI, text and body elements in the db with 300 div children and  * 5336 paragraphs below them. The second number indicates the size of the largest element,  * expressed as the number of descendant elements below the node. The largest p node in this  * distribution has 820 elements below it.  */
 end_comment
 
 begin_class
@@ -203,7 +203,7 @@ name|getSize
 argument_list|()
 return|;
 block|}
-comment|/**      * Add the given node path (a path like /root/childA/childB) to the data guide.      * The frequency for the target element (i.e. the last component in the path)      * is incremented by one.      */
+comment|/**      * Add the given node path (a path like /root/childA/childB) to the data guide.      * The frequency for the target element (i.e. the last component in the path)      * is incremented by one.      *      * @param path the node path      *      * @return the node statistics      */
 specifier|public
 name|NodeStats
 name|add
@@ -221,7 +221,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Add the given node path using the frequency and size information      * given in the second argument. Used to merge two DataGuides.      */
+comment|/**      * Add the given node path using the frequency and size information      * given in the second argument. Used to merge two DataGuides.      *      * @param path the node path      * @param mergeWith the existing node statistics      *      * @return the node statistics      */
 specifier|protected
 name|NodeStats
 name|add
@@ -320,7 +320,7 @@ return|return
 name|current
 return|;
 block|}
-comment|/**      * Merge paths and statistics from this instance into the      * other instance.      *      * @param other      * @return the other instance containing the merged graphs      */
+comment|/**      * Merge paths and statistics from this instance into the      * other instance.      *      * @param other the other data guide      * @return the other instance containing the merged graphs      */
 specifier|public
 name|DataGuide
 name|mergeInto

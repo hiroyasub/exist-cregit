@@ -302,7 +302,6 @@ literal|"the un-escaped string"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunUnEscapeURI
 parameter_list|(

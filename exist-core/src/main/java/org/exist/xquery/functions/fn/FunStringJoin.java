@@ -391,7 +391,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * 	 */
 specifier|public
 name|FunStringJoin
 parameter_list|(

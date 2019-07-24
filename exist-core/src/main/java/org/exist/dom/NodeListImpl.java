@@ -120,7 +120,7 @@ name|node
 argument_list|)
 return|;
 block|}
-comment|/**      * Add all elements of the other NodeList to      * this NodeList      *      * @return true if all elements were added, false      *   if none or only some were added.      */
+comment|/**      * Add all elements of the other NodeList to      * this NodeList      * @param other NodeList to add      * @return true if all elements were added, false      *   if none or only some were added.      */
 specifier|public
 name|boolean
 name|addAll

@@ -246,7 +246,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension GetFolder  *   * Get a mail store  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Mail Module Extension GetFolder  *   * Get a mail store  *   * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -420,7 +420,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * MailFolderFunctions Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
 specifier|public
 name|MailFolderFunctions
 parameter_list|(
@@ -439,7 +438,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-folder function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the get-folder() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the get-folder() function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval

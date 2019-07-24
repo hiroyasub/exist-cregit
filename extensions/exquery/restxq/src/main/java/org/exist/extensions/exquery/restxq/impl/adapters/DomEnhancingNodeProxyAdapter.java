@@ -194,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A NodeProxy Proxy which enhances NodeProxy  * with a W3C DOM implementation by proxying to  * its underlying typed node which is available  * through NodeProxy.getNode()  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * A NodeProxy Proxy which enhances NodeProxy  * with a W3C DOM implementation by proxying to  * its underlying typed node which is available  * through NodeProxy.getNode()  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

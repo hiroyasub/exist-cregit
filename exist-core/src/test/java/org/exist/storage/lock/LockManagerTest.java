@@ -200,7 +200,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests to ensure the correct behaviour of the LockManager  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Tests to ensure the correct behaviour of the LockManager  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

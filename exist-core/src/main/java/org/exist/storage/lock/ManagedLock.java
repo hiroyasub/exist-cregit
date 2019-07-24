@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a simple wrapper around a Lock  * so that it may be used in a try-with-resources  * statement  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Provides a simple wrapper around a Lock  * so that it may be used in a try-with-resources  * statement  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -96,7 +96,7 @@ operator|=
 name|closer
 expr_stmt|;
 block|}
-comment|/**      * Acquires and manages a lock with a specific mode      *      * @param lock The lock to call {@link Lock#acquire(Lock.LockMode)} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      */
+comment|/**      * Acquires and manages a lock with a specific mode      *      * @param lock The lock to call {@link Lock#acquire(Lock.LockMode)} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      *      * @throws LockException if a lock error occurs      */
 specifier|public
 specifier|static
 name|ManagedLock
@@ -155,7 +155,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Acquires and manages a lock with a specific mode      *      * @param lock The lock to call {@link Lock#acquire(Lock.LockMode)} on      * @param mode the mode of the lock      * @param type the type of the lock      *      * @return A managed lock which will be released with {@link #close()}      */
+comment|/**      * Acquires and manages a lock with a specific mode      *      * @param lock The lock to call {@link Lock#acquire(Lock.LockMode)} on      * @param mode the mode of the lock      * @param type the type of the lock      *      * @return A managed lock which will be released with {@link #close()}      * @throws LockException if a lock error occurs      */
 specifier|public
 specifier|static
 name|ManagedLock
@@ -222,7 +222,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Attempts to acquire and manage a lock with a specific mode      *      * @param lock The lock to call {@link Lock#attempt(Lock.LockMode)} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      */
+comment|/**      * Attempts to acquire and manage a lock with a specific mode      *      * @param lock The lock to call {@link Lock#attempt(Lock.LockMode)} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      * @throws LockException if a lock error occurs      */
 specifier|public
 specifier|static
 name|ManagedLock
@@ -381,7 +381,7 @@ name|unlock
 argument_list|)
 return|;
 block|}
-comment|/**      * Attempts to acquire and manage a lock with a specific mode      *      * @param lock The lock to call {@link java.util.concurrent.locks.Lock#tryLock()} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      */
+comment|/**      * Attempts to acquire and manage a lock with a specific mode      *      * @param lock The lock to call {@link java.util.concurrent.locks.Lock#tryLock()} on      * @param mode the mode of the lock      *      * @return A managed lock which will be released with {@link #close()}      * @throws LockException if a lock error occurs      */
 specifier|public
 specifier|static
 name|ManagedLock
@@ -527,7 +527,7 @@ name|unlock
 argument_list|)
 return|;
 block|}
-comment|/**      * Attempts to acquire and manage a lock      *      * @param lock The lock to call {@link java.util.concurrent.locks.Lock#tryLock()} on      *      * @return A managed lock which will be released with {@link #close()}      */
+comment|/**      * Attempts to acquire and manage a lock      *      * @param lock The lock to call {@link java.util.concurrent.locks.Lock#tryLock()} on      *      * @return A managed lock which will be released with {@link #close()}      * @throws LockException if a lock error occurs      */
 specifier|public
 specifier|static
 name|ManagedLock

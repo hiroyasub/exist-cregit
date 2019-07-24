@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class for checking dependencies with XML libraries.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  *  Class for checking dependencies with XML libraries.  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  */
 end_comment
 
 begin_class

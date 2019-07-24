@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-06 Wolfgang M.  * Meier meier@ifs.tu-darmstadt.de http://exist.sourceforge.net  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-06 Wolfgang M.  * Meier meier@ifs.tu-darmstadt.de http://exist.sourceforge.net  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 end_comment
 
 begin_package
@@ -380,7 +380,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for HttpServletRequest  * - differentiates between POST parameters in the URL or Content Body  * - caches content Body of the POST request as read, making it available many times  *<p>  * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *<p>  * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))  * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *<p>  * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @version 1.2  * @serial 2018-04-03  */
+comment|/**  * A wrapper for HttpServletRequest  * - differentiates between POST parameters in the URL or Content Body  * - caches content Body of the POST request as read, making it available many times  *  * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *  * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))  * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *  * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @version 1.2  * @serial 2018-04-03  */
 end_comment
 
 begin_comment
@@ -453,7 +453,7 @@ specifier|final
 name|CachingFilterInputStream
 name|is
 decl_stmt|;
-comment|/**      * HttpServletRequestWrapper Constructor      *      * @param request      The HttpServletRequest to wrap      * @param formEncoding The encoding to use      */
+comment|/**      * HttpServletRequestWrapper Constructor      *      * @param cacheConfiguration the cache configuration      * @param request The HttpServletRequest to wrap      * @param formEncoding The encoding to use      *      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|HttpServletRequestWrapper
 parameter_list|(
@@ -809,7 +809,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Parses Parameters into param objects and stores them in a vector in params      */
+comment|/**      * Parses Parameters into param objects and stores them in a vector in params.      *      * @param parameters the parameters to parse      * @param type the type of the parameters      */
 specifier|private
 name|void
 name|parseParameters

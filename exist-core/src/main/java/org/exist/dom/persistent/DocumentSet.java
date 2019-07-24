@@ -166,7 +166,7 @@ name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 function_decl|;
-comment|/**      * Locks all of the documents currently in the document set.      *      * @param exclusive true if a WRITE_LOCK is required, false if a READ_LOCK is required      * @return The locks      * @throws LockException if locking any document fails, when thrown no locks will be held on any documents in the set      */
+comment|/**      * Locks all of the documents currently in the document set.      *      * @param broker the eXist-db DBBroker      * @param exclusive true if a WRITE_LOCK is required, false if a READ_LOCK is required      * @return The locks      * @throws LockException if locking any document fails, when thrown no locks will be held on any documents in the set      */
 name|ManagedLocks
 argument_list|<
 name|ManagedDocumentLock

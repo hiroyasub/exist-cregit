@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -310,7 +310,7 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-comment|/**      * Convenience method for getting the name of the user or group      * of which this ace is applied to      */
+comment|/**      * Convenience method for getting the name of the user or group      * of which this ace is applied to      * @param index of the ACE      * @return user or group the ace is applied to      */
 name|String
 name|getACEWho
 parameter_list|(
@@ -325,7 +325,7 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-comment|/**      * Clears all ACE's      */
+comment|/**      * Clears all ACE's      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|clear
 parameter_list|()

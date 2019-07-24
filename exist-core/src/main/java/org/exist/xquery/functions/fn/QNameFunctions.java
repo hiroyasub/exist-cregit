@@ -425,7 +425,6 @@ literal|"the namespace URI"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|QNameFunctions
 parameter_list|(

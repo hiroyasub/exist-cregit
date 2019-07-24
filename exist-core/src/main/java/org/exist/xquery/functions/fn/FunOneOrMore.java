@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements function fn:one-or-more.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements function fn:one-or-more.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -279,7 +279,6 @@ literal|"the sequence passed in by $arg if it contains one or more items."
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunOneOrMore
 parameter_list|(

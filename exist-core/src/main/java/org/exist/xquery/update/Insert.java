@@ -444,7 +444,6 @@ name|mode
 init|=
 name|INSERT_BEFORE
 decl_stmt|;
-comment|/**      * @param context      * @param select      * @param value      */
 specifier|public
 name|Insert
 parameter_list|(

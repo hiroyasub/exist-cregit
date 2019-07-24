@@ -258,7 +258,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *  */
 end_comment
 
 begin_class
@@ -468,7 +468,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *       * @param contextSequence       * @param collection       * @param args       * @throws XPathException       */
 specifier|public
 name|Sequence
 name|evalWithCollection

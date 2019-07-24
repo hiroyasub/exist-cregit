@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A utility class for xmldb URis. Since, java.net.URI is<strong>final</strong> this class acts as a wrapper.  *  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * A utility class for xmldb URis. Since, java.net.URI is<strong>final</strong> this class acts as a wrapper.  *  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_comment
@@ -550,7 +550,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Contructs an XmldbURI from given URI. The provided URI must have the XMLDB_SCHEME ("xmldb")      *      * @param xmldbURI A string      * @throws URISyntaxException If the given string is not a valid xmldb URI.      */
+comment|/**      * Contructs an XmldbURI from given URI. The provided URI must have the XMLDB_SCHEME ("xmldb")      *      * @param xmldbURI A string      * @param mustHaveXMLDB true if the provided shceme must be xmldb      * @throws URISyntaxException If the given string is not a valid xmldb URI.      */
 specifier|protected
 name|XmldbURI
 parameter_list|(
@@ -1255,7 +1255,7 @@ name|mustHaveXMLDB
 argument_list|)
 return|;
 block|}
-comment|/**      * Feeds private members. Receives a URI with the xmldb: scheme already stripped      *      * @param xmldbURI       DOCUMENT ME!      * @param hadXmldbPrefix DOCUMENT ME!      * @throws URISyntaxException      */
+comment|/**      * Feeds private members. Receives a URI with the xmldb: scheme already stripped      *      * @param xmldbURI the xmldb URI.      * @param hadXmldbPrefix if the xmldb URI has an xmldb prefix.      *      * @throws URISyntaxException if the URI is invalid.      */
 specifier|protected
 name|void
 name|parseURI
@@ -1280,7 +1280,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context from the collection path as smartly as possible. One      * would probably prefer a split policy based on the presence of a well-known root collection.      *      * @param path The java.net.URI.getPath() provided.      * @throws URISyntaxException      */
+comment|/**      * Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context from the collection path as smartly as possible. One      * would probably prefer a split policy based on the presence of a well-known root collection.      *      * @param path The java.net.URI.getPath() provided.      * @throws URISyntaxException if the URI is invalid.      */
 specifier|protected
 name|void
 name|splitPath
@@ -1340,7 +1340,7 @@ expr_stmt|;
 block|}
 comment|//TODO : check that collectionPath starts with DBBroker.ROOT_COLLECTION ?
 block|}
-comment|/**      * To be called before a context operation with another XmldbURI.      *      * @param uri      * @throws IllegalArgumentException      */
+comment|/**      * To be called before a context operation with another XmldbURI.      *      * @param uri the uri      * @throws IllegalArgumentException if the URI is invalid      */
 specifier|protected
 name|void
 name|checkCompatibilityForContextOperation
@@ -1564,7 +1564,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * To be called before a collection path operation with another XmldbURI.      *      * @param uri      * @throws IllegalArgumentException      */
+comment|/**      * To be called before a collection path operation with another XmldbURI.      *      * @param uri the uri      * @throws IllegalArgumentException if the uri is invalid      */
 specifier|protected
 name|void
 name|checkCompatibilityForCollectionOperation
@@ -1909,7 +1909,7 @@ else|:
 name|this
 return|;
 block|}
-comment|/**      * To be called each time a private member that interacts with the wrapped URI is modified.      *      * @throws URISyntaxException      */
+comment|/**      * To be called each time a private member that interacts with the wrapped URI is modified.      *      * @throws URISyntaxException if the URI is invalid.      */
 specifier|protected
 name|void
 name|recomputeURI
@@ -2718,7 +2718,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Ugly workaround for non-URI compliant pathes.      *      * @param pseudoURI What is supposed to be a URI      * @return an supposedly correctly escaped URI<strong>string representation</string></strong>      * @throws URISyntaxException DOCUMENT ME!      * @deprecated By definition, using this method is strongly discouraged      */
+comment|/**      * Ugly workaround for non-URI compliant pathes.      *      * @param pseudoURI What is supposed to be a URI      *      * @return an supposedly correctly escaped URI<strong>string representation</strong>      *      * @throws URISyntaxException if the URI is invalid.      *      * @deprecated By definition, using this method is strongly discouraged      */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|String
@@ -3987,7 +3989,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* @deprecated Legacy method used here and there in the code      * if the currentPath is null return the parentPath else      * if the currentPath doesnt not start with "/db/" and is not equal to "/db" then adjust the path to start with the parentPath      *      * Fix to Jens collection/resource name problem by deliriumsky      *      * @deprecated Use {@link #resolveCollectionPath(String) resolveCollectionPath} instead      */
+comment|/**      * If the currentPath is null return the parentPath else      * if the currentPath doesnt not start with "/db/" and is not equal to "/db" then adjust the path to start with the parentPath      *      * Fix to Jens collection/resource name problem by deliriumsky      *      * @param currentPath the current path      * @param parentPath the parent path      *      * @return the checked path      *      * @deprecated Use {@link #resolveCollectionPath(XmldbURI)} instead      */
 specifier|public
 specifier|static
 name|String
@@ -4129,7 +4131,7 @@ operator|+
 name|currentPath
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param fileName      * @param parentPath      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code      */
+comment|/**      * DOCUMENT ME!      *      * @param fileName the filename      * @param parentPath the parent path      * @return the checked path      * @deprecated Legacy method used here and there in the code      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -4158,7 +4160,7 @@ name|parentPath
 argument_list|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param name      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code and copied as such      */
+comment|/**      * DOCUMENT ME!      *      * @param name the name      * @return the absolute name      * @deprecated Legacy method used here and there in the code and copied as such      */
 comment|//TODO : changes // into /  */
 annotation|@
 name|Deprecated
@@ -4358,7 +4360,7 @@ return|return
 name|name2
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param name      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code and copied as such      */
+comment|/**      * DOCUMENT ME!      *      * @param name the name      * @return the normalized collection name      * @deprecated Legacy method used here and there in the code and copied as such      */
 comment|//TODO : changes // into /  */
 annotation|@
 name|Deprecated

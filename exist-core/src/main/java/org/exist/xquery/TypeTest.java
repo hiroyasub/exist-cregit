@@ -102,7 +102,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests if a node is of a given node type.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Tests if a node is of a given node type.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

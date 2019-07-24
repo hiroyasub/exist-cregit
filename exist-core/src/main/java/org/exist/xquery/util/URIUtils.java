@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for URI related functions  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * Utilities for URI related functions  *   * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

@@ -155,7 +155,7 @@ operator|=
 name|errCode
 expr_stmt|;
 block|}
-comment|/**      * Creates a new error with the specified message id      * and adds a single argument to the argument list for the      * error message.      *       * @param errCode      * @param arg1      */
+comment|/**      * Creates a new error with the specified message id      * and adds a single argument to the argument list for the      * error message.      *       * @param errCode the message id for this error      * @param arg1 additional argument      */
 specifier|public
 name|Error
 parameter_list|(
@@ -213,7 +213,7 @@ name|arg2
 block|}
 expr_stmt|;
 block|}
-comment|/**      * Add an argument to the argument list for the error message.      *       * @param arg      */
+comment|/**      * Add an argument to the argument list for the error message.      *       * @param arg the argument to add      */
 specifier|public
 name|void
 name|addArg

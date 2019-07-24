@@ -138,7 +138,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -695,7 +695,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      */
+comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      *      * @param<T> either File or byte[]      * @return the value converted to a corresponding java object      * @throws XPathException in case of dynamic error      */
 specifier|public
 parameter_list|<
 name|T
@@ -1092,7 +1092,7 @@ name|UTF_8
 argument_list|)
 return|;
 block|}
-comment|/**      * Streams the raw binary data      */
+comment|/**      * Streams the raw binary data      *      * @param os the output to stream to      * @throws IOException if an error occurs while writing to the stream      */
 specifier|public
 specifier|abstract
 name|void
@@ -1104,7 +1104,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Streams the encoded binary data      */
+comment|/**      * Streams the encoded binary data      * @param os the output to stream to      * @throws IOException if an error occurs while writing to the stream      */
 specifier|public
 name|void
 name|streamTo

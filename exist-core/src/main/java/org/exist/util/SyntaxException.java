@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *created    24. Juni 2002  */
+comment|/**  *  Description of the Class  *  * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  * created    24. Juni 2002  */
 end_comment
 
 begin_class

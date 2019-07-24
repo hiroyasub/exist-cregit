@@ -250,7 +250,7 @@ name|NoDiacriticsStandardAnalyzer
 extends|extends
 name|StopwordAnalyzerBase
 block|{
-comment|/** Default maximum allowed token length */
+comment|/**      * Default maximum allowed token length      */
 specifier|public
 specifier|static
 specifier|final
@@ -271,7 +271,7 @@ specifier|final
 name|boolean
 name|replaceInvalidAcronym
 decl_stmt|;
-comment|/** An unmodifiable set containing some common English words that are usually not      useful for searching. */
+comment|/**      * An unmodifiable set containing some common English words that are usually not      * useful for searching.      */
 specifier|public
 specifier|static
 specifier|final
@@ -282,7 +282,7 @@ name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
 decl_stmt|;
-comment|/** Builds an analyzer with the given stop words.      * @param stopWords stop words      */
+comment|/**      * Builds an analyzer with the given stop words.      *      * @param stopWords stop words      */
 specifier|public
 name|NoDiacriticsStandardAnalyzer
 parameter_list|(
@@ -301,7 +301,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the given stop words.      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      * @param stopWords stop words      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer(CharArraySet)}      */
+comment|/**      * Builds an analyzer with the given stop words.      *      * @param matchVersion Lucene version to match, see {@link StopwordAnalyzerBase#version}      * @param stopWords stop words      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer(CharArraySet)}      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -335,7 +335,7 @@ name|LUCENE_VERSION_IN_USE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      /** Builds an analyzer with the default stop words ({@link      * #STOP_WORDS_SET}).      */
+comment|/**       * Builds an analyzer with the default stop words. ({@link #STOP_WORDS_SET}).       */
 specifier|protected
 name|NoDiacriticsStandardAnalyzer
 parameter_list|()
@@ -349,7 +349,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the default stop words ({@link      * #STOP_WORDS_SET}).      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer()}      */
+comment|/**      * Builds an analyzer with the default stop words ({@link #STOP_WORDS_SET}).      *      * @param matchVersion Lucene version to match See {@link StopwordAnalyzerBase#version}.      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer()}      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -368,7 +368,7 @@ name|STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given reader.      * @see WordlistLoader#getWordSet(Reader, Version)      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      * @param stopwords Reader to read stop words from */
+comment|/**      * Builds an analyzer with the stop words from the given reader.      *      * See {@link WordlistLoader#getWordSet(Reader, Version)}      *      * @param matchVersion Lucene version to match See {@link StopwordAnalyzerBase#version}.      * @param stopwords Reader to read stop words from      *      * @throws IOException if an I/O error occurs      */
 specifier|public
 name|NoDiacriticsStandardAnalyzer
 parameter_list|(
@@ -396,7 +396,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set maximum allowed token length.  If a token is seen      * that exceeds this length then it is discarded.  This      * setting only takes effect the next time tokenStream or      * reusableTokenStream is called.      */
+comment|/**      * Set maximum allowed token length.  If a token is seen      * that exceeds this length then it is discarded.  This      * setting only takes effect the next time tokenStream or      * reusableTokenStream is called.      *      * @param length the max token length.      */
 specifier|public
 name|void
 name|setMaxTokenLength
@@ -410,7 +410,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**      * @see #setMaxTokenLength      */
+comment|/**      * Get the maximum allowed token depth.      *      * @return the maximum allowed token depth.      */
 specifier|public
 name|int
 name|getMaxTokenLength

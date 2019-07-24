@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -375,7 +375,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args The arguments given to the function      * @param contextSequence The context sequence for the function or null      *      * @return The result of the XPath function      */
+comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args The arguments given to the function.      * @param contextSequence The context sequence for the function or null.      * @throws XPathException An error occurred.      *      * @return The result of the XPath function      */
 specifier|public
 specifier|abstract
 name|Sequence

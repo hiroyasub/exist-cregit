@@ -264,7 +264,7 @@ name|UCA_COLLATION_URI
 init|=
 literal|"http://www.w3.org/2013/collation/UCA"
 decl_stmt|;
-comment|/**      * The HTML ASCII Case-Insensitive Collation as defined by the XPath F&O spec.      */
+comment|/**      * The HTML ASCII Case-Insensitive Collation as defined by the XPath F&amp;O spec.      */
 specifier|public
 specifier|final
 specifier|static
@@ -336,7 +336,7 @@ name|AtomicReference
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Get a {@link Comparator}from the specified URI.      *<p>      * The original code is from saxon (@linkplain http://saxon.sf.net).      *      * @param uri The URI describing the collation and settings      *      * @return The Collator for the URI, or null.      *      * @throws XPathException If an error occurs whilst constructing the Collator      */
+comment|/**      * Get a {@link Comparator}from the specified URI.      *      * The original code is from saxon (@linkplain http://saxon.sf.net).      *      * @param uri The URI describing the collation and settings      *      * @return The Collator for the URI, or null.      *      * @throws XPathException If an error occurs whilst constructing the Collator      */
 specifier|public
 specifier|static
 annotation|@

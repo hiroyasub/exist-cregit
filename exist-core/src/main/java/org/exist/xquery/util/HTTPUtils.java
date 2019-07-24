@@ -209,7 +209,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** Feature "Guess last modification time for an XQuery result";       *  the HTTP header Last-Modified is filled with most recent time stamp among all       *  XQuery documents appearing in the actual response.      *  Note however, that the actual response can be influenced, through tests in the query,      *  by documents more recent. */
+comment|/** Feature "Guess last modification time for an XQuery result";       *  the HTTP header Last-Modified is filled with most recent time stamp among all       *  XQuery documents appearing in the actual response.      *  Note however, that the actual response can be influenced, through tests in the query,      *  by documents more recent. 	 * 	 * @param result the XQuery result to inspect 	 * @param context current context 	 */
 specifier|public
 specifier|static
 name|void

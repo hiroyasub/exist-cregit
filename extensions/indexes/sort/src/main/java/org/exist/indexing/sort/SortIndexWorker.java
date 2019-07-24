@@ -475,7 +475,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/**      * Create a new sort index identified by a name. The method iterates through all items in      * the items list and adds the nodes to the index. It assumes that the list is already ordered.      *      * @param name  the name by which the index will be identified      * @param items ordered list of items to store      * @throws EXistException      * @throws LockException      */
+comment|/**      * Create a new sort index identified by a name. The method iterates through all items in      * the items list and adds the nodes to the index. It assumes that the list is already ordered.      *      * @param name  the name by which the index will be identified      * @param items ordered list of items to store      *      * @throws EXistException if an error occurs with the database      * @throws LockException if a locking error occurs      */
 specifier|public
 name|void
 name|createIndex
@@ -624,7 +624,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**      * Looks up the given node in the specified index and returns its original position      * in the ordered set as a long integer.      *      * @param name  the name of the index      * @param proxy the node      * @return the original position of the node in the ordered set      * @throws EXistException      * @throws LockException      */
+comment|/**      * Looks up the given node in the specified index and returns its original position      * in the ordered set as a long integer.      *      * @param name  the name of the index      * @param proxy the node      *      * @return the original position of the node in the ordered set      *      * @throws EXistException if an error occurs with the database      * @throws LockException if a locking error occurs      */
 specifier|public
 name|long
 name|getIndex
@@ -727,7 +727,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Completely remove the index identified by its name.      *      * @param name the name of the index      * @throws EXistException      * @throws LockException      */
+comment|/**      * Completely remove the index identified by its name.      *      * @param name the name of the index      *      * @throws EXistException if an error occurs with the database      * @throws LockException if a locking error occurs      */
 specifier|public
 name|void
 name|remove
@@ -1200,7 +1200,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Register the given index name and return a short id for it.      *      * @param name the name of the index      * @return a unique id to be used for the index entries      * @throws EXistException      * @throws LockException      */
+comment|/**      * Register the given index name and return a short id for it.      *      * @param name the name of the index      *      * @return a unique id to be used for the index entries      *      * @throws EXistException if an error occurs with the database      * @throws LockException if a locking error occurs      */
 specifier|private
 name|short
 name|getOrRegisterId

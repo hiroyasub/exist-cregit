@@ -178,7 +178,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Lock Manager for Locks that are used across  * database instance functions.  *  * There is a unique lock for each ID, and calls with the same  * ID will always return the same lock. Different IDs will always  * receive different locks.  *  * The locking protocol for Collection locks is taken from the paper:  *     Granularity of Locks in a Shared Data Base - Gray, Lorie and Putzolu 1975  *     {@see https://pdfs.semanticscholar.org/5acd/43c51fa5e677b0c242b065a64f5948af022c.pdf}  * specifically we have adopted the acquisition algorithm from Section 3.2 of the paper.  *  * Our adaptions enable us to specify either a multi-writer/multi-reader approach between Collection  * sub-trees or a single-writer/multi-reader approach on the entire Collection tree.  *  * The uptake is that locking a Collection, also implicitly implies locking all descendant  * Collections with the same mode. This reduces the amount of locks required for  * manipulating Collection sub-trees.  *  * The locking protocol for Documents is entirely flat, and is unrelated to Collection locking.  * Deadlocks can still occur between Collections and Documents in eXist-db (as they could in the past).  * If it becomes necessary to eliminate such Collection/Document deadlock scenarios, Document locks  * could be acquired using the same protocol as Collection locks (as really they are all just URI paths in a hierarchy)!  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A Lock Manager for Locks that are used across  * database instance functions.  *  * There is a unique lock for each ID, and calls with the same  * ID will always return the same lock. Different IDs will always  * receive different locks.  *  * The locking protocol for Collection locks is taken from the paper:  *<a href="https://pdfs.semanticscholar.org/5acd/43c51fa5e677b0c242b065a64f5948af022c.pdf">Granularity of Locks in a Shared Data Base - Gray, Lorie and Putzolu 1975</a>.  * specifically we have adopted the acquisition algorithm from Section 3.2 of the paper.  *  * Our adaptions enable us to specify either a multi-writer/multi-reader approach between Collection  * sub-trees or a single-writer/multi-reader approach on the entire Collection tree.  *  * The uptake is that locking a Collection, also implicitly implies locking all descendant  * Collections with the same mode. This reduces the amount of locks required for  * manipulating Collection sub-trees.  *  * The locking protocol for Documents is entirely flat, and is unrelated to Collection locking.  * Deadlocks can still occur between Collections and Documents in eXist-db (as they could in the past).  * If it becomes necessary to eliminate such Collection/Document deadlock scenarios, Document locks  * could be acquired using the same protocol as Collection locks (as really they are all just URI paths in a hierarchy)!  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -501,7 +501,7 @@ name|collectionPath
 argument_list|)
 return|;
 block|}
-comment|/**      * Acquires a READ_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A READ_LOCK on the Collection.      */
+comment|/**      * Acquires a READ_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A READ_LOCK on the Collection.      * @throws LockException if a lock error occurs      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionReadLock
@@ -1038,7 +1038,7 @@ throw|;
 comment|// TODO(AR) implement the other modes
 block|}
 block|}
-comment|/**      * Acquires a WRITE_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A WRITE_LOCK on the Collection.      */
+comment|/**      * Acquires a WRITE_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A WRITE_LOCK on the Collection.      * @throws LockException if a lock error occurs      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionWriteLock

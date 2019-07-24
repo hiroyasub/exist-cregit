@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -118,7 +118,7 @@ specifier|private
 name|HttpServletResponse
 name|response
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/** 	 * @param response the http response 	 */
 specifier|public
 name|HttpResponseWrapper
 parameter_list|(
@@ -381,82 +381,82 @@ name|contentType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a date header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addDateHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|long
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|response
 operator|.
 name|addDateHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|,
-name|arg1
+name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|String
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|response
 operator|.
 name|addHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|,
 name|encode
 argument_list|(
-name|arg1
+name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Add a int header. 	 * 	 * @param name the header name 	 * @param value the value of the header 	 */
 specifier|public
 name|void
 name|addIntHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|int
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|response
 operator|.
 name|addIntHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|,
-name|arg1
+name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @return a boolean indicating whether the header is present 	 */
+comment|/** 	 * Returns true of the response contains the header. 	 * 	 * @param name the header name 	 * @return a boolean indicating whether the header is present 	 */
 specifier|public
 name|boolean
 name|containsHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|)
 block|{
 return|return
@@ -464,17 +464,17 @@ name|response
 operator|.
 name|containsHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return the encoded value 	 */
+comment|/** 	 * Encode a String as a URL. 	 * 	 * @param s the string to encode 	 * @return the encoded value 	 */
 specifier|public
 name|String
 name|encodeURL
 parameter_list|(
 name|String
-name|arg0
+name|s
 parameter_list|)
 block|{
 return|return
@@ -482,7 +482,7 @@ name|response
 operator|.
 name|encodeURL
 argument_list|(
-name|arg0
+name|s
 argument_list|)
 return|;
 block|}
@@ -538,13 +538,13 @@ name|isCommitted
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @throws java.io.IOException 	 */
+comment|/** 	 * Send a HTTP Reedirect. 	 * 	 * @param url the URL to redirect to 	 * @throws IOException if an I/O error occurs 	 */
 specifier|public
 name|void
 name|sendRedirect
 parameter_list|(
 name|String
-name|arg0
+name|url
 parameter_list|)
 throws|throws
 name|IOException
@@ -553,7 +553,7 @@ name|response
 operator|.
 name|sendRedirect
 argument_list|(
-name|arg0
+name|url
 argument_list|)
 expr_stmt|;
 block|}
@@ -576,7 +576,7 @@ name|Long
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** 	 * @param name 	 * @param arg1 	 */
+comment|/** 	 * Set a date header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setDateHeader
@@ -585,7 +585,7 @@ name|String
 name|name
 parameter_list|,
 name|long
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|dateHeaders
@@ -598,7 +598,7 @@ name|Long
 operator|.
 name|valueOf
 argument_list|(
-name|arg1
+name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -608,11 +608,11 @@ name|setDateHeader
 argument_list|(
 name|name
 argument_list|,
-name|arg1
+name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @return the value of Date Header corresponding to given name, 	 * 0 if none has been set. */
+comment|/** 	 * Get a date header. 	 * 	 * @param name the header name 	 * 	 * @return the value of Date Header corresponding to given name, 0 if none has been set. 	 */
 specifier|public
 name|long
 name|getDateHeader
@@ -656,50 +656,50 @@ return|return
 name|ret
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Set a header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|String
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|response
 operator|.
 name|setHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|,
 name|encode
 argument_list|(
-name|arg1
+name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/** 	 * Set an int header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */
 specifier|public
 name|void
 name|setIntHeader
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|,
 name|int
-name|arg1
+name|value
 parameter_list|)
 block|{
 name|response
 operator|.
 name|setIntHeader
 argument_list|(
-name|arg0
+name|name
 argument_list|,
-name|arg1
+name|value
 argument_list|)
 expr_stmt|;
 block|}
@@ -751,37 +751,37 @@ name|msg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param arg0      */
+comment|/** 	 * Set the HTP Status Code 	 *      * @param statusCode the status code.      */
 specifier|public
 name|void
 name|setStatusCode
 parameter_list|(
 name|int
-name|arg0
+name|statusCode
 parameter_list|)
 block|{
 name|response
 operator|.
 name|setStatus
 argument_list|(
-name|arg0
+name|statusCode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 */
+comment|/** 	 * Set the locale. 	 * 	 * @param locale the locale. 	 */
 specifier|public
 name|void
 name|setLocale
 parameter_list|(
 name|Locale
-name|arg0
+name|locale
 parameter_list|)
 block|{
 name|response
 operator|.
 name|setLocale
 argument_list|(
-name|arg0
+name|locale
 argument_list|)
 expr_stmt|;
 block|}

@@ -234,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global cache for {@link org.exist.collections.Collection} objects.  *  * The CollectionCache safely permits concurrent access  * however appropriate Collection locks should be held  * on the actual collections when manipulating the  * CollectionCache  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Global cache for {@link org.exist.collections.Collection} objects.  *  * The CollectionCache safely permits concurrent access  * however appropriate Collection locks should be held  * on the actual collections when manipulating the  * CollectionCache  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -595,7 +595,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Put's the Collection into the cache      *      * If an existing Collection object for the same URI exists      * in the Cache it will be overwritten      *      * @param collection      */
+comment|/**      * Put's the Collection into the cache      *      * If an existing Collection object for the same URI exists      * in the Cache it will be overwritten      *      * @param collection to put into the cache      */
 specifier|public
 name|void
 name|put

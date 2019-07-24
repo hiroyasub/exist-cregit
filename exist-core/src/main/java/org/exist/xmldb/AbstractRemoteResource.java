@@ -664,7 +664,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**      * @deprecated Here for backward compatibility, instead use {@see org.xmldb.api.base.Resource#getContent()}      */
+comment|/**      * Get the data.      *      * @return the data      *      * @throws XMLDBException if an error occurs whilst retrieving the data.      *      * @deprecated instead use {@link org.xmldb.api.base.Resource#getContent()}      */
 annotation|@
 name|Deprecated
 specifier|protected

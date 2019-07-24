@@ -236,7 +236,7 @@ name|Remove
 extends|extends
 name|Modification
 block|{
-comment|/**      * Constructor for Remove.      *       *       * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
+comment|/**      * Constructor for Remove.      * 	 * @param broker the database broker. 	 * @param docs the document working set. 	 * @param selectStmt the select statement. 	 * @param namespaces the namespaces. 	 * @param variables the variables.      */
 specifier|public
 name|Remove
 parameter_list|(
@@ -280,7 +280,8 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.storage.txn.Txn) 	 */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|process
@@ -517,7 +518,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#getName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName

@@ -304,7 +304,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just a Delegate to a {@link Collection} which allows us to also hold a lock  * lease which is released when {@link Collection#close()} is called. This  * allows us to use ARM (Automatic Resource Management) e.g. try-with-resources  * with eXist Collection objects  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Just a Delegate to a {@link Collection} which allows us to also hold a lock  * lease which is released when {@link Collection#close()} is called. This  * allows us to use ARM (Automatic Resource Management) e.g. try-with-resources  * with eXist Collection objects  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -324,7 +324,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -583,7 +583,6 @@ name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunReplace
 parameter_list|(

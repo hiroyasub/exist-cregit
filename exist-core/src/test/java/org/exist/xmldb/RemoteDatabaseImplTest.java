@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A test case for accessing user management service remotely ?   * @author Sebastian Bossung, Technische Universitaet Hamburg-Harburg  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/** A test case for accessing user management service remotely ?   * @author<a href="mailto:pierrick.brihaye@free.fr">Sebastian Bossung, Technische Universitaet Hamburg-Harburg  * @author Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

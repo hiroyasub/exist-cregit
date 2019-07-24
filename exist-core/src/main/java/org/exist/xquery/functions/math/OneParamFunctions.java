@@ -984,7 +984,6 @@ literal|"the tangent"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|OneParamFunctions
 parameter_list|(

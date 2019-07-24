@@ -89,7 +89,7 @@ name|Debugger
 name|getDebugger
 parameter_list|()
 function_decl|;
-comment|/** 	 * Starts or resumes the script until a new breakpoint is reached, or the end of the script is reached. 	 */
+comment|/** 	 * Starts or resumes the script until a new breakpoint is reached, or the end of the script is reached. 	 * 	 * @param listener the response listener 	 */
 specifier|public
 name|void
 name|run
@@ -98,7 +98,7 @@ name|ResponseListener
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** 	 * Steps to the next statement, if there is a function call involved it will break on the first statement in that function 	 * @param listener  	 */
+comment|/** 	 * Steps to the next statement, if there is a function call involved it will break on the first statement in that function. 	 * 	 * @param listener the response listener 	 */
 specifier|public
 name|void
 name|stepInto
@@ -107,7 +107,7 @@ name|ResponseListener
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** 	 * Steps to the next statement, if there is a function call on the line from which the step_over is issued then the debugger engine will stop at the statement after the function call in the same scope as from where the command was issued 	 */
+comment|/** 	 * Steps to the next statement, if there is a function call on the line from which the step_over is issued then the debugger engine will stop at the statement after the function call in the same scope as from where the command was issued. 	 * 	 * @param listener the response listener 	 */
 specifier|public
 name|void
 name|stepOver
@@ -116,7 +116,7 @@ name|ResponseListener
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** 	 * Steps out of the current scope and breaks on the statement after returning from the current function. (Also called 'finish' in GDB) 	 */
+comment|/** 	 * Steps out of the current scope and breaks on the statement after returning from the current function. (Also called 'finish' in GDB) 	 * 	 * @param listener the response listener 	 */
 specifier|public
 name|void
 name|stepOut
@@ -125,7 +125,7 @@ name|ResponseListener
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** 	 * Ends execution of the script immediately, the debugger engine may not respond, though if possible should be designed to do so. The script will be terminated right away and be followed by a disconnection of the network connection from the IDE (and debugger engine if required in multi request apache processes). 	 */
+comment|/** 	 * Ends execution of the script immediately, the debugger engine may not respond, though if possible should be designed to do so. The script will be terminated right away and be followed by a disconnection of the network connection from the IDE (and debugger engine if required in multi request apache processes). 	 * 	 * @param listener the response listener 	 */
 specifier|public
 name|void
 name|stop

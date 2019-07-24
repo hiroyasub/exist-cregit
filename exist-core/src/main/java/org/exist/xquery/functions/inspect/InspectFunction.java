@@ -522,7 +522,7 @@ name|nodeNr
 argument_list|)
 return|;
 block|}
-comment|/**      * Generate an XML fragment containing information about the function identified by its signature.      *      * @param sig the signature of the function to describe      * @param func the function implementation. If provided, the method will also inspect the function body      *             and list all functions called from the current function.      * @param builder builder used to create the XML      * @return nodeNr of the generated element      * @throws XPathException      */
+comment|/**      * Generate an XML fragment containing information about the function identified by its signature.      *      * @param sig the signature of the function to describe      * @param func the function implementation. If provided, the method will also inspect the function body      *             and list all functions called from the current function.      * @param builder builder used to create the XML      * @return nodeNr of the generated element      * @throws XPathException in case of dynamic error      */
 specifier|public
 specifier|static
 name|int
@@ -1237,7 +1237,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Inspect the provided function implementation and return an XML fragment listing all      * functions called from the function.      *      * @param function      * @param builder      */
+comment|/**      * Inspect the provided function implementation and return an XML fragment listing all      * functions called from the function.      *      * @param function the function to inspect      * @param builder to write output to      */
 specifier|public
 specifier|static
 name|void

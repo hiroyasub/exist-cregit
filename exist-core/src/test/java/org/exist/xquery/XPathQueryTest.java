@@ -910,7 +910,7 @@ specifier|static
 name|String
 name|cdata_content
 init|=
-literal|"<p>Hello there \"Bob?\"</p>"
+literal|"Hello there \"Bob?\""
 decl_stmt|;
 specifier|private
 specifier|final

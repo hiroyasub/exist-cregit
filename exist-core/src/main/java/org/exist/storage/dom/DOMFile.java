@@ -718,7 +718,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node. Within a page, a node is  * identified by a unique id, called tuple id (tuple id). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tuple id | length | data |  *   * 3) Relocated record:  *  | tuple id | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tuple id | address pointer |  *   * tuple id and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tuple id are used to indicate the type of the record  * (see {@link org.exist.storage.dom.ItemId}).  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node. Within a page, a node is  * identified by a unique id, called tuple id (tuple id). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tuple id | length | data |  *   * 3) Relocated record:  *  | tuple id | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tuple id | address pointer |  *   * tuple id and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tuple id are used to indicate the type of the record  * (see {@link org.exist.storage.dom.ItemId}).  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1560,7 +1560,7 @@ return|return
 name|page
 return|;
 block|}
-comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException   Description of the Exception      */
+comment|/**      * Open the file.      *       * @return Description of the Return Value      * @throws DBException   Description of the Exception      */
 specifier|public
 name|boolean
 name|open
@@ -1773,7 +1773,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**      * Append a value to the current page.      *       * This method is called when storing a new document. Each writing thread      * gets its own sequence of pages for writing a document, so all document      * nodes are stored in sequential order. A new page will be allocated if the      * current page is full. If the value is larger than the page size, it will      * be written to an overflow page.      *       * @param value the value to append      * @return the virtual storage address of the value      */
+comment|/**      * Append a value to the current page.      *       * This method is called when storing a new document. Each writing thread      * gets its own sequence of pages for writing a document, so all document      * nodes are stored in sequential order. A new page will be allocated if the      * current page is full. If the value is larger than the page size, it will      * be written to an overflow page.      *      * @param transaction the database transaction      * @param value the value to append      * @return the virtual storage address of the value      *      * @throws ReadOnlyException if the DOM file is read-only      */
 specifier|public
 name|long
 name|add
@@ -1922,7 +1922,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value      * @param overflowPage      * @return the virtual storage address of the value      * @throws ReadOnlyException      */
+comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value the value      * @param overflowPage the overflow page      * @return the virtual storage address of the value      * @throws ReadOnlyException if the DOMFile is read-only      */
 specifier|private
 name|long
 name|add
@@ -2422,7 +2422,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value Binary resource as byte array      */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *      * @param transaction the database transaction      * @param doc the document to add      * @param value Binary resource as byte array      *      * @return the page number      */
 specifier|public
 name|long
 name|addBinary
@@ -2504,7 +2504,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *      * @Param transaction      * @param doc      * @param is Binary resource as stream.      */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *      * @param transaction the transaction      * @param doc the document to add      * @param is Binary resource as stream.      *      * @return the page number      */
 specifier|public
 name|long
 name|addBinary
@@ -2585,7 +2585,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**      * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}.      *       * @param pageNum      */
+comment|/**      * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}.      *       * @param pageNum the page number      * @return binary data stored      */
 specifier|public
 name|byte
 index|[]
@@ -2704,7 +2704,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Insert a new node after the specified node.      *       * @param key      * @param value      */
+comment|/**      * Insert a new node after the specified node.      *      * @param transaction the database transaction      * @param doc the document      * @param key the key      * @param value the value      *      * @return the storage address pointer      */
 specifier|public
 name|long
 name|insertAfter
@@ -2832,7 +2832,7 @@ return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
-comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc       the document to which the new node belongs.      * @param address   the storage address of the node after which the       *                  new value should be inserted.      * @param value     the value of the new node.      */
+comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *      * @param transaction the database transaction      * @param doc       the document to which the new node belongs.      * @param address   the storage address of the node after which the       *                  new value should be inserted.      * @param value     the value of the new node.      *      * @return the storage address pointer      */
 specifier|public
 name|long
 name|insertAfter
@@ -4368,7 +4368,7 @@ name|tupleID
 argument_list|)
 return|;
 block|}
-comment|/**      * Split a data page at the position indicated by the rec parameter.      *       * The portion of the page starting at rec.offset is moved into a new page.      * Every moved record is marked as relocated and a link is stored into the      * original page to point to the new record position.      *      * @param transaction      * @param rec      */
+comment|/**      * Split a data page at the position indicated by the rec parameter.      *       * The portion of the page starting at rec.offset is moved into a new page.      * Every moved record is marked as relocated and a link is stored into the      * original page to point to the new record position.      *      * @param transaction the database transaction      * @param rec the record position      *      * @return the updated record position      */
 specifier|private
 name|RecordPos
 name|splitDataPage
@@ -6927,7 +6927,7 @@ return|return
 name|rec
 return|;
 block|}
-comment|/**      * Returns the number of records stored in a page.      *       * @param page      * @return The number of records      */
+comment|/**      * Returns the number of records stored in a page.      *       * @param page the page      * @return The number of records      */
 specifier|private
 name|short
 name|countRecordsInPage
@@ -8529,7 +8529,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Retrieve node at virtual address.      *       * @param node The virtual address      * @return  The reference of the node      */
+comment|/**      * Retrieve node at virtual address.      *      * @param broker the database broker      * @param node The virtual address      * @return The reference of the node      * @throws IOException if an I/O error occurs      * @throws BTreeException if an error occurs reading the tree      */
 specifier|protected
 name|long
 name|findValue
@@ -9040,7 +9040,7 @@ name|pointer
 return|;
 block|}
 block|}
-comment|/**      * Find matching nodes for the given query.      *       * @param query Description of the Parameter      * @return Description of the Return Value      * @exception IOException Description of the Exception      * @exception BTreeException Description of the Exception      */
+comment|/**      * Find matching nodes for the given query.      *       * @param query Description of the Parameter      * @return Description of the Return Value      * @throws IOException Description of the Exception      * @throws BTreeException Description of the Exception      */
 specifier|public
 name|List
 argument_list|<
@@ -9127,7 +9127,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Flush all buffers to disk.      *      * @return Description of the Return Value      * @exception DBException Description of the Exception      */
+comment|/**      * Flush all buffers to disk.      *      * @return true if the buffers were flushed      * @throws DBException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
@@ -9457,7 +9457,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve a node by key      *       * @param key      * @return Description of the Return Value      */
+comment|/**      * Retrieve a node by key      *       * @param key the key      * @return the value, or null      */
 specifier|public
 name|Value
 name|get
@@ -9641,7 +9641,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Retrieve node at virtual address.      *       * @param pointer The virtual address      * @return  The node      */
+comment|/**      * Retrieve node at virtual address.      *       * @param pointer The virtual address      * @return The node      */
 specifier|public
 name|Value
 name|get
@@ -9660,7 +9660,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve node at virtual address.      *       * @param pointer The virtual address      * @param warnIfMissing Whether or not a warning should be output       * if the node can not be found       * @return  The node      */
+comment|/**      * Retrieve node at virtual address.      *       * @param pointer The virtual address      * @param warnIfMissing Whether or not a warning should be output       * if the node can not be found       * @return The node      */
 specifier|public
 name|Value
 name|get
@@ -10061,7 +10061,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Put a new key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Put a new key/value pair.      *      * @param transaction the database transaction      * @param key the key      * @param value the value      * @return pointer to the address      *      * @throws ReadOnlyException if the DOM file is read-only      */
 specifier|public
 name|long
 name|put
@@ -10155,13 +10155,7 @@ return|return
 name|pointer
 return|;
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
-comment|//Unused ? -pb
-comment|//public void remove(Value key) {
-comment|//if (!lock.isLockedForWrite())
-comment|//LOG.warn("The file doesn't own a write lock");
-comment|//remove(null, key);
-comment|//}
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *      * @param transaction the database transaction      * @param key the key      */
 specifier|public
 name|void
 name|remove
@@ -10335,7 +10329,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Remove the overflow value.      *       * @param transaction   The current transaction      * @param pointer  The pointer to the value      */
+comment|/**      * Remove the overflow value.      *       * @param transaction The current transaction      * @param pointer The pointer to the value      */
 specifier|public
 name|void
 name|removeOverflowValue
@@ -10412,7 +10406,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove the link at the specified position from the file.      *      * @param transaction      * @param pointer      */
+comment|/**      * Remove the link at the specified position from the file.      *      * @param transaction the current transaction      * @param pointer The pointer to the value      */
 specifier|private
 name|void
 name|removeLink
@@ -10766,11 +10760,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *       * @param pointer      */
-comment|//Seems to be unused -pb
-comment|//public void removeNode(long pointer) {
-comment|//removeNode(null, pointer);
-comment|//}
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *      * @param transaction the database transaction      * @param pointer pointer to the node      */
 specifier|public
 name|void
 name|removeNode
@@ -11402,7 +11392,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *      * @param transaction the database transaction      * @param key the key      * @param pointer pointer to the value      */
 specifier|public
 name|void
 name|remove
@@ -11458,7 +11448,7 @@ expr_stmt|;
 comment|//TODO : rethrow exception ? -pb
 block|}
 block|}
-comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page      */
+comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page the DOM page      */
 specifier|private
 name|void
 name|removePage
@@ -11699,7 +11689,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      */
+comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      *      * @param transaction the database transaction      * @param pointer the pointer to the first page      */
 specifier|public
 name|void
 name|removeAll
@@ -12105,7 +12095,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Update the key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Update the key/value pair.      *      * @param transaction the database transaction      * @param key the key      * @param value the value      *      * @return true if the value was updated, false otherwise      *      * @throws ReadOnlyException if the DOM file is read-only      */
 specifier|public
 name|boolean
 name|update
@@ -12198,7 +12188,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Update the key/value pair where the value is found at address p.       */
+comment|/**      * Update the key/value pair where the value is found at address p.      *      * @param transaction the database transaction      * @param pointer pointer to the existing value      * @param value the new value      *      * @throws ReadOnlyException if the DOM file is read-only      */
 specifier|public
 name|void
 name|update
@@ -12472,7 +12462,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Retrieve the string value of the specified node. This is an optimized low-level method      * which will directly traverse the stored DOM nodes and collect the string values of      * the specified root node and all its descendants. By directly scanning the stored      * node data, we do not need to create a potentially large amount of node objects      * and thus save memory and time for garbage collection.       *       * @param node      * @return string value of the specified node      */
+comment|/**      * Retrieve the string value of the specified node. This is an optimized low-level method      * which will directly traverse the stored DOM nodes and collect the string values of      * the specified root node and all its descendants. By directly scanning the stored      * node data, we do not need to create a potentially large amount of node objects      * and thus save memory and time for garbage collection.       *      * @param broker the database broker      * @param node the node      * @param addWhitespace true if whitespace should be added to the node value      * @return string value of the specified node      */
 specifier|public
 name|String
 name|getNodeValue
@@ -12715,7 +12705,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Recursive method to retrieve the string values of the root node      * and all its descendants.      */
+comment|/**      * Recursive method to retrieve the string values of the root node      * and all its descendants.      *      * @param pool the broker pool      * @param doc the document      * @param os the output stream to receive the value      * @param rec the record position      * @param isTopNode true if this is the top node, false otherwise      * @param addWhitespace true if whitespace should be added to the node value      */
 specifier|private
 name|void
 name|getNodeValue
@@ -13707,7 +13697,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Find a record within the page or the pages linked to it.      *       * @param pointer      * @return The record position in the page      */
+comment|/**      * Find a record within the page or the pages linked to it.      *       * @param pointer the pointer to the page      * @param skipLinks true if links should be skipped, false otherwise      * @return The record position in the page      */
 specifier|protected
 name|RecordPos
 name|findRecord
@@ -13921,7 +13911,7 @@ name|getFileName
 argument_list|()
 return|;
 block|}
-comment|/**      * The current object owning this file.      *       * @param ownerObject   The new ownerObject value      */
+comment|/**      * The current object owning this file.      *       * @param ownerObject The new ownerObject value      */
 specifier|public
 specifier|synchronized
 specifier|final

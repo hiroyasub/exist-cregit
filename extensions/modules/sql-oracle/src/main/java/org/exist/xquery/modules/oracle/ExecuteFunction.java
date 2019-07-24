@@ -498,7 +498,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Oracle Module Extension ExecuteFunction  *   * Execute a PL/SQL stored procedure within an Oracle RDBMS.  *   * @author Robert Walpole<robert.walpole@metoffice.gov.uk>  * @serial 2009-03-23  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Oracle Module Extension ExecuteFunction  *   * Execute a PL/SQL stored procedure within an Oracle RDBMS.  *   * @author<a href="mailto:robert.walpole@metoffice.gov.uk">Robert Walpole</a>  * @serial 2009-03-23  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

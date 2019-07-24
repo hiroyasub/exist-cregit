@@ -374,18 +374,21 @@ argument_list|,
 name|PREFIX
 argument_list|)
 decl_stmt|;
-comment|/**      * Marshall a sequence in an xml based string representation      * @param broker      * @param seq Sequence to be marshalled      * @param handler Content handler for building the resulting string      * @throws XPathException      * @throws SAXException      */
+comment|/**      * Marshall a sequence in an xml based string representation.      *      * @param broker the database broker      * @param seq Sequence to be marshalled      * @param handler Content handler for building the resulting string      *      * @throws XPathException if an XPath error occurs      * @throws SAXException if a SAX parsing exception occurs      */
 specifier|public
 specifier|static
 name|void
 name|marshall
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Sequence
 name|seq
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -481,24 +484,29 @@ name|SEQ_ELEMENT_QNAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Marshall the items of a sequence in  an xml based string representation      * @param broker      * @param seq Sequence which items are to be marshalled      * @param start index of first item to be marshalled      * @param howmany number of items following and including the first to be marshalled      * @param handler      * @throws XPathException      * @throws SAXException      */
+comment|/**      * Marshall the items of a sequence in  an xml based string representation.      *      * @param broker the database broker      * @param seq Sequence which items are to be marshalled      * @param start index of first item to be marshalled      * @param howmany number of items following and including the first to be marshalled      * @param handler Content handler for building the resulting string      *      * @throws XPathException if an XPath error occurs      * @throws SAXException if a SAX parsing exception occurs      */
 specifier|public
 specifier|static
 name|void
 name|marshall
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Sequence
 name|seq
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|howmany
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -600,18 +608,21 @@ name|SEQ_ELEMENT_QNAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Marshall an item in an xml based string representation      * @param broker      * @param item Sequence(or Item) to me marshalled      * @param handler      * @throws SAXException      * @throws XPathException      */
+comment|/**      * Marshall an item in an xml based string representation.      *      * @param broker the database broker      * @param item Sequence(or Item) to me marshalled      * @param handler Content handler for building the resulting string      *      * @throws XPathException if an XPath error occurs      * @throws SAXException if a SAX parsing exception occurs      */
 specifier|public
 specifier|static
 name|void
 name|marshallItem
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Item
 name|item
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -1700,7 +1711,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Creates an Item from a streamed representation      * @param parser Parser to read xml elements from      * @return item      * @throws XMLStreamException      */
+comment|/**      * Creates an Item from a streamed representation.      *      * @param rootType the type of the root node      * @param parser Parser to read xml elements from      * @return item the item      *      * @throws XMLStreamException if an error occurs during streaming.      */
 specifier|public
 specifier|static
 name|Item
@@ -1994,7 +2005,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Creates an Item from a streamed representation      * @param reader      * @return item      * @throws XMLStreamException      */
+comment|/**      * Creates an Item from a streamed representation.      *      * @param reader the reader.      * @param type the type of the item.      * @return item the result item      *      * @throws XMLStreamException if an error occurs during streaming.      * @throws XQException if any other error occurs.      */
 specifier|public
 specifier|static
 name|Item
@@ -2066,7 +2077,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a node from a string representation      * @param content      * @return node      * @throws XMLStreamException      */
+comment|/**      * Creates a node from a string representation.      *      * @param content the content      * @return node the result node.      *      * @throws XMLStreamException if an error occurs during streaming.      */
 specifier|public
 specifier|static
 name|Node
@@ -2095,7 +2106,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a node from a streamed representation      * @param reader      * @return item      * @throws XMLStreamException      */
+comment|/**      * Creates a node from a streamed representation.      *      * @param reader the reader.      * @return item the result item.      *      * @throws XMLStreamException if an error occurs during streaming.      */
 specifier|public
 specifier|static
 name|Node

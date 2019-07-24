@@ -310,7 +310,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Craig Goodyer<craiggoodyer@gmail.com>  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author<a href="mailto:craiggoodyer@gmail.com">Craig Goodyer</a>  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -563,7 +563,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * Constructor for RenderFunction, which returns a new instance of this      * class.      *      * @param context      * @param signature      */
 specifier|public
 name|RenderFunction
 parameter_list|(

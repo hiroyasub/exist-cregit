@@ -236,7 +236,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to extract the content of a collection or resource.  *  * @author peter.klotz@blue-elephant-systems.com  * @author jim.fuller at webcomposite.com to handle binary file extraction  */
+comment|/**  * an ant task to extract the content of a collection or resource.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  * @author jim.fuller at webcomposite.com to handle binary file extraction  */
 end_comment
 
 begin_class
@@ -585,7 +585,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Create directory from a collection.      *      * @param base DOCUMENT ME!      * @param path DOCUMENT ME!      * @throws XMLDBException DOCUMENT ME!      * @throws IOException    DOCUMENT ME!      */
+comment|/**      * Create directory from a collection.      *      * @param base the collection      * @param path the path      *      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|extractResources
@@ -727,7 +727,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Extract multiple resources from a collection.      *      * @param base DOCUMENT ME!      * @param path DOCUMENT ME!      * @throws XMLDBException DOCUMENT ME!      * @throws IOException    DOCUMENT ME!      */
+comment|/**      * Extract multiple resources from a collection.      *      * @param base the collection      * @param path the path      *      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|extractSubCollections
@@ -893,7 +893,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Extract single resource.      *      * @param res  DOCUMENT ME!      * @param dest DOCUMENT ME!      * @throws XMLDBException DOCUMENT ME!      * @throws IOException    DOCUMENT ME!      */
+comment|/**      * Extract single resource.      *      * @param res the resource      * @param dest the destination file.      *      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|writeResource
@@ -945,7 +945,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Extract XML resource.      *      * @param res  DOCUMENT ME!      * @param dest DOCUMENT ME!      * @throws IOException    DOCUMENT ME!      * @throws XMLDBException DOCUMENT ME!      */
+comment|/**      * Extract XML resource.      *      * @param res the resource      * @param dest the destination file      *      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|writeXMLResource
@@ -1221,7 +1221,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Extract single binary resource.      *      * @param res  DOCUMENT ME!      * @param dest DOCUMENT ME!      * @throws XMLDBException DOCUMENT ME!      * @throws IOException    DOCUMENT ME!      */
+comment|/**      * Extract single binary resource.      *      * @param res the resource      * @param dest the destination file      *      * @throws XMLDBException if a database error occurs      * @throws IOException if an I/O error occurs      */
 specifier|private
 name|void
 name|writeBinaryResource
@@ -1446,7 +1446,7 @@ operator|=
 name|destDir
 expr_stmt|;
 block|}
-comment|/**      * @deprecated Not used anymore      */
+comment|/**      * Set the type.      *      * @param the type      *      * @deprecated Not used anymore      */
 annotation|@
 name|Deprecated
 specifier|public

@@ -442,7 +442,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Compresses a sequence of resources and/or collections  *   * @author Adam Retter<adam@exist-db.org>  * @author Leif-JÃ¶ran Olsson<ljo@exist-db.org>  * @version 1.0  */
+comment|/**  * Compresses a sequence of resources and/or collections  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:ljo@exist-db.org">Leif-JÃ¶ran Olsson</a>  * @version 1.0  */
 end_comment
 
 begin_class

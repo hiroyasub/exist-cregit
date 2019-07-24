@@ -667,7 +667,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**      * The method<code>subSequence</code>      *      * @param seq a<code>ValueSequence</code> value      * @param start an<code>int</code> value      * @return a<code>ValueSequence</code> value      * @exception XPathException if an error occurs      */
+comment|/**      * The method<code>subSequence</code>      *      * @param seq a<code>ValueSequence</code> value      * @param start an<code>int</code> value      * @return a<code>ValueSequence</code> value      */
 specifier|public
 specifier|static
 name|String
@@ -794,7 +794,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>subSequence</code>      *      * @param seq a<code>ValueSequence</code> value      * @param start an<code>int</code> value      * @param end an<code>int</code> value      * @return a<code>ValueSequence</code> value      * @exception XPathException if an error occurs      */
+comment|/**      * The method<code>subSequence</code>      *      * @param seq a<code>ValueSequence</code> value      * @param start an<code>int</code> value      * @param end an<code>int</code> value      * @return a<code>ValueSequence</code> value      * @throws XPathException if an error occurs      */
 specifier|public
 specifier|static
 name|String
@@ -943,7 +943,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>codePointToString</code>      *      * @param value an<code>IntegerValue</code> value      * @return a<code>String</code> value      * @exception XPathException if an error occurs      */
+comment|/**      * The method<code>codePointToString</code>      *      * @param value an<code>IntegerValue</code> value      *      * @return a<code>String</code> value      */
 specifier|public
 specifier|static
 name|String

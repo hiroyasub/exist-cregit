@@ -110,7 +110,7 @@ name|NodeSets
 parameter_list|()
 block|{
 block|}
-comment|/**      * Builds a new NodeSet by applying a function to all NodeProxys of the supplied NodeSet and returning all non-null      * results.      *       * @param nodes      *            the NodeSet containig the NodeProys to be transformed      * @param transform      *            the function to be applied to all NodeProxys in nodes      * @return a new NodeSet containing the non-null results of f applied to the NodeProxys in nodes      * @throws XPathException      */
+comment|/**      * Builds a new NodeSet by applying a function to all NodeProxys of the supplied NodeSet and returning all non-null      * results.      *       * @param nodes      *            the NodeSet containig the NodeProys to be transformed      * @param transform      *            the function to be applied to all NodeProxys in nodes      * @return a new NodeSet containing the non-null results of f applied to the NodeProxys in nodes      *      * @throws XPathException if an error occurs with the query.      */
 specifier|public
 specifier|static
 name|NodeSet

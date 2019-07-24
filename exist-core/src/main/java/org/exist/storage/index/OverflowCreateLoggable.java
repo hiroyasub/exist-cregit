@@ -80,7 +80,7 @@ specifier|protected
 name|long
 name|pageNum
 decl_stmt|;
-comment|/**      *       *       * @param pageNum       * @param fileId       * @param transaction       */
+comment|/**      * @param transaction the database transaction      * @param fileId the file id      * @param pageNum the page number      */
 specifier|public
 name|OverflowCreateLoggable
 parameter_list|(
@@ -112,7 +112,7 @@ operator|=
 name|pageNum
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param transactionId      */
+comment|/**      * @param broker the database broker      * @param transactionId the transaction id      */
 specifier|public
 name|OverflowCreateLoggable
 parameter_list|(

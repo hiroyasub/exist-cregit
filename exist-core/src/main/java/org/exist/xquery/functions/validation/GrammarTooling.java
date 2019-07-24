@@ -642,7 +642,7 @@ argument_list|)
 argument_list|)
 block|,                               }
 decl_stmt|;
-comment|/** Creates a new instance */
+comment|/**      * Creates a new instance.      *      * @param context Xquery context.      * @param signature Function signature.      */
 specifier|public
 name|GrammarTooling
 parameter_list|(

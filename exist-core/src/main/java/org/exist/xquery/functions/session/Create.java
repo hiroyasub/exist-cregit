@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Loren Cahlander  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author Loren Cahlander  */
 end_comment
 
 begin_class

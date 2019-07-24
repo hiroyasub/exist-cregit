@@ -130,7 +130,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to move a collection or resource to a new name.  *  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to move a collection or resource to a new name.  *  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  */
 end_comment
 
 begin_class
@@ -164,7 +164,8 @@ name|name
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -566,7 +567,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  collection      */
+comment|/**      * Set the collection.      *      * @param collection the collection      */
 specifier|public
 name|void
 name|setCollection
@@ -582,7 +583,7 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  resource      */
+comment|/**      * Set the resource.      *      * @param resource the resource.      */
 specifier|public
 name|void
 name|setResource

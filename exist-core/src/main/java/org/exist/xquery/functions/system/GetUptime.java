@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Return the duration since eXist was started  *   * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Return the duration since eXist was started  *   * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

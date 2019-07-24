@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to shutdown a XMLDB database.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  *  *<p>slightly modified by:</p>  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to shutdown a XMLDB database.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  *  *          slightly modified by:  * @author<a href="mailto:peter.klotz@blue-elephant-systems.com">Peter Klotz</a>  */
 end_comment
 
 begin_class

@@ -272,7 +272,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XPath and XQuery 3.0 F+O fn:analyze-string()  *   * @author Adam Retter<adam@exist-db.org>  * @serial 201211101626  *   * Corrections were made by to the previous buggy version  * by taking inspiration from the BaseX 7.3 version.  */
+comment|/**  * XPath and XQuery 3.0 F+O fn:analyze-string()  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @serial 201211101626  *   * Corrections were made by to the previous buggy version  * by taking inspiration from the BaseX 7.3 version.  */
 end_comment
 
 begin_class

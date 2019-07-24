@@ -160,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Ensures that security manager data, accounts, groups (and associations)  * are correctly persisted across database restarts  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Ensures that security manager data, accounts, groups (and associations)  * are correctly persisted across database restarts  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

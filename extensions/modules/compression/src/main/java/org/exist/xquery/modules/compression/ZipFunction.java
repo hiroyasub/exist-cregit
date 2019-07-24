@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Compresses a sequence of resources and/or collections into a Zip file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
+comment|/**  * Compresses a sequence of resources and/or collections into a Zip file  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version 1.0  */
 end_comment
 
 begin_class

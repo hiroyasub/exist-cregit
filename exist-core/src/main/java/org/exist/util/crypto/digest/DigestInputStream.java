@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An input stream which calculates a digest of the  * data that is read.  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * An input stream which calculates a digest of the  * data that is read.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

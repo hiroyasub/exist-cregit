@@ -134,7 +134,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CacheManager maintains a global memory pool available to all page caches. All caches start with a low default setting, but CacheManager can grow  * individual caches until the total memory is reached. Caches can also be shrinked if their "load" remains below a given threshold between check  * intervals.The check interval is determined by the global sync background thread.  *  *<p>The class computes the available memory in terms of pages.</p>  *  * @author  wolf  */
+comment|/**  * CacheManager maintains a global memory pool available to all page caches. All caches start with a low default setting, but CacheManager can grow  * individual caches until the total memory is reached. Caches can also be shrinked if their "load" remains below a given threshold between check  * intervals.The check interval is determined by the global sync background thread.  *  * The class computes the available memory in terms of pages.  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -963,7 +963,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**      * Called from the global major sync event to check if caches can be shrinked. To be shrinked, the size of a cache needs to be larger than the      * factor defined by {@link #MIN_SHRINK_FACTOR} and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      *<p>If shrinked, the cache will be reset to the default initial cache size.</p>      */
+comment|/**      * Called from the global major sync event to check if caches can be shrinked. To be shrinked, the size of a cache needs to be larger than the      * factor defined by {@link #MIN_SHRINK_FACTOR} and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      * If shrinked, the cache will be reset to the default initial cache size.      */
 annotation|@
 name|Override
 specifier|public

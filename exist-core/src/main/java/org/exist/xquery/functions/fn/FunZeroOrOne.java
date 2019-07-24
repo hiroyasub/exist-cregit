@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements function fn:zero-or-one.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements function fn:zero-or-one.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -279,7 +279,6 @@ literal|"the input sequence if it contains zero or one items."
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunZeroOrOne
 parameter_list|(

@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sequence that sorts its items in the order specified by the order specs  * of an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *<p>  * For better performance, the whole input sequence is sorted in one single step.  * However, this only works if every order expression returns a result of type  * node.  *  * @author wolf  */
+comment|/**  * A sequence that sorts its items in the order specified by the order specs  * of an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *  * For better performance, the whole input sequence is sorted in one single step.  * However, this only works if every order expression returns a result of type  * node.  *  * @author wolf  */
 end_comment
 
 begin_class

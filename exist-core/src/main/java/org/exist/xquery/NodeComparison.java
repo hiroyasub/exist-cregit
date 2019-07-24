@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements node comparisons: is, isnot,&lt;&lt;,&gt;&gt;.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements node comparisons: is, isnot,&lt;&lt;,&gt;&gt;.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -141,7 +141,6 @@ specifier|final
 name|NodeComparisonOperator
 name|relation
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|NodeComparison
 parameter_list|(

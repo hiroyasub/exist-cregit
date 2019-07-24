@@ -132,7 +132,6 @@ specifier|private
 name|String
 name|data
 decl_stmt|;
-comment|/**      *       */
 specifier|public
 name|StringSource
 parameter_list|(

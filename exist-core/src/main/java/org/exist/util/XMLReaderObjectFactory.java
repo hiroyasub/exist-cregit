@@ -460,7 +460,7 @@ return|return
 name|xmlReader
 return|;
 block|}
-comment|/**      * Create Xmlreader and setup validation      */
+comment|/**      * Create Xmlreader and setup validation.      *      * @param validation the validation setting      * @param grammarPool the grammar pool      * @param resolver the catalog resolver      *      * @return the configured reader      *      * @throws ParserConfigurationException if the parser cannot be configured      * @throws SAXException if an exception occurs with the parser      */
 specifier|public
 specifier|static
 name|XMLReader
@@ -588,7 +588,7 @@ return|return
 name|xmlReader
 return|;
 block|}
-comment|/**      * Convert configuration text (yes,no,true,false,auto) into a magic number.      */
+comment|/**      * Convert configuration text (yes,no,true,false,auto) into a magic number.      *      * @param option the configuration option      *      * @return the validation setting      */
 specifier|public
 specifier|static
 name|VALIDATION_SETTING
@@ -667,7 +667,7 @@ return|return
 name|mode
 return|;
 block|}
-comment|/**      * Setup validation mode of xml reader.      */
+comment|/**      * Setup validation mode of xml reader.      *      * @param validation the validation setting      * @param xmlReader the reader      */
 specifier|public
 specifier|static
 name|void

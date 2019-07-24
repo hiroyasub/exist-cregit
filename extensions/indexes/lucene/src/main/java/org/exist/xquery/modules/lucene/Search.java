@@ -180,7 +180,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class implementing the ft:search() method  * @author Dannes Wessels (dannes@exist-db.org)  */
+comment|/**  * Class implementing the ft:search() method  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class
@@ -545,7 +545,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * Constructor      */
 specifier|public
 name|Search
 parameter_list|(

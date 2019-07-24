@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A NodeTest which never matches.  *  * Used for the AbbrevForwardStep '@' when  * attempting to match not attribute node kinds.  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * A NodeTest which never matches.  *  * Used for the AbbrevForwardStep '@' when  * attempting to match not attribute node kinds.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -374,7 +374,6 @@ name|Delete
 extends|extends
 name|Modification
 block|{
-comment|/**      *      *      * @param context      * @param select      */
 specifier|public
 name|Delete
 parameter_list|(

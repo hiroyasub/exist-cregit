@@ -99,7 +99,7 @@ return|return
 name|instance
 return|;
 block|}
-comment|/**      *       */
+comment|/**      * @param factory the object factory      * @param max the maximum size of the pool      * @param init the initial size of the pool      */
 specifier|public
 name|SerializerPool
 parameter_list|(

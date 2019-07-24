@@ -272,7 +272,7 @@ name|int
 name|getOwnerMode
 parameter_list|()
 function_decl|;
-comment|/**      * Set the owner group by group id      *      * @param  id  The group id      */
+comment|/**      * Set the owner group by group id      *      * @param  id  The group id      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setGroup
 parameter_list|(
@@ -282,7 +282,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner group      *      * @param  group  The group value      */
+comment|/**      * Set the owner group      *      * @param  group  The group value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setGroup
 parameter_list|(
@@ -292,7 +292,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner group      *      * @param  name The group's name      */
+comment|/**      * Set the owner group      *      * @param  name The group's name      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setGroup
 parameter_list|(
@@ -302,7 +302,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner group      *       * This is used to set the owner group      * of this permission to the same      * as the owner group of the<i>other</i>      * permission.      *       * This is typically used in setGID situations.      *       * @param other Another permissions object      */
+comment|/**      * Set the owner group      *       * This is used to set the owner group      * of this permission to the same      * as the owner group of the<i>other</i>      * permission.      *       * This is typically used in setGID situations.      *       * @param other Another permissions object      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setGroupFrom
 parameter_list|(
@@ -312,7 +312,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Sets mode for group      *      * @param  perm  The new group mode value      */
+comment|/**      * Sets mode for group      *      * @param  perm  The new group mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setGroupMode
 parameter_list|(
@@ -322,7 +322,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner passed as account id      *      * @param  id  The new owner id      */
+comment|/**      * Set the owner passed as account id      *      * @param  id  The new owner id      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOwner
 parameter_list|(
@@ -332,7 +332,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner passed as User object      *      * @param  user  The new owner value      */
+comment|/**      * Set the owner passed as User object      *      * @param  user  The new owner value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOwner
 parameter_list|(
@@ -342,7 +342,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set the owner      *      * @param  user  The new owner value      */
+comment|/**      * Set the owner      *      * @param  user  The new owner value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOwner
 parameter_list|(
@@ -352,7 +352,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set mode using a string.      *       * The string can either be in one of three formats:      *        * 1) Unix Symbolic format as given to 'chmod' on Unix/Linux      * 2) eXist Symbolic format as described in @see org.exist.security.AbstractUnixStylePermission#setExistSymbolicMode(java.lang.String)      * 3) Simple Symbolic format e.g. "rwxr-xr-x"      *       * The eXist symbolic format should be avoided      * in new applications as it is deprecated      *       * @param modeStr The new mode      * @exception  SyntaxException  Description of the Exception      */
+comment|/**      * Set mode using a string.      *       * The string can either be in one of three formats:      *        * 1) Unix Symbolic format as given to 'chmod' on Unix/Linux      * 2) eXist Symbolic format as described in @see org.exist.security.AbstractUnixStylePermission#setExistSymbolicMode(java.lang.String)      * 3) Simple Symbolic format e.g. "rwxr-xr-x"      *       * The eXist symbolic format should be avoided      * in new applications as it is deprecated      *       * @param modeStr The new mode      * @throws PermissionDeniedException is user has not sufficient rights      * @throws SyntaxException  Description of the Exception      */
 name|void
 name|setMode
 parameter_list|(
@@ -364,7 +364,7 @@ name|SyntaxException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode      *      *@param  mode  The new mode value      */
+comment|/**      *  Set mode      *      * @param  mode  The new mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setMode
 parameter_list|(
@@ -374,7 +374,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode for others      *      *@param  perm  The new mode value      */
+comment|/**      *  Set mode for others      *      * @param  perm  The new mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOtherMode
 parameter_list|(
@@ -384,7 +384,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode for the owner      *      *@param  other  The new mode value      */
+comment|/**      *  Set mode for the owner      *      * @param  other  The new mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOwnerMode
 parameter_list|(

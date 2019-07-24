@@ -41,7 +41,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param message 	 */
+comment|/** 	 * @param message of the exception 	 */
 specifier|public
 name|CollectionConfigurationException
 parameter_list|(
@@ -55,7 +55,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param cause 	 */
+comment|/** 	 * @param cause of the exception 	 */
 specifier|public
 name|CollectionConfigurationException
 parameter_list|(
@@ -69,7 +69,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param message 	 * @param cause 	 */
+comment|/** 	 * @param message of the exception 	 * @param cause of the exception 	 */
 specifier|public
 name|CollectionConfigurationException
 parameter_list|(

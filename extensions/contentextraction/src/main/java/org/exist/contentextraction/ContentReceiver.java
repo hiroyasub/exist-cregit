@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dulip Withanage<dulip.withanage@gmail.com>  * @author Dannes Wessels<dannes@exist-db.org>  *   * @version 1.1  */
+comment|/**  * @author<a href="mailto:dulip.withanage@gmail.com">Dulip Withanage</a>  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  *   * @version 1.1  */
 end_comment
 
 begin_class
@@ -372,7 +372,7 @@ operator|=
 name|userData
 expr_stmt|;
 block|}
-comment|/**      *  Get the result of the content extraction      *       * @return       */
+comment|/**      * Get the result of the content extraction.      *       * @return the result sequence.      */
 specifier|public
 name|Sequence
 name|getResult

@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adapter class from Iterable<T> to Enumeration<T>  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Adapter class from Iterable to Enumeration  *  * @param<T> the type of the iterable.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

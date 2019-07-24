@@ -318,7 +318,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote  * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *<p>  * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *<p>  * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *  * @author Wolfgang Meier  */
+comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote  * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *  * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *  * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -1807,7 +1807,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Register a ShutdownListener for the current database instance. The ShutdownListener is called      * after the database has shut down. You have to register a listener before any calls to getCollection().      *      * @param listener      * @throws XMLDBException      */
+comment|/**      * Register a ShutdownListener for the current database instance. The ShutdownListener is called      * after the database has shut down. You have to register a listener before any calls to getCollection().      *      * @param listener the shutdown listener.      *      * @throws XMLDBException if an error occurs whilst setting the listener.      */
 specifier|public
 name|void
 name|setDatabaseShutdownListener

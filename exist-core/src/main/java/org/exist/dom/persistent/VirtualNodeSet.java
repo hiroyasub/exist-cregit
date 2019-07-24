@@ -372,7 +372,7 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/**      * Creates a new<code>VirtualNodeSet</code> instance.      *      * @param axis      an<code>int</code> value      * @param test      a<code>NodeTest</code> value      * @param contextId an<code>int</code> value      * @param context   a<code>NodeSet</code> value      */
+comment|/**      * Creates a new<code>VirtualNodeSet</code> instance.      *      * @param broker eXist-db DBBroker      * @param axis      an<code>int</code> value      * @param test      a<code>NodeTest</code> value      * @param contextId an<code>int</code> value      * @param context   a<code>NodeSet</code> value      */
 specifier|public
 name|VirtualNodeSet
 parameter_list|(

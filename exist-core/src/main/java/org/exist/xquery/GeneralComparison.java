@@ -403,7 +403,7 @@ name|Comparison
 operator|.
 name|EQ
 decl_stmt|;
-comment|/**      * Truncation flags: when comparing with a string value, the search string may be truncated with a single * wildcard. See the constants declared      * in class {@link Constants}.      *      *<p>The standard functions starts-with, ends-with and contains are transformed into a general comparison with wildcard. Hence the need to      * consider wildcards here.</p>      */
+comment|/**      * Truncation flags: when comparing with a string value, the search string may be truncated with a single * wildcard. See the constants declared      * in class {@link Constants}.      *      * The standard functions starts-with, ends-with and contains are transformed into a general comparison with wildcard. Hence the need to      * consider wildcards here.      */
 specifier|protected
 name|StringTruncationOperator
 name|truncation
@@ -2659,7 +2659,7 @@ name|result
 operator|)
 return|;
 block|}
-comment|/**      * Generic, slow implementation. Applied if none of the possible optimizations can be used.      *      * @param   contextSequence      * @param   contextItem      *      * @return  The Sequence resulting from the comparison      *      * @throws  XPathException      */
+comment|/**      * Generic, slow implementation. Applied if none of the possible optimizations can be used.      *      * @param   contextSequence the context sequence      * @param   contextItem optional context item      *      * @return  The Sequence resulting from the comparison      *      * @throws  XPathException in case of dynamic error      */
 specifier|protected
 name|Sequence
 name|genericCompare

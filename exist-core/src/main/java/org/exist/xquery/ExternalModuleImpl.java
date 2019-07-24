@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of an {@link org.exist.xquery.ExternalModule}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Default implementation of an {@link org.exist.xquery.ExternalModule}.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1243,7 +1243,7 @@ name|rootExpression
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Set the root expression for this context.      *      * @param  expr      */
+comment|/**      * Set the root expression for this context.      *      * @param  expr the root expression      */
 specifier|protected
 name|void
 name|setRootExpression

@@ -216,7 +216,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dialog for viewing and editing Indexes in the Admin Client   *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-12  * @version 1.0  */
+comment|/**  * Dialog for viewing and editing Indexes in the Admin Client   *   * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @serial 2006-03-12  * @version 1.0  */
 end_comment
 
 begin_class

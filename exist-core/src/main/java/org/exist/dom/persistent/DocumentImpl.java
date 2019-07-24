@@ -628,7 +628,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1094,7 +1094,7 @@ return|return
 name|docId
 return|;
 block|}
-comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or      * {@link #BINARY_FILE}.      */
+comment|/**      * @return the type of this resource, either  {@link #XML_FILE} or      * {@link #BINARY_FILE}.      */
 specifier|public
 name|byte
 name|getResourceType
@@ -1283,7 +1283,7 @@ name|metadata
 return|;
 block|}
 comment|/************************************************      *      * Persistent node methods      *      ************************************************/
-comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other    a<code>DocumentImpl</code> value      * @param prev if there was an existing document which we are replacing,      *     we will copy the mode, ACL, and birth time from the existing document.      */
+comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param broker eXist-db DBBroker      * @param other    a<code>DocumentImpl</code> value      * @param prev if there was an existing document which we are replacing,      *     we will copy the mode, ACL, and birth time from the existing document.      * @throws PermissionDeniedException in case user has not sufficient privileges      */
 specifier|public
 name|void
 name|copyOf
@@ -1344,7 +1344,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other a<code>DocumentImpl</code> value      * @param prev if there was an existing document which we are replacing,      *     we will copy the mode, ACL, and birth time from the existing document.      */
+comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      * @param broker eXist-db DBBroker      * @param other a<code>DocumentImpl</code> value      * @param prev if there was an existing document which we are replacing,      *     we will copy the mode, ACL, and birth time from the existing document.      * @throws PermissionDeniedException in case user has not sufficient privileges      */
 specifier|public
 name|void
 name|copyOf
@@ -1858,7 +1858,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the estimated size of the data in this document.      *<p/>      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      */
+comment|/**      * Returns the estimated size of the data in this document.      *      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      * @return the estimated size of the data in this document.      *      */
 annotation|@
 name|EnsureContainerLocked
 argument_list|(

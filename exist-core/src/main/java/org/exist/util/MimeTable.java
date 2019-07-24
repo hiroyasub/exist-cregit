@@ -339,7 +339,7 @@ specifier|private
 name|String
 name|src
 decl_stmt|;
-comment|/**      * Returns the singleton.      */
+comment|/**      * Returns the singleton.      *      * @return the mimetable      */
 specifier|public
 specifier|static
 name|MimeTable
@@ -364,7 +364,7 @@ return|return
 name|instance
 return|;
 block|}
-comment|/**      * Returns the singleton, using a custom mime-types.xml file      */
+comment|/**      * Returns the singleton, using a custom mime-types.xml file      *      * @param path the path to the mime-types.xml file.      *      * @return the mimetable      */
 specifier|public
 specifier|static
 name|MimeTable
@@ -395,7 +395,7 @@ return|return
 name|instance
 return|;
 block|}
-comment|/**      * Returns the singleton, using a custom mime-types.xml stream,      * like for instance an internal database resource.      */
+comment|/**      * Returns the singleton, using a custom mime-types.xml stream,      * like for instance an internal database resource.      *      * @param stream the input stream      * @param src the name of the input      *      * @return the mimetable      */
 specifier|public
 specifier|static
 name|MimeTable
@@ -607,7 +607,7 @@ name|src
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Inform from where a mime-table is loaded      */
+comment|/**      * Inform from where a mime-table is loaded.      *      * @return the source.      */
 specifier|public
 name|String
 name|getSrc
@@ -936,7 +936,7 @@ operator|.
 name|XML
 return|;
 block|}
-comment|/**      * Determine if the passed mime type is text, i.e. may require a charset      * declaration.      *       * @param mimeType      * @return TRUE if mimetype is for text content else FALSE      */
+comment|/**      * Determine if the passed mime type is text, i.e. may require a charset      * declaration.      *       * @param mimeType the mimetype      * @return TRUE if mimetype is for text content else FALSE      */
 specifier|public
 name|boolean
 name|isTextContent

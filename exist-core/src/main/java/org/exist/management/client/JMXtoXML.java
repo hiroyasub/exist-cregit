@@ -1063,7 +1063,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Retrieve JMX output for the given categories and return a string of XML. Valid categories are "memory",      * "instances", "disk", "system", "caches", "locking", "processes", "sanity", "all".      */
+comment|/**      * Retrieve JMX output for the given categories and return a string of XML. Valid categories are "memory",      * "instances", "disk", "system", "caches", "locking", "processes", "sanity", "all".      *      * @param categories array of categories to include in the report      * @throws TransformerException in case of serialization errors      * @return string containing an XML report      */
 specifier|public
 name|String
 name|generateReport

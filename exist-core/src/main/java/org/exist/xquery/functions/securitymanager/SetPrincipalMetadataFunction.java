@@ -192,7 +192,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@googlemail.com>  */
+comment|/**  *  * @author<a href="mailto:adam@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

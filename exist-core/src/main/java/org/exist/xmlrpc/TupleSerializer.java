@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XML-RPC type serializer for sub-classes of  * {@link com.evolvedbinary.j8fu.tuple.Tuple}.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * XML-RPC type serializer for sub-classes of  * {@link com.evolvedbinary.j8fu.tuple.Tuple}.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

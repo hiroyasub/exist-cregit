@@ -442,7 +442,7 @@ specifier|final
 name|String
 name|XML
 init|=
-literal|"<p><s><w xml:id=\"VSK.P13.t1.p3.w231\">Ð½Ð°Ñ</w>\n"
+literal|"<s><w xml:id=\"VSK.P13.t1.p3.w231\">Ð½Ð°Ñ</w>\n"
 operator|+
 literal|"<w xml:id=\"VSK.P13.t1.p3.w233\">ÑÐ²Ð°ÐºÐ¾Ð³Ð°</w>\n"
 operator|+
@@ -452,7 +452,7 @@ literal|"<w xml:id=\"VSK.P13.t1.p3.w237\">Ð½Ð¾Ð²Ð¾Ð¼</w>\n"
 operator|+
 literal|"<w xml:id=\"VSK.P13.t1.p3.w239\" lemma=\"ÐºÑÐ¸Ð³Ð°\">ÐºÑÐ¸Ð³Ð¾Ð¼</w>\n"
 operator|+
-literal|"<w xml:id=\"VSK.P13.t1.p3.w241\">Ð¿ÐµÑÐºÐµÑÐ¸ÑÐµ</w>. â</s></p>"
+literal|"<w xml:id=\"VSK.P13.t1.p3.w241\">Ð¿ÐµÑÐºÐµÑÐ¸ÑÐµ</w>. â</s>"
 decl_stmt|;
 specifier|private
 name|Collection

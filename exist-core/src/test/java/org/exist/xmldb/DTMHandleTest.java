@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * DTMHandleTest.java  *<p/>  * 2004 by O2 IT Engineering  * Zurich,  Switzerland (CH)  */
+comment|/**  * DTMHandleTest.java  *  * 2004 by O2 IT Engineering  * Zurich,  Switzerland (CH)  */
 end_comment
 
 begin_package

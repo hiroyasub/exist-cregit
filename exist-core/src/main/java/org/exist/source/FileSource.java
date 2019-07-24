@@ -215,7 +215,7 @@ specifier|private
 name|long
 name|lastModified
 decl_stmt|;
-comment|/**      * Defaults to UTF-8 encoding for the path path      */
+comment|/**      * Defaults to UTF-8 encoding for the path path      * @param path to file source      * @param checkXQEncoding enable / disable XQEncoding      */
 specifier|public
 name|FileSource
 parameter_list|(

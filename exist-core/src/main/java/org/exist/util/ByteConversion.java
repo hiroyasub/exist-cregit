@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A collection of static methods to write integer values from/to a  * byte array.  *  *@author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * A collection of static methods to write integer values from/to a  * byte array.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -22,7 +22,7 @@ specifier|public
 class|class
 name|ByteConversion
 block|{
-comment|/**      *  Read an integer value from the specified byte array, starting at start.      *      * @deprecated reads the lowest byte first. will be replaced with      * {@link #byteToIntH(byte[], int)} for consistency.      */
+comment|/**      * Read an integer value from the specified byte array, starting at start.      *      * @param data the input data      * @param start the offset to start from in the input data.      *      * @return the integer      *      * @deprecated reads the lowest byte first. will be replaced with      *     {@link #byteToIntH(byte[], int)} for consistency.      */
 specifier|public
 specifier|final
 specifier|static
@@ -95,7 +95,7 @@ literal|24
 operator|)
 return|;
 block|}
-comment|/**      * Read an integer value from the specified byte array, starting at start.      *      * This version of the method reads the highest byte first.      */
+comment|/**      * Read an integer value from the specified byte array, starting at start.      *      * This version of the method reads the highest byte first.      *      * @param data the input data      * @param start the offset to start from in the input data.      *      * @return the integer      */
 specifier|public
 specifier|final
 specifier|static
@@ -168,7 +168,7 @@ literal|24
 operator|)
 return|;
 block|}
-comment|/**      *  Read a long value from the specified byte array, starting at start.      */
+comment|/**      *  Read a long value from the specified byte array, starting at start.      *      * @param data the input data      * @param start the offset to start from in the input data.      *      * @return the long integer      */
 specifier|public
 specifier|final
 specifier|static
@@ -341,7 +341,7 @@ literal|0xffL
 operator|)
 return|;
 block|}
-comment|/**      * Read a short value from the specified byte array, starting at start.      *      * @deprecated reads the lowest byte first. will be replaced with      * {@link #byteToShortH(byte[], int)} for consistency.      */
+comment|/**      * Read a short value from the specified byte array, starting at start.      *      * @deprecated reads the lowest byte first. will be replaced with      *     {@link #byteToShortH(byte[], int)} for consistency.      *      * @param data the input data      * @param start the offset to start from in the input data.      *      * @return the short integer      */
 specifier|public
 specifier|final
 specifier|static
@@ -389,7 +389,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**      * Read a short value from the specified byte array, starting at start.      *      * This version of the method reads the highest byte first.      */
+comment|/**      * Read a short value from the specified byte array, starting at start.      *      * This version of the method reads the highest byte first.      *      * @param data the input data      * @param start the offset to start from in the input data.      *      * @return the short integer      */
 specifier|public
 specifier|final
 specifier|static

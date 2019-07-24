@@ -73,14 +73,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Reindex the current collection, i.e. the collection from which      * this service has been retrieved.      *      * @throws XMLDBException      */
+comment|/**      * Reindex the current collection, i.e. the collection from which      * this service has been retrieved.      *      * @throws XMLDBException if the operation fails.      */
 name|void
 name|reindexCollection
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Reindex the documemy in the current collection, i.e. the collection from which      * this service has been retrieved.      *      * @param name The name of the document      * @throws XMLDBException      */
+comment|/**      * Reindex the documemy in the current collection, i.e. the collection from which      * this service has been retrieved.      *      * @param name The name of the document      *      * @throws XMLDBException if the operation fails.      */
 name|void
 name|reindexDocument
 parameter_list|(
@@ -91,7 +91,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Reindex the collection specified by its path.      *      * @param collectionPath      * @throws XMLDBException      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Reindex the collection specified by its path.      *      * @param collectionPath the collection path to reindex.      * @throws XMLDBException if the operation fails.      * @deprecated Use XmldbURI version instead      */
+annotation|@
+name|Deprecated
 name|void
 name|reindexCollection
 parameter_list|(
@@ -101,7 +103,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Reindex the collection specified by its path.      *      * @param collectionPath      * @throws XMLDBException      */
+comment|/**      * Reindex the collection specified by its path.      *      * @param collectionPath the collection path to reindex.      * @throws XMLDBException if the operation fails.      */
 name|void
 name|reindexCollection
 parameter_list|(
@@ -111,7 +113,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Returns frequency statistics on all elements and attributes contained in the      * structure index for the current collection.      *      * @param inclusive      * @throws XMLDBException      */
+comment|/**      * Returns frequency statistics on all elements and attributes contained in the      * structure index for the current collection.      *      * @param inclusive true if we are inclusive.      * @return the occurences.      * @throws XMLDBException if the operation fails.      */
 name|Occurrences
 index|[]
 name|getIndexedElements

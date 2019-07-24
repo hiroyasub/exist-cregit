@@ -33,7 +33,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Constructor for ReadOnlyException. 	 * @param message 	 */
+comment|/** 	 * Constructor for ReadOnlyException. 	 * 	 * @param message the exception message 	 */
 specifier|public
 name|ReadOnlyException
 parameter_list|(

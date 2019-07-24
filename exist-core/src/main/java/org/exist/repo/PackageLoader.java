@@ -327,7 +327,7 @@ name|max
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @param version the version to install      * @return a file containing the package or null if not found      */
+comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @param version the version to install      * @return a file containing the package or null if not found      * @throws IOException in case of an io error locating the package      */
 annotation|@
 name|Nullable
 name|XarSource

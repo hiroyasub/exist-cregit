@@ -491,7 +491,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * If this is a namespace declaration attribute, return 	 * the single string value of the attribute. 	 */
+comment|/** 	 * If this is a namespace declaration attribute, return 	 * the single string value of the attribute. 	 * 	 * @return the string value 	 */
 specifier|public
 name|String
 name|getLiteralValue

@@ -43,7 +43,7 @@ comment|//public byte[] serialize(short collectionId, boolean caseSensitive) thr
 comment|/** Serialize the value to an array of bytes for the persistant storage.      *       * The returned byte array has the following format:      *       * (offset-1 free bytes, byte type, byte[] value)      *       * @ deprecated use following function instead; this API should be local      * to value index class like {@link NativeValueIndex}      * @param offset starting index for writing in array data      * @return the size actually writen in the array argument      */
 comment|//TODO : better exception ?
 comment|//public byte[] serializeValue(int offset, boolean caseSensitive) throws EXistException;
-comment|/** Serialize the value to an array of bytes for the persistant storage.      *       * The returned byte array has the following format:      *       * (offset-1 free bytes, byte type, byte[] value)      *       * @param offset starting index for writing in array data      * @return the size actually writen in the array argument      */
+comment|/** Serialize the value to an array of bytes for the persistant storage.      *       * The returned byte array has the following format:      *       * (offset-1 free bytes, byte type, byte[] value)      *       * @param offset starting index for writing in array data      * @return the size actually writen in the array argument      * @throws EXistException in reponse to an eXist-db error      */
 comment|//TODO : better exception ?
 specifier|public
 name|byte

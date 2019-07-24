@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exception class can be thrown by implementations of org.exist.scheduler.Job.  *  *<p>Also provides a mechanism for cleaning up a job after failed execution</p>  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Exception class can be thrown by implementations of org.exist.scheduler.Job.  *  * Also provides a mechanism for cleaning up a job after failed execution  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -87,7 +87,7 @@ operator|=
 name|jobExceptionAction
 expr_stmt|;
 block|}
-comment|/**      * Should be called after this exception is caught it cleans up the job, with regards to the scheduler.      *      *<p>Jobs may be removed, re-fired immediately or left for their next execution</p>      *      * @throws  JobExecutionException  DOCUMENT ME!      */
+comment|/**      * Should be called after this exception is caught it cleans up the job, with regards to the scheduler.      *      * Jobs may be removed, re-fired immediately or left for their next execution      *      * @throws  JobExecutionException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|cleanupJob

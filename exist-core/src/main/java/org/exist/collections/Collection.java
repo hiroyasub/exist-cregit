@@ -346,7 +346,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #close()} to release the lock.  */
+comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link org.exist.storage.DBBroker#openCollection(org.exist.xmldb.XmldbURI, org.exist.storage.lock.Lock.LockMode)}  * to get a collection with a read or write lock and {@link #close()} to release the lock.  */
 end_comment
 
 begin_interface
@@ -410,7 +410,7 @@ name|Permission
 name|getPermissionsNoLock
 parameter_list|()
 function_decl|;
-comment|/**      * Set the mode of the Collection.      *      * @param broker The database broker.      * @param mode The unix like mode of the Collection permissions      */
+comment|/**      * Set the mode of the Collection.      *      * @param broker The database broker.      * @param mode The unix like mode of the Collection permissions      * @throws LockException if dbbroker is locked      * @throws PermissionDeniedException if use does not have required permissions      */
 name|void
 name|setPermissions
 parameter_list|(
@@ -447,7 +447,7 @@ name|long
 name|timestamp
 parameter_list|)
 function_decl|;
-comment|/**      * Get the Collection Configuration of this Collection      *      * @param broker The database broker      */
+comment|/**      * Get the Collection Configuration of this Collection      *      * @param broker The database broker      * @return CollectionConfiguration of this Collection      */
 annotation|@
 name|Nullable
 name|CollectionConfiguration
@@ -457,7 +457,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/**      * Get the index configuration for this collection      *      * @param broker The database broker      */
+comment|/**      * Get the index configuration for this collection      *      * @param broker The database broker      * @return IndexSpec aka configuration for this collection      */
 name|IndexSpec
 name|getIndexConfiguration
 parameter_list|(
@@ -509,7 +509,7 @@ name|XmldbURI
 name|getParentURI
 parameter_list|()
 function_decl|;
-comment|/**      * Determines if this Collection has any documents, or child Collections      *      * @param broker The database broker      * @return true if the collection is empty, false otherwise      */
+comment|/**      * Determines if this Collection has any documents, or child Collections      *      * @param broker The database broker      * @return true if the collection is empty, false otherwise      * @throws PermissionDeniedException if user has not sufficient rights      */
 name|boolean
 name|isEmpty
 parameter_list|(
@@ -519,7 +519,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns the number of documents in this Collection      *      * @param broker The database broker      * @return The number of documents in the Collection, or -1 if the collection could not be locked      */
+comment|/**      * Returns the number of documents in this Collection      *      * @param broker The database broker      * @return The number of documents in the Collection, or -1 if the collection could not be locked      * @throws PermissionDeniedException if user has not sufficient rights      */
 name|int
 name|getDocumentCount
 parameter_list|(
@@ -529,7 +529,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns the number of documents in this Collection      *      * @param broker The database broker      * @return The number of documents in the Collection      * @deprecated Use {@link #getDocumentCount(DBBroker)}      */
+comment|/**      * Returns the number of documents in this Collection      *      * @param broker The database broker      * @return The number of documents in the Collection      * @throws PermissionDeniedException if user has not sufficient rights      * @deprecated Use {@link #getDocumentCount(DBBroker)}      */
 annotation|@
 name|Deprecated
 name|int
@@ -541,7 +541,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Return the number of child Collections within this Collection.      *      * @param broker The database broker      * @return The childCollectionCount value      */
+comment|/**      * Return the number of child Collections within this Collection.      *      * @param broker The database broker      * @throws PermissionDeniedException if user has not sufficient rights      * @return The childCollectionCount value      */
 name|int
 name|getChildCollectionCount
 parameter_list|(
@@ -551,7 +551,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Check if the Collection has a child document      *      * @param broker The database broker      * @param name   the name (without path) of the document      * @return true when the collection has the document, false otherwise      */
+comment|/**      * Check if the Collection has a child document      *      * @param broker The database broker      * @param name   the name (without path) of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @return true when the collection has the document, false otherwise      */
 name|boolean
 name|hasDocument
 parameter_list|(
@@ -564,7 +564,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Check if the collection has a child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      * @return true if the child Collection exists, false otherwise      */
+comment|/**      * Check if the collection has a child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      * @return true if the child Collection exists, false otherwise      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|boolean
 name|hasChildCollection
 parameter_list|(
@@ -579,7 +579,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Check if the collection has a child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      * @return true if the child Collection exists, false otherwise      * @deprecated Use {@link #hasChildCollection(DBBroker, XmldbURI)} instead      */
+comment|/**      * Check if the collection has a child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      * @return true if the child Collection exists, false otherwise      * @throws PermissionDeniedException if user has not sufficient rights      * @deprecated Use {@link #hasChildCollection(DBBroker, XmldbURI)} instead      */
 annotation|@
 name|Deprecated
 name|boolean
@@ -594,7 +594,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Add a new child Collection to this Collection      *      * @param broker The database broker      * @param child  The child Collection to add to this Collection      */
+comment|/**      * Add a new child Collection to this Collection      *      * @param broker The database broker      * @param child  The child Collection to add to this Collection      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|void
 name|addCollection
 parameter_list|(
@@ -616,7 +616,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Get the Document and child Collection      * entries of this Collection      *      * @param broker The database broker      * @return A list of entries in this Collection      */
+comment|/**      * Get the Document and child Collection      * entries of this Collection      *      * @param broker The database broker      * @return A list of entries in this Collection      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      */
 name|List
 argument_list|<
 name|CollectionEntry
@@ -633,7 +633,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Get the entry for a child Collection      *      * @param broker The database broker      * @param name   The name of the child Collection      * @return The child Collection entry      */
+comment|/**      * Get the entry for a child Collection      *      * @param broker The database broker      * @param name   The name of the child Collection      * @return The child Collection entry      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      */
 name|CollectionEntry
 name|getChildCollectionEntry
 parameter_list|(
@@ -650,7 +650,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Get the entry for a resource      *      * @param broker The database broker      * @param name   The name of the resource      * @return The resource entry      */
+comment|/**      * Get the entry for a resource      *      * @param broker The database broker      * @param name   The name of the resource      * @return The resource entry      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      */
 name|CollectionEntry
 name|getResourceEntry
 parameter_list|(
@@ -667,7 +667,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Update the specified child Collection      *      * @param broker The database broker      * @param child  The child Collection to update      */
+comment|/**      * Update the specified child Collection      *      * @param broker The database broker      * @param child  The child Collection to update      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|void
 name|update
 parameter_list|(
@@ -689,7 +689,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Add a document to the collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         The document to add to the Collection      */
+comment|/**      * Add a document to the collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         The document to add to the Collection      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|void
 name|addDocument
 parameter_list|(
@@ -707,7 +707,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Removes the document from the internal list of resources, but      * doesn't delete the document object itself.      *      * @param broker The database broker      * @param doc    The document to unlink from the Collection      */
+comment|/**      * Removes the document from the internal list of resources, but      * doesn't delete the document object itself.      *      * @param broker The database broker      * @param doc    The document to unlink from the Collection      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|void
 name|unlinkDocument
 parameter_list|(
@@ -729,7 +729,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Return an iterator over all child Collections      *<p>      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      */
+comment|/**      * Return an iterator over all child Collections      *      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -744,7 +744,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Return an iterator over all child Collections.      *<p>      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      * @deprecated The creation of the stable iterator may      * throw an {@link java.lang.IndexOutOfBoundsException},      * use {@link #collectionIterator(DBBroker)} instead      */
+comment|/**      * Return an iterator over all child Collections.      *      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      * @throws PermissionDeniedException if user has not sufficient rights      * @deprecated The creation of the stable iterator may      * throw an {@link java.lang.IndexOutOfBoundsException},      * use {@link #collectionIterator(DBBroker)} instead      */
 annotation|@
 name|Deprecated
 name|Iterator
@@ -759,7 +759,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns an iterator on the documents in this Collection      *      * @param broker The database broker      * @return A iterator of all the documents in the Collection.      */
+comment|/**      * Returns an iterator on the documents in this Collection      *      * @param broker The database broker      * @return A iterator of all the documents in the Collection.      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -774,7 +774,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Returns an iterator on the documents in this Collection      *      * @param broker The database broker      * @return A iterator of all the documents in the Collection.      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be available to      * the iterator. Use {@link #iterator(DBBroker)} instead      */
+comment|/**      * Returns an iterator on the documents in this Collection      *      * @param broker The database broker      * @return A iterator of all the documents in the Collection.      * @throws PermissionDeniedException if user has not sufficient rights      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be available to      * the iterator. Use {@link #iterator(DBBroker)} instead      */
 annotation|@
 name|Deprecated
 name|Iterator
@@ -790,7 +790,7 @@ throws|throws
 name|PermissionDeniedException
 function_decl|;
 comment|//TODO(AR) it is unlikely we need to pass the user as a parameter, fix this...
-comment|/**      * Return the Collections below this Collection      *      * @param broker The database broker      * @param user   The user that is performing the operation      * @return The List of descendant Collections      */
+comment|/**      * Return the Collections below this Collection      *      * @param broker The database broker      * @param user   The user that is performing the operation      * @return The List of descendant Collections      * @throws PermissionDeniedException if user has not sufficient rights      */
 name|List
 argument_list|<
 name|Collection
@@ -806,7 +806,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @return The mutable document set provided in {@code docs}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
@@ -824,7 +824,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@code docs}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
@@ -845,7 +845,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@code docs}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|DocumentSet
 name|allDocs
 parameter_list|(
@@ -869,7 +869,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@code docs}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|DocumentSet
 name|getDocuments
 parameter_list|(
@@ -884,7 +884,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection (without locking)      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@param docs}      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be added to      * the document set. Use {@link #getDocuments(DBBroker, MutableDocumentSet)}      * instead      */
+comment|/**      * Gets all of the documents from the Collection (without locking)      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@code docs}      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be added to      * the document set. Use {@link #getDocuments(DBBroker, MutableDocumentSet)}      * instead      */
 annotation|@
 name|Deprecated
 name|DocumentSet
@@ -897,7 +897,7 @@ name|MutableDocumentSet
 name|docs
 parameter_list|)
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker   The database broker      * @param docs     A mutable document set which receives the documents      * @param lockMap  A map that receives the locks we have taken on documents      * @param lockType The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker   The database broker      * @param docs     A mutable document set which receives the documents      * @param lockMap  A map that receives the locks we have taken on documents      * @param lockType The type of lock to acquire on the documents      * @return The mutable document set provided in {@code docs}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked*      */
 name|DocumentSet
 name|getDocuments
 parameter_list|(
@@ -918,7 +918,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a child resource as identified by name. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return the document or null if it doesn't exist      */
+comment|/**      * Get a child resource as identified by name. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return the document or null if it doesn't exist      * @throws PermissionDeniedException if user has not sufficient rights      */
 annotation|@
 name|Nullable
 annotation|@
@@ -935,7 +935,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      *      * @deprecated Use {@link #getDocumentWithLock(DBBroker, XmldbURI, LockMode)}      */
+comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      *      * @deprecated Use {@link #getDocumentWithLock(org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, org.exist.storage.lock.Lock.LockMode)}      */
 annotation|@
 name|Deprecated
 annotation|@
@@ -954,7 +954,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a child resource after putting a lock on it.      * With this method, access to the received document object is safe.      *      * @param broker   The database broker      * @param name     The name of the document (without collection path)      * @param lockMode The mode of the lock to acquire      * @return The locked document or null if it doesn't exist      */
+comment|/**      * Retrieve a child resource after putting a lock on it.      * With this method, access to the received document object is safe.      *      * @param broker   The database broker      * @param name     The name of the document (without collection path)      * @param lockMode The mode of the lock to acquire      * @return The locked document or null if it doesn't exist      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked*      */
 annotation|@
 name|Nullable
 name|LockedDocument
@@ -974,7 +974,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker  The database broker      * @param rawPath The path of the document      * @return the document or null if it doesn't exist      * @deprecated Use {@link #getDocument(DBBroker, XmldbURI)} instead      */
+comment|/**      * Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker  The database broker      * @param rawPath The path of the document      * @return the document or null if it doesn't exist      * @throws PermissionDeniedException if user has not sufficient rights      * @deprecated Use {@link #getDocument(DBBroker, XmldbURI)} instead      */
 annotation|@
 name|Deprecated
 annotation|@
@@ -991,7 +991,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Remove the specified child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      */
+comment|/**      * Remove the specified child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      */
 name|void
 name|removeCollection
 parameter_list|(
@@ -1006,7 +1006,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Removes a document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         The document to remove      */
+comment|/**      * Removes a document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         The document to remove      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      */
 name|void
 name|removeResource
 parameter_list|(
@@ -1028,7 +1028,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Remove an XML document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      */
+comment|/**      * Remove an XML document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      */
 name|void
 name|removeXMLResource
 parameter_list|(
@@ -1050,7 +1050,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Remove a Binary document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      */
+comment|/**      * Remove a Binary document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws TriggerException in case of eXist-db trigger error      */
 name|void
 name|removeBinaryResource
 parameter_list|(
@@ -1070,7 +1070,7 @@ name|LockException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Remove a Binary document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         the document to remove      */
+comment|/**      * Remove a Binary document from this Collection      *      * @param transaction The database transaction      * @param broker      The database broker      * @param doc         the document to remove      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws TriggerException in case of eXist-db trigger error      */
 name|void
 name|removeBinaryResource
 parameter_list|(
@@ -1090,7 +1090,7 @@ name|LockException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param source      The source of the document to store      * @return An {@link IndexInfo} with a write lock on the document      */
+comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param source      The source of the document to store      * @return An {@link IndexInfo} with a write lock on the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      *      */
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
@@ -1119,7 +1119,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      * @return An {@link IndexInfo} with a write lock on the document      */
+comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      * @return An {@link IndexInfo} with a write lock on the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
@@ -1151,7 +1151,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The data of the document to store      * @return An {@link IndexInfo} with a write lock on the document      */
+comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The data of the document to store      * @return An {@link IndexInfo} with a write lock on the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
@@ -1180,7 +1180,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param node        The document node of the document to store      * @return An {@link IndexInfo} with a write lock on the document      */
+comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param node        The document node of the document to store      * @return An {@link IndexInfo} with a write lock on the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
@@ -1209,7 +1209,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} should have been called previously in order      * to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} should have been called previously in order      * to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|void
 name|store
 parameter_list|(
@@ -1236,7 +1236,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource, XMLReader)} should have been called previously      * in order to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource, XMLReader)} should have been called previously      * in order to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked*      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|void
 name|store
 parameter_list|(
@@ -1271,7 +1271,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, String)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param data        The data of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, String)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param data        The data of the document to store      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|void
 name|store
 parameter_list|(
@@ -1298,7 +1298,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, Node)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param node        The document node of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, Node)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param node        The document node of the document to store      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @throws SAXException internal SAXException      */
 name|void
 name|store
 parameter_list|(
@@ -1325,7 +1325,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Creates a Binary Document object      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      *      * @return The Binary Document object      */
+comment|/**      * Creates a Binary Document object      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @return The Binary Document object      */
 name|BinaryDocument
 name|validateBinaryResource
 parameter_list|(
@@ -1347,7 +1347,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      *      * @return The stored Binary Document object      */
+comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception*      *      * @return The stored Binary Document object      */
 name|BinaryDocument
 name|addBinaryResource
 parameter_list|(
@@ -1386,7 +1386,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The content for the document      * @param mimeType    The Internet Media Type of the document      *      * @return The stored Binary Document object      *      * @deprecated Use {@link #addBinaryResource(Txn, DBBroker, XmldbURI, InputStream, String, long)}      */
+comment|/**      * Store a binary document into the Collection      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The content for the document      * @param mimeType    The Internet Media Type of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      * @return The stored Binary Document object      *      * @deprecated Use {@link #addBinaryResource(Txn, DBBroker, XmldbURI, InputStream, String, long)}      */
 annotation|@
 name|Deprecated
 name|BinaryDocument
@@ -1419,7 +1419,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The content for the document      * @param mimeType    The Internet Media Type of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      *      * @return The stored Binary Document object      *      * @deprecated Use {@link #addBinaryResource(Txn, DBBroker, BinaryDocument, InputStream, String, long, Date, Date)}      */
+comment|/**      * Store a binary document into the Collection      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The content for the document      * @param mimeType    The Internet Media Type of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception      *      * @return The stored Binary Document object      *      * @deprecated Use {@link #addBinaryResource(Txn, DBBroker, BinaryDocument, InputStream, String, long, Date, Date)}      */
 annotation|@
 name|Deprecated
 name|BinaryDocument
@@ -1458,7 +1458,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      *      * @return The stored Binary Document object      */
+comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception       *      * @return The stored Binary Document object      */
 name|BinaryDocument
 name|addBinaryResource
 parameter_list|(
@@ -1491,7 +1491,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param blob        the binary resource to store the data into      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      *      * @return The stored Binary Document object      */
+comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param blob        the binary resource to store the data into      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception       *      * @return The stored Binary Document object      */
 name|BinaryDocument
 name|addBinaryResource
 parameter_list|(
@@ -1530,7 +1530,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param blob        the binary resource to store the data into      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      * @param preserve    In the case of a copy, cause the copy process to preserve the following attributes of each      *                    source in the copy: modification time, file mode, user ID, and group ID, as allowed by      *                    permissions. Access Control Lists (ACLs) will also be preserved.      *      * @return The stored Binary Document object      */
+comment|/**      * Store a binary document into the Collection (streaming)      *      * Locks the collection while the resource is being saved. Triggers will be called after the collection      * has been unlocked while keeping a lock on the resource to prevent modification.      *      * Callers should not lock the collection before calling this method as this may lead to deadlocks.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param blob        the binary resource to store the data into      * @param is          The content for the document      * @param mimeType    The Internet Media Type of the document      * @param size        The size in bytes of the document      * @param created     The created timestamp of the document      * @param modified    The modified timestamp of the document      * @param preserve    In the case of a copy, cause the copy process to preserve the following attributes of each      *                    source in the copy: modification time, file mode, user ID, and group ID, as allowed by      *                    permissions. Access Control Lists (ACLs) will also be preserved.      * @throws PermissionDeniedException if user has not sufficient rights      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors      * @throws TriggerException in case of eXist-db trigger error      * @throws EXistException general eXist-db exception       *      * @return The stored Binary Document object      */
 name|BinaryDocument
 name|addBinaryResource
 parameter_list|(
@@ -1574,7 +1574,7 @@ name|TriggerException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Serializes the Collection to a variable byte representation      *      * @param outputStream The output stream to write the collection contents to      */
+comment|/**      * Serializes the Collection to a variable byte representation      *      * @param outputStream The output stream to write the collection contents to      * @throws LockException if broker is locked      * @throws IOException in case of I/O errors       */
 annotation|@
 name|EnsureContainerLocked
 argument_list|(

@@ -436,7 +436,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Install Function: Install package into repository  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author Wolfgang Meier  * @author ljo  */
+comment|/**  * Install Function: Install package into repository  *  * @author<a href="mailto:jim.fuller@exist-db.org">James Fuller</a>  * @author Wolfgang Meier  * @author ljo  */
 end_comment
 
 begin_class

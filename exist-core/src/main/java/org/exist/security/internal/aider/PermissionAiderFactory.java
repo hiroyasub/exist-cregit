@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Instantiates an appropriate Permission class based on the current configuration  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Instantiates an appropriate Permission class based on the current configuration  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

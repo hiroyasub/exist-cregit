@@ -82,14 +82,14 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Returns the time of creation of the collection.      */
+comment|/**      * Returns the time of creation of the collection.      *      * @return the creation time      *      * @throws XMLDBException if an error occurs whilst retrieving the creation time.      */
 name|Date
 name|getCreationTime
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/* Alternative methods, especially to be used from jsp */
+comment|/**      * Alternative methods, especially to be used from JSP.      *      * @return the child collections.      *      * @throws XMLDBException if an error occurs whilst retrieving the child collections.      */
 name|String
 index|[]
 name|getChildCollections

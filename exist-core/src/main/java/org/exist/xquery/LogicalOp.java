@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for the boolean operators "and" and "or".  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Base class for the boolean operators "and" and "or".  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class
@@ -84,7 +84,6 @@ specifier|protected
 name|Expression
 name|parent
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|LogicalOp
 parameter_list|(

@@ -29,7 +29,7 @@ name|SIGNAL_STARTUP
 init|=
 literal|"startup"
 decl_stmt|;
-comment|/*** ready for recovery& read-only operations */
+comment|/*** ready for recovery&amp; read-only operations */
 name|String
 name|SIGNAL_READINESS
 init|=

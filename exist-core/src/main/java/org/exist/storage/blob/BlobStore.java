@@ -176,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Store for BLOBs (Binary Large Objects).  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Store for BLOBs (Binary Large Objects).  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -275,7 +275,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Perform an operation with a {@link Path} reference to a BLOB.      *      * NOTE: Use of this method should be avoided where possible. It only      * exists for integration with tools external to Java which can only      * work with File Paths and where making a copy of the file is not      * necessary.      *      * WARNING: The provided {@link Path} MUST ONLY be used for      * READ operations, any WRITE/DELETE operation will corrupt the      * integrity of the blob store.      *      * Consider if you really need to use this method. It is likely you could      * instead use {@link #get(Txn, BlobId)} and make a copy of the data to      * a temporary file.      *      * Note that any resources associated with the BLOB file      * may not be released until the {@code fnFile} has finished executing.      *      * USE WITH CAUTION!      *      * @param transaction the current database transaction.      * @param blobId the identifier representing the blob to be retrieved.      * @param<T> the type of the return value      * @param fnFile a function which performs a read-only operation on the BLOB file.      *     The Path will be null if the Blob does not exist in the Blob Store.      *     If you wish to handle exceptions in your function you should consider      *     {@link com.evolvedbinary.j8fu.Try} or similar.      *      * @throws IOException if an error occurs whilst retrieving the BLOB file.      */
+comment|/**      * Perform an operation with a {@link Path} reference to a BLOB.      *      * NOTE: Use of this method should be avoided where possible. It only      * exists for integration with tools external to Java which can only      * work with File Paths and where making a copy of the file is not      * necessary.      *      * WARNING: The provided {@link Path} MUST ONLY be used for      * READ operations, any WRITE/DELETE operation will corrupt the      * integrity of the blob store.      *      * Consider if you really need to use this method. It is likely you could      * instead use {@link #get(Txn, BlobId)} and make a copy of the data to      * a temporary file.      *      * Note that any resources associated with the BLOB file      * may not be released until the {@code fnFile} has finished executing.      *      * USE WITH CAUTION!      *      * @param transaction the current database transaction.      * @param blobId the identifier representing the blob to be retrieved.      * @param<T> the type of the return value      * @param fnFile a function which performs a read-only operation on the BLOB file.      *     The Path will be null if the Blob does not exist in the Blob Store.      *     If you wish to handle exceptions in your function you should consider      *     {@link com.evolvedbinary.j8fu.Try} or similar.      *      * @return the result of the {@code fnFile} function.      *      * @throws IOException if an error occurs whilst retrieving the BLOB file.      * @return the result of the {@code fnFile} function      */
 parameter_list|<
 name|T
 parameter_list|>
@@ -317,7 +317,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Backup the Blob Store to the backup.      *      * @param backup the backup to write the Blob Store to.      */
+comment|/**      * Backup the Blob Store to the backup.      *      * @param backup the backup to write the Blob Store to.      * @throws IOException if an error occurs whilst creating a backup of the BLOB.      */
 name|void
 name|backupToArchive
 parameter_list|(

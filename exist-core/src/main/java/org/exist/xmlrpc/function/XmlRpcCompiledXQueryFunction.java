@@ -76,7 +76,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialisation of FunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Specialisation of FunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -140,7 +140,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Signature for lambda function which takes a compiled XQuery      *      * @param compiledQuery The compiled XQuery      */
+comment|/**      * Signature for lambda function which takes a compiled XQuery      *      * @param compiledQuery The compiled XQuery      *      * @return the result of the function      *      * @throws EXistException if an error occurs with the database      * @throws PermissionDeniedException if the caller has insufficient priviledges      * @throws XPathException if executing the XQuery raises an error      */
 name|R
 name|applyXmlRpc
 parameter_list|(

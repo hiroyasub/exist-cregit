@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist-db xs:base64Binary and xs:hexBinary Typed Values  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * eXist-db xs:base64Binary and xs:hexBinary Typed Values  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

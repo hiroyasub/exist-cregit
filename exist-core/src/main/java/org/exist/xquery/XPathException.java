@@ -163,7 +163,7 @@ name|source
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param message the error message      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -183,7 +183,7 @@ operator|=
 name|message
 expr_stmt|;
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param line line number the error appeared in      * @param column column the error appeared in      * @param message the error message      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -532,7 +532,7 @@ name|getSource
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param ast ast representation      * @param message the error message      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -636,7 +636,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param cause the cause throwable      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -675,7 +675,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param cause the cause throwable      * @param message the error message      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -724,7 +724,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param expr expression causing the error      * @param cause the cause throwable      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -772,7 +772,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param expr expression causing the error      * @param message error message      * @param cause the cause throwable      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -1029,7 +1029,7 @@ name|errorDesc
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param line line number the error appeared in      * @param column column the error appeared in      * @param message the error message      * @param cause the cause throwable      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|protected
@@ -1098,7 +1098,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @deprecated Use a constructor with errorCode      */
+comment|/**      * @param line line number the error appeared in      * @param column column the error appeared in      * @param cause the cause throwable      *      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public

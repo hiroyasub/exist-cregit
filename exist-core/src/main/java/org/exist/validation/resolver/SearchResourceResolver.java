@@ -233,7 +233,7 @@ name|brokerPool
 init|=
 literal|null
 decl_stmt|;
-comment|/** Creates a new instance of StoredResourceResolver */
+comment|/**      * Creates a new instance of StoredResourceResolver      *      * @param collectionPath Path of collection that will be searched.      * @param pool  Brokerpool.      */
 specifier|public
 name|SearchResourceResolver
 parameter_list|(

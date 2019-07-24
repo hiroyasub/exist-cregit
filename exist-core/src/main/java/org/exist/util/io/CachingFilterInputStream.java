@@ -58,7 +58,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of an Input Stream Filter that extends any InputStream with  * mark() and reset() capabilities by caching the read data for later  * re-reading.  *  * NOTE - Only supports reading data up to 2GB as the cache index uses an 'int'  * index  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  */
+comment|/**  * Implementation of an Input Stream Filter that extends any InputStream with  * mark() and reset() capabilities by caching the read data for later  * re-reading.  *  * NOTE - Only supports reading data up to 2GB as the cache index uses an 'int'  * index  *  * @version 1.1  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @author<a href="tobi.krebsATgmail.com">Tobi Krebs</a>  */
 end_comment
 
 begin_class
@@ -89,7 +89,7 @@ name|mark
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * Constructor which uses an existing Cache from a CachingFilterInputStream,      * if inputStream is a CachingFilterInputStream.      *      * @param inputStream      */
+comment|/**      * Constructor which uses an existing Cache from a CachingFilterInputStream,      * if inputStream is a CachingFilterInputStream.      *      * @param inputStream the input stream      *      * @throws InstantiationException if the construction fails      */
 specifier|public
 name|CachingFilterInputStream
 parameter_list|(
@@ -167,7 +167,7 @@ return|return
 name|cache
 return|;
 block|}
-comment|/**      * Gets the cache implementation for      * sharing with another source. This is done      * by incrementing its shared reference count.      */
+comment|/**      * Gets the cache implementation for      * sharing with another source. This is done      * by incrementing its shared reference count.      *      * @return the cache implementation      */
 name|FilterInputStreamCache
 name|shareCache
 parameter_list|()

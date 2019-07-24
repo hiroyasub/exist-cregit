@@ -388,7 +388,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read document from embedded database as an InputStream.  *  * @author Adam Retter<adam@exist-db.org>  * @author Dannes Wessels  */
+comment|/**  * Read document from embedded database as an InputStream.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Dannes Wessels  */
 end_comment
 
 begin_class

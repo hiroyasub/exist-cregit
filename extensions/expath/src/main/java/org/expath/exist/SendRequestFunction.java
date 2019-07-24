@@ -382,7 +382,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @version EXPath HTTP Client Module Candidate 9 January 2010 http://expath.org/spec/http-client/20100109  */
+comment|/**  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  * @version EXPath HTTP Client Module Candidate 9 January 2010 http://expath.org/spec/http-client/20100109  */
 end_comment
 
 begin_class

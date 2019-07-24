@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -425,7 +425,7 @@ argument_list|)
 expr_stmt|;
 comment|//To change body of generated methods, choose Tools | Templates.
 block|}
-comment|/**      * Get the Mode described by the table model      *       * The Unix mode of the permissions      */
+comment|/**      * Get the Mode described by the table model      *       * @return The Unix mode of the permissions      */
 specifier|public
 name|int
 name|getMode

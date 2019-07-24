@@ -368,7 +368,6 @@ literal|"the node"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|GetNodeById
 parameter_list|(

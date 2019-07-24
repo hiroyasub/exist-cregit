@@ -481,7 +481,7 @@ name|xmlreportText
 init|=
 literal|"a validation report."
 decl_stmt|;
-comment|/**      *  Get input stream for specified resource.      */
+comment|/**      *  Get input stream for specified resource      * @param s The item      * @param context Xquery context      * @return Inputstream containing the item      * @throws XPathException An error occurred.      * @throws IOException An I/O error occurred.      */
 specifier|public
 specifier|static
 name|InputStream
@@ -516,7 +516,7 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
-comment|/**      *  Get stream source for specified resource, containing InputStream and       * location. Used by @see Jaxv.      */
+comment|/**      *  Get stream source for specified resource, containing InputStream and      * location. Used by @see Jaxv.      * @param s The sequence      * @param context xquery context      * @return Streamsources      * @throws XPathException An error occurred.      * @throws IOException An I/O error occurred.      */
 specifier|public
 specifier|static
 name|StreamSource
@@ -1090,7 +1090,7 @@ return|return
 name|streamSource
 return|;
 block|}
-comment|/**      *  Get input source for specified resource, containing inputStream and       * location. Used by @see Jing.      */
+comment|/**      *  Get input source for item. Used by @see Jing.      *      *  @param s The item      *  @param context xquery context      *  @return Inputsource      *  @throws XPathException An error occurred.      *  @throws IOException An I/O error occurred.      */
 specifier|public
 specifier|static
 name|InputSource
@@ -1195,7 +1195,7 @@ return|return
 name|streamSource
 return|;
 block|}
-comment|/**      *  Get URL value of item.      */
+comment|/**      *  Get URL value of item.      * @param item Item      * @return URL of item      * @throws XPathException Item has no URL.      */
 specifier|public
 specifier|static
 name|String
@@ -1341,7 +1341,7 @@ return|return
 name|url
 return|;
 block|}
-comment|/**      *  Get URL values of sequence.      */
+comment|/**      * Get URL values of sequence items.      *      * @param s Sequence      * @return URLs of items in sequence      * @throws XPathException Thrown when an item does not have an associated URL.      */
 specifier|public
 specifier|static
 name|String
@@ -1435,7 +1435,7 @@ return|return
 name|returnUrls
 return|;
 block|}
-comment|/**      * Create validation report.      */
+comment|/**      * Create validation report.      * @param report The validation report data.      * @param builder Helperclass to create in memory XML.      * @return Validation report as node.      */
 specifier|static
 specifier|public
 name|NodeImpl
@@ -1946,7 +1946,7 @@ name|nodeNr
 argument_list|)
 return|;
 block|}
-comment|/**      *  Safely close the input source and underlying inputstream.      */
+comment|/**      * Safely close the input source and underlying inputstream.      * @param source The inputsource.      */
 specifier|public
 specifier|static
 name|void
@@ -2021,7 +2021,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Safely close the stream source and underlying inputstream.      */
+comment|/**      *  Safely close the stream source and underlying inputstream.      * @param source The stream source.      */
 specifier|public
 specifier|static
 name|void
@@ -2096,7 +2096,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Safely close the stream sources and underlying inputstreams.      */
+comment|/**      * Safely close the stream sources and underlying inputstreams.      * @param sources Streamsources.      */
 specifier|public
 specifier|static
 name|void

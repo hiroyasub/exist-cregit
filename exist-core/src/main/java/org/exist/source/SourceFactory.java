@@ -313,7 +313,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Create a {@link Source} object for the given resource URL.      *      * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *      * @param contextPath the context path of the resource.      * @param location the location of the resource (relative to the {@code contextPath}).      * @param checkXQEncoding where we need to check the encoding of the XQuery.      *      * @return The Source of the resource, or null if the resource cannot be found.      *      * @throws PermissionDeniedException if the resource resides in the database,      *     but the calling user does not have permission to access it.      * @throws IOException if a general I/O error occurs whilst accessing the resource.      */
+comment|/**      * Create a {@link Source} object for the given resource URL.      *      * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *      * @param broker the eXist-db DBBroker      * @param contextPath the context path of the resource.      * @param location the location of the resource (relative to the {@code contextPath}).      * @param checkXQEncoding where we need to check the encoding of the XQuery.      *      * @return The Source of the resource, or null if the resource cannot be found.      *      * @throws PermissionDeniedException if the resource resides in the database,      *     but the calling user does not have permission to access it.      * @throws IOException if a general I/O error occurs whilst accessing the resource.      */
 specifier|public
 specifier|static
 annotation|@

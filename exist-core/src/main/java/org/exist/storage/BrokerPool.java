@@ -898,7 +898,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to  * {@link #configure(String, int, int, Configuration, Optional<Observer>)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to  * {@link #configure(String, int, int, Configuration, Optional)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -3668,7 +3668,7 @@ return|return
 name|lockManager
 return|;
 block|}
-comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *      * @param broker      * @throws EXistException      */
+comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *      * @param broker the database broker      * @return true if recovery was run, false otherwise      * @throws EXistException if a database error occurs      */
 specifier|public
 name|boolean
 name|runRecovery
@@ -3777,7 +3777,7 @@ return|return
 name|pageSize
 return|;
 block|}
-comment|/**      * Returns the class loader used when this BrokerPool was configured.      */
+comment|/**      * Returns the class loader used when this BrokerPool was configured.      *      * @return the classloader      */
 specifier|public
 name|ClassLoader
 name|getClassLoader
@@ -4288,7 +4288,7 @@ return|return
 name|globalXUpdateLock
 return|;
 block|}
-comment|/**      * Creates an inactive broker for the database instance.      *      * @return The broker      * @throws EXistException      */
+comment|/**      * Creates an inactive broker for the database instance.      *      * @return The broker      * @throws EXistException if the broker cannot be created      */
 specifier|protected
 name|DBBroker
 name|createBroker

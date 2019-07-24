@@ -78,7 +78,6 @@ name|AbstractCharacterData
 implements|implements
 name|CDATASection
 block|{
-comment|/**      * Creates a new CDATASectionImpl object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|CDATASectionImpl
 parameter_list|(

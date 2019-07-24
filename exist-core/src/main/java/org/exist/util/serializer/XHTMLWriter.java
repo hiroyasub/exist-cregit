@@ -527,7 +527,7 @@ name|INLINE_TAGS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param writer      */
+comment|/**      * @param writer the writer      * @param emptyTags tags that are allowed to be empty      * @param inlineTags tags that should be written inline      */
 specifier|public
 name|XHTMLWriter
 parameter_list|(

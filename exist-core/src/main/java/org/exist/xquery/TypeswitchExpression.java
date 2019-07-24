@@ -238,7 +238,7 @@ operator|=
 name|operand
 expr_stmt|;
 block|}
-comment|/**      * Add a case clause with a sequence type and an optional variable declaration.      */
+comment|/**      * Add a case clause with a sequence type and an optional variable declaration.      *      * @param types the sequence types to match      * @param var name of the variable to bind the current item to      * @param caseClause the expression to evaluate      */
 specifier|public
 name|void
 name|addCase
@@ -270,7 +270,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the default clause with an optional variable declaration.      */
+comment|/**      * Set the default clause with an optional variable declaration.      *      * @param var the name of the variable to bind the current item to      * @param defaultClause the expression to evaluate      */
 specifier|public
 name|void
 name|setDefault

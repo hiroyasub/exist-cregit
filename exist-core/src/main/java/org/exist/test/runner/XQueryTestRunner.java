@@ -329,7 +329,7 @@ specifier|final
 name|XQueryTestInfo
 name|info
 decl_stmt|;
-comment|/**      * @param path The path to the XQuery file containing the XQSuite tests      */
+comment|/**      * @param path The path to the XQuery file containing the XQSuite tests      * @param parallel whether the tests should be run in parallel.      *      * @throws InitializationError if the test runner could not be constructed.      */
 specifier|public
 name|XQueryTestRunner
 parameter_list|(

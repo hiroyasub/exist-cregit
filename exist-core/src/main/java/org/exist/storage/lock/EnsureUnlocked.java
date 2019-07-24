@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An annotation for indicating that no locks  * must be held on parameters to a method, or on return types.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used with parameters of type {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}.  *  * If this annotation is  * used on an {@link org.exist.xmldb.XmldbURI} then a {@code type} value must  * also be provided to indicate the type of the lock identified by the uri.  *  * For example we may indicate that Collection parameters to methods  * should not be locked:  *<pre>  * {@code  * public LockedCollection lockCollection(@EnsureUnlocked final Collection collection) {  *  *    ...  *  * }  * }  *</pre>   *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
+comment|/**  * An annotation for indicating that no locks  * must be held on parameters to a method, or on return types.  *  * As well as explicitly expressing intention, this annotation can be used  * with {@link EnsureLockingAspect} to compile into the code runtime checks  * which will enforce the locking policy.  *  * Typically this is used with parameters of type {@link org.exist.collections.Collection}  * and {@link org.exist.dom.persistent.DocumentImpl}.  *  * If this annotation is  * used on an {@link org.exist.xmldb.XmldbURI} then a {@code type} value must  * also be provided to indicate the type of the lock identified by the uri.  *  * For example we may indicate that Collection parameters to methods  * should not be locked:  *<pre>  * {@code  * public LockedCollection lockCollection(@EnsureUnlocked final Collection collection) {  *  *    ...  *  * }  * }  *</pre>   *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_annotation_defn
@@ -94,7 +94,7 @@ specifier|public
 annotation_defn|@interface
 name|EnsureUnlocked
 block|{
-comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      */
+comment|/**      * The type of the lock.      *      * Only needed if the annotation is not placed on a      * {@link org.exist.collections.Collection} or {@link org.exist.dom.persistent.DocumentImpl}      * parameter or return type.      * @return the lock type      */
 name|Lock
 operator|.
 name|LockType

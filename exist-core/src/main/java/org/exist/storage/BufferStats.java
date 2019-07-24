@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * BufferStats.java - Apr 5, 2003  *   * @author wolf  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2019 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment go to   * Window>Preferences>Java>Code Generation>Code and Comments  */
+comment|/*  * BufferStats.java - Apr 5, 2003  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -63,7 +63,6 @@ name|pageHits
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 *  	 */
 specifier|public
 name|BufferStats
 parameter_list|(
@@ -105,7 +104,6 @@ operator|=
 name|fails
 expr_stmt|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getPageFails
@@ -115,7 +113,6 @@ return|return
 name|pageFails
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getPageHits
@@ -125,7 +122,6 @@ return|return
 name|pageHits
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getSize
@@ -135,7 +131,6 @@ return|return
 name|size
 return|;
 block|}
-comment|/** 	 * @return int 	 */
 specifier|public
 name|int
 name|getUsed

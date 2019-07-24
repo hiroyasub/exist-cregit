@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Builds an in-memory DOM tree from SAX {@link org.exist.util.serializer.Receiver} events.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Builds an in-memory DOM tree from SAX {@link org.exist.util.serializer.Receiver} events.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class

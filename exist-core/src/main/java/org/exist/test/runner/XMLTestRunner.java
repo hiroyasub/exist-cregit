@@ -369,7 +369,7 @@ specifier|final
 name|XMLTestInfo
 name|info
 decl_stmt|;
-comment|/**      * @param path The path to the XML file containing the tests      */
+comment|/**      * @param path The path to the XML file containing the tests.      * @param parallel whether the tests should be run in parallel.      *      * @throws InitializationError if the test runner could not be constructed.      */
 specifier|public
 name|XMLTestRunner
 parameter_list|(

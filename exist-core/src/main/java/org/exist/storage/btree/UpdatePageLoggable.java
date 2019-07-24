@@ -106,7 +106,7 @@ specifier|protected
 name|int
 name|nPointers
 decl_stmt|;
-comment|/**      * @param fileId       * @param pageNum       * @param values       * @param nValues       * @param pointers       * @param nPointers       * @param transaction       */
+comment|/**      * @param transaction the database transaction      * @param fileId the file id      * @param pageNum the page number      * @param prefix the prefix      * @param values the values      * @param nValues the number of values      * @param pointers the pointers      * @param nPointers the number of pointers      */
 specifier|public
 name|UpdatePageLoggable
 parameter_list|(
@@ -185,7 +185,7 @@ operator|=
 name|nPointers
 expr_stmt|;
 block|}
-comment|/**      * @param broker       * @param transactionId       */
+comment|/**      * @param broker the database broker      * @param transactionId the transaction id      */
 specifier|public
 name|UpdatePageLoggable
 parameter_list|(
@@ -208,7 +208,8 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -392,7 +393,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
@@ -579,7 +581,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -636,6 +639,8 @@ return|return
 name|len
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -652,6 +657,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

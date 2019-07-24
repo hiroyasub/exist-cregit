@@ -35,7 +35,6 @@ init|=
 operator|-
 literal|4753385398634599386L
 decl_stmt|;
-comment|/**      *       */
 specifier|public
 name|AssertFailure
 parameter_list|()
@@ -44,7 +43,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param message      */
+comment|/**      * @param message the error message      */
 specifier|public
 name|AssertFailure
 parameter_list|(
@@ -58,7 +57,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param message      * @param cause      */
+comment|/**      * @param message the error message      * @param cause the cause of the error      */
 specifier|public
 name|AssertFailure
 parameter_list|(

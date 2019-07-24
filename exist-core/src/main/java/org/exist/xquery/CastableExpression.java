@@ -121,7 +121,7 @@ specifier|final
 name|int
 name|requiredType
 decl_stmt|;
-comment|/**      *       *       * @param requiredCardinality       * @param context       * @param expr       * @param requiredType       */
+comment|/**      * Wrap a CastableExpression around an expression, expecting the given type and 	 * cardinality.      *       * @param requiredCardinality the {@link Cardinality} expected      * @param context current context      * @param expr the expression to be wrapped      * @param requiredType the {@link Type} expected      */
 specifier|public
 name|CastableExpression
 parameter_list|(

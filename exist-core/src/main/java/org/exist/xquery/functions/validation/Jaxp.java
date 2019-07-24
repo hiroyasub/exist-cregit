@@ -1130,7 +1130,6 @@ name|getBrokerPool
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @throws org.exist.xquery.XPathException       * @see BasicFunction#eval(Sequence[], Sequence)      */
 specifier|public
 name|Sequence
 name|eval
