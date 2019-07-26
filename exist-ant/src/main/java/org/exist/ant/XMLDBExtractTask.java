@@ -1446,7 +1446,7 @@ operator|=
 name|destDir
 expr_stmt|;
 block|}
-comment|/**      * Set the type.      *      * @param the type      *      * @deprecated Not used anymore      */
+comment|/**      * Set the type.      *      * @param type the type      *      * @deprecated Not used anymore      */
 annotation|@
 name|Deprecated
 specifier|public

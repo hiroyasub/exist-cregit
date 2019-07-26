@@ -304,7 +304,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/**      * Set the user.      *      * @param user      */
+comment|/**      * Set the user.      *      * @param user the user.      */
 specifier|public
 name|void
 name|setUser
