@@ -1163,30 +1163,41 @@ argument_list|(
 name|configFile
 argument_list|)
 expr_stmt|;
-comment|// set dbHome to parent of the conf file found, to resolve relative
-comment|// path from conf file
-name|existHomeDirname
-operator|=
-name|Optional
-operator|.
-name|of
-argument_list|(
-name|configFile
-operator|.
-name|getParent
-argument_list|()
-argument_list|)
-expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|info
 argument_list|(
 literal|"Reading configuration from file "
 operator|+
-name|configFile
+name|configFilePath
+operator|.
+name|map
+argument_list|(
+name|Path
+operator|::
+name|toString
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+literal|"Unknown"
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
+comment|// set dbHome to parent of the conf file found, to resolve relative
+comment|// path from conf file
+name|existHomeDirname
+operator|=
+name|configFilePath
+operator|.
+name|map
+argument_list|(
+name|Path
+operator|::
+name|getParent
+argument_list|)
+expr_stmt|;
 comment|// initialize xml parser
 comment|// we use eXist's in-memory DOM implementation to work
 comment|// around a bug in Xerces
