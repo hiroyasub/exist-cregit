@@ -37,12 +37,12 @@ name|UserSwitchingBasicFunction
 extends|extends
 name|BasicFunction
 block|{
-comment|/**      * Flag which indicates that we have pushed a subject and so we must later      * pop the subject when the expression is reset, see {@link UserSwitchingBasicFunction#resetState(boolean)}      */
+comment|/**      * Flag which indicates how many subjects we have pushed, and so we must later      * pop the same number of subjects when the expression is reset, see {@link UserSwitchingBasicFunction#resetState(boolean)}      */
 specifier|private
-name|boolean
-name|pushedSubject
+name|int
+name|pushedSubjects
 init|=
-literal|false
+literal|0
 decl_stmt|;
 specifier|public
 name|UserSwitchingBasicFunction
@@ -84,9 +84,8 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|pushedSubject
-operator|=
-literal|true
+name|pushedSubjects
+operator|++
 expr_stmt|;
 block|}
 comment|/**      * Takes care to switch the broker back from the switched      * user before calling @{link super#resetState(boolean)}      */
@@ -102,14 +101,12 @@ name|postOptimization
 parameter_list|)
 block|{
 comment|//if we pushed a subject, we must pop it
-if|if
+while|while
 condition|(
-name|this
-operator|.
-name|pushedSubject
+name|pushedSubjects
+operator|>
+literal|0
 condition|)
-block|{
-try|try
 block|{
 name|context
 operator|.
@@ -119,16 +116,9 @@ operator|.
 name|popSubject
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|this
-operator|.
-name|pushedSubject
-operator|=
-literal|false
+name|pushedSubjects
+operator|--
 expr_stmt|;
-block|}
 block|}
 name|super
 operator|.
