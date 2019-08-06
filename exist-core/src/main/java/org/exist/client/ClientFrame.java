@@ -3658,12 +3658,23 @@ condition|)
 block|{
 return|return;
 block|}
+comment|// make a backup of the current properties
 specifier|final
 name|Properties
 name|oldProps
 init|=
-name|properties
+operator|new
+name|Properties
+argument_list|()
 decl_stmt|;
+name|oldProps
+operator|.
+name|putAll
+argument_list|(
+name|properties
+argument_list|)
+expr_stmt|;
+comment|// update the properties with the new login data
 name|properties
 operator|.
 name|putAll
@@ -3760,12 +3771,14 @@ name|u
 argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+comment|// restore the previous properties
 name|properties
 operator|=
 name|oldProps
 expr_stmt|;
 try|try
 block|{
+comment|// attempt to re-connect with previous login data
 name|client
 operator|.
 name|connect
