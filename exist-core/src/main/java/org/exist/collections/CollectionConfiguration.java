@@ -900,6 +900,14 @@ condition|)
 block|{
 name|configureTrigger
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|,
 operator|(
 name|Element
 operator|)
@@ -1720,6 +1728,9 @@ specifier|private
 name|void
 name|configureTrigger
 parameter_list|(
+name|ClassLoader
+name|cl
+parameter_list|,
 specifier|final
 name|Element
 name|triggerElement
@@ -1764,6 +1775,10 @@ operator|.
 name|forName
 argument_list|(
 name|classname
+argument_list|,
+literal|true
+argument_list|,
+name|cl
 argument_list|)
 decl_stmt|;
 if|if
