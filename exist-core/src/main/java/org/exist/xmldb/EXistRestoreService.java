@@ -75,6 +75,9 @@ name|newAdminPassword
 parameter_list|,
 name|RestoreServiceTaskListener
 name|restoreListener
+parameter_list|,
+name|boolean
+name|overwriteApps
 parameter_list|)
 throws|throws
 name|XMLDBException

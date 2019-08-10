@@ -619,6 +619,14 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
+specifier|private
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|pathsToIgnore
+decl_stmt|;
 comment|/**      * @param broker the database broker      * @param transaction the transaction to use for the entire restore,      *                    or null if restoring each collection/resource      *                    should occur in its own transaction      * @param descriptor the backup descriptor to start restoring from      * @param listener the listener to report restore events to      */
 specifier|public
 name|RestoreHandler
@@ -640,6 +648,13 @@ parameter_list|,
 specifier|final
 name|RestoreListener
 name|listener
+parameter_list|,
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|pathsToIgnore
 parameter_list|)
 block|{
 name|this
@@ -665,6 +680,12 @@ operator|.
 name|listener
 operator|=
 name|listener
+expr_stmt|;
+name|this
+operator|.
+name|pathsToIgnore
+operator|=
+name|pathsToIgnore
 expr_stmt|;
 block|}
 comment|/**      * Either reuses the provided transaction      * in a safe manner or starts a new transaction.      */
@@ -2468,6 +2489,41 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|pathsToIgnore
+operator|!=
+literal|null
+operator|&&
+name|pathsToIgnore
+operator|.
+name|contains
+argument_list|(
+name|subDescriptor
+operator|.
+name|getSymbolicPath
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|listener
+operator|.
+name|info
+argument_list|(
+literal|"Skipping app path "
+operator|+
+name|subDescriptor
+operator|.
+name|getSymbolicPath
+argument_list|()
+operator|+
+literal|". Newer version "
+operator|+
+literal|"is already installed."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 specifier|final
 name|XMLReaderPool
 name|parserPool
@@ -2527,6 +2583,8 @@ argument_list|,
 name|subDescriptor
 argument_list|,
 name|listener
+argument_list|,
+name|pathsToIgnore
 argument_list|)
 decl_stmt|;
 name|reader

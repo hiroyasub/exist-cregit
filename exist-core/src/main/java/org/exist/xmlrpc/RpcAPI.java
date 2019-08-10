@@ -2723,6 +2723,9 @@ name|newAdminPassword
 parameter_list|,
 name|String
 name|localFile
+parameter_list|,
+name|boolean
+name|overwriteApps
 parameter_list|)
 throws|throws
 name|EXistException
