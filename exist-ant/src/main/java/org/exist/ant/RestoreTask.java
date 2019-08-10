@@ -203,10 +203,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|Boolean
+name|boolean
 name|overwriteApps
 init|=
-literal|null
+literal|false
 decl_stmt|;
 annotation|@
 name|Override
