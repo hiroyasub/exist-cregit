@@ -1067,14 +1067,17 @@ specifier|static
 class|class
 name|AppDetail
 block|{
+specifier|protected
 specifier|final
 name|String
 name|path
 decl_stmt|;
+specifier|protected
 specifier|final
 name|String
 name|name
 decl_stmt|;
+specifier|protected
 specifier|final
 name|Semver
 name|version

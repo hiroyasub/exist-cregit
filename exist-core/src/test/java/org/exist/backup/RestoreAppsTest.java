@@ -105,20 +105,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|Txn
 import|;
 end_import
@@ -257,29 +243,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|Charset
 import|;
 end_import
 
@@ -1052,7 +1016,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|EXistException
 argument_list|(
 literal|"expath repository not available for test"
 argument_list|)
@@ -1158,6 +1122,7 @@ name|long
 name|numberOfFiles
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1169,6 +1134,7 @@ name|String
 name|backupDescriptor
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1180,6 +1146,7 @@ name|String
 name|collection
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1191,6 +1158,7 @@ name|String
 name|resource
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1229,6 +1197,7 @@ name|String
 name|message
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1240,6 +1209,7 @@ name|String
 name|message
 parameter_list|)
 block|{
+comment|// unused
 block|}
 annotation|@
 name|Override
@@ -1248,6 +1218,7 @@ name|void
 name|finished
 parameter_list|()
 block|{
+comment|// unused
 block|}
 block|}
 block|}
