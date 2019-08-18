@@ -25,11 +25,15 @@ interface|interface
 name|SystemInfoMXBean
 block|{
 name|String
-name|getExistVersion
+name|getProductName
 parameter_list|()
 function_decl|;
 name|String
-name|getExistBuild
+name|getProductVersion
+parameter_list|()
+function_decl|;
+name|String
+name|getProductBuild
 parameter_list|()
 function_decl|;
 name|String
