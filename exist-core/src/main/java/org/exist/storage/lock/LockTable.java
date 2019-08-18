@@ -1345,6 +1345,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|long
 name|writeStamp
 init|=
@@ -1480,6 +1481,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|long
 name|writeStamp
 init|=
@@ -1501,6 +1503,7 @@ name|stamp
 operator|=
 name|writeStamp
 expr_stmt|;
+comment|// NOTE: this causes the write lock to be released in the finally further down
 comment|//TODO(AR) we need to recycle the entry here!    ... nope do it in the caller!
 name|entries
 operator|.
