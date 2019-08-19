@@ -1110,7 +1110,6 @@ operator|.
 name|tryOptimisticRead
 argument_list|()
 decl_stmt|;
-comment|//TODO(AR) attempt optimisation for most recently added entry with entries.last()
 specifier|final
 name|Entry
 name|local
@@ -1355,7 +1354,6 @@ condition|)
 block|{
 try|try
 block|{
-comment|//TODO(AR) we need to recycle the entry here!    ... nope do it in the caller!
 name|entries
 operator|.
 name|remove
@@ -1494,7 +1492,6 @@ operator|=
 name|writeStamp
 expr_stmt|;
 comment|// NOTE: this causes the write lock to be released in the finally further down
-comment|//TODO(AR) we need to recycle the entry here!    ... nope do it in the caller!
 name|entries
 operator|.
 name|remove
