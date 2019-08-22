@@ -9842,7 +9842,7 @@ name|gp
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Gets the value of a configuration attribute      *      * The value typically is specified in the conf.xml file, but can be overriden with using a System Property      *      * @param   element        The attribute's parent element      * @param   attributeName  The name of the attribute      *      * @return  The value of the attribute      */
+comment|/**      * Gets the value of a configuration attribute      *      * The value typically is specified in the conf.xml file, but can be overridden with using a System Property      *      * @param   element        The attribute's parent element      * @param   attributeName  The name of the attribute      *      * @return  The value of the attribute      */
 specifier|private
 name|String
 name|getConfigAttributeValue
@@ -9902,7 +9902,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Configuration value overriden by system property: "
+literal|"Configuration value overridden by system property: "
 operator|+
 name|property
 operator|+
@@ -10195,6 +10195,8 @@ specifier|static
 name|boolean
 name|parseBoolean
 parameter_list|(
+annotation|@
+name|Nullable
 specifier|final
 name|String
 name|value
@@ -10236,6 +10238,78 @@ argument_list|(
 name|defaultValue
 argument_list|)
 return|;
+block|}
+comment|/**      * Takes the passed string and converts it to a non-null<code>int</code> value. If value is null, the specified default value is used.      * Otherwise, Boolean.TRUE is returned if and only if the passed string equals&quot;yes&quot; or&quot;true&quot;, ignoring case.      *      * @param   value         The string to parse      * @param   defaultValue  The default if the string is null or empty      *      * @return  The parsed<code>int</code>      */
+specifier|public
+specifier|static
+name|int
+name|parseInt
+parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
+name|String
+name|value
+parameter_list|,
+specifier|final
+name|int
+name|defaultValue
+parameter_list|)
+block|{
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+operator|||
+name|value
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return
+name|defaultValue
+return|;
+block|}
+try|try
+block|{
+return|return
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not parse: "
+operator|+
+name|value
+operator|+
+literal|", as an int: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|defaultValue
+return|;
+block|}
 block|}
 specifier|public
 name|int
