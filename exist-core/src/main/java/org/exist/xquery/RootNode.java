@@ -576,41 +576,13 @@ operator|new
 name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|ManagedLocks
-argument_list|<
-name|ManagedDocumentLock
-argument_list|>
-name|docLocks
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// wait for pending updates
-if|if
-condition|(
-operator|!
-name|context
-operator|.
-name|inProtectedMode
-argument_list|()
-condition|)
-block|{
-name|docLocks
-operator|=
-name|ds
-operator|.
-name|lock
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
+comment|// NOTE(AR) locking the documents here does not actually do anything useful, eXist-db will still exhibit weak isolation with concurrent updates
+comment|//        ManagedLocks<ManagedDocumentLock> docLocks = null;
+comment|//        try {
+comment|//            // wait for pending updates
+comment|//            if (!context.inProtectedMode()) {
+comment|//                docLocks = ds.lock(context.getBroker(), false);
+comment|//            }
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -700,47 +672,15 @@ name|cachedDocs
 operator|=
 name|ds
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|LockException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Failed to acquire lock on the context document set"
-argument_list|)
-throw|;
-block|}
-finally|finally
-block|{
-comment|// release all locks
-if|if
-condition|(
-operator|!
-name|context
-operator|.
-name|inProtectedMode
-argument_list|()
-operator|&&
-name|docLocks
-operator|!=
-literal|null
-condition|)
-block|{
-name|docLocks
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+comment|// NOTE(AR) see comment above regards locking the documents
+comment|//        } catch (final LockException e) {
+comment|//            throw new XPathException(this, "Failed to acquire lock on the context document set");
+comment|//        } finally {
+comment|//            // release all locks
+comment|//            if (!context.inProtectedMode()&& docLocks != null) {
+comment|//                docLocks.close();
+comment|//            }
+comment|//        }
 comment|//        result.updateNoSort();
 if|if
 condition|(
