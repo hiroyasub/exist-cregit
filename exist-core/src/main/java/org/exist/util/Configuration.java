@@ -1436,6 +1436,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// repository settings
 specifier|final
 name|NodeList
 name|repository
@@ -1471,6 +1472,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// binary manager settings
 specifier|final
 name|NodeList
 name|binaryManager
@@ -1818,10 +1820,10 @@ block|{
 name|String
 name|root
 init|=
-name|element
-operator|.
-name|getAttribute
+name|getConfigAttributeValue
 argument_list|(
+name|element
+argument_list|,
 literal|"root"
 argument_list|)
 decl_stmt|;
@@ -1917,10 +1919,10 @@ specifier|final
 name|String
 name|binaryCacheClass
 init|=
-name|cache
-operator|.
-name|getAttribute
+name|getConfigAttributeValue
 argument_list|(
+name|cache
+argument_list|,
 literal|"class"
 argument_list|)
 decl_stmt|;
@@ -6224,10 +6226,10 @@ specifier|final
 name|String
 name|docIds
 init|=
-name|con
-operator|.
-name|getAttribute
+name|getConfigAttributeValue
 argument_list|(
+name|con
+argument_list|,
 name|BrokerPool
 operator|.
 name|DOC_ID_MODE_ATTRIBUTE
