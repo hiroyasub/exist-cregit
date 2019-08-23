@@ -129,7 +129,9 @@ name|lockTable
 init|=
 operator|new
 name|LockTable
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 block|}
 annotation|@

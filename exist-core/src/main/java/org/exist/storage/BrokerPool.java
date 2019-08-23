@@ -2064,6 +2064,8 @@ operator|=
 operator|new
 name|LockManager
 argument_list|(
+name|conf
+argument_list|,
 name|concurrencyLevel
 argument_list|)
 expr_stmt|;
