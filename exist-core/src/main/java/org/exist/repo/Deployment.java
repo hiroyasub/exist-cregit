@@ -2427,6 +2427,8 @@ name|getStringValue
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|pkgName
 argument_list|)
 expr_stmt|;
 block|}
@@ -2757,6 +2759,8 @@ name|get
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|pkgName
 argument_list|)
 expr_stmt|;
 return|return
@@ -3275,6 +3279,8 @@ name|get
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|pkgName
 argument_list|)
 expr_stmt|;
 block|}
@@ -3401,6 +3407,8 @@ name|get
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|pkgName
 argument_list|)
 expr_stmt|;
 block|}
@@ -4643,6 +4651,10 @@ parameter_list|,
 specifier|final
 name|boolean
 name|preInstall
+parameter_list|,
+specifier|final
+name|String
+name|pkgName
 parameter_list|)
 throws|throws
 name|PackageException
@@ -4677,7 +4689,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"The XQuery resource specified in the<setup> element was not found"
+literal|"The XQuery resource specified in the<setup> element was not found for EXPath Package: '"
+operator|+
+name|pkgName
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 return|return
