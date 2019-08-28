@@ -570,7 +570,7 @@ specifier|final
 name|int
 name|FIRST_USABLE_DOC_ID
 init|=
-literal|5
+literal|6
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -578,7 +578,7 @@ specifier|final
 name|int
 name|FIRST_USABLE_PAGE
 init|=
-literal|5
+literal|6
 decl_stmt|;
 comment|/**      * We set useTemporaryStorage=true for ExistEmbeddedServer      * so that each test runs on its own data directory.      */
 annotation|@
