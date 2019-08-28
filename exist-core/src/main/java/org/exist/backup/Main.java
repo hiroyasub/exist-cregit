@@ -734,7 +734,7 @@ name|optionArgument
 argument_list|(
 literal|"-a"
 argument_list|,
-literal|"--overwrite"
+literal|"--overwrite-apps"
 argument_list|)
 operator|.
 name|description

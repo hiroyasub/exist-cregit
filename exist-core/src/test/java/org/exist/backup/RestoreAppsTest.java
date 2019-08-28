@@ -1034,6 +1034,8 @@ operator|.
 name|toPath
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|ZipOutputStream
 name|zos
 init|=
@@ -1051,7 +1053,8 @@ operator|.
 name|WRITE
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ZipEntry
 name|entry
 init|=
@@ -1131,11 +1134,7 @@ operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
-name|zos
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 specifier|final
 name|BrokerPool
 name|pool
@@ -1350,15 +1349,6 @@ name|String
 name|message
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
 name|info
 operator|.
 name|add

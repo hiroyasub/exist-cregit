@@ -316,9 +316,11 @@ name|String
 argument_list|>
 name|checkApps
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Deque
 argument_list|<
 name|BackupDescriptor
@@ -496,9 +498,11 @@ name|AppDetail
 argument_list|>
 name|getAppsFromBackup
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Deque
 argument_list|<
 name|BackupDescriptor
@@ -525,9 +529,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|(
-literal|17
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|XMLReaderPool
@@ -934,9 +936,11 @@ name|String
 argument_list|>
 name|getSubcollectionNames
 parameter_list|(
+specifier|final
 name|XMLReaderPool
 name|parserPool
 parameter_list|,
+specifier|final
 name|BackupDescriptor
 name|apps
 parameter_list|)
@@ -1056,6 +1060,7 @@ specifier|static
 name|String
 name|getAppRoot
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)

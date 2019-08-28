@@ -333,6 +333,7 @@ specifier|final
 name|RestoreListener
 name|listener
 parameter_list|,
+specifier|final
 name|boolean
 name|overwriteApps
 parameter_list|)
