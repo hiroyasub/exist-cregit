@@ -2492,10 +2492,6 @@ block|{
 if|if
 condition|(
 name|pathsToIgnore
-operator|!=
-literal|null
-operator|&&
-name|pathsToIgnore
 operator|.
 name|contains
 argument_list|(

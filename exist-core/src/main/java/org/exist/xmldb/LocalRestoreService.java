@@ -204,6 +204,7 @@ specifier|final
 name|RestoreServiceTaskListener
 name|restoreListener
 parameter_list|,
+specifier|final
 name|boolean
 name|overwriteApps
 parameter_list|)
