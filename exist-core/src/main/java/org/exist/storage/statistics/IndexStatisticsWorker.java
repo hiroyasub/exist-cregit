@@ -800,6 +800,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 block|{
 name|perDocGuide
@@ -824,6 +828,8 @@ name|broker
 operator|.
 name|getResourcesFailsafe
 argument_list|(
+name|transaction
+argument_list|,
 name|cb
 argument_list|,
 literal|false

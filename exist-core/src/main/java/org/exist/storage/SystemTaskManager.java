@@ -79,6 +79,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -199,6 +213,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|systemBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 block|{
 comment|//dont run the task if we are shutting down
@@ -353,6 +371,8 @@ argument_list|(
 name|task
 argument_list|,
 name|systemBroker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
@@ -394,6 +414,10 @@ parameter_list|,
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|EXistException
@@ -427,6 +451,8 @@ operator|.
 name|execute
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 if|if

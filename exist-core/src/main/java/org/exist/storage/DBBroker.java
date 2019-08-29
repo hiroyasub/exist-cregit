@@ -1201,6 +1201,9 @@ specifier|abstract
 name|void
 name|getResourcesFailsafe
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|BTreeCallback
 name|callback
 parameter_list|,
@@ -1215,6 +1218,9 @@ specifier|abstract
 name|void
 name|getCollectionsFailsafe
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|BTreeCallback
 name|callback
 parameter_list|)
