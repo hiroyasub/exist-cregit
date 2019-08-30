@@ -1728,6 +1728,7 @@ specifier|private
 name|void
 name|configureTrigger
 parameter_list|(
+specifier|final
 name|ClassLoader
 name|cl
 parameter_list|,
