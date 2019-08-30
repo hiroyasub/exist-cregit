@@ -26244,6 +26244,10 @@ parameter_list|,
 specifier|final
 name|String
 name|localFile
+parameter_list|,
+specifier|final
+name|boolean
+name|overwriteApps
 parameter_list|)
 throws|throws
 name|EXistException
@@ -26370,6 +26374,8 @@ argument_list|,
 name|backupFile
 argument_list|,
 name|listener
+argument_list|,
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 return|return

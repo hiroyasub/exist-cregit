@@ -202,6 +202,12 @@ name|restorePassword
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|boolean
+name|overwriteApps
+init|=
+literal|false
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -472,6 +478,8 @@ argument_list|,
 name|restorePassword
 argument_list|,
 name|listener
+argument_list|,
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 block|}
@@ -684,6 +692,8 @@ argument_list|,
 name|restorePassword
 argument_list|,
 name|listener
+argument_list|,
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 block|}
@@ -825,6 +835,8 @@ argument_list|,
 name|restorePassword
 argument_list|,
 name|listener
+argument_list|,
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 block|}

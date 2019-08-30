@@ -331,6 +331,10 @@ parameter_list|,
 specifier|final
 name|RestoreServiceTaskListener
 name|restoreListener
+parameter_list|,
+specifier|final
+name|boolean
+name|overwriteApps
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -534,6 +538,13 @@ operator|.
 name|add
 argument_list|(
 name|remoteFileName
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 try|try
