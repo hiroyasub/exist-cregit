@@ -627,7 +627,7 @@ name|String
 argument_list|>
 name|pathsToIgnore
 decl_stmt|;
-comment|/**      * @param broker the database broker      * @param transaction the transaction to use for the entire restore,      *                    or null if restoring each collection/resource      *                    should occur in its own transaction      * @param descriptor the backup descriptor to start restoring from      * @param listener the listener to report restore events to      */
+comment|/**      * @param broker the database broker      * @param transaction the transaction to use for the entire restore,      *                    or null if restoring each collection/resource      *                    should occur in its own transaction      * @param descriptor the backup descriptor to start restoring from      * @param listener the listener to report restore events to      * @param pathsToIgnore database paths to ignore in the backup      */
 specifier|public
 name|RestoreHandler
 parameter_list|(
