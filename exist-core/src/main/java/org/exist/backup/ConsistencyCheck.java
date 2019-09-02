@@ -423,7 +423,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * @param broker       the db broker to use      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs    set to true to perform additional checks on every document (slow)      */
+comment|/**      * @param broker       the db broker to use      * @param transaction the database transaction      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs    set to true to perform additional checks on every document (slow)      */
 specifier|public
 name|ConsistencyCheck
 parameter_list|(
