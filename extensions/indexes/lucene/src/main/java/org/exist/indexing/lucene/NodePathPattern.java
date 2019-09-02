@@ -283,9 +283,11 @@ block|{
 case|case
 name|EQUALS
 case|:
+comment|// =
 case|case
 name|EQ
 case|:
+comment|// eq
 return|return
 name|Objects
 operator|.
@@ -299,6 +301,7 @@ return|;
 case|case
 name|NOT_EQUALS
 case|:
+comment|// !=
 comment|// actual attr val should be present but different:
 return|return
 name|val
@@ -318,6 +321,7 @@ return|;
 case|case
 name|NE
 case|:
+comment|// ne
 comment|// actual attr val may be null (i.e. not present) or present but different:
 return|return
 operator|!
@@ -651,8 +655,6 @@ argument_list|)
 decl_stmt|;
 name|Predicate
 name|pred
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
