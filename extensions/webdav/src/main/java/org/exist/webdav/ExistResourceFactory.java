@@ -97,20 +97,6 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
 name|LockedDocument
 import|;
 end_import
@@ -344,6 +330,11 @@ name|resolve
 argument_list|(
 name|eXistHome
 argument_list|,
+literal|"etc"
+argument_list|)
+operator|.
+name|resolve
+argument_list|(
 literal|"webdav.properties"
 argument_list|)
 decl_stmt|;
@@ -362,11 +353,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"Read WebDAV configuration from %s"
+literal|"Read WebDAV configuration from {}"
 argument_list|,
 name|config
 operator|.
@@ -375,7 +362,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 try|try
