@@ -203,6 +203,10 @@ parameter_list|,
 specifier|final
 name|RestoreServiceTaskListener
 name|restoreListener
+parameter_list|,
+specifier|final
+name|boolean
+name|overwriteApps
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -248,6 +252,8 @@ name|RestoreListenerAdapter
 argument_list|(
 name|restoreListener
 argument_list|)
+argument_list|,
+name|overwriteApps
 argument_list|)
 expr_stmt|;
 block|}

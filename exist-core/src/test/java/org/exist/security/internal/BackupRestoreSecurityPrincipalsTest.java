@@ -872,6 +872,8 @@ argument_list|,
 operator|new
 name|NullRestoreServiceTaskListener
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//check the current user accounts after the restore

@@ -39,6 +39,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -46,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface to be implemented by tasks used for system  * maintenance. System tasks require the database to be in  * a consistent state. All database operations will be stopped   * until the {@link #execute(DBBroker)} method returned  * or throws an exception. Any exception will be caught and a warning  * written to the log.  *   * A task can be scheduled for execution   * via {@link BrokerPool#triggerSystemTask(SystemTask)} or  * {@link org.exist.scheduler.Scheduler}.  *  * IMPORTANT: SystemTask implementations should avoid to acquire  * locks on collections! Doing so may lead to a deadlock situation.  * The system task runs in a privileged mode. Locking collections  * and resources is not required as no other transactions will be  * taking place.  *   * @author wolf  */
+comment|/**  * Interface to be implemented by tasks used for system  * maintenance. System tasks require the database to be in  * a consistent state. All database operations will be stopped   * until the {@link #execute(DBBroker, Txn)} method returned  * or throws an exception. Any exception will be caught and a warning  * written to the log.  *   * A task can be scheduled for execution   * via {@link BrokerPool#triggerSystemTask(SystemTask)} or  * {@link org.exist.scheduler.Scheduler}.  *  * IMPORTANT: SystemTask implementations should avoid to acquire  * locks on collections! Doing so may lead to a deadlock situation.  * The system task runs in a privileged mode. Locking collections  * and resources is not required as no other transactions will be  * taking place.  *   * @author wolf  */
 end_comment
 
 begin_interface
@@ -70,12 +84,15 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Execute this task. 	 *  	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException if a database error occurs 	 */
+comment|/** 	 * Execute this task. 	 *  	 * @param broker a DBBroker object that can be used 	 * @param transaction the database transaction 	 *  	 * @throws EXistException if a database error occurs 	 */
 name|void
 name|execute
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|EXistException

@@ -685,6 +685,9 @@ literal|"--PidFile=service.pid"
 argument_list|,
 literal|"--Startup=auto"
 argument_list|,
+literal|"--ServiceUser=LocalSystem"
+argument_list|,
+comment|// TODO(AR) this changed from `LocalSystem` to `NT Authority\LocalService` in procrun 1.2.0, however our service won't seem to start under that account... we need to investigate!
 literal|"--Jvm="
 operator|+
 name|findJvm

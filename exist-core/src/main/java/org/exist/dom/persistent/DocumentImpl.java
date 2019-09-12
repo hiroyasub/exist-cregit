@@ -731,6 +731,13 @@ name|fileURI
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * Lazily computed. Needs to be recomputed if {@link #fileURI} or {@link #collection} change      */
+specifier|private
+name|XmldbURI
+name|uri
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 name|Permission
 name|permissions
@@ -1076,6 +1083,13 @@ name|collection
 operator|=
 name|collection
 expr_stmt|;
+name|this
+operator|.
+name|uri
+operator|=
+literal|null
+expr_stmt|;
+comment|// reset
 block|}
 comment|/**      * The method<code>getDocId</code>      *      * @return an<code>int</code> value      */
 annotation|@
@@ -1138,6 +1152,13 @@ name|fileURI
 operator|=
 name|fileURI
 expr_stmt|;
+name|this
+operator|.
+name|uri
+operator|=
+literal|null
+expr_stmt|;
+comment|// reset
 block|}
 comment|//@EnsureContainerLocked(mode=READ_LOCK)  // TODO(AR) temporarily we need to allow some unlocked access
 annotation|@
@@ -1149,18 +1170,33 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|uri
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|collection
 operator|==
 literal|null
 condition|)
 block|{
-return|return
+name|uri
+operator|=
+operator|(
+name|XmldbURI
+operator|)
 name|fileURI
-return|;
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 block|{
-return|return
+name|uri
+operator|=
 name|collection
 operator|.
 name|getURI
@@ -1170,8 +1206,12 @@ name|append
 argument_list|(
 name|fileURI
 argument_list|)
-return|;
+expr_stmt|;
 block|}
+block|}
+return|return
+name|uri
+return|;
 block|}
 annotation|@
 name|EnsureContainerLocked

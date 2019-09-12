@@ -3238,6 +3238,17 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|final
+name|Txn
+name|mockSystemTransaction
+init|=
+name|createNiceMock
+argument_list|(
+name|Txn
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|final
 name|SystemTaskManager
 name|mockSystemTaskManager
 init|=
@@ -3253,6 +3264,8 @@ operator|.
 name|processTasks
 argument_list|(
 name|mockSystemBroker
+argument_list|,
+name|mockSystemTransaction
 argument_list|)
 expr_stmt|;
 name|expectLastCall

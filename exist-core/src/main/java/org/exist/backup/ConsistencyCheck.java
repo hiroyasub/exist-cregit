@@ -275,6 +275,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -371,6 +385,11 @@ name|broker
 decl_stmt|;
 specifier|private
 specifier|final
+name|Txn
+name|transaction
+decl_stmt|;
+specifier|private
+specifier|final
 name|int
 name|defaultIndexDepth
 decl_stmt|;
@@ -404,13 +423,17 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * @param broker       the db broker to use      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs    set to true to perform additional checks on every document (slow)      */
+comment|/**      * @param broker       the db broker to use      * @param transaction the database transaction      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs    set to true to perform additional checks on every document (slow)      */
 specifier|public
 name|ConsistencyCheck
 parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|boolean
@@ -426,6 +449,12 @@ operator|.
 name|broker
 operator|=
 name|broker
+expr_stmt|;
+name|this
+operator|.
+name|transaction
+operator|=
+name|transaction
 expr_stmt|;
 name|this
 operator|.
@@ -999,6 +1028,8 @@ name|broker
 operator|.
 name|getResourcesFailsafe
 argument_list|(
+name|transaction
+argument_list|,
 name|cb
 argument_list|,
 name|directAccess
@@ -1116,6 +1147,8 @@ name|broker
 operator|.
 name|getResourcesFailsafe
 argument_list|(
+name|transaction
+argument_list|,
 name|cb
 argument_list|,
 name|directAccess
