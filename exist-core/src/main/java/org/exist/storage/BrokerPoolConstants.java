@@ -235,16 +235,6 @@ init|=
 literal|"force-restart"
 decl_stmt|;
 name|String
-name|DOC_ID_MODE_ATTRIBUTE
-init|=
-literal|"doc-ids"
-decl_stmt|;
-name|String
-name|DOC_ID_MODE_PROPERTY
-init|=
-literal|"db-connection.doc-ids.mode"
-decl_stmt|;
-name|String
 name|PROPERTY_PAGE_SIZE
 init|=
 literal|"db-connection.page-size"
