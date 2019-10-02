@@ -1131,6 +1131,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|Txn
+name|getUnderlyingTransaction
+parameter_list|()
+block|{
+return|return
+name|underlyingTransaction
+return|;
+block|}
 block|}
 block|}
 end_class

@@ -630,7 +630,7 @@ argument_list|,
 name|txnId
 argument_list|)
 decl_stmt|;
-comment|// TODO(AR) ultimately we should be doing away with DBBroker#setCurrentTransaction
+comment|// TODO(AR) ultimately we should be doing away with DBBroker#addCurrentTransaction
 try|try
 init|(
 specifier|final
@@ -645,7 +645,7 @@ init|)
 block|{
 name|broker
 operator|.
-name|setCurrentTransaction
+name|addCurrentTransaction
 argument_list|(
 name|txn
 argument_list|)
@@ -1318,7 +1318,7 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(AR) ultimately we should be doing away with DBBroker#setCurrentTransaction
+comment|// TODO(AR) ultimately we should be doing away with DBBroker#addCurrentTransaction
 try|try
 init|(
 specifier|final
@@ -1333,9 +1333,27 @@ init|)
 block|{
 name|broker
 operator|.
-name|setCurrentTransaction
+name|removeCurrentTransaction
 argument_list|(
-literal|null
+name|txn
+operator|instanceof
+name|Txn
+operator|.
+name|ReusableTxn
+condition|?
+operator|(
+operator|(
+name|Txn
+operator|.
+name|ReusableTxn
+operator|)
+name|txn
+operator|)
+operator|.
+name|getUnderlyingTransaction
+argument_list|()
+else|:
+name|txn
 argument_list|)
 expr_stmt|;
 block|}
