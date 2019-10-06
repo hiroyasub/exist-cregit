@@ -7062,9 +7062,9 @@ else|else
 block|{
 name|broker
 operator|.
-name|setCurrentTransaction
+name|removeCurrentTransaction
 argument_list|(
-literal|null
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}

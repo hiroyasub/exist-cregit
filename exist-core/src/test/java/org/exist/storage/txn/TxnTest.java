@@ -111,7 +111,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -202,7 +204,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -298,7 +302,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -389,7 +395,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -485,7 +493,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -587,7 +597,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
@@ -678,7 +690,9 @@ init|=
 name|helper
 operator|.
 name|createTestableTransactionManager
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Txn
