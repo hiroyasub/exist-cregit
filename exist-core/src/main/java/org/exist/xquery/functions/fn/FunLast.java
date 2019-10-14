@@ -267,19 +267,6 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
-if|if
-condition|(
-name|inPredicate
-condition|)
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
-return|;
-block|}
-else|else
-block|{
 return|return
 name|Dependency
 operator|.
@@ -289,7 +276,6 @@ name|Dependency
 operator|.
 name|CONTEXT_POSITION
 return|;
-block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#eval(org.exist.xquery.StaticContext, org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
