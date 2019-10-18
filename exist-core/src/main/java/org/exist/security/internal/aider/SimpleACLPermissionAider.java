@@ -237,7 +237,7 @@ name|target
 argument_list|,
 name|name
 argument_list|,
-name|modeStrToMode
+name|aceSimpleSymbolicModeToInt
 argument_list|(
 name|modeStr
 argument_list|)
@@ -288,7 +288,7 @@ name|target
 argument_list|,
 name|name
 argument_list|,
-name|modeStrToMode
+name|aceSimpleSymbolicModeToInt
 argument_list|(
 name|modeStr
 argument_list|)
@@ -323,7 +323,7 @@ name|index
 argument_list|,
 name|access_type
 argument_list|,
-name|modeStrToMode
+name|aceSimpleSymbolicModeToInt
 argument_list|(
 name|modeStr
 argument_list|)
@@ -651,9 +651,11 @@ return|return
 literal|true
 return|;
 block|}
-specifier|private
+comment|/**      * Converts the mode string for an ACE to an int.      *      * @param modeStr the mode string for the ACE is simple symbolic format, must be between 1 and 3 characters.      *      * @return the octal mode encoded as an int.      */
+specifier|public
+specifier|static
 name|int
-name|modeStrToMode
+name|aceSimpleSymbolicModeToInt
 parameter_list|(
 specifier|final
 name|String
