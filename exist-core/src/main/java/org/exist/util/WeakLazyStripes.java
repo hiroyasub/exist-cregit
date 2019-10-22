@@ -1204,6 +1204,36 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// TODO(AR) it may be more performant to call #drainClearedReferences() at the beginning of #get(K) as oposed to the end, then we could avoid the extra check here which calls stripes#get(K)
+comment|/*                         NOTE: we have to check that we have not added a new reference to replace an                         expired reference in #get(K) before calling #drainClearedReferences()                      */
+specifier|final
+name|WeakValueReference
+argument_list|<
+name|K
+argument_list|,
+name|S
+argument_list|>
+name|check
+init|=
+name|stripes
+operator|.
+name|get
+argument_list|(
+name|stripeRef
+operator|.
+name|key
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|check
+operator|.
+name|get
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
 name|stripes
 operator|.
 name|remove
@@ -1213,6 +1243,7 @@ operator|.
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
