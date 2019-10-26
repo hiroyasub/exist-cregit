@@ -783,16 +783,17 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
-comment|//        return expression.getDependencies();
 return|return
-name|Dependency
+name|expression
 operator|.
-name|CONTEXT_SET
+name|getDependencies
+argument_list|()
 operator||
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
 return|;
+comment|//		return Dependency.CONTEXT_SET | Dependency.CONTEXT_ITEM;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
 specifier|public
