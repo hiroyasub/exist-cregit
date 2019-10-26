@@ -2273,6 +2273,11 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|optimizations
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -2290,6 +2295,11 @@ name|clear
 argument_list|()
 expr_stmt|;
 name|indexStats
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|optimizations
 operator|.
 name|clear
 argument_list|()
