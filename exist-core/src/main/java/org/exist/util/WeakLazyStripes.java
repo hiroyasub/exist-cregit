@@ -746,6 +746,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+comment|// invalid conversion to write lock... small optimisation for the fall-through to #getPessimistic(K, Holder) in #get(K)
+name|stripeRef
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -934,6 +942,14 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+comment|// invalid conversion to write lock... small optimisation for the fall-through to #getExclusive(K, Holder) in #get(K)
+name|stripeRef
+operator|=
+literal|null
+expr_stmt|;
 block|}
 return|return
 name|stripeRef
