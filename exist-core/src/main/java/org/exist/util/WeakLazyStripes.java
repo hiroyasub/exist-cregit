@@ -427,6 +427,11 @@ name|K
 name|key
 parameter_list|)
 block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 specifier|final
 name|Holder
 argument_list|<
@@ -581,13 +586,8 @@ return|return
 name|stripe
 return|;
 block|}
-comment|// weak reference has expired in the mean time, regenerate
-return|return
-name|get
-argument_list|(
-name|key
-argument_list|)
-return|;
+comment|// weak reference has expired in the mean time, so loop...
+block|}
 block|}
 comment|/**      * Get the stripe via immediate conversion of an optimistic read lock to a write lock.      *      * @param key the stripe key      * @param written (OUT) will be set to true if {@link #stripes} was updated      *      * @return null if we could not perform an optimistic read, or a new object needed to be      *     created and we could not take the {@link #stripesLock} write lock immediately,      *     otherwise the stripe.      */
 specifier|private
