@@ -837,6 +837,16 @@ argument_list|()
 decl_stmt|;
 name|handler
 operator|.
+name|setSystemId
+argument_list|(
+name|stylesheet
+operator|.
+name|getBaseURI
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|handler
+operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
