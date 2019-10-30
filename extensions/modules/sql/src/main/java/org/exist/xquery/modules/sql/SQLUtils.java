@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for converting to/from SQL types and escaping XML text and attributes.  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:robert.walpole@metoffice.gov.uk">Robert Walpole</a>  * @serial 2010-07-23  * @version 1.0  *   */
+comment|/**  * Utility class for converting to/from SQL types and escaping XML text and attributes.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:robert.walpole@metoffice.gov.uk">Robert Walpole</a>  * @version 1.0  * @serial 2010-07-23  */
 end_comment
 
 begin_class
@@ -265,7 +265,7 @@ return|;
 comment|//default
 block|}
 block|}
-comment|/**      * Converts a SQL data type to an XML data type.      *      * @param   sqlType  The SQL data type as specified by JDBC      *      * @return  The XML Type as specified by eXist      */
+comment|/**      * Converts a SQL data type to an XML data type.      *      * @param sqlType The SQL data type as specified by JDBC      * @return The XML Type as specified by eXist      */
 specifier|public
 specifier|static
 name|int
