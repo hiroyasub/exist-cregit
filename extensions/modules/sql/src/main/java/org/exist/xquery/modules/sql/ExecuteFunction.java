@@ -1504,8 +1504,6 @@ condition|(
 name|executeResult
 condition|)
 block|{
-comment|/* SQL Query returned results */
-comment|// iterate through the result set building an XML document
 name|rs
 operator|=
 name|stmt
@@ -1513,6 +1511,44 @@ operator|.
 name|getResultSet
 argument_list|()
 expr_stmt|;
+block|}
+comment|// for executing Stored Procedures that return results (e.g. SQL Server)
+if|if
+condition|(
+name|rs
+operator|==
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|rs
+operator|=
+name|stmt
+operator|.
+name|getGeneratedKeys
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|SQLException
+name|e
+parameter_list|)
+block|{
+comment|// no-op - getGeneratedKeys is not always supported
+block|}
+block|}
+if|if
+condition|(
+name|rs
+operator|!=
+literal|null
+condition|)
+block|{
+comment|/* SQL Query returned results */
+comment|// iterate through the result set building an XML document
 specifier|final
 name|ResultSetMetaData
 name|rsmd
