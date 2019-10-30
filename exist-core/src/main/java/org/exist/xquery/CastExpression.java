@@ -793,7 +793,6 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 return|;
-comment|//		return Dependency.CONTEXT_SET | Dependency.CONTEXT_ITEM;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
 specifier|public
