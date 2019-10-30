@@ -279,7 +279,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -731,7 +731,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -1332,7 +1332,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -1907,7 +1907,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -2169,7 +2169,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
