@@ -113,6 +113,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -169,15 +183,6 @@ argument_list|<
 name|QueryRewriter
 argument_list|>
 name|rewriters
-init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|QueryRewriter
-argument_list|>
-argument_list|(
-literal|5
-argument_list|)
 decl_stmt|;
 specifier|public
 name|Optimizer

@@ -418,20 +418,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-comment|//check will item process by the expression
-specifier|public
-name|Boolean
-name|match
-parameter_list|(
-name|Sequence
-name|contextSequence
-parameter_list|,
-name|Item
-name|item
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
 specifier|public
 name|boolean
 name|allowMixedNodesInReturn

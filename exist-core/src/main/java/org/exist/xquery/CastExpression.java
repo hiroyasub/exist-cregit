@@ -783,11 +783,11 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
-comment|//        return expression.getDependencies();
 return|return
-name|Dependency
+name|expression
 operator|.
-name|CONTEXT_SET
+name|getDependencies
+argument_list|()
 operator||
 name|Dependency
 operator|.
