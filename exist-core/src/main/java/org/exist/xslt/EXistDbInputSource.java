@@ -82,11 +82,13 @@ name|EXistDbInputSource
 extends|extends
 name|InputSource
 block|{
-specifier|protected
+specifier|private
+specifier|final
 name|DBBroker
 name|broker
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|DocumentImpl
 name|doc
 decl_stmt|;

@@ -250,6 +250,7 @@ specifier|public
 name|boolean
 name|getFeature
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -264,6 +265,7 @@ specifier|public
 name|Object
 name|getProperty
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -278,6 +280,7 @@ specifier|public
 name|void
 name|parse
 parameter_list|(
+specifier|final
 name|InputSource
 name|input
 parameter_list|)
@@ -484,6 +487,7 @@ specifier|public
 name|void
 name|parse
 parameter_list|(
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -500,6 +504,7 @@ specifier|public
 name|void
 name|setContentHandler
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -517,6 +522,7 @@ specifier|public
 name|void
 name|setDTDHandler
 parameter_list|(
+specifier|final
 name|DTDHandler
 name|handler
 parameter_list|)
@@ -528,6 +534,7 @@ specifier|public
 name|void
 name|setEntityResolver
 parameter_list|(
+specifier|final
 name|EntityResolver
 name|resolver
 parameter_list|)
@@ -539,6 +546,7 @@ specifier|public
 name|void
 name|setErrorHandler
 parameter_list|(
+specifier|final
 name|ErrorHandler
 name|handler
 parameter_list|)
@@ -556,9 +564,11 @@ specifier|public
 name|void
 name|setFeature
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|boolean
 name|value
 parameter_list|)
@@ -570,9 +580,11 @@ specifier|public
 name|void
 name|setProperty
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|Object
 name|value
 parameter_list|)
