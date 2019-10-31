@@ -228,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction.  *  * Get a connection to a SQL Database via JNDI  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author   Loren Cahlander  * @version  1.2  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-19  */
+comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction.  *<p>  * Get a connection to a SQL Database via JNDI  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Loren Cahlander  * @version 1.2  * @serial 2008-05-19  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -413,7 +413,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * GetJNDIConnectionFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
+comment|/**      * GetJNDIConnectionFunction Constructor.      *      * @param context   The Context of the calling XQuery      * @param signature DOCUMENT ME!      */
 specifier|public
 name|GetJNDIConnectionFunction
 parameter_list|(
@@ -432,7 +432,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the xquery get-jndi-connection() function, it is really the main entry point of this class.      *      * @param   args             arguments from the get-jndi-connection() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing a handle to the connection      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+comment|/**      * evaluate the call to the xquery get-jndi-connection() function, it is really the main entry point of this class.      *      * @param args            arguments from the get-jndi-connection() function call      * @param contextSequence the Context Sequence to operate on (not used here internally!)      * @return A xs:long representing a handle to the connection      * @throws XPathException DOCUMENT ME!      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval

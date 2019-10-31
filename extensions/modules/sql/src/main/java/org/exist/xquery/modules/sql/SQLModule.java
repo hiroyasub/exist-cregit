@@ -51,9 +51,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|dom
 operator|.
-name|AbstractInternalModule
+name|QName
 import|;
 end_import
 
@@ -65,19 +65,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionDef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
+name|*
 import|;
 end_import
 
@@ -163,8 +151,50 @@ name|ContextMapEntryModifier
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionDSL
+operator|.
+name|functionDefs
+import|;
+end_import
+
 begin_comment
-comment|/**  * eXist SQL Module Extension.  *  * An extension module for the eXist Native XML Database that allows queries against SQL Databases, returning an XML representation of the result  * set.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author   ljo  * @version  1.2  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   * @serial   2010-03-18  */
+comment|/**  * eXist SQL Module Extension.  *<p>  * An extension module for the eXist Native XML Database that allows queries against SQL Databases, returning an XML representation of the result  * set.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author ljo  * @version 1.2  * @serial 2010-03-18  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)  */
 end_comment
 
 begin_class
@@ -221,145 +251,59 @@ name|RELEASED_IN_VERSION
 init|=
 literal|"eXist-1.2"
 decl_stmt|;
-specifier|private
-specifier|final
+specifier|public
 specifier|static
+specifier|final
 name|FunctionDef
 index|[]
 name|functions
 init|=
-block|{
-operator|new
-name|FunctionDef
+name|functionDefs
+argument_list|(
+name|functionDefs
 argument_list|(
 name|GetConnectionFunction
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
+name|class
 argument_list|,
 name|GetConnectionFunction
 operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|GetConnectionFunction
-operator|.
 name|signatures
-index|[
-literal|1
-index|]
-argument_list|,
-name|GetConnectionFunction
-operator|.
-name|class
 argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|GetConnectionFunction
-operator|.
-name|signatures
-index|[
-literal|2
-index|]
 argument_list|,
-name|GetConnectionFunction
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
+name|functionDefs
 argument_list|(
 name|GetJNDIConnectionFunction
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
+name|class
 argument_list|,
 name|GetJNDIConnectionFunction
 operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|GetJNDIConnectionFunction
-operator|.
 name|signatures
-index|[
-literal|1
-index|]
-argument_list|,
-name|GetJNDIConnectionFunction
-operator|.
-name|class
 argument_list|)
-block|,
-operator|new
-name|FunctionDef
+argument_list|,
+name|functionDefs
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
+name|class
 argument_list|,
 name|ExecuteFunction
 operator|.
-name|class
+name|FS_EXECUTE
 argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|ExecuteFunction
-operator|.
-name|signatures
-index|[
-literal|1
-index|]
 argument_list|,
-name|ExecuteFunction
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
+name|functionDefs
 argument_list|(
 name|PrepareFunction
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
+name|class
 argument_list|,
 name|PrepareFunction
 operator|.
-name|class
+name|signatures
 argument_list|)
-block|}
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|currentUID
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|public
 specifier|final
@@ -452,7 +396,7 @@ name|RELEASED_IN_VERSION
 operator|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery.      *      * @param   context        The Context of the XQuery containing the Connection      * @param   connectionUID  The UID of the Connection to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
+comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery.      *      * @param context       The Context of the XQuery containing the Connection      * @param connectionUID The UID of the Connection to retrieve from the Context of the XQuery      * @return DOCUMENT ME!      */
 specifier|public
 specifier|static
 name|Connection
@@ -480,7 +424,7 @@ name|connectionUID
 argument_list|)
 return|;
 block|}
-comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the Connection in      * @param   con      The connection to store      *      * @return  A unique ID representing the connection      */
+comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param context The Context of the XQuery to store the Connection in      * @param con     The connection to store      * @return A unique ID representing the connection      */
 specifier|public
 specifier|static
 specifier|synchronized
@@ -509,7 +453,7 @@ name|con
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored PreparedStatement from the Context of an XQuery.      *      * @param   context               The Context of the XQuery containing the PreparedStatement      * @param   preparedStatementUID  The UID of the PreparedStatement to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
+comment|/**      * Retrieves a previously stored PreparedStatement from the Context of an XQuery.      *      * @param context              The Context of the XQuery containing the PreparedStatement      * @param preparedStatementUID The UID of the PreparedStatement to retrieve from the Context of the XQuery      * @return DOCUMENT ME!      */
 specifier|public
 specifier|static
 name|PreparedStatementWithSQL
@@ -537,7 +481,7 @@ name|preparedStatementUID
 argument_list|)
 return|;
 block|}
-comment|/**      * Stores a PreparedStatement in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the PreparedStatement in      * @param   stmt     preparedStatement The PreparedStatement to store      *      * @return  A unique ID representing the PreparedStatement      */
+comment|/**      * Stores a PreparedStatement in the Context of an XQuery.      *      * @param context The Context of the XQuery to store the PreparedStatement in      * @param stmt    preparedStatement The PreparedStatement to store      * @return A unique ID representing the PreparedStatement      */
 specifier|public
 specifier|static
 specifier|synchronized
@@ -566,7 +510,7 @@ name|stmt
 argument_list|)
 return|;
 block|}
-comment|/**      * Resets the Module Context and closes any DB connections for the XQueryContext.      *      * @param  xqueryContext  The XQueryContext      */
+comment|/**      * Resets the Module Context and closes any DB connections for the XQueryContext.      *      * @param xqueryContext The XQueryContext      */
 annotation|@
 name|Override
 specifier|public
@@ -603,7 +547,7 @@ name|xqueryContext
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Closes all the open DB Connections for the specified XQueryContext.      *      * @param  xqueryContext  The context to close JDBC Connections for      */
+comment|/**      * Closes all the open DB Connections for the specified XQueryContext.      *      * @param xqueryContext The context to close JDBC Connections for      */
 specifier|private
 specifier|static
 name|void
@@ -720,7 +664,7 @@ expr_stmt|;
 comment|// update the context
 comment|//ModuleUtils.storeContextMap(xqueryContext, SQLModule.CONNECTIONS_CONTEXTVAR, connections);
 block|}
-comment|/**      * Closes all the open DB PreparedStatements for the specified XQueryContext.      *      * @param  xqueryContext  The context to close JDBC PreparedStatements for      */
+comment|/**      * Closes all the open DB PreparedStatements for the specified XQueryContext.      *      * @param xqueryContext The context to close JDBC PreparedStatements for      */
 specifier|private
 specifier|static
 name|void

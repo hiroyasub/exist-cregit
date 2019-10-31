@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension PrepareFunction.  *  * Prepare a SQL statement against a SQL capable Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version  1.0  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2010-03-17  */
+comment|/**  * eXist SQL Module Extension PrepareFunction.  *<p>  * Prepare a SQL statement against a SQL capable Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version 1.0  * @serial 2010-03-17  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -319,7 +319,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The SQL statement"
 argument_list|)
-block|, 			}
+block|,                     }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -337,7 +337,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * PrepareFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
+comment|/**      * PrepareFunction Constructor.      *      * @param context   The Context of the calling XQuery      * @param signature DOCUMENT ME!      */
 specifier|public
 name|PrepareFunction
 parameter_list|(
@@ -356,7 +356,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the XQuery prepare() function, it is really the main entry point of this class.      *      * @param   args             arguments from the prepare() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing the handle to the prepared statement      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+comment|/**      * evaluate the call to the XQuery prepare() function, it is really the main entry point of this class.      *      * @param args            arguments from the prepare() function call      * @param contextSequence the Context Sequence to operate on (not used here internally!)      * @return A xs:long representing the handle to the prepared statement      * @throws XPathException DOCUMENT ME!      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 annotation|@
 name|Override
 specifier|public

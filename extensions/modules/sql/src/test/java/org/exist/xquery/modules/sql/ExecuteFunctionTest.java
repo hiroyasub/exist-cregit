@@ -279,7 +279,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -397,6 +397,20 @@ operator|.
 name|andReturn
 argument_list|(
 name|rs
+argument_list|)
+expr_stmt|;
+name|expect
+argument_list|(
+name|stmt
+operator|.
+name|getUpdateCount
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|stmt
@@ -731,7 +745,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -744,7 +758,7 @@ specifier|final
 name|String
 name|emptyStringValue
 init|=
-literal|null
+literal|""
 decl_stmt|;
 specifier|final
 name|Integer
@@ -880,6 +894,19 @@ name|expect
 argument_list|(
 name|preparedStatement
 operator|.
+name|getConnection
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|connection
+argument_list|)
+expr_stmt|;
+name|expect
+argument_list|(
+name|preparedStatement
+operator|.
 name|execute
 argument_list|()
 argument_list|)
@@ -900,6 +927,20 @@ operator|.
 name|andReturn
 argument_list|(
 name|rs
+argument_list|)
+expr_stmt|;
+name|expect
+argument_list|(
+name|preparedStatement
+operator|.
+name|getUpdateCount
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|expect
@@ -1332,7 +1373,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -1426,13 +1467,26 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// mock behavior
+name|expect
+argument_list|(
+name|preparedStatement
+operator|.
+name|getConnection
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|connection
+argument_list|)
+expr_stmt|;
 name|preparedStatement
 operator|.
 name|setObject
 argument_list|(
 literal|1
 argument_list|,
-literal|null
+literal|""
 argument_list|,
 name|Types
 operator|.
@@ -1885,6 +1939,8 @@ specifier|public
 name|void
 name|testMissingParamType
 parameter_list|()
+throws|throws
+name|SQLException
 block|{
 comment|// mocks a simple SQL prepared statement with one parameter that lacks a type attribute.
 comment|// This should throw an informative error.
@@ -1907,7 +1963,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,
@@ -1989,6 +2045,19 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// mock behavior
+name|expect
+argument_list|(
+name|preparedStatement
+operator|.
+name|getConnection
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|connection
+argument_list|)
+expr_stmt|;
 comment|// no behavior necessary - error should be thrown before first call
 name|replay
 argument_list|(
@@ -2169,7 +2238,7 @@ name|signatureByArity
 argument_list|(
 name|ExecuteFunction
 operator|.
-name|signatures
+name|FS_EXECUTE
 argument_list|,
 name|functionName
 argument_list|,

@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction.  *  * Get a connection to a SQL Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author   Loren Cahlander  * @version  1.21  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-29  */
+comment|/**  * eXist SQL Module Extension GetConnectionFunction.  *<p>  * Get a connection to a SQL Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Loren Cahlander  * @version 1.21  * @serial 2008-05-29  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -531,7 +531,7 @@ name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * GetConnectionFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
+comment|/**      * GetConnectionFunction Constructor.      *      * @param context   The Context of the calling XQuery      * @param signature DOCUMENT ME!      */
 specifier|public
 name|GetConnectionFunction
 parameter_list|(
@@ -550,7 +550,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the xquery get-connection() function, it is really the main entry point of this class.      *      * @param   args             arguments from the get-connection() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing a handle to the connection      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+comment|/**      * evaluate the call to the xquery get-connection() function, it is really the main entry point of this class.      *      * @param args            arguments from the get-connection() function call      * @param contextSequence the Context Sequence to operate on (not used here internally!)      * @return A xs:long representing a handle to the connection      * @throws XPathException DOCUMENT ME!      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
