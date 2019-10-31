@@ -4751,6 +4751,7 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
+specifier|final
 name|Collection
 name|collection
 parameter_list|)
@@ -4762,10 +4763,15 @@ throws|,
 name|LockException
 block|{
 comment|/*             When we are called we hold either a READ or WRITE Lock on the Collection.             As we are using hierarchical locking for Collections we can             assume that we also hold either an INTENTION_READ or INTENTION_WRITE Lock             on each ancestor Collection up to the root,             therefore we don't really need to acquire any more locks.              The permissions are checked bottom-up on the Collection hierarchy as we             assume that the more specific/restrictive permissions are likely to be             closer to the target Collection.          */
+name|Collection
+name|c
+init|=
+name|collection
+decl_stmt|;
 name|XmldbURI
 name|parentUri
 init|=
-name|collection
+name|c
 operator|.
 name|getParentURI
 argument_list|()
@@ -4778,7 +4784,7 @@ literal|null
 condition|)
 block|{
 comment|// this will throw a PermissionDeniedException if the user does not have Permission.EXECUTE on the Collection at the parentUri
-name|collection
+name|c
 operator|=
 name|getCollectionForOpen
 argument_list|(
@@ -4789,7 +4795,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|collection
+name|c
 operator|==
 literal|null
 condition|)
@@ -4816,7 +4822,7 @@ throw|;
 block|}
 name|parentUri
 operator|=
-name|collection
+name|c
 operator|.
 name|getParentURI
 argument_list|()
