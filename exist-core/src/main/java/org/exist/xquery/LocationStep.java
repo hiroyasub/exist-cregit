@@ -4468,8 +4468,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|hasPositionalPredicate
-operator|&&
 name|position
 operator|>
 operator|-
@@ -4875,7 +4873,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|hasPositionalPredicate
+name|position
+operator|>
+operator|-
+literal|1
 condition|)
 block|{
 try|try
@@ -5019,7 +5020,14 @@ literal|1
 decl_stmt|;
 if|if
 condition|(
-name|hasPositionalPredicate
+name|this
+operator|.
+name|checkPositionalFilters
+argument_list|(
+name|this
+operator|.
+name|inPredicate
+argument_list|)
 condition|)
 block|{
 specifier|final

@@ -188,12 +188,6 @@ name|Type
 operator|.
 name|ITEM
 decl_stmt|;
-specifier|protected
-name|boolean
-name|hasPositionalPredicate
-init|=
-literal|false
-decl_stmt|;
 specifier|public
 name|Step
 parameter_list|(
@@ -547,13 +541,6 @@ name|newContext
 argument_list|)
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|checkPositionalFilters
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
 block|}
 comment|// if we are on the self axis, remember the static return type given in the context
 if|if
@@ -577,8 +564,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Static check if the location steps first filter is a positional predicate.      * If yes, set a flag on the {@link LocationStep}      */
-specifier|private
-name|void
+specifier|protected
+name|boolean
 name|checkPositionalFilters
 parameter_list|(
 specifier|final
@@ -660,14 +647,14 @@ name|CONTEXT_POSITION
 argument_list|)
 condition|)
 block|{
-name|this
-operator|.
-name|hasPositionalPredicate
-operator|=
+return|return
 literal|true
-expr_stmt|;
+return|;
 block|}
 block|}
+return|return
+literal|false
+return|;
 block|}
 specifier|public
 specifier|abstract
