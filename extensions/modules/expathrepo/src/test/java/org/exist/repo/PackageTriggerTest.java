@@ -340,6 +340,13 @@ name|PackageTriggerTest
 block|{
 specifier|static
 specifier|final
+name|String
+name|xarFile
+init|=
+literal|"triggertest-1.0.0.xar"
+decl_stmt|;
+specifier|static
+specifier|final
 name|XmldbURI
 name|triggerTestCollection
 init|=
@@ -359,7 +366,7 @@ name|triggerTestCollection
 operator|.
 name|append
 argument_list|(
-literal|"triggertest-1.0-SNAPSHOT.xar"
+name|xarFile
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -484,7 +491,7 @@ name|class
 operator|.
 name|getResourceAsStream
 argument_list|(
-literal|"triggertest-1.0-SNAPSHOT.xar"
+name|xarFile
 argument_list|)
 decl_stmt|;
 name|Assert
@@ -676,7 +683,11 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"repo:install-and-deploy-from-db('/db/triggertest-1.0-SNAPSHOT.xar')"
+literal|"repo:install-and-deploy-from-db('/db/"
+operator|+
+name|xarFile
+operator|+
+literal|"')"
 argument_list|,
 literal|null
 argument_list|)
