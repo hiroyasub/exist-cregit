@@ -1102,8 +1102,10 @@ block|{
 name|source
 operator|=
 operator|new
-name|DOMSource
+name|EXistDbSource
 argument_list|(
+name|broker
+argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
