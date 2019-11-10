@@ -1243,6 +1243,10 @@ decl_stmt|;
 if|if
 condition|(
 name|check
+operator|!=
+literal|null
+operator|&&
+name|check
 operator|.
 name|get
 argument_list|()
