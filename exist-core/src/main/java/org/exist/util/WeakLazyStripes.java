@@ -427,6 +427,11 @@ name|K
 name|key
 parameter_list|)
 block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 specifier|final
 name|Holder
 argument_list|<
@@ -581,13 +586,8 @@ return|return
 name|stripe
 return|;
 block|}
-comment|// weak reference has expired in the mean time, regenerate
-return|return
-name|get
-argument_list|(
-name|key
-argument_list|)
-return|;
+comment|// weak reference has expired in the mean time, so loop...
+block|}
 block|}
 comment|/**      * Get the stripe via immediate conversion of an optimistic read lock to a write lock.      *      * @param key the stripe key      * @param written (OUT) will be set to true if {@link #stripes} was updated      *      * @return null if we could not perform an optimistic read, or a new object needed to be      *     created and we could not take the {@link #stripesLock} write lock immediately,      *     otherwise the stripe.      */
 specifier|private
@@ -745,6 +745,14 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+comment|// invalid conversion to write lock... small optimisation for the fall-through to #getPessimistic(K, Holder) in #get(K)
+name|stripeRef
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -934,6 +942,14 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+comment|// invalid conversion to write lock... small optimisation for the fall-through to #getExclusive(K, Holder) in #get(K)
+name|stripeRef
+operator|=
+literal|null
+expr_stmt|;
 block|}
 return|return
 name|stripeRef
@@ -1204,6 +1220,40 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// TODO(AR) it may be more performant to call #drainClearedReferences() at the beginning of #get(K) as oposed to the end, then we could avoid the extra check here which calls stripes#get(K)
+comment|/*                         NOTE: we have to check that we have not added a new reference to replace an                         expired reference in #get(K) before calling #drainClearedReferences()                      */
+specifier|final
+name|WeakValueReference
+argument_list|<
+name|K
+argument_list|,
+name|S
+argument_list|>
+name|check
+init|=
+name|stripes
+operator|.
+name|get
+argument_list|(
+name|stripeRef
+operator|.
+name|key
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|check
+operator|!=
+literal|null
+operator|&&
+name|check
+operator|.
+name|get
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
 name|stripes
 operator|.
 name|remove
@@ -1213,6 +1263,7 @@ operator|.
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
