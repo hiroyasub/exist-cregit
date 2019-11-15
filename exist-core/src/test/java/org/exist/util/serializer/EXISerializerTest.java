@@ -108,6 +108,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -124,16 +136,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
 import|;
 end_import
 
@@ -451,11 +453,9 @@ name|Attributes
 argument_list|>
 name|capturedAttributes
 init|=
-operator|new
 name|Capture
-argument_list|<
-name|Attributes
-argument_list|>
+operator|.
+name|newInstance
 argument_list|()
 decl_stmt|;
 name|mockEncoder
@@ -514,8 +514,6 @@ operator|.
 name|getValues
 argument_list|()
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"local"
@@ -533,8 +531,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"uri"
@@ -552,8 +548,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"value"
