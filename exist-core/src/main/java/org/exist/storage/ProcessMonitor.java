@@ -1275,7 +1275,11 @@ name|long
 name|waitTime
 parameter_list|)
 block|{
-comment|// directly called from BrokerPool itself. no need to synchronize.
+synchronized|synchronized
+init|(
+name|runningQueries
+init|)
+block|{
 for|for
 control|(
 specifier|final
@@ -1312,6 +1316,7 @@ argument_list|(
 name|waitTime
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
