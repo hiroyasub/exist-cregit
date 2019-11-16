@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ProcessMonitor.java 8235 2008-10-17 16:03:27Z chaeron $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2019 The eXist Project  * http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 end_comment
 
 begin_package
@@ -194,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to keep track of all running queries in a database instance. The main  * purpose of this class is to signal running queries that the database is going to  * shut down. This is done through the {@link org.exist.xquery.XQueryWatchDog}  * registered by each query. It is up to the query to check the watchdog's state.  * If it simply ignores the terminate signal, it will be killed after the shutdown  * timeout is reached.  *   * @author wolf  */
+comment|/**  * Class to keep track of all running queries in a database instance. The main  * purpose of this class is to signal running queries that the database is going to  * shut down. This is done through the {@link org.exist.xquery.XQueryWatchDog}  * registered by each query. It is up to the query to check the watchdog's state.  * If it simply ignores the terminate signal, it will be killed after the shutdown  * timeout is reached.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -205,96 +205,96 @@ implements|implements
 name|BrokerPoolService
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_UNSPECIFIED
 init|=
 literal|"unspecified"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_VALIDATE_DOC
 init|=
 literal|"validating document"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_STORE_DOC
 init|=
 literal|"storing document"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_STORE_BINARY
 init|=
 literal|"storing binary resource"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_REMOVE_XML
 init|=
 literal|"remove XML resource"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_REMOVE_BINARY
 init|=
 literal|"remove binary resource"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_REMOVE_COLLECTION
 init|=
 literal|"remove collection"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_REINDEX_COLLECTION
 init|=
 literal|"reindex collection"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_COPY_COLLECTION
 init|=
 literal|"copy collection"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_MOVE_COLLECTION
 init|=
 literal|"move collection"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ACTION_BACKUP
 init|=
 literal|"backup"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -307,9 +307,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|final
+specifier|private
 specifier|static
+specifier|final
 name|long
 name|QUERY_HISTORY_TIMEOUT
 init|=
@@ -320,9 +320,9 @@ operator|*
 literal|1000
 decl_stmt|;
 comment|// 2 minutes
-specifier|public
-specifier|final
+specifier|private
 specifier|static
+specifier|final
 name|long
 name|MIN_TIME
 init|=
@@ -338,9 +338,7 @@ name|runningQueries
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|XQueryWatchDog
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -357,6 +355,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|Thread
@@ -367,11 +366,7 @@ name|processes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|JobInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -429,6 +424,7 @@ specifier|public
 name|void
 name|startJob
 parameter_list|(
+specifier|final
 name|String
 name|action
 parameter_list|)
@@ -445,9 +441,11 @@ specifier|public
 name|void
 name|startJob
 parameter_list|(
+specifier|final
 name|String
 name|action
 parameter_list|,
+specifier|final
 name|Object
 name|addInfo
 parameter_list|)
@@ -467,12 +465,15 @@ specifier|public
 name|void
 name|startJob
 parameter_list|(
+specifier|final
 name|String
 name|action
 parameter_list|,
+specifier|final
 name|Object
 name|addInfo
 parameter_list|,
+specifier|final
 name|Monitor
 name|monitor
 parameter_list|)
@@ -548,8 +549,8 @@ init|)
 block|{
 specifier|final
 name|JobInfo
-name|jobs
 index|[]
+name|jobs
 init|=
 operator|new
 name|JobInfo
@@ -663,6 +664,16 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//no op
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+comment|// pass on interrupted status
 block|}
 comment|//...or force the shutdown
 if|if
@@ -710,6 +721,7 @@ specifier|public
 name|void
 name|queryStarted
 parameter_list|(
+specifier|final
 name|XQueryWatchDog
 name|watchdog
 parameter_list|)
@@ -745,6 +757,7 @@ specifier|public
 name|void
 name|queryCompleted
 parameter_list|(
+specifier|final
 name|XQueryWatchDog
 name|watchdog
 parameter_list|)
@@ -907,6 +920,7 @@ specifier|public
 name|void
 name|setHistoryTimespan
 parameter_list|(
+specifier|final
 name|long
 name|time
 parameter_list|)
@@ -930,6 +944,7 @@ specifier|public
 name|void
 name|setMinTime
 parameter_list|(
+specifier|final
 name|long
 name|time
 parameter_list|)
@@ -955,6 +970,7 @@ specifier|public
 name|void
 name|setTrackRequestURI
 parameter_list|(
+specifier|final
 name|boolean
 name|track
 parameter_list|)
@@ -1012,9 +1028,11 @@ decl_stmt|;
 specifier|public
 name|QueryHistory
 parameter_list|(
+specifier|final
 name|String
 name|source
 parameter_list|,
+specifier|final
 name|long
 name|delay
 parameter_list|)
@@ -1077,6 +1095,7 @@ specifier|public
 name|void
 name|setMostRecentExecutionTime
 parameter_list|(
+specifier|final
 name|long
 name|mostRecentExecutionTime
 parameter_list|)
@@ -1101,6 +1120,7 @@ specifier|public
 name|void
 name|setMostRecentExecutionDuration
 parameter_list|(
+specifier|final
 name|long
 name|mostRecentExecutionDuration
 parameter_list|)
@@ -1125,6 +1145,7 @@ specifier|public
 name|void
 name|setRequestURI
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -1140,6 +1161,7 @@ specifier|public
 name|long
 name|getDelay
 parameter_list|(
+specifier|final
 name|TimeUnit
 name|unit
 parameter_list|)
@@ -1168,14 +1190,18 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Delayed
 name|o
 parameter_list|)
 block|{
-if|if
-condition|(
+return|return
+name|Long
+operator|.
+name|compare
+argument_list|(
 name|expires
-operator|<
+argument_list|,
 operator|(
 operator|(
 name|QueryHistory
@@ -1184,33 +1210,7 @@ name|o
 operator|)
 operator|.
 name|expires
-condition|)
-block|{
-return|return
-operator|-
-literal|1
-return|;
-block|}
-if|if
-condition|(
-name|expires
-operator|>
-operator|(
-operator|(
-name|QueryHistory
-operator|)
-name|o
-operator|)
-operator|.
-name|expires
-condition|)
-block|{
-return|return
-literal|1
-return|;
-block|}
-return|return
-literal|0
+argument_list|)
 return|;
 block|}
 block|}
@@ -1236,36 +1236,24 @@ argument_list|()
 operator|.
 name|sorted
 argument_list|(
-operator|(
+parameter_list|(
 name|o1
-operator|,
+parameter_list|,
 name|o2
-operator|)
-operator|->
-name|o1
+parameter_list|)
+lambda|->
+name|Long
 operator|.
-name|expires
-operator|>
-name|o2
-operator|.
-name|expires
-condition|?
-operator|-
-literal|1
-else|:
-operator|(
-name|o1
-operator|.
-name|expires
-operator|<
+name|compare
+argument_list|(
 name|o2
 operator|.
 name|expires
-condition|?
-literal|1
-else|:
-literal|0
-operator|)
+argument_list|,
+name|o1
+operator|.
+name|expires
+argument_list|)
 argument_list|)
 operator|.
 name|toArray
@@ -1282,11 +1270,16 @@ specifier|public
 name|void
 name|killAll
 parameter_list|(
+specifier|final
 name|long
 name|waitTime
 parameter_list|)
 block|{
-comment|// directly called from BrokerPool itself. no need to synchronize.
+synchronized|synchronized
+init|(
+name|runningQueries
+init|)
+block|{
 for|for
 control|(
 specifier|final
@@ -1325,6 +1318,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|public
 name|XQueryWatchDog
 index|[]
@@ -1339,15 +1333,13 @@ block|{
 return|return
 name|runningQueries
 operator|.
-name|stream
-argument_list|()
-operator|.
 name|toArray
 argument_list|(
-name|XQueryWatchDog
-index|[]
-operator|::
 operator|new
+name|XQueryWatchDog
+index|[
+literal|0
+index|]
 argument_list|)
 return|;
 block|}
@@ -1400,16 +1392,24 @@ class|class
 name|JobInfo
 block|{
 specifier|private
+specifier|final
 name|Thread
 name|thread
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|action
 decl_stmt|;
 specifier|private
+specifier|final
 name|long
 name|startTime
+decl_stmt|;
+specifier|private
+specifier|final
+name|Monitor
+name|monitor
 decl_stmt|;
 specifier|private
 name|Object
@@ -1417,18 +1417,14 @@ name|addInfo
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|Monitor
-name|monitor
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|JobInfo
 parameter_list|(
+specifier|final
 name|String
 name|action
 parameter_list|,
+specifier|final
 name|Monitor
 name|monitor
 parameter_list|)
@@ -1495,6 +1491,7 @@ specifier|public
 name|void
 name|setAddInfo
 parameter_list|(
+specifier|final
 name|Object
 name|info
 parameter_list|)
@@ -1520,19 +1517,11 @@ name|void
 name|stop
 parameter_list|()
 block|{
-if|if
-condition|(
-name|monitor
-operator|!=
-literal|null
-condition|)
-block|{
 name|monitor
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**      * Try to figure out the HTTP request URI by which a query was called.      * Request tracking is not enabled unless {@link #setTrackRequestURI(boolean)}      * is called.      *      * @param watchdog XQuery WatchDog      * @return HTTP request URI by which a query was called      */
@@ -1541,6 +1530,7 @@ specifier|static
 name|String
 name|getRequestURI
 parameter_list|(
+specifier|final
 name|XQueryWatchDog
 name|watchdog
 parameter_list|)
