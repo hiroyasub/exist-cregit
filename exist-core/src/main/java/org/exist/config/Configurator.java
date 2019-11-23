@@ -8050,7 +8050,7 @@ name|of
 argument_list|(
 name|Permission
 operator|.
-name|DEFAULT_SYSTSEM_RESOURCE_PERM
+name|DEFAULT_SYSTEM_RESOURCE_PERM
 argument_list|)
 argument_list|,
 name|Optional
