@@ -75,11 +75,6 @@ init|=
 literal|"pool"
 decl_stmt|;
 name|String
-name|CONFIGURATION_SECURITY_ELEMENT_NAME
-init|=
-literal|"security"
-decl_stmt|;
-name|String
 name|CONFIGURATION_RECOVERY_ELEMENT_NAME
 init|=
 literal|"recovery"
@@ -179,16 +174,6 @@ init|=
 literal|"db-connection.collection-cache-size"
 decl_stmt|;
 comment|//TODO : move elsewhere ? Get fully qualified class name ?
-name|String
-name|DEFAULT_SECURITY_CLASS
-init|=
-literal|"org.exist.security.internal.SecurityManagerImpl"
-decl_stmt|;
-name|String
-name|PROPERTY_SECURITY_CLASS
-init|=
-literal|"db-connection.security.class"
-decl_stmt|;
 name|String
 name|PROPERTY_RECOVERY_ENABLED
 init|=
