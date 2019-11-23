@@ -51,6 +51,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|tuple
+operator|.
+name|Tuple2
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -170,6 +184,22 @@ operator|.
 name|util
 operator|.
 name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|tuple
+operator|.
+name|Tuple
+operator|.
+name|Tuple
 import|;
 end_import
 
@@ -409,11 +439,24 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Tuple2
+argument_list|<
+name|Boolean
+argument_list|,
+name|Long
+argument_list|>
+name|availableSpace
+init|=
+name|checkDiskSpace
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
-name|checkDiskSpace
-argument_list|()
+name|availableSpace
+operator|.
+name|_1
 condition|)
 block|{
 name|LOG
@@ -430,9 +473,19 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|" is running out of disk space. "
+literal|" is running out of disk space [minimum: "
 operator|+
-literal|"Switching eXist-db to read only to prevent data loss!"
+name|diskSpaceMin
+operator|+
+literal|" free: "
+operator|+
+name|availableSpace
+operator|.
+name|_2
+operator|+
+literal|"]. "
+operator|+
+literal|"Switching eXist-db into read-only mode to prevent data loss!"
 argument_list|)
 expr_stmt|;
 name|pool
@@ -486,15 +539,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @return true if there is enough disk space, false otherwis      */
+comment|/**      * @return A tuple, where the first value indicates if there is enough disk space, the      * second value is the amount of usable space in bytes      */
 specifier|private
-name|boolean
+name|Tuple2
+argument_list|<
+name|Boolean
+argument_list|,
+name|Long
+argument_list|>
 name|checkDiskSpace
 parameter_list|()
 block|{
 specifier|final
 name|long
-name|space
+name|usableSpace
 init|=
 name|FileUtils
 operator|.
@@ -508,15 +566,26 @@ name|getUsableSpace
 argument_list|)
 decl_stmt|;
 comment|//LOG.info("Usable space on partition containing DATA_DIR: " + dataDir.getAbsolutePath() + ": " + (space / 1024 / 1024) + "mb");
-return|return
-name|space
+specifier|final
+name|boolean
+name|enoughSpace
+init|=
+name|usableSpace
 operator|>
 name|diskSpaceMin
 operator|||
-name|space
+name|usableSpace
 operator|==
 operator|-
 literal|1
+decl_stmt|;
+return|return
+name|Tuple
+argument_list|(
+name|enoughSpace
+argument_list|,
+name|usableSpace
+argument_list|)
 return|;
 block|}
 block|}
