@@ -89,7 +89,7 @@ init|=
 literal|0755
 decl_stmt|;
 name|int
-name|DEFAULT_SYSTSEM_RESOURCE_PERM
+name|DEFAULT_SYSTEM_RESOURCE_PERM
 init|=
 literal|0770
 decl_stmt|;
