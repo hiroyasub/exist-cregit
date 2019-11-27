@@ -1613,6 +1613,12 @@ if|if
 condition|(
 operator|!
 name|typeMatches
+operator|&&
+operator|!
+name|context
+operator|.
+name|isBackwardsCompatible
+argument_list|()
 condition|)
 block|{
 if|if
