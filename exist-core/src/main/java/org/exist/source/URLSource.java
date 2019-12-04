@@ -509,14 +509,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -799,14 +801,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -899,7 +903,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Unable to connect to URL: "
+literal|"Unable to connect to URL '"
+operator|+
+name|url
+operator|+
+literal|"': "
 operator|+
 name|e
 operator|.
@@ -922,14 +930,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1013,14 +1023,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 return|return
