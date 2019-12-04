@@ -526,7 +526,8 @@ literal|0
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getKey() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getKey
@@ -597,6 +598,8 @@ operator|.
 name|INVALID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Charset
 name|getEncoding
@@ -709,7 +712,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getReader() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Reader
 name|getReader
@@ -818,6 +822,8 @@ name|e
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInputStream
@@ -947,7 +953,8 @@ name|e
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getContent() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContent
@@ -1049,6 +1056,8 @@ return|return
 name|responseCode
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
