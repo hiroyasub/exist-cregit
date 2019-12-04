@@ -1097,6 +1097,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|String
+name|getQueryAnalyzerId
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

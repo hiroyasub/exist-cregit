@@ -1094,6 +1094,24 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/** Gets the Analyzer (defined in this LuceneConfig) with the specified id.      *  Returns null if no match was found.      */
+specifier|public
+name|Analyzer
+name|getAnalyzerById
+parameter_list|(
+name|String
+name|analyzerId
+parameter_list|)
+block|{
+return|return
+name|analyzers
+operator|.
+name|getAnalyzerById
+argument_list|(
+name|analyzerId
+argument_list|)
+return|;
+block|}
 comment|/**      * Try to instantiate the configured Lucene query parser. Lucene's parsers      * do not all have a common base class, so we need to wrap around the implementation      * details.      *      * @param field the default field to query      * @param analyzer analyzer to use for query parsing      * @return a query wrapper      */
 specifier|public
 name|QueryParserWrapper
