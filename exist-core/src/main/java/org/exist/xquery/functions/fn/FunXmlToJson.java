@@ -533,7 +533,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Generate a JSON representation of a NodeValue which conforms to      * https://www.w3.org/TR/xpath-functions-31/schema-for-json.xsd      * Traverse a NodeValue via XMLStreamReader and fill a Writer with its JSON representation      * by calling com.fasterxml.jackson write functions according to input type.      *      * Implements basic part of the specification. String (un)escaping is fully delegated to jackson      * and NOT fully conforming to spec.      *      * @param nodeValue the NodeValue to be read      * @param writer the Writer to be used      * @throws XPathException on error in XML JSON input according to specification      */
+comment|/**      * Generate a JSON representation of a NodeValue which conforms to      * https://www.w3.org/TR/xpath-functions-31/schema-for-json.xsd      * Traverse a NodeValue via XMLStreamReader and fill a Writer with its JSON representation      * by calling com.fasterxml.jackson write functions according to input type.      *<p>      * Implements basic part of the specification. String (un)escaping is fully delegated to jackson      * and NOT fully conforming to spec.      *      * @param nodeValue the NodeValue to be read      * @param writer    the Writer to be used      * @throws XPathException on error in XML JSON input according to specification      */
 specifier|private
 name|void
 name|nodeValueToJson
@@ -1182,7 +1182,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Generate an unescaped JSON string by parsing an escaped JSON string.      *      * @param escapedJsonString the escaped JSON string      * @return the unescaped JSON string      * @throws IOException in case of an unhandled error reading the JSON      * @throws XPathException in case of dynamic error      */
+comment|/**      * Generate an unescaped JSON string by parsing an escaped JSON string.      *      * @param escapedJsonString the escaped JSON string      * @return the unescaped JSON string      * @throws IOException    in case of an unhandled error reading the JSON      * @throws XPathException in case of dynamic error      */
 specifier|private
 name|String
 name|unescapeEscapedJsonString
