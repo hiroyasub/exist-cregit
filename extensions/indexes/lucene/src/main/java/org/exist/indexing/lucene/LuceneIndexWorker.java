@@ -5998,7 +5998,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"getAnalyzerById(%s) returned null!"
+literal|"getAnalyzerById('%s') returned null!"
 argument_list|,
 name|opts
 operator|.
