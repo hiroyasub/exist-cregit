@@ -2424,7 +2424,7 @@ name|FunctionDef
 argument_list|(
 name|FunXmlToJson
 operator|.
-name|signature
+name|FS_XML_TO_JSON
 index|[
 literal|0
 index|]
@@ -2439,7 +2439,7 @@ name|FunctionDef
 argument_list|(
 name|FunXmlToJson
 operator|.
-name|signature
+name|FS_XML_TO_JSON
 index|[
 literal|1
 index|]
