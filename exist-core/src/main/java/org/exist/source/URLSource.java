@@ -509,14 +509,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -524,7 +526,8 @@ literal|0
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getKey() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getKey
@@ -595,6 +598,8 @@ operator|.
 name|INVALID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Charset
 name|getEncoding
@@ -707,7 +712,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getReader() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Reader
 name|getReader
@@ -799,14 +805,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -814,6 +822,8 @@ name|e
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInputStream
@@ -899,7 +909,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Unable to connect to URL: "
+literal|"Unable to connect to URL '"
+operator|+
+name|url
+operator|+
+literal|"': "
 operator|+
 name|e
 operator|.
@@ -922,14 +936,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -937,7 +953,8 @@ name|e
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getContent() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContent
@@ -1013,14 +1030,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"URL could not be opened: "
+literal|"URL '"
+operator|+
+name|url
+operator|+
+literal|"' could not be opened: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -1037,6 +1056,8 @@ return|return
 name|responseCode
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
