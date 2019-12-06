@@ -854,6 +854,18 @@ import|;
 end_import
 
 begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Consumer
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -6338,6 +6350,31 @@ name|boolean
 name|killed
 parameter_list|)
 block|{
+name|shutdown
+argument_list|(
+name|killed
+argument_list|,
+name|BrokerPools
+operator|::
+name|removeInstance
+argument_list|)
+expr_stmt|;
+block|}
+name|void
+name|shutdown
+parameter_list|(
+specifier|final
+name|boolean
+name|killed
+parameter_list|,
+specifier|final
+name|Consumer
+argument_list|<
+name|String
+argument_list|>
+name|shutdownInstanceConsumer
+parameter_list|)
+block|{
 try|try
 block|{
 name|status
@@ -6745,7 +6782,9 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|//Clear the living instances container
-name|removeInstance
+name|shutdownInstanceConsumer
+operator|.
+name|accept
 argument_list|(
 name|instanceName
 argument_list|)
