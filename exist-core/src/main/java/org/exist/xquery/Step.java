@@ -563,7 +563,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Static check if the location steps first filter is a positional predicate.      * If yes, set a flag on the {@link LocationStep}      */
+comment|/**      * Static check if the location steps first filter is a positional predicate.      * If yes, set a flag on the {@link LocationStep}      *      * @param inPredicate true if in a predicate, false otherwise      *      * @return true if the first filter is a positional predicate      */
 specifier|protected
 name|boolean
 name|checkPositionalFilters

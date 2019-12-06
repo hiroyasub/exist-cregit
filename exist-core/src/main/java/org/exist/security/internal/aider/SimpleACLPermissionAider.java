@@ -651,7 +651,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Converts the mode string for an ACE to an int.      *      * @param modeStr the mode string for the ACE is simple symbolic format, must be between 1 and 3 characters.      *      * @return the octal mode encoded as an int.      */
+comment|/**      * Converts the mode string for an ACE to an int.      *      * @param modeStr the mode string for the ACE is simple symbolic format, must be between 1 and 3 characters.      *      * @return the octal mode encoded as an int.      *      * @throws PermissionDeniedException if the mode string is invalid      */
 specifier|public
 specifier|static
 name|int

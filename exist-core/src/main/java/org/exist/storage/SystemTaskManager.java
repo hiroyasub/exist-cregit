@@ -205,7 +205,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Process system tasks.      *      * @param systemBroker a broker running as the SYSTEM subject.      */
+comment|/**      * Process system tasks.      *      * @param systemBroker a broker running as the SYSTEM subject.      * @param transaction the transaction      */
 specifier|public
 name|void
 name|processTasks
