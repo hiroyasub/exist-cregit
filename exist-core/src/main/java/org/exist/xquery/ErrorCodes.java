@@ -2156,6 +2156,34 @@ specifier|public
 specifier|static
 specifier|final
 name|ErrorCode
+name|FODF1280
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FODF1280"
+argument_list|,
+literal|"Invalid decimal format name."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FODF1310
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FODF1310"
+argument_list|,
+literal|"Invalid decimal format picture string."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
 name|FOFD1340
 init|=
 operator|new
@@ -2177,21 +2205,7 @@ name|W3CErrorCode
 argument_list|(
 literal|"FOFD1350"
 argument_list|,
-literal|" Invalid date/time formatting component"
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|ErrorCode
-name|FODF1310
-init|=
-operator|new
-name|W3CErrorCode
-argument_list|(
-literal|"FODF1310"
-argument_list|,
-literal|" Invalid decimal format picture string."
+literal|"Invalid date/time formatting component"
 argument_list|)
 decl_stmt|;
 specifier|public

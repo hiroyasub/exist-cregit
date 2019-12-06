@@ -780,7 +780,7 @@ name|FunctionDef
 argument_list|(
 name|FnFormatNumbers
 operator|.
-name|signatures
+name|FS_FORMAT_NUMBER
 index|[
 literal|0
 index|]
@@ -795,7 +795,7 @@ name|FunctionDef
 argument_list|(
 name|FnFormatNumbers
 operator|.
-name|signatures
+name|FS_FORMAT_NUMBER
 index|[
 literal|1
 index|]
