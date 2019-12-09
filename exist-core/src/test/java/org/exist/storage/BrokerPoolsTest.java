@@ -432,7 +432,11 @@ name|conf
 argument_list|,
 name|singleton
 argument_list|(
-literal|"<exist><db-connection database='native' files='\" + datadir + \"'/></exist>"
+literal|"<exist><db-connection database='native' files='"
+operator|+
+name|datadir
+operator|+
+literal|"'/></exist>"
 argument_list|)
 argument_list|)
 expr_stmt|;
