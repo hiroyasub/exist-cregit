@@ -735,6 +735,11 @@ condition|)
 block|{
 return|return;
 block|}
+name|boolean
+name|doneCommit
+init|=
+literal|false
+decl_stmt|;
 comment|// CAS loop
 try|try
 block|{
@@ -825,7 +830,37 @@ condition|(
 name|localState
 operator|>
 name|STATE_IDLE
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|doneCommit
+condition|)
+block|{
+name|doCommitTransaction
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+comment|// NOTE: doCommitTransaction above might throw an exception before commit which will throw us out of the loop
+name|doneCommit
+operator|=
+name|txn
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Txn
+operator|.
+name|State
+operator|.
+name|COMMITTED
+expr_stmt|;
+block|}
+comment|// try and update our state to reflect that we have committed the transaction, if not then loop...
+if|if
+condition|(
 name|state
 operator|.
 name|compareAndSet
@@ -838,13 +873,9 @@ literal|1
 argument_list|)
 condition|)
 block|{
-name|doCommitTransaction
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 comment|// done... exit CAS loop!
 return|return;
+block|}
 block|}
 block|}
 block|}
