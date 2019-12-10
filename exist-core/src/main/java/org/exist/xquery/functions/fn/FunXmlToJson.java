@@ -523,6 +523,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|tempStringBuilder
 init|=
@@ -530,6 +531,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JsonFactory
 name|jsonFactory
 init|=
@@ -544,6 +546,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|//use ArrayList<Object> to store String type keys and non-string type separators
+specifier|final
 name|ArrayList
 argument_list|<
 name|Object
@@ -646,6 +649,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|elementAttributeEscapedValue
 init|=
@@ -667,6 +671,7 @@ argument_list|(
 name|elementAttributeEscapedValue
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|elementAttributeEscapedKeyValue
 init|=
@@ -688,10 +693,9 @@ argument_list|(
 name|elementAttributeEscapedKeyValue
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|elementKeyValue
-init|=
-literal|""
 decl_stmt|;
 if|if
 condition|(
@@ -890,6 +894,7 @@ name|XMLStreamReader
 operator|.
 name|END_ELEMENT
 case|:
+specifier|final
 name|String
 name|tempString
 init|=
@@ -897,9 +902,6 @@ name|tempStringBuilder
 operator|.
 name|toString
 argument_list|()
-decl_stmt|;
-name|boolean
-name|tempBoolean
 decl_stmt|;
 switch|switch
 condition|(
@@ -921,8 +923,10 @@ break|break;
 case|case
 literal|"boolean"
 case|:
+specifier|final
+name|boolean
 name|tempBoolean
-operator|=
+init|=
 operator|!
 operator|(
 literal|""
@@ -946,7 +950,7 @@ argument_list|(
 name|tempString
 argument_list|)
 operator|)
-expr_stmt|;
+decl_stmt|;
 name|jsonGenerator
 operator|.
 name|writeBoolean
@@ -1023,6 +1027,7 @@ break|break;
 case|case
 literal|"number"
 case|:
+specifier|final
 name|double
 name|tempDouble
 init|=
@@ -1206,6 +1211,7 @@ name|IOException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|JsonFactory
 name|jsonFactory
 init|=
@@ -1213,6 +1219,7 @@ operator|new
 name|JsonFactory
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|unescapedJsonStringBuilder
 init|=
@@ -1220,11 +1227,13 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|unescapedJsonString
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|JsonParser
 name|jsonParser
 init|=
@@ -1248,14 +1257,11 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|JsonToken
-name|jsonToken
-init|=
 name|jsonParser
 operator|.
 name|nextToken
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|jsonParser
