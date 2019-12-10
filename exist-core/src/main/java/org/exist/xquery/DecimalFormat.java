@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Data class for a Decimal Format.  *  * See https://www.w3.org/TR/xpath-31/#dt-static-decimal-formats  *  * NOTE: UTF-16 characters are stored as code-points!  *  * @author<a href="mailto: adam@evolvedbinary.com">Adam Retter</a>  */
+comment|/**  * Data class for a Decimal Format.  *  * See https://www.w3.org/TR/xpath-31/#dt-static-decimal-formats  *  * NOTE: UTF-16 characters are stored as code-points!  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

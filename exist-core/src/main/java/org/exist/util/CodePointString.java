@@ -778,7 +778,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Insert a code point into the string.      *      * @param index the offset at which to insert the code point      * @param codePoint the code point to insert      *      * @return this      *      * @throws IndexOutOfBoundsException if<code>index< 0 || index> getLength()</code>      */
+comment|/**      * Insert a code point into the string.      *      * @param index the offset at which to insert the code point      * @param codePoint the code point to insert      *      * @return this      *      * @throws IndexOutOfBoundsException if<code>index&lt; 0 || index&gt; getLength()</code>      */
 specifier|public
 name|CodePointString
 name|insert
@@ -879,7 +879,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Insert a code point into the string at one or more offsets.      *      * Note that this is NOT the same as calling {@link #insert(int, int)}      * multiple times, as the<code>offsets</code> refer to the positions      * in the string before the first insert is made.      *      * @param indexes the offsets at which to insert the code point      * @param codePoint the code point to insert      *      * @return this      *      * @throws IndexOutOfBoundsException if<code>indexes[i]< 0 || indexes[i]> getLength()</code>      */
+comment|/**      * Insert a code point into the string at one or more offsets.      *      * Note that this is NOT the same as calling {@link #insert(int, int)}      * multiple times, as the<code>offsets</code> refer to the positions      * in the string before the first insert is made.      *      * @param indexes the offsets at which to insert the code point      * @param codePoint the code point to insert      *      * @return this      *      * @throws IndexOutOfBoundsException if<code>indexes[i]&lt; 0 || indexes[i]&gt; getLength()</code>      */
 specifier|public
 name|CodePointString
 name|insert
