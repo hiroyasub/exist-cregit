@@ -841,9 +841,7 @@ name|modifications
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Modification
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Temporary string buffer used for collecting text chunks */
@@ -870,11 +868,7 @@ name|variables
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**      * Keeps track of namespaces declared within the XUpdate.      */
@@ -889,11 +883,7 @@ name|namespaces
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|10
 argument_list|)

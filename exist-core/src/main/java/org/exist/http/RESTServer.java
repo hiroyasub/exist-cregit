@@ -5838,9 +5838,7 @@ name|namespaces
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Namespace
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

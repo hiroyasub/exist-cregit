@@ -260,12 +260,7 @@ name|dialogCompleteWithResponseCallbacks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DialogCompleteWithResponse
-argument_list|<
-name|Connection
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -499,9 +494,7 @@ name|favourites
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FavouriteConnection
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Write a node for each item in model.

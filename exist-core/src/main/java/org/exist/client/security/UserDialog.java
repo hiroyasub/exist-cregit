@@ -4002,9 +4002,7 @@ name|availableGroupsModel
 operator|=
 operator|new
 name|SortedListModel
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|availableGroupsModel
@@ -4064,9 +4062,7 @@ name|memberOfGroupsModel
 operator|=
 operator|new
 name|SortedListModel
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

@@ -407,9 +407,7 @@ name|triggers
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DocumentTrigger
-argument_list|>
+argument_list|<>
 argument_list|(
 name|masterTriggers
 operator|.

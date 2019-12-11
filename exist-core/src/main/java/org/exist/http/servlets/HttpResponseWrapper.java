@@ -569,11 +569,7 @@ name|dateHeaders
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Set a date header. 	 * 	 * @param name the header name 	 * @param value the header value 	 */

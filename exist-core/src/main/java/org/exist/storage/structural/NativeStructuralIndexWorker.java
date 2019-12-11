@@ -3668,9 +3668,7 @@ name|qnames
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QName
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -3991,11 +3989,7 @@ name|occurrences
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|Occurrences
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -4477,9 +4471,7 @@ name|buf
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|NodeProxy
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|50
 argument_list|)

@@ -1121,9 +1121,7 @@ name|contentLoadingObservers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ContentLoadingObserver
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Remove all observers */

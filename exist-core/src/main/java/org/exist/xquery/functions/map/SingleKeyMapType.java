@@ -488,11 +488,7 @@ operator|new
 name|AbstractMap
 operator|.
 name|SimpleEntry
-argument_list|<
-name|AtomicValue
-argument_list|,
-name|Sequence
-argument_list|>
+argument_list|<>
 argument_list|(
 name|key
 argument_list|,

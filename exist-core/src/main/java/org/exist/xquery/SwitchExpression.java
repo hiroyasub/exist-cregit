@@ -205,9 +205,7 @@ name|cases
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Case
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|5
 argument_list|)

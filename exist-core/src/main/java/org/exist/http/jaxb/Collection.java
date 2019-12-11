@@ -296,9 +296,7 @@ name|collection
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Collection
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

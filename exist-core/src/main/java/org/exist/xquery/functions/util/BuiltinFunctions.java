@@ -720,9 +720,7 @@ name|set
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|QName
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

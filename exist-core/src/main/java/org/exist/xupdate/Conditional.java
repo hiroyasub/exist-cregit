@@ -259,9 +259,7 @@ name|modifications
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Modification
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|5
 argument_list|)

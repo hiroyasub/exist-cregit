@@ -5029,9 +5029,7 @@ name|root
 argument_list|,
 operator|new
 name|ArrayList
-argument_list|<
-name|PrettyXmldbURI
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -5645,9 +5643,7 @@ name|root
 argument_list|,
 operator|new
 name|ArrayList
-argument_list|<
-name|PrettyXmldbURI
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -8881,9 +8877,7 @@ name|selected
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ResourceDescriptor
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

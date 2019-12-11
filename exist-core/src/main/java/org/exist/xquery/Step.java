@@ -165,9 +165,7 @@ name|predicates
 init|=
 operator|new
 name|CopyOnWriteArrayList
-argument_list|<
-name|Predicate
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected

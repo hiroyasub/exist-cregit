@@ -1525,9 +1525,7 @@ name|args
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|(
 name|arity
 argument_list|)

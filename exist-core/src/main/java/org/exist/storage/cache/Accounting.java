@@ -167,9 +167,7 @@ name|map
 operator|=
 operator|new
 name|SequencedLongHashMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|maxEntries
