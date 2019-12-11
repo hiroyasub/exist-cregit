@@ -965,7 +965,7 @@ operator|.
 name|orElse
 argument_list|(
 operator|-
-literal|1l
+literal|1L
 argument_list|)
 return|;
 block|}
@@ -1110,7 +1110,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|-
-literal|1l
+literal|1L
 return|;
 block|}
 block|}

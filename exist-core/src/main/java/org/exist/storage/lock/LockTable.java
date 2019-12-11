@@ -1271,7 +1271,7 @@ if|if
 condition|(
 name|stamp
 operator|==
-literal|0l
+literal|0L
 condition|)
 block|{
 comment|// failed to upgrade
@@ -1475,7 +1475,7 @@ if|if
 condition|(
 name|writeStamp
 operator|!=
-literal|0l
+literal|0L
 condition|)
 block|{
 try|try
@@ -1610,7 +1610,7 @@ if|if
 condition|(
 name|writeStamp
 operator|!=
-literal|0l
+literal|0L
 condition|)
 block|{
 name|stamp

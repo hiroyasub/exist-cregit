@@ -749,7 +749,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|-
-literal|1l
+literal|1L
 return|;
 block|}
 block|}

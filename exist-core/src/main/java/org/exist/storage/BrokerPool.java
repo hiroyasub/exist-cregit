@@ -1868,9 +1868,9 @@ name|this
 operator|.
 name|diskSpaceMin
 operator|=
-literal|1024l
+literal|1024L
 operator|*
-literal|1024l
+literal|1024L
 operator|*
 name|conf
 operator|.
