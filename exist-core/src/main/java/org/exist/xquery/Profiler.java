@@ -553,9 +553,6 @@ operator|!=
 literal|null
 operator|&&
 name|globalProp
-operator|.
-name|booleanValue
-argument_list|()
 operator|)
 return|;
 block|}

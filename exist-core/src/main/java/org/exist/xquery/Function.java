@@ -987,12 +987,7 @@ name|Error
 operator|.
 name|FUNC_EMPTY_SEQ_DISALLOWED
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|argPosition
-argument_list|)
 argument_list|,
 name|ExpressionDumper
 operator|.

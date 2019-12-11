@@ -606,9 +606,6 @@ name|inMemoryBufferSize
 operator|.
 name|get
 argument_list|()
-operator|.
-name|intValue
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -833,12 +830,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|handle
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|params
@@ -908,7 +900,6 @@ name|long
 name|offset
 init|=
 operator|(
-operator|(
 name|Integer
 operator|)
 name|table
@@ -917,10 +908,6 @@ name|get
 argument_list|(
 literal|"offset"
 argument_list|)
-operator|)
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 name|byte
 index|[]

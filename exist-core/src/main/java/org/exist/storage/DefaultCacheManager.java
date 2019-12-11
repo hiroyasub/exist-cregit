@@ -440,9 +440,6 @@ operator|==
 literal|null
 operator|||
 name|checkMaxCache
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
 block|{
 specifier|final

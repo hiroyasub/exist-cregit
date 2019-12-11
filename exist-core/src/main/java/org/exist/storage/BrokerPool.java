@@ -3045,7 +3045,6 @@ block|}
 if|if
 condition|(
 operator|(
-operator|(
 name|Boolean
 operator|)
 name|conf
@@ -3054,10 +3053,6 @@ name|getProperty
 argument_list|(
 name|PROPERTY_RECOVERY_CHECK
 argument_list|)
-operator|)
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
 block|{
 specifier|final

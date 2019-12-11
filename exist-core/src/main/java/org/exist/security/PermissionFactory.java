@@ -2123,9 +2123,6 @@ argument_list|()
 operator|.
 name|get
 argument_list|()
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 block|}

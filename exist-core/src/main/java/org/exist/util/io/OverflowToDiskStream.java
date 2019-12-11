@@ -182,12 +182,7 @@ name|debug
 argument_list|(
 literal|"Writing in memory buffered {} bytes to overflow stream"
 argument_list|,
-name|Long
-operator|.
-name|valueOf
-argument_list|(
 name|count
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -459,12 +454,7 @@ name|debug
 argument_list|(
 literal|"Closing overflow stream after writing {} bytes"
 argument_list|,
-name|Long
-operator|.
-name|valueOf
-argument_list|(
 name|count
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

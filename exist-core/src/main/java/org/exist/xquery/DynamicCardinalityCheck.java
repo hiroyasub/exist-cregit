@@ -390,15 +390,10 @@ argument_list|(
 name|requiredCardinality
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 throw|throw

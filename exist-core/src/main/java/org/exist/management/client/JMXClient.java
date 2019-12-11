@@ -574,9 +574,6 @@ argument_list|,
 literal|"Reserved memory"
 argument_list|,
 name|memReserved
-operator|.
-name|longValue
-argument_list|()
 operator|/
 literal|1024
 argument_list|)
@@ -609,9 +606,6 @@ argument_list|,
 literal|"Cache memory"
 argument_list|,
 name|memCache
-operator|.
-name|longValue
-argument_list|()
 operator|/
 literal|1024
 argument_list|)
@@ -644,9 +638,6 @@ argument_list|,
 literal|"Collection cache memory"
 argument_list|,
 name|memCollCache
-operator|.
-name|longValue
-argument_list|()
 operator|/
 literal|1024
 argument_list|)

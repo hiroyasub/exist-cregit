@@ -495,9 +495,6 @@ comment|// Check XMLRPC result
 if|if
 condition|(
 name|result
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
 block|{
 name|LOG

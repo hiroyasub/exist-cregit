@@ -303,12 +303,7 @@ name|debug
 argument_list|(
 literal|"Initializing with {} initial blocks"
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|initialBlocks
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

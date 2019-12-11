@@ -500,12 +500,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|Boolean
-operator|.
-name|valueOf
-argument_list|(
 name|inclusive
-argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final

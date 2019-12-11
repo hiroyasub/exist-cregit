@@ -1110,9 +1110,6 @@ condition|?
 literal|0
 else|:
 name|lineInt
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -1125,9 +1122,6 @@ condition|?
 literal|0
 else|:
 name|columnInt
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 specifier|final
 name|XPathException
@@ -1227,9 +1221,6 @@ condition|?
 literal|0
 else|:
 name|lineInt
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -1242,9 +1233,6 @@ condition|?
 literal|0
 else|:
 name|columnInt
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 throw|throw
 operator|new
