@@ -476,19 +476,10 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|content
+range|:
 name|contents
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 specifier|final
@@ -500,10 +491,7 @@ name|Option
 operator|.
 name|parseKeyValuePair
 argument_list|(
-name|contents
-index|[
-name|i
-index|]
+name|content
 argument_list|)
 decl_stmt|;
 if|if
@@ -521,10 +509,7 @@ name|this
 argument_list|,
 literal|"Found invalid serialization option: "
 operator|+
-name|contents
-index|[
-name|i
-index|]
+name|content
 argument_list|)
 throw|;
 block|}

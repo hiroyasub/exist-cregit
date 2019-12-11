@@ -211,24 +211,6 @@ name|xmldb
 operator|.
 name|XMLDBModule
 operator|.
-name|functionSignature
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|xmldb
-operator|.
-name|XMLDBModule
-operator|.
 name|functionSignatures
 import|;
 end_import

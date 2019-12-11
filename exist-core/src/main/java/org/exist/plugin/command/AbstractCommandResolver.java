@@ -139,19 +139,10 @@ block|}
 comment|//TODO: report for debug
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|name
+range|:
 name|names
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 comment|//TODO: check for conflicts
@@ -159,10 +150,7 @@ name|commands
 operator|.
 name|put
 argument_list|(
-name|names
-index|[
-name|i
-index|]
+name|name
 argument_list|,
 name|cmd
 argument_list|)

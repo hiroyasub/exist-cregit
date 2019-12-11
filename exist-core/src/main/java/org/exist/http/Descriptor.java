@@ -1375,19 +1375,10 @@ block|{
 comment|//Iterate through the xqueries that source viewing is allowed for
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|s
+range|:
 name|allowSourceList
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 comment|// DWES: this helps a lot. quickfix not the final solution
@@ -1406,10 +1397,7 @@ comment|//does the path match the<allow-source><xquery path=""/></allow-source> 
 if|if
 condition|(
 operator|(
-name|allowSourceList
-index|[
-name|i
-index|]
+name|s
 operator|.
 name|equals
 argument_list|(
@@ -1422,10 +1410,7 @@ name|path
 operator|.
 name|indexOf
 argument_list|(
-name|allowSourceList
-index|[
-name|i
-index|]
+name|s
 argument_list|)
 operator|>
 operator|-
@@ -1474,28 +1459,17 @@ block|}
 comment|//Iterate through the mappings
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+index|[]
+name|strings
+range|:
 name|mapList
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 comment|//does the path or the path/ match the map path
 if|if
 condition|(
-name|mapList
-index|[
-name|i
-index|]
+name|strings
 index|[
 literal|0
 index|]
@@ -1506,10 +1480,7 @@ name|path
 argument_list|)
 operator|||
 operator|(
-name|mapList
-index|[
-name|i
-index|]
+name|strings
 index|[
 literal|0
 index|]
@@ -1526,10 +1497,7 @@ block|{
 comment|//return the view
 return|return
 operator|(
-name|mapList
-index|[
-name|i
-index|]
+name|strings
 index|[
 literal|1
 index|]
