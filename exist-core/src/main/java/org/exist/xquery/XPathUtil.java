@@ -917,6 +917,7 @@ name|createNodeSequence
 operator|=
 literal|false
 expr_stmt|;
+break|break;
 block|}
 block|}
 name|Sequence
@@ -1212,6 +1213,7 @@ name|createNodeSequence
 operator|=
 literal|false
 expr_stmt|;
+break|break;
 block|}
 block|}
 name|Sequence
