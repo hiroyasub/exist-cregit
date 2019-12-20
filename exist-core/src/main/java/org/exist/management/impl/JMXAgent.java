@@ -182,11 +182,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Real implementation of interface {@link org.exist.management.Agent}  * which registers MBeans with the MBeanServer.  */
+comment|/**  * Real implementation of interface {@link org.exist.management.Agent}  * which registers MBeans with the MBeanServer.  *  * Note that the agent will be constructed via reflection by the  * {@link org.exist.management.AgentFactory}  */
 end_comment
 
 begin_class
 specifier|public
+specifier|final
 class|class
 name|JMXAgent
 implements|implements
@@ -206,16 +207,6 @@ name|JMXAgent
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|JMXAgent
-name|instance
-init|=
-operator|new
-name|JMXAgent
-argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
@@ -256,16 +247,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
-specifier|static
-name|Agent
-name|getInstance
-parameter_list|()
-block|{
-return|return
-name|instance
-return|;
-block|}
-specifier|private
 name|JMXAgent
 parameter_list|()
 block|{
