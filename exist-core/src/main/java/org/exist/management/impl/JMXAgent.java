@@ -329,13 +329,6 @@ name|createMBeanServer
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        try {
-comment|//            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://127.0.0.1:9999/server");
-comment|//            JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
-comment|//            cs.start();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("ERROR: failed to initialize JMX connector: " + e.getMessage(), e);
-comment|//        }
 name|registerSystemMBeans
 argument_list|()
 expr_stmt|;
@@ -522,8 +515,6 @@ name|BrokerPool
 name|instance
 parameter_list|)
 block|{
-try|try
-block|{
 specifier|final
 name|Deque
 argument_list|<
@@ -571,48 +562,22 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Unregistering JMX MBean: "
+literal|"deregistering JMX MBean: "
 operator|+
 name|on
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|server
+name|beanInstances
 operator|.
-name|isRegistered
-argument_list|(
-name|on
-argument_list|)
-condition|)
-block|{
-name|server
-operator|.
-name|unregisterMBean
+name|remove
 argument_list|(
 name|on
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|InstanceNotFoundException
-decl||
-name|MBeanRegistrationException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
+name|removeMBean
 argument_list|(
-literal|"Problem found while unregistering JMX"
-argument_list|,
-name|e
+name|on
 argument_list|)
 expr_stmt|;
 block|}
@@ -831,6 +796,61 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
+block|}
+specifier|private
+name|void
+name|removeMBean
+parameter_list|(
+specifier|final
+name|ObjectName
+name|name
+parameter_list|)
+block|{
+try|try
+block|{
+if|if
+condition|(
+name|server
+operator|.
+name|isRegistered
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+name|server
+operator|.
+name|unregisterMBean
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|InstanceNotFoundException
+decl||
+name|MBeanRegistrationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Problem unregistering mbean: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
