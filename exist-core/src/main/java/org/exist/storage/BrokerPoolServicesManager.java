@@ -966,6 +966,11 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+name|brokerPoolServices
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
