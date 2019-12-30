@@ -161,20 +161,6 @@ name|collections
 operator|.
 name|Collection
 operator|.
-name|CollectionEntry
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|Collection
-operator|.
 name|SubCollectionEntry
 import|;
 end_import
@@ -334,22 +320,6 @@ operator|.
 name|btree
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|btree
-operator|.
-name|Paged
-operator|.
-name|Page
 import|;
 end_import
 
@@ -623,20 +593,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|evolvedbinary
-operator|.
-name|j8fu
-operator|.
-name|function
-operator|.
-name|ConsumerE
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -870,18 +826,6 @@ operator|.
 name|file
 operator|.
 name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|StandardCopyOption
 import|;
 end_import
 
@@ -1287,6 +1231,7 @@ name|getRuntime
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
 name|NodeProcessor
 name|nodeProcessor
 init|=
@@ -1295,6 +1240,7 @@ name|NodeProcessor
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
 name|IEmbeddedXMLStreamReader
 name|streamReader
 init|=
@@ -1363,8 +1309,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Initializing broker "
-operator|+
+literal|"Initializing broker {}"
+argument_list|,
 name|hashCode
 argument_list|()
 argument_list|)
@@ -1601,6 +1547,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"{} is read-only!"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -1610,8 +1558,6 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
-operator|+
-literal|" is read-only!"
 argument_list|)
 expr_stmt|;
 name|pool
@@ -1683,6 +1629,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"{} is read-only!"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -1692,8 +1640,6 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
-operator|+
-literal|" is read-only!"
 argument_list|)
 expr_stmt|;
 name|pool
@@ -2794,6 +2740,7 @@ specifier|public
 name|Serializer
 name|newSerializer
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3126,6 +3073,7 @@ specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -3162,6 +3110,7 @@ specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|,
@@ -4923,8 +4872,8 @@ control|)
 block|{
 specifier|final
 name|byte
-name|data
 index|[]
+name|data
 init|=
 name|key
 operator|.
@@ -5012,8 +4961,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -9502,12 +9451,7 @@ name|remove
 argument_list|(
 name|transaction
 argument_list|,
-operator|(
-operator|(
-name|BinaryDocument
-operator|)
 name|doc
-operator|)
 operator|.
 name|getBlobId
 argument_list|()
@@ -10247,8 +10191,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"An error occurred during reindex: "
-operator|+
+literal|"An error occurred during reindex: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -10272,11 +10216,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"Finished indexing collection %s in %s ms."
+literal|"Finished indexing collection {} in {} ms."
 argument_list|,
 name|fqUri
 argument_list|,
@@ -10286,7 +10226,6 @@ name|currentTimeMillis
 argument_list|()
 operator|-
 name|start
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -10370,8 +10309,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Reindexing collection "
-operator|+
+literal|"Reindexing collection {}"
+argument_list|,
 name|collection
 operator|.
 name|getURI
@@ -10575,14 +10514,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"LockException while reindexing child collections of collection '"
-operator|+
+literal|"LockException while reindexing child collections of collection '{}'. Skipping..."
+argument_list|,
 name|collection
 operator|.
 name|getURI
 argument_list|()
-operator|+
-literal|". Skipping..."
 argument_list|,
 name|e
 argument_list|)
@@ -10772,8 +10709,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Dropping index for document "
-operator|+
+literal|"Dropping index for document {}"
+argument_list|,
 name|doc
 operator|.
 name|getFileURI
@@ -10976,15 +10913,10 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-name|Long
-operator|.
-name|toString
-argument_list|(
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-argument_list|)
 argument_list|,
 literal|false
 argument_list|)
@@ -11266,8 +11198,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to store temporary fragment: "
-operator|+
+literal|"Failed to store temporary fragment: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -11383,8 +11315,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to remove temp collection: "
-operator|+
+literal|"Failed to remove temp collection: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -11422,8 +11354,6 @@ name|PermissionDeniedException
 block|{
 name|XmldbURI
 name|uri
-init|=
-literal|null
 decl_stmt|;
 try|try
 init|(
@@ -11666,8 +11596,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -11831,8 +11761,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -11856,8 +11786,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"IOException while writing document data: "
-operator|+
+literal|"IOException while writing document data: {}"
+argument_list|,
 name|doc
 operator|.
 name|getURI
@@ -12164,11 +12094,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"collection '"
-operator|+
+literal|"collection '{}' not found!"
+argument_list|,
 name|collUri
-operator|+
-literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -12215,11 +12143,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"document '"
-operator|+
+literal|"document '{}' not found!"
+argument_list|,
 name|fileName
-operator|+
-literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -12379,11 +12305,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Collection '"
-operator|+
+literal|"Collection '{}' not found!"
+argument_list|,
 name|collUri
-operator|+
-literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -12454,8 +12378,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not acquire lock on document "
-operator|+
+literal|"Could not acquire lock on document {}"
+argument_list|,
 name|fileName
 argument_list|,
 name|e
@@ -12982,8 +12906,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -13143,8 +13067,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -13280,8 +13204,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -13540,17 +13464,13 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"getAllDocuments(DocumentSet) - end - "
-operator|+
-literal|"loading "
-operator|+
+literal|"getAllDocuments(DocumentSet) - end - loading {} documents took {} ms."
+argument_list|,
 name|docs
 operator|.
 name|getDocumentCount
 argument_list|()
-operator|+
-literal|" documents took "
-operator|+
+argument_list|,
 operator|(
 name|System
 operator|.
@@ -13559,8 +13479,6 @@ argument_list|()
 operator|-
 name|start
 operator|)
-operator|+
-literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
@@ -14850,25 +14768,25 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Copying document "
-operator|+
+literal|"Copying document {} to {}"
+argument_list|,
 name|oldDoc
 operator|.
 name|getFileURI
 argument_list|()
-operator|+
-literal|" to "
-operator|+
+argument_list|,
 name|newDoc
 operator|.
 name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|long
 name|start
@@ -14992,12 +14910,13 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Copy took "
-operator|+
+literal|"Copy took {} ms."
+argument_list|,
 operator|(
 name|System
 operator|.
@@ -15006,10 +14925,9 @@ argument_list|()
 operator|-
 name|start
 operator|)
-operator|+
-literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 end_function
 
@@ -15632,6 +15550,7 @@ specifier|final
 name|DocumentImpl
 name|document
 parameter_list|,
+specifier|final
 name|boolean
 name|freeDocId
 parameter_list|)
@@ -15668,21 +15587,17 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Removing document "
-operator|+
+literal|"Removing document {} ({}) ..."
+argument_list|,
 name|document
 operator|.
 name|getFileURI
 argument_list|()
-operator|+
-literal|" ("
-operator|+
+argument_list|,
 name|document
 operator|.
 name|getDocId
 argument_list|()
-operator|+
-literal|") ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -16063,6 +15978,7 @@ end_function
 begin_expr_stmt
 unit|} catch
 operator|(
+name|final
 name|NullPointerException
 name|npe0
 operator|)
@@ -16247,14 +16163,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"removing binary resource "
-operator|+
+literal|"removing binary resource {}..."
+argument_list|,
 name|blob
 operator|.
 name|getDocId
 argument_list|()
-operator|+
-literal|"..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -16272,14 +16186,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Trying to delete binary document: "
-operator|+
+literal|"Trying to delete binary document: {}, but blobId was null"
+argument_list|,
 name|blob
 operator|.
 name|getURI
 argument_list|()
-operator|+
-literal|", but blobId was null"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -16392,8 +16304,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Removing resource metadata for "
-operator|+
+literal|"Removing resource metadata for {}"
+argument_list|,
 name|document
 operator|.
 name|getDocId
@@ -16450,8 +16362,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
+literal|"Failed to acquire lock on {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -16474,9 +16386,11 @@ specifier|public
 name|void
 name|removeResource
 parameter_list|(
+specifier|final
 name|Txn
 name|tx
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -16931,8 +16845,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"============> Defragmenting document "
-operator|+
+literal|"============> Defragmenting document {}"
+argument_list|,
 name|doc
 operator|.
 name|getURI
@@ -17407,8 +17321,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Defragmentation took "
-operator|+
+literal|"Defragmentation took {} ms."
+argument_list|,
 operator|(
 name|System
 operator|.
@@ -17417,8 +17331,6 @@ argument_list|()
 operator|-
 name|start
 operator|)
-operator|+
-literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
@@ -17505,8 +17417,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Checking document "
-operator|+
+literal|"Checking document {}"
+argument_list|,
 name|doc
 operator|.
 name|getFileURI
@@ -17542,8 +17454,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Checking DOM tree for document "
-operator|+
+literal|"Checking DOM tree for document {}"
+argument_list|,
 name|doc
 operator|.
 name|getFileURI
@@ -17621,8 +17533,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Pages used: "
-operator|+
+literal|"Pages used: {}"
+argument_list|,
 name|domDb
 operator|.
 name|debugPages
@@ -17735,8 +17647,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"node tree: "
-operator|+
+literal|"node tree: {}"
+argument_list|,
 name|buf
 operator|.
 name|toString
@@ -17934,8 +17846,8 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|byte
-name|data
 index|[]
+name|data
 init|=
 name|node
 operator|.
@@ -17972,6 +17884,7 @@ argument_list|()
 throws|throws
 name|ReadOnlyException
 block|{
+name|final
 name|long
 name|address
 block|;
@@ -18340,22 +18253,18 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception while storing "
-operator|+
+literal|"Exception while storing {}; gid = {}; old = {}"
+argument_list|,
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-operator|+
-literal|"; gid = "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|"; old = "
-operator|+
+argument_list|,
 name|old
 operator|.
 name|getNodeName
@@ -18393,8 +18302,8 @@ parameter_list|)
 block|{
 specifier|final
 name|byte
-name|data
 index|[]
+name|data
 init|=
 name|node
 operator|.
@@ -18624,6 +18533,7 @@ specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|INodeIterator
 name|iterator
 parameter_list|,
@@ -18929,8 +18839,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Unhandled node type: "
-operator|+
+literal|"Unhandled node type: {}"
+argument_list|,
 name|node
 operator|.
 name|getNodeType
@@ -19366,8 +19276,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|QNameRangeIndexSpec
-name|qnSpec
+name|qnSpecElement
 init|=
 name|doc
 operator|.
@@ -19383,7 +19294,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|qnSpec
+name|qnSpecElement
 operator|!=
 literal|null
 condition|)
@@ -19406,7 +19317,7 @@ name|node
 argument_list|,
 name|content
 argument_list|,
-name|qnSpec
+name|qnSpecElement
 operator|.
 name|getType
 argument_list|()
@@ -19457,6 +19368,7 @@ name|qname
 argument_list|)
 expr_stmt|;
 comment|//Strange : does it mean that the node is added 2 times under 2 different identities ?
+specifier|final
 name|AttrImpl
 name|attr
 decl_stmt|;
@@ -19657,8 +19569,10 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-name|qnSpec
-operator|=
+specifier|final
+name|QNameRangeIndexSpec
+name|qnSpecAttribute
+init|=
 name|doc
 operator|.
 name|getCollection
@@ -19670,10 +19584,10 @@ name|this
 argument_list|,
 name|qname
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|qnSpec
+name|qnSpecAttribute
 operator|!=
 literal|null
 condition|)
@@ -19693,7 +19607,7 @@ name|attr
 argument_list|,
 literal|null
 argument_list|,
-name|qnSpec
+name|qnSpecAttribute
 argument_list|,
 literal|false
 argument_list|)
@@ -20466,6 +20380,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|IStoredNode
 name|child
 init|=
@@ -20516,22 +20431,18 @@ name|LOG
 operator|.
 name|fatal
 argument_list|(
-literal|"node "
-operator|+
+literal|"node {} cannot be a sibling of {}; node read from {}"
+argument_list|,
 name|child
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|" cannot be a sibling of "
-operator|+
+argument_list|,
 name|previous
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|"; node read from "
-operator|+
+argument_list|,
 name|StorageAddress
 operator|.
 name|toString
@@ -20563,26 +20474,20 @@ name|LOG
 operator|.
 name|fatal
 argument_list|(
-literal|"child "
-operator|+
+literal|"child {} not found for node: {}: {}; children = {}"
+argument_list|,
 name|i
-operator|+
-literal|" not found for node: "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|"; children = "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getChildCount
@@ -20625,13 +20530,13 @@ name|LOG
 operator|.
 name|fatal
 argument_list|(
+literal|"{} is not a child of {}"
+argument_list|,
 name|child
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|" is not a child of "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeId
@@ -20643,6 +20548,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|check
 init|=
@@ -20834,8 +20740,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Unhandled node type: "
-operator|+
+literal|"Unhandled node type: {}"
+argument_list|,
 name|node
 operator|.
 name|getNodeType
@@ -20901,19 +20807,15 @@ name|LOG
 operator|.
 name|fatal
 argument_list|(
-literal|"child "
-operator|+
+literal|"child {} not found for node: {}; children = {}"
+argument_list|,
 name|i
-operator|+
-literal|" not found for node: "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-operator|+
-literal|"; children = "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getChildCount
@@ -21162,11 +21064,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Node "
-operator|+
+literal|"Node {} not found. This is usually not an error."
+argument_list|,
 name|nodeId
-operator|+
-literal|" not found. This is usually not an error."
 argument_list|)
 expr_stmt|;
 block|}
@@ -21353,15 +21253,13 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Node "
-operator|+
+literal|"Node {} not found in document {}; docId = {}: {}"
+argument_list|,
 name|p
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|" not found in document "
-operator|+
+argument_list|,
 name|p
 operator|.
 name|getOwnerDocument
@@ -21369,9 +21267,7 @@ argument_list|()
 operator|.
 name|getURI
 argument_list|()
-operator|+
-literal|"; docId = "
-operator|+
+argument_list|,
 name|p
 operator|.
 name|getOwnerDocument
@@ -21379,9 +21275,7 @@ argument_list|()
 operator|.
 name|getDocId
 argument_list|()
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|StorageAddress
 operator|.
 name|toString
@@ -21505,15 +21399,13 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Node "
-operator|+
+literal|"Node {} not found in document {}; docId = {}: {}; found node {} instead"
+argument_list|,
 name|p
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|" not found in document "
-operator|+
+argument_list|,
 name|p
 operator|.
 name|getOwnerDocument
@@ -21521,9 +21413,7 @@ argument_list|()
 operator|.
 name|getURI
 argument_list|()
-operator|+
-literal|"; docId = "
-operator|+
+argument_list|,
 name|p
 operator|.
 name|getOwnerDocument
@@ -21531,9 +21421,7 @@ argument_list|()
 operator|.
 name|getDocId
 argument_list|()
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|StorageAddress
 operator|.
 name|toString
@@ -21543,15 +21431,11 @@ operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
-operator|+
-literal|"; found node "
-operator|+
+argument_list|,
 name|node
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|" instead"
 argument_list|)
 expr_stmt|;
 block|}
@@ -21665,8 +21549,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to remove index files during repair: "
-operator|+
+literal|"Failed to remove index files during repair: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -21713,8 +21597,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception during repair: "
-operator|+
+literal|"Exception during repair: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -21746,8 +21630,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to reopen index files after repair: "
-operator|+
+literal|"Failed to reopen index files after repair: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -21851,8 +21735,8 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Rebuilding index "
-operator|+
+literal|"Rebuilding index {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -21873,8 +21757,8 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Index "
-operator|+
+literal|"Index {} was rebuilt."
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -21884,13 +21768,12 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
-operator|+
-literal|" was rebuilt."
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 decl||
 name|IOException
@@ -21905,8 +21788,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Caught error while rebuilding core index "
-operator|+
+literal|"Caught error while rebuilding core index {}: {}"
+argument_list|,
 name|FileUtils
 operator|.
 name|fileName
@@ -21916,9 +21799,7 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -22176,8 +22057,8 @@ name|LOG_STATS
 operator|.
 name|info
 argument_list|(
-literal|"Memory: "
-operator|+
+literal|"Memory: {}K total; {}K max; {}K free"
+argument_list|,
 name|nf
 operator|.
 name|format
@@ -22189,9 +22070,7 @@ argument_list|()
 operator|/
 literal|1024
 argument_list|)
-operator|+
-literal|"K total; "
-operator|+
+argument_list|,
 name|nf
 operator|.
 name|format
@@ -22203,9 +22082,7 @@ argument_list|()
 operator|/
 literal|1024
 argument_list|)
-operator|+
-literal|"K max; "
-operator|+
+argument_list|,
 name|nf
 operator|.
 name|format
@@ -22217,8 +22094,6 @@ argument_list|()
 operator|/
 literal|1024
 argument_list|)
-operator|+
-literal|"K free"
 argument_list|)
 expr_stmt|;
 name|domDb
@@ -22762,8 +22637,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"illegal node: "
-operator|+
+literal|"illegal node: {}"
+argument_list|,
 name|node
 operator|.
 name|getNodeName
