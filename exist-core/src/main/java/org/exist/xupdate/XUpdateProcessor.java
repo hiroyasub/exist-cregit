@@ -1619,16 +1619,14 @@ argument_list|)
 throw|;
 block|}
 comment|// start a new modification section
-if|if
+switch|switch
 condition|(
-name|APPEND
-operator|.
-name|equals
-argument_list|(
 name|localName
-argument_list|)
 condition|)
 block|{
+case|case
+name|APPEND
+case|:
 specifier|final
 name|String
 name|child
@@ -1658,17 +1656,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|UPDATE
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1685,17 +1676,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|INSERT_BEFORE
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1716,17 +1700,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|INSERT_AFTER
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1747,17 +1724,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|REMOVE
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1774,17 +1744,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|RENAME
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1801,17 +1764,10 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
+break|break;
+case|case
 name|REPLACE
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|modification
 operator|=
 operator|new
@@ -1828,17 +1784,11 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
-block|}
+break|break;
 comment|// process commands for node creation
-if|else if
-condition|(
+case|case
 name|ELEMENT
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
+case|:
 block|{
 name|String
 name|name
@@ -2082,16 +2032,11 @@ argument_list|(
 name|elem
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
-if|else if
-condition|(
+case|case
 name|ATTRIBUTE
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
+case|:
 block|{
 specifier|final
 name|String
@@ -2474,17 +2419,11 @@ operator|=
 name|attrib
 expr_stmt|;
 comment|// process value-of
+break|break;
 block|}
-if|else if
-condition|(
+case|case
 name|VALUE_OF
-operator|.
-name|equals
-argument_list|(
-name|localName
-argument_list|)
-condition|)
-block|{
+case|:
 name|select
 operator|=
 name|atts
@@ -2693,6 +2632,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+break|break;
 block|}
 block|}
 if|else if
