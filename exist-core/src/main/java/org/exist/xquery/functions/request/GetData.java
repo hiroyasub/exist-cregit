@@ -528,7 +528,7 @@ name|contentType
 operator|.
 name|indexOf
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 operator|>
 operator|-
@@ -547,7 +547,7 @@ name|contentType
 operator|.
 name|indexOf
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 argument_list|)
 expr_stmt|;

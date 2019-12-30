@@ -2735,7 +2735,7 @@ name|location
 operator|.
 name|indexOf
 argument_list|(
-literal|"/"
+literal|'/'
 argument_list|)
 operator|<
 literal|0
