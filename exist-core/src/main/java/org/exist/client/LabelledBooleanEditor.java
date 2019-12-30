@@ -203,20 +203,8 @@ name|chkBox
 operator|.
 name|addActionListener
 argument_list|(
-operator|new
-name|ActionListener
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|actionPerformed
-parameter_list|(
-specifier|final
-name|ActionEvent
 name|e
-parameter_list|)
+lambda|->
 block|{
 name|current
 operator|=
@@ -235,7 +223,6 @@ name|fireEditingStopped
 argument_list|()
 expr_stmt|;
 comment|//notify that editing is done!
-block|}
 block|}
 argument_list|)
 expr_stmt|;
