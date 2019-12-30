@@ -3690,7 +3690,7 @@ name|setEnabled
 argument_list|(
 name|Boolean
 operator|.
-name|valueOf
+name|parseBoolean
 argument_list|(
 operator|(
 name|String
@@ -4030,7 +4030,7 @@ name|setEnabled
 argument_list|(
 name|Boolean
 operator|.
-name|valueOf
+name|parseBoolean
 argument_list|(
 operator|(
 name|String

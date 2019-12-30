@@ -786,7 +786,7 @@ name|started
 argument_list|(
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|event
 operator|.

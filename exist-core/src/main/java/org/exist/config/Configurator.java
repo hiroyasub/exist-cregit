@@ -2001,7 +2001,7 @@ name|radix
 init|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|settingKey
 operator|.
@@ -5585,7 +5585,7 @@ name|radix
 init|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|settingKey
 operator|.

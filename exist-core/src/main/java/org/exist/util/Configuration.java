@@ -6016,7 +6016,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6050,7 +6050,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6086,7 +6086,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6122,7 +6122,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6160,7 +6160,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6198,7 +6198,7 @@ literal|1024
 operator|*
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 operator|.
@@ -6222,7 +6222,7 @@ name|collectionCacheBytes
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|collectionCache
 argument_list|)
@@ -6685,7 +6685,7 @@ if|if
 condition|(
 name|Boolean
 operator|.
-name|valueOf
+name|parseBoolean
 argument_list|(
 name|posixChownRestrictedStr
 argument_list|)
@@ -6758,7 +6758,7 @@ if|if
 condition|(
 name|Boolean
 operator|.
-name|valueOf
+name|parseBoolean
 argument_list|(
 name|preserveOnCopyStr
 argument_list|)
