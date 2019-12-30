@@ -347,14 +347,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|RecognitionException
-name|e
-parameter_list|)
-block|{
-comment|// ignore: comment will be shown unparsed
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|TokenStreamException
 name|e
 parameter_list|)

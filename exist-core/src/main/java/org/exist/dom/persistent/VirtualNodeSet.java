@@ -2797,6 +2797,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
+decl||
+name|XMLStreamException
 name|e
 parameter_list|)
 block|{
@@ -2809,22 +2811,7 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception ,
 block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 comment|//TODO : throw exception ? -pb
-block|}
 block|}
 comment|/**      * Realize the node set. This should only be done if the      * wildcard step is the last step in a path expression.      */
 specifier|private

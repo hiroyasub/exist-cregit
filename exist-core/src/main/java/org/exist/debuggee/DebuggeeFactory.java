@@ -222,22 +222,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IllegalAccessException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to instantiate class for debuggee: "
-operator|+
-name|className
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|InstantiationException
 name|e
 parameter_list|)
