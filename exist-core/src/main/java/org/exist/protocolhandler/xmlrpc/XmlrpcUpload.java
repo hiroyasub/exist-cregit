@@ -411,12 +411,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|len
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|handle

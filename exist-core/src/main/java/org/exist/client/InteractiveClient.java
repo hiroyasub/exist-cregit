@@ -4880,12 +4880,7 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-name|Character
-operator|.
-name|valueOf
-argument_list|(
 literal|'*'
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|p2
@@ -4896,12 +4891,7 @@ name|readLine
 argument_list|(
 literal|"re-enter password: "
 argument_list|,
-name|Character
-operator|.
-name|valueOf
-argument_list|(
 literal|'*'
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -5333,12 +5323,7 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-name|Character
-operator|.
-name|valueOf
-argument_list|(
 literal|'*'
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|p2
@@ -5349,12 +5334,7 @@ name|readLine
 argument_list|(
 literal|"re-enter password: "
 argument_list|,
-name|Character
-operator|.
-name|valueOf
-argument_list|(
 literal|'*'
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -13312,12 +13292,7 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-name|Character
-operator|.
-name|valueOf
-argument_list|(
 literal|'*'
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

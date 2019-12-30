@@ -4401,15 +4401,10 @@ name|chkSsl
 operator|.
 name|setSelected
 argument_list|(
-name|Boolean
-operator|.
-name|valueOf
-argument_list|(
 name|favourite
 operator|.
 name|isSsl
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|txtConfiguration

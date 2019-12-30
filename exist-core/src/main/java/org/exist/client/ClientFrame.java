@@ -11120,16 +11120,11 @@ return|;
 block|}
 return|return
 operator|(
-operator|(
 name|Integer
 operator|)
 name|optionPane
 operator|.
 name|getValue
-argument_list|()
-operator|)
-operator|.
-name|intValue
 argument_list|()
 return|;
 block|}

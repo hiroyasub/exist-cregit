@@ -1157,12 +1157,7 @@ operator|==
 literal|null
 condition|)
 return|return
-name|Boolean
-operator|.
-name|valueOf
-argument_list|(
 name|defaultValue
-argument_list|)
 return|;
 return|return
 name|value
@@ -1380,9 +1375,6 @@ condition|)
 block|{
 return|return
 name|defaultValue
-operator|.
-name|longValue
-argument_list|()
 return|;
 block|}
 return|return

@@ -1416,14 +1416,9 @@ block|{
 name|fragmentationLimit
 operator|=
 operator|(
-operator|(
 name|Integer
 operator|)
 name|property
-operator|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 for|for

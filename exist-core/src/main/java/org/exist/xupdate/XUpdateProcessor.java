@@ -1001,9 +1001,6 @@ block|{
 name|preserveWhitespaceTemp
 operator|=
 name|temp
-operator|.
-name|booleanValue
-argument_list|()
 expr_stmt|;
 block|}
 block|}

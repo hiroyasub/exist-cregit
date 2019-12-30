@@ -1445,14 +1445,9 @@ operator|!=
 literal|null
 operator|&&
 operator|(
-operator|(
 name|Boolean
 operator|)
 name|value
-operator|)
-operator|.
-name|booleanValue
-argument_list|()
 operator|)
 argument_list|)
 expr_stmt|;
