@@ -1936,14 +1936,9 @@ argument_list|()
 operator|.
 name|map
 argument_list|(
-name|n2id
-lambda|->
 name|n1id
-operator|.
+operator|::
 name|equals
-argument_list|(
-name|n2id
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -341,14 +341,9 @@ argument_list|()
 operator|.
 name|noneMatch
 argument_list|(
-name|nodeId
-lambda|->
 name|currentNodeId
-operator|.
+operator|::
 name|isDescendantOf
-argument_list|(
-name|nodeId
-argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -358,14 +353,14 @@ name|add
 argument_list|(
 name|node
 argument_list|)
-block|;
+expr_stmt|;
 name|found
 operator|.
 name|add
 argument_list|(
 name|currentNodeId
 argument_list|)
-empty_stmt|;
+expr_stmt|;
 block|}
 block|}
 return|return
@@ -373,9 +368,6 @@ name|results
 return|;
 block|}
 block|}
-end_class
-
-begin_function
 specifier|private
 name|List
 argument_list|<
@@ -454,8 +446,8 @@ return|return
 name|nodeIds
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

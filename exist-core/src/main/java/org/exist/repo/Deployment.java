@@ -4591,14 +4591,9 @@ name|group
 operator|.
 name|ifPresent
 argument_list|(
-name|groupName
-lambda|->
 name|aider
-operator|.
+operator|::
 name|addGroup
-argument_list|(
-name|groupName
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|secman

@@ -4423,7 +4423,7 @@ literal|"') differ !"
 argument_list|)
 throw|;
 block|}
-comment|//Is this qname already pending ?
+comment|//Is this qname already pending ? Create a node list when not present.
 name|List
 argument_list|<
 name|NodeProxy
@@ -4432,38 +4432,20 @@ name|buf
 init|=
 name|pending
 operator|.
-name|get
+name|computeIfAbsent
 argument_list|(
 name|qname
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|buf
-operator|==
-literal|null
-condition|)
-block|{
-comment|//Create a node list
-name|buf
-operator|=
+argument_list|,
+name|k
+lambda|->
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
 literal|50
 argument_list|)
-expr_stmt|;
-name|pending
-operator|.
-name|put
-argument_list|(
-name|qname
-argument_list|,
-name|buf
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 comment|//Add node's proxy to the list
 name|buf
 operator|.

@@ -4993,7 +4993,6 @@ name|write
 argument_list|(
 name|principalDb
 lambda|->
-block|{
 name|this
 operator|.
 name|principalId
@@ -5006,8 +5005,6 @@ name|principalDb
 argument_list|,
 name|principalId
 argument_list|)
-expr_stmt|;
-block|}
 argument_list|)
 expr_stmt|;
 block|}

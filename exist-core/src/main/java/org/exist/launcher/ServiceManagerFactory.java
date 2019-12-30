@@ -79,11 +79,9 @@ operator|new
 name|AtomicLazyVal
 argument_list|<>
 argument_list|(
-parameter_list|()
-lambda|->
-operator|new
 name|WindowsServiceManager
-argument_list|()
+operator|::
+operator|new
 argument_list|)
 decl_stmt|;
 comment|/**      * Returns the service manager for the current      * platform or null if the platform is unsupported.      *      * @return the service manager, or null if the platform is unsupported.      */

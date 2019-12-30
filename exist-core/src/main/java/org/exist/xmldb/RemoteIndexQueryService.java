@@ -536,13 +536,10 @@ name|occurrences
 operator|.
 name|toArray
 argument_list|(
-name|size
-lambda|->
-operator|new
 name|Occurrences
-index|[
-name|size
-index|]
+index|[]
+operator|::
+operator|new
 argument_list|)
 return|;
 block|}
