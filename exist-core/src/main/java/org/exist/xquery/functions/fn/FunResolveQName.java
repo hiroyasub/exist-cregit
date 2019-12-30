@@ -824,12 +824,10 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|prefix
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 throw|throw
