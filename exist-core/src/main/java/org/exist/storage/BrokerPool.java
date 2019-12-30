@@ -7716,7 +7716,7 @@ return|return
 name|pluginManager
 return|;
 block|}
-comment|/**      * Represents a change involving {@link BrokerPool#inactiveBrokers}      * or {@link BrokerPool#activeBrokers} or {@link DBBroker#referenceCount}      *      * Used for tracing broker leases      */
+comment|/**      * Represents a change involving {@link BrokerPool#inactiveBrokers}      * or {@link BrokerPool#activeBrokers} or {@link DBBroker#getReferenceCount}      *      * Used for tracing broker leases      */
 specifier|private
 specifier|static
 class|class

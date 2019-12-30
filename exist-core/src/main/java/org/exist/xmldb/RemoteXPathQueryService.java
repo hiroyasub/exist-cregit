@@ -319,7 +319,7 @@ name|protectedMode
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates a new RemoteXPathQueryService instance.      *      * @param leasableXmlRpcClient the XML-RPC client lease      * @param xmlRpcClient the XML-RPC client      * @param collection a RemoteCollection value      */
+comment|/**      * Creates a new RemoteXPathQueryService instance.      *      * @param leasableXmlRpcClient the XML-RPC client lease      * @param collection a RemoteCollection value      */
 specifier|public
 name|RemoteXPathQueryService
 parameter_list|(
