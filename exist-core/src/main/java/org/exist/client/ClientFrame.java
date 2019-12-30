@@ -9927,12 +9927,10 @@ argument_list|>
 name|rows
 parameter_list|)
 block|{
-name|Collections
+name|rows
 operator|.
 name|sort
 argument_list|(
-name|rows
-argument_list|,
 operator|new
 name|ResourceComparator
 argument_list|()

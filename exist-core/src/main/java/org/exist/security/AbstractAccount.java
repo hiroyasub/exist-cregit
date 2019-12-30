@@ -581,12 +581,10 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-name|Collections
+name|groups
 operator|.
 name|sort
 argument_list|(
-name|groups
-argument_list|,
 parameter_list|(
 specifier|final
 name|Group
