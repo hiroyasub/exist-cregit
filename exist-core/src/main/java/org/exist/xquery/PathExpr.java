@@ -430,21 +430,27 @@ operator|<
 literal|0
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|warn
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|trace
 argument_list|(
-literal|"Expression not found: "
-operator|+
+literal|"Expression not found when trying to replace: {}; in: {}"
+argument_list|,
 name|ExpressionDumper
 operator|.
 name|dump
 argument_list|(
 name|oldExpr
 argument_list|)
-operator|+
-literal|"; in: "
-operator|+
+argument_list|,
 name|ExpressionDumper
 operator|.
 name|dump
@@ -453,6 +459,7 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 name|steps
@@ -561,21 +568,27 @@ operator|<
 literal|0
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|warn
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|trace
 argument_list|(
-literal|"Expression to remove not found: "
-operator|+
+literal|"Expression not found when trying to remove: {}; in: {}"
+argument_list|,
 name|ExpressionDumper
 operator|.
 name|dump
 argument_list|(
 name|oldExpr
 argument_list|)
-operator|+
-literal|"; in: "
-operator|+
+argument_list|,
 name|ExpressionDumper
 operator|.
 name|dump
@@ -584,6 +597,7 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 name|steps
