@@ -229,7 +229,7 @@ name|Agent
 operator|)
 name|mhConstructor
 operator|.
-name|invokeExact
+name|invoke
 argument_list|()
 expr_stmt|;
 block|}
