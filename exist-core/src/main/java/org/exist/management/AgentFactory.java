@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -80,6 +92,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|AgentFactory
@@ -108,6 +122,7 @@ literal|null
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|synchronized
 name|Agent
 name|getInstance
 parameter_list|()
@@ -214,7 +229,7 @@ name|Agent
 operator|)
 name|mhConstructor
 operator|.
-name|invokeExact
+name|invoke
 argument_list|()
 expr_stmt|;
 block|}

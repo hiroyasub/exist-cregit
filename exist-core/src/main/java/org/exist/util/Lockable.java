@@ -18,6 +18,7 @@ specifier|public
 interface|interface
 name|Lockable
 block|{
+comment|/**      * Get the name of the Lock.      *      * @return the name of the Lock      */
 name|String
 name|getLockName
 parameter_list|()

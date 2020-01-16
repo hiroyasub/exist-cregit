@@ -625,7 +625,7 @@ return|return
 name|readOnly
 return|;
 block|}
-comment|/**      * Close the underlying files.      *      * @throws DBException if an error occurs when closing      */
+comment|/**      * Close the underlying files.      *      * @throws DBException if an error occurs whilst closing      */
 annotation|@
 name|Override
 specifier|public
@@ -654,7 +654,22 @@ throw|throw
 operator|new
 name|DBException
 argument_list|(
-literal|"an error occurred while closing database file: "
+literal|"An error occurred whilst closing the database file '"
+operator|+
+name|file
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
+name|file
+argument_list|)
+operator|+
+literal|"': "
 operator|+
 name|e
 operator|.
@@ -663,6 +678,26 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/**      * Completely close down the instance and      * all underlying resources and caches.      */
+specifier|public
+specifier|final
+name|void
+name|closeAndRemove
+parameter_list|()
+throws|throws
+name|DBException
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+name|FileUtils
+operator|.
+name|deleteQuietly
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
@@ -878,52 +913,6 @@ block|{
 return|return
 name|fileHeader
 return|;
-block|}
-comment|/**      * Completely close down the instance and      * all underlying resources and caches.      */
-specifier|public
-name|void
-name|closeAndRemove
-parameter_list|()
-block|{
-try|try
-block|{
-name|raf
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|//TODO : forward the exception ? -pb
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Failed to close data file: "
-operator|+
-name|file
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|FileUtils
-operator|.
-name|deleteQuietly
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
 block|}
 specifier|protected
 specifier|final

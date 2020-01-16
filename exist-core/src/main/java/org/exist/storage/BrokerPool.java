@@ -6770,6 +6770,12 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+comment|// remove all remaining inactive brokers as we have shutdown now and no longer need those
+name|inactiveBrokers
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 comment|// deregister JMX MBeans
 name|AgentFactory
 operator|.
@@ -6918,6 +6924,10 @@ name|statusObservers
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|startupTriggersManager
+operator|=
+literal|null
 expr_stmt|;
 name|statusReporter
 operator|.

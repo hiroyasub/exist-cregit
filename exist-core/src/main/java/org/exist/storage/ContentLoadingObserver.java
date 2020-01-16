@@ -213,6 +213,8 @@ function_decl|;
 name|void
 name|closeAndRemove
 parameter_list|()
+throws|throws
+name|DBException
 function_decl|;
 name|void
 name|printStatistics
