@@ -1150,6 +1150,15 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|config
+operator|=
+name|LuceneConfig
+operator|.
+name|DEFAULT_CONFIG
+expr_stmt|;
+block|}
 name|mode
 operator|=
 name|newMode
@@ -6078,7 +6087,9 @@ block|}
 block|}
 block|}
 return|return
-literal|null
+name|LuceneConfig
+operator|.
+name|DEFAULT_CONFIG
 return|;
 block|}
 specifier|protected
