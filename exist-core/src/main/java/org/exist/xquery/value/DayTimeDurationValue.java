@@ -653,7 +653,9 @@ argument_list|)
 operator|.
 name|getNormalizedString
 argument_list|(
-literal|0
+name|FastStringBuffer
+operator|.
+name|SUPPRESS_BOTH
 argument_list|)
 expr_stmt|;
 name|sb
