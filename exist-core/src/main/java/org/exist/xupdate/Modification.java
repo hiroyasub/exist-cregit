@@ -1070,16 +1070,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|entry
-decl_stmt|;
 for|for
 control|(
 name|Map
@@ -1090,7 +1080,7 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-name|stringStringEntry
+name|entry
 range|:
 name|namespaces
 operator|.
@@ -1098,10 +1088,6 @@ name|entrySet
 argument_list|()
 control|)
 block|{
-name|entry
-operator|=
-name|stringStringEntry
-expr_stmt|;
 name|context
 operator|.
 name|declareNamespace

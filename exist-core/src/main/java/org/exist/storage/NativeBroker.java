@@ -1240,17 +1240,8 @@ name|NodeProcessor
 argument_list|()
 decl_stmt|;
 specifier|private
-specifier|final
 name|IEmbeddedXMLStreamReader
 name|streamReader
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-name|IEmbeddedXMLStreamReader
-name|streamReaderNG
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 specifier|final
@@ -2526,7 +2517,7 @@ name|XMLStreamException
 block|{
 if|if
 condition|(
-name|streamReaderNG
+name|streamReader
 operator|==
 literal|null
 condition|)
@@ -2545,7 +2536,7 @@ argument_list|,
 name|node
 argument_list|)
 decl_stmt|;
-name|streamReaderNG
+name|streamReader
 operator|=
 operator|new
 name|EmbeddedXMLStreamReader
@@ -2567,7 +2558,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|streamReaderNG
+name|streamReader
 operator|.
 name|reposition
 argument_list|(
@@ -2580,7 +2571,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|streamReaderNG
+name|streamReader
 return|;
 block|}
 annotation|@
