@@ -111,9 +111,7 @@ name|model
 operator|=
 operator|new
 name|TreeSet
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

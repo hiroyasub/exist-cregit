@@ -335,35 +335,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|XMLDBException
-name|xmldbe
-parameter_list|)
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-name|this
-argument_list|,
-literal|"Could not get group members: "
-operator|+
-name|xmldbe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-literal|"Edit Group Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|PermissionDeniedException
-name|pde
+name|xmldbe
 parameter_list|)
 block|{
 name|JOptionPane
@@ -374,7 +348,7 @@ name|this
 argument_list|,
 literal|"Could not get group members: "
 operator|+
-name|pde
+name|xmldbe
 operator|.
 name|getMessage
 argument_list|()
@@ -444,42 +418,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-name|this
-argument_list|,
-literal|"Could not update group '"
-operator|+
-name|txtGroupName
-operator|.
-name|getText
-argument_list|()
-operator|+
-literal|"': "
-operator|+
-name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-literal|"Edit Group Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XMLDBException
-name|xmldbe
+name|pde
 parameter_list|)
 block|{
 name|JOptionPane
@@ -497,7 +438,7 @@ argument_list|()
 operator|+
 literal|"': "
 operator|+
-name|xmldbe
+name|pde
 operator|.
 name|getMessage
 argument_list|()
@@ -670,9 +611,7 @@ name|currentGroupMembers
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -700,9 +639,7 @@ name|groupMembers
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -865,43 +802,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|XMLDBException
-name|xmldbe
-parameter_list|)
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-name|this
-argument_list|,
-literal|"Could not establish user "
-operator|+
-name|getCurrentUser
-argument_list|()
-operator|+
-literal|"'s group permissions: "
-operator|+
-name|xmldbe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-literal|"Edit Group Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|PermissionDeniedException
-name|pde
+name|xmldbe
 parameter_list|)
 block|{
 name|JOptionPane
@@ -917,7 +820,7 @@ argument_list|()
 operator|+
 literal|"'s group permissions: "
 operator|+
-name|pde
+name|xmldbe
 operator|.
 name|getMessage
 argument_list|()

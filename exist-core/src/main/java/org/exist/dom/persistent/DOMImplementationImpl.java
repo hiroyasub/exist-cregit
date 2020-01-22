@@ -180,12 +180,10 @@ name|version
 operator|==
 literal|null
 operator|||
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|version
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 operator|||
 literal|"1.0"
 operator|.

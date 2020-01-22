@@ -528,7 +528,7 @@ name|contentType
 operator|.
 name|indexOf
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 operator|>
 operator|-
@@ -547,7 +547,7 @@ name|contentType
 operator|.
 name|indexOf
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -996,16 +996,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|SAXException
-name|saxe
-parameter_list|)
-block|{
-comment|//do nothing, we will default to trying to return a string below
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IOException
-name|ioe
+name|saxe
 parameter_list|)
 block|{
 comment|//do nothing, we will default to trying to return a string below

@@ -975,14 +975,9 @@ name|joinTransactionIfPresent
 condition|)
 block|{
 return|return
-parameter_list|(
-name|broker
-parameter_list|)
-lambda|->
-name|broker
-operator|.
+name|DBBroker
+operator|::
 name|continueOrBeginTransaction
-argument_list|()
 return|;
 block|}
 else|else

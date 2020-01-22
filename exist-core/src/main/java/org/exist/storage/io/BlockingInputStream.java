@@ -562,7 +562,7 @@ name|tail
 return|;
 block|}
 comment|/* OutputStream methods */
-comment|/**      * Writes the specified byte to this output stream. The general       * contract for<code>write</code> is that one byte is written       * to the output stream. The byte to be written is the eight       * low-order bits of the argument<code>b</code>. The 24       * high-order bits of<code>b</code> are ignored.      *       *       * @param b   the<code>byte</code>.      * @throws ExistIOException  if an I/O error occurs. In particular,       *             an<code>ExistIOException</code> may be thrown if the       *             output stream has been closed.      */
+comment|/**      * Writes the specified byte to this output stream. The general       * contract for<code>write</code> is that one byte is written       * to the output stream. The byte to be written is the eight       * low-order bits of the argument<code>b</code>. The 24       * high-order bits of<code>b</code> are ignored.      *       *       * @param b   the<code>byte</code>.      * @throws IOException  if an I/O error occurs. In particular,      *             an<code>ExistIOException</code> may be thrown if the       *             output stream has been closed.      */
 specifier|synchronized
 name|void
 name|writeOutputStream

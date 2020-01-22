@@ -203,9 +203,7 @@ name|managers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Account
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -220,11 +218,7 @@ name|metadataValues
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|SchemaType
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public

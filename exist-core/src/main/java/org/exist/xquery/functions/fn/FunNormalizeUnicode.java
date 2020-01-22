@@ -699,12 +699,10 @@ block|}
 comment|//TODO : handle the "FULLY-NORMALIZED" string...
 if|if
 condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|newNormalizationForm
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|result

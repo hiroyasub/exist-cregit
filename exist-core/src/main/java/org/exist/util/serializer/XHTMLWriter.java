@@ -1086,12 +1086,10 @@ name|namespaceURI
 operator|==
 literal|null
 operator|||
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|namespaceURI
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 operator|||
 name|Namespaces
 operator|.

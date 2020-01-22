@@ -1779,9 +1779,7 @@ name|arrays
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ArrayType
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 index|[

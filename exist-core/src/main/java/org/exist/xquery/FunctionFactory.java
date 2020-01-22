@@ -2213,7 +2213,6 @@ block|}
 if|if
 condition|(
 operator|(
-operator|(
 name|Boolean
 operator|)
 name|context
@@ -2228,10 +2227,6 @@ name|getProperty
 argument_list|(
 name|PROPERTY_DISABLE_DEPRECATED_FUNCTIONS
 argument_list|)
-operator|)
-operator|.
-name|booleanValue
-argument_list|()
 operator|&&
 name|def
 operator|.

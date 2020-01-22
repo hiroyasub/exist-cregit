@@ -951,7 +951,7 @@ name|nextId
 operator|.
 name|indexOf
 argument_list|(
-literal|" "
+literal|' '
 argument_list|)
 operator|!=
 name|Constants

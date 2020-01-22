@@ -548,12 +548,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Collections
+name|entries
 operator|.
 name|sort
 argument_list|(
-name|entries
-argument_list|,
 parameter_list|(
 specifier|final
 name|Map

@@ -488,38 +488,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|DatatypeConfigurationException
-name|dtce
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"Could not deserialize xs:date data type"
-operator|+
-literal|" for range index key: "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|type
-argument_list|)
-operator|+
-literal|" - "
-operator|+
-name|dtce
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XPathException
-name|xpe
+name|dtce
 parameter_list|)
 block|{
 throw|throw
@@ -539,7 +510,7 @@ argument_list|)
 operator|+
 literal|" - "
 operator|+
-name|xpe
+name|dtce
 operator|.
 name|getMessage
 argument_list|()
@@ -2043,19 +2014,10 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|byte
+name|datum
+range|:
 name|data
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|System
@@ -2070,10 +2032,7 @@ name|Integer
 operator|.
 name|toHexString
 argument_list|(
-name|data
-index|[
-name|i
-index|]
+name|datum
 operator|&
 literal|0xff
 argument_list|)

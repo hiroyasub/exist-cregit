@@ -195,12 +195,7 @@ name|dialogCompleteWithResponseCallbacks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|DialogCompleteWithResponse
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -564,42 +559,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-name|this
-argument_list|,
-literal|"Could not update user '"
-operator|+
-name|txtUsername
-operator|.
-name|getText
-argument_list|()
-operator|+
-literal|"': "
-operator|+
-name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-literal|"Edit User Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XMLDBException
-name|xmldbe
+name|pde
 parameter_list|)
 block|{
 name|JOptionPane
@@ -617,7 +579,7 @@ argument_list|()
 operator|+
 literal|"': "
 operator|+
-name|xmldbe
+name|pde
 operator|.
 name|getMessage
 argument_list|()
@@ -676,9 +638,7 @@ name|currentGroups
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -702,9 +662,7 @@ name|memberOfGroups
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

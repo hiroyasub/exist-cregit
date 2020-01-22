@@ -870,9 +870,6 @@ block|{
 name|caseSensitive
 operator|=
 name|temp
-operator|.
-name|booleanValue
-argument_list|()
 expr_stmt|;
 block|}
 name|this
@@ -1124,9 +1121,7 @@ name|contentLoadingObservers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ContentLoadingObserver
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Remove all observers */
@@ -2963,7 +2958,7 @@ name|IOException
 throws|,
 name|EXistException
 function_decl|;
-comment|/**      * Reads and populates the metadata for a sub-Collection      *      * The entry to read is determined by {@link SubCollectionEntry#uri}      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} (or better)      * on the Collection indicated in `entry`.      *      * @param entry The sub-Collection entry to populate      *      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws LockException if we are unable to obtain a lock on the collections.dbx      */
+comment|/**      * Reads and populates the metadata for a sub-Collection      *      * The entry to read is determined by {@link SubCollectionEntry#getUri()}      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} (or better)      * on the Collection indicated in `entry`.      *      * @param entry The sub-Collection entry to populate      *      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws LockException if we are unable to obtain a lock on the collections.dbx      */
 specifier|public
 specifier|abstract
 name|void

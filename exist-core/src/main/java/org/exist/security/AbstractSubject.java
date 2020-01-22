@@ -600,14 +600,9 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-name|otherAccount
-lambda|->
 name|account
-operator|.
+operator|::
 name|equals
-argument_list|(
-name|otherAccount
-argument_list|)
 argument_list|)
 operator|.
 name|orElse

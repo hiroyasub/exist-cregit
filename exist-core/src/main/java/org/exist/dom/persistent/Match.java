@@ -1394,12 +1394,10 @@ init|=
 name|getOffsets
 argument_list|()
 decl_stmt|;
-name|Collections
+name|newMatchOffsets
 operator|.
 name|sort
 argument_list|(
-name|newMatchOffsets
-argument_list|,
 parameter_list|(
 name|o1
 parameter_list|,

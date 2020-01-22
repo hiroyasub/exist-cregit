@@ -2109,12 +2109,9 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-name|sp
-lambda|->
-name|sp
-operator|.
+name|SubPicture
+operator|::
 name|adjust
-argument_list|()
 argument_list|)
 argument_list|)
 return|;

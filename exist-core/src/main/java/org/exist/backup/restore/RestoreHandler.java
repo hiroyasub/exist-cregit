@@ -1199,7 +1199,7 @@ name|deduplicateBlobs
 operator|=
 name|Boolean
 operator|.
-name|valueOf
+name|parseBoolean
 argument_list|(
 name|atts
 operator|.

@@ -1777,9 +1777,7 @@ name|optimizables
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Optimizable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public

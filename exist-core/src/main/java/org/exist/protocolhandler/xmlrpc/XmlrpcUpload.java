@@ -339,9 +339,7 @@ name|params
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|5
 argument_list|)
@@ -413,12 +411,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|len
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|handle
@@ -495,9 +488,6 @@ comment|// Check XMLRPC result
 if|if
 condition|(
 name|result
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
 block|{
 name|LOG

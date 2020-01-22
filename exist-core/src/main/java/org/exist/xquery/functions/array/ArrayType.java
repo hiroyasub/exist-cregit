@@ -228,9 +228,7 @@ name|itemList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Sequence
-argument_list|>
+argument_list|<>
 argument_list|(
 name|items
 operator|.

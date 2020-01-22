@@ -1868,9 +1868,9 @@ name|this
 operator|.
 name|diskSpaceMin
 operator|=
-literal|1024l
+literal|1024L
 operator|*
-literal|1024l
+literal|1024L
 operator|*
 name|conf
 operator|.
@@ -3045,7 +3045,6 @@ block|}
 if|if
 condition|(
 operator|(
-operator|(
 name|Boolean
 operator|)
 name|conf
@@ -3054,10 +3053,6 @@ name|getProperty
 argument_list|(
 name|PROPERTY_RECOVERY_CHECK
 argument_list|)
-operator|)
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
 block|{
 specifier|final
@@ -7731,7 +7726,7 @@ return|return
 name|pluginManager
 return|;
 block|}
-comment|/**      * Represents a change involving {@link BrokerPool#inactiveBrokers}      * or {@link BrokerPool#activeBrokers} or {@link DBBroker#referenceCount}      *      * Used for tracing broker leases      */
+comment|/**      * Represents a change involving {@link BrokerPool#inactiveBrokers}      * or {@link BrokerPool#activeBrokers} or {@link DBBroker#getReferenceCount}      *      * Used for tracing broker leases      */
 specifier|private
 specifier|static
 class|class

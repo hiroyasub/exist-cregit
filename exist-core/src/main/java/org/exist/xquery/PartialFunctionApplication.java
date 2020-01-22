@@ -321,9 +321,7 @@ name|newParamTypes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SequenceType
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// the arguments to pass to the inner call
@@ -336,9 +334,7 @@ name|callArgs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// parameter variables of the new inline function
@@ -351,9 +347,7 @@ name|variables
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QName
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// the inline function

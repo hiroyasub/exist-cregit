@@ -3341,50 +3341,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|XMLDBException
-name|xmldbe
-parameter_list|)
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-name|this
-argument_list|,
-literal|"Could not set user '"
-operator|+
-name|txtUsername
-operator|.
-name|getText
-argument_list|()
-operator|+
-literal|"' as manager of personal group '"
-operator|+
-name|txtUsername
-operator|.
-name|getText
-argument_list|()
-operator|+
-literal|"': "
-operator|+
-name|xmldbe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-literal|"Create User Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|PermissionDeniedException
-name|pde
+name|xmldbe
 parameter_list|)
 block|{
 name|JOptionPane
@@ -3409,7 +3368,7 @@ argument_list|()
 operator|+
 literal|"': "
 operator|+
-name|pde
+name|xmldbe
 operator|.
 name|getMessage
 argument_list|()
@@ -4002,9 +3961,7 @@ name|availableGroupsModel
 operator|=
 operator|new
 name|SortedListModel
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|availableGroupsModel
@@ -4064,9 +4021,7 @@ name|memberOfGroupsModel
 operator|=
 operator|new
 name|SortedListModel
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

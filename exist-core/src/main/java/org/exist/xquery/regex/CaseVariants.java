@@ -119,10 +119,7 @@ name|polyVariants
 init|=
 operator|new
 name|Int2ObjectOpenHashMap
-argument_list|<
-name|int
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|100
 argument_list|)

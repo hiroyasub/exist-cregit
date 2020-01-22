@@ -134,14 +134,9 @@ name|get
 argument_list|(
 name|pattern
 argument_list|,
-name|ptn
-lambda|->
 name|Pattern
-operator|.
+operator|::
 name|compile
-argument_list|(
-name|ptn
-argument_list|)
 argument_list|)
 return|;
 block|}

@@ -1033,9 +1033,7 @@ name|args
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|)

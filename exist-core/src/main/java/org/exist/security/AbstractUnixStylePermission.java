@@ -352,7 +352,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"+"
+literal|'+'
 argument_list|)
 operator|>
 operator|-
@@ -374,7 +374,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"-"
+literal|'-'
 argument_list|)
 operator|>
 operator|-
@@ -397,7 +397,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
 operator|>
 operator|-
@@ -420,7 +420,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"+"
+literal|'+'
 argument_list|)
 operator|>
 operator|-
@@ -453,7 +453,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"-"
+literal|'-'
 argument_list|)
 operator|>
 operator|-
@@ -487,7 +487,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
 operator|>
 operator|-
@@ -521,7 +521,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"+"
+literal|'+'
 argument_list|)
 operator|>
 operator|-
@@ -554,7 +554,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"-"
+literal|'-'
 argument_list|)
 operator|>
 operator|-
@@ -588,7 +588,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
 operator|>
 operator|-
@@ -622,7 +622,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"+"
+literal|'+'
 argument_list|)
 operator|>
 operator|-
@@ -655,7 +655,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"-"
+literal|'-'
 argument_list|)
 operator|>
 operator|-
@@ -689,7 +689,7 @@ name|clause
 operator|.
 name|indexOf
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
 operator|>
 operator|-

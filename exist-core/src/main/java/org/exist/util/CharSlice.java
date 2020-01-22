@@ -341,7 +341,7 @@ return|return
 name|h
 return|;
 block|}
-comment|/**      * Get the index of a specific character in the sequence. Returns -1 if not found.      * This method mimics {@link String#indexOf}      * @param c the character to be found      * @return the position of the first occurrence of that character, or -1 if not found.      */
+comment|/**      * Get the index of a specific character in the sequence. Returns -1 if not found.      * This method mimics {@link String#indexOf(String)}      * @param c the character to be found      * @return the position of the first occurrence of that character, or -1 if not found.      */
 specifier|public
 name|int
 name|indexOf

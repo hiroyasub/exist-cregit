@@ -1489,11 +1489,7 @@ name|map
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|context
@@ -1686,11 +1682,7 @@ name|map
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

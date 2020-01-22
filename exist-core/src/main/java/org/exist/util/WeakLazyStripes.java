@@ -685,7 +685,7 @@ if|if
 condition|(
 name|writeStamp
 operator|!=
-literal|0l
+literal|0L
 condition|)
 block|{
 specifier|final
@@ -890,7 +890,7 @@ if|if
 condition|(
 name|writeStamp
 operator|!=
-literal|0l
+literal|0L
 condition|)
 block|{
 specifier|final

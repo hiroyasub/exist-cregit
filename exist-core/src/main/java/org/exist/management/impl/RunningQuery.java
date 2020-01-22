@@ -73,10 +73,6 @@ name|this
 operator|.
 name|id
 operator|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|watchdog
 operator|.
 name|getContext
@@ -84,7 +80,6 @@ argument_list|()
 operator|.
 name|hashCode
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -120,15 +115,10 @@ name|this
 operator|.
 name|terminating
 operator|=
-name|Boolean
-operator|.
-name|valueOf
-argument_list|(
 name|watchdog
 operator|.
 name|isTerminating
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|this
 operator|.

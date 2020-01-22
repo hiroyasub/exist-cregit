@@ -964,7 +964,7 @@ name|pic
 operator|.
 name|indexOf
 argument_list|(
-literal|"]"
+literal|']'
 argument_list|,
 name|i
 argument_list|)

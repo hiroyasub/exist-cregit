@@ -376,11 +376,7 @@ name|params
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// flag to administer wether multi-part formdata was processed
@@ -656,9 +652,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|list
@@ -884,9 +878,7 @@ name|fileList
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|FileItem
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -1575,9 +1567,7 @@ name|files
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|items
 operator|.

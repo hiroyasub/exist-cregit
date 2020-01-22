@@ -508,7 +508,8 @@ block|}
 else|else
 block|{
 comment|// there is a lock file present, we must determine if it is locked (by another eXist-db instance)
-specifier|final
+try|try
+init|(
 name|FileChannel
 name|otherLockChannel
 init|=
@@ -522,8 +523,7 @@ name|StandardOpenOption
 operator|.
 name|WRITE
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 if|if
 condition|(
@@ -545,15 +545,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-finally|finally
-block|{
 comment|// will release the lock
-name|otherLockChannel
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}

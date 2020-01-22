@@ -217,12 +217,9 @@ argument_list|)
 operator|.
 name|orElseGet
 argument_list|(
-parameter_list|()
-lambda|->
 name|Collections
-operator|.
+operator|::
 name|emptyList
-argument_list|()
 argument_list|)
 return|;
 block|}

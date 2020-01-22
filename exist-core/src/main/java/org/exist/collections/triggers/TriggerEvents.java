@@ -397,9 +397,7 @@ name|result
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|EVENTS
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -537,9 +535,7 @@ name|result
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|EVENTS
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final

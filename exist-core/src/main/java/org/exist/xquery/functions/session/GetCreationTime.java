@@ -239,13 +239,8 @@ name|XPathUtil
 operator|.
 name|javaObjectToXPath
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 operator|-
 literal|1
-argument_list|)
 argument_list|,
 name|context
 argument_list|)

@@ -133,9 +133,7 @@ name|arguments
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -273,9 +271,7 @@ name|items
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Sequence
-argument_list|>
+argument_list|<>
 argument_list|(
 name|arguments
 operator|.
