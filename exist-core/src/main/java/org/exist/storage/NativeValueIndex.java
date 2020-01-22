@@ -6679,6 +6679,8 @@ specifier|public
 name|void
 name|closeAndRemove
 parameter_list|()
+throws|throws
+name|DBException
 block|{
 try|try
 init|(

@@ -452,7 +452,7 @@ name|colLock
 init|=
 name|lockManager
 operator|.
-name|getCollectionLock
+name|getPathLock
 argument_list|(
 name|testCollection
 operator|.

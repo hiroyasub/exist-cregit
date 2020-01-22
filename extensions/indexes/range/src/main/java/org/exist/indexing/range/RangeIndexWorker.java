@@ -2077,6 +2077,15 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|config
+operator|=
+name|RangeIndexConfig
+operator|.
+name|DEFAULT_CONFIG
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|mode

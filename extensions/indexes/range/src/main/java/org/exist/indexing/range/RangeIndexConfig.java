@@ -194,6 +194,16 @@ specifier|public
 class|class
 name|RangeIndexConfig
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|RangeIndexConfig
+name|DEFAULT_CONFIG
+init|=
+operator|new
+name|RangeIndexConfig
+argument_list|()
+decl_stmt|;
 specifier|static
 specifier|final
 name|String
@@ -265,6 +275,18 @@ operator|new
 name|PathIterator
 argument_list|()
 decl_stmt|;
+specifier|public
+name|RangeIndexConfig
+parameter_list|()
+block|{
+comment|// default analyzer
+name|analyzer
+operator|=
+operator|new
+name|KeywordAnalyzer
+argument_list|()
+expr_stmt|;
+block|}
 specifier|public
 name|RangeIndexConfig
 parameter_list|(
@@ -474,6 +496,13 @@ argument_list|>
 name|namespaces
 parameter_list|)
 block|{
+comment|// default analyzer
+name|analyzer
+operator|=
+operator|new
+name|KeywordAnalyzer
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -791,13 +820,6 @@ block|}
 block|}
 block|}
 block|}
-comment|// default analyzer
-name|analyzer
-operator|=
-operator|new
-name|KeywordAnalyzer
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 name|Analyzer

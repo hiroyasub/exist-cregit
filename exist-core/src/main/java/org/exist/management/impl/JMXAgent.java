@@ -182,11 +182,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Real implementation of interface {@link org.exist.management.Agent}  * which registers MBeans with the MBeanServer.  */
+comment|/**  * Real implementation of interface {@link org.exist.management.Agent}  * which registers MBeans with the MBeanServer.  *  * Note that the agent will be constructed via reflection by the  * {@link org.exist.management.AgentFactory}  */
 end_comment
 
 begin_class
 specifier|public
+specifier|final
 class|class
 name|JMXAgent
 implements|implements
@@ -206,16 +207,6 @@ name|JMXAgent
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|JMXAgent
-name|instance
-init|=
-operator|new
-name|JMXAgent
-argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
@@ -256,16 +247,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
-specifier|static
-name|Agent
-name|getInstance
-parameter_list|()
-block|{
-return|return
-name|instance
-return|;
-block|}
-specifier|private
 name|JMXAgent
 parameter_list|()
 block|{
@@ -329,13 +310,6 @@ name|createMBeanServer
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        try {
-comment|//            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://127.0.0.1:9999/server");
-comment|//            JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
-comment|//            cs.start();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("ERROR: failed to initialize JMX connector: " + e.getMessage(), e);
-comment|//        }
 name|registerSystemMBeans
 argument_list|()
 expr_stmt|;
@@ -522,8 +496,6 @@ name|BrokerPool
 name|instance
 parameter_list|)
 block|{
-try|try
-block|{
 specifier|final
 name|Deque
 argument_list|<
@@ -571,48 +543,22 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Unregistering JMX MBean: "
+literal|"deregistering JMX MBean: "
 operator|+
 name|on
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|server
+name|beanInstances
 operator|.
-name|isRegistered
-argument_list|(
-name|on
-argument_list|)
-condition|)
-block|{
-name|server
-operator|.
-name|unregisterMBean
+name|remove
 argument_list|(
 name|on
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|InstanceNotFoundException
-decl||
-name|MBeanRegistrationException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
+name|removeMBean
 argument_list|(
-literal|"Problem found while unregistering JMX"
-argument_list|,
-name|e
+name|on
 argument_list|)
 expr_stmt|;
 block|}
@@ -831,6 +777,61 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
+block|}
+specifier|private
+name|void
+name|removeMBean
+parameter_list|(
+specifier|final
+name|ObjectName
+name|name
+parameter_list|)
+block|{
+try|try
+block|{
+if|if
+condition|(
+name|server
+operator|.
+name|isRegistered
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+name|server
+operator|.
+name|unregisterMBean
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|InstanceNotFoundException
+decl||
+name|MBeanRegistrationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Problem unregistering mbean: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@

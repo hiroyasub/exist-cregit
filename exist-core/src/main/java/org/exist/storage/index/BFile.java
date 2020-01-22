@@ -1559,12 +1559,14 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|closeAndRemove
+name|close
 parameter_list|()
+throws|throws
+name|DBException
 block|{
 name|super
 operator|.
-name|closeAndRemove
+name|close
 argument_list|()
 expr_stmt|;
 name|cacheManager

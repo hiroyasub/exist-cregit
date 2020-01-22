@@ -630,14 +630,32 @@ argument_list|,
 name|S
 argument_list|>
 name|stripeRef
-init|=
+decl_stmt|;
+try|try
+block|{
+name|stripeRef
+operator|=
 name|stripes
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|ArrayIndexOutOfBoundsException
+name|e
+parameter_list|)
+block|{
+comment|// this can occur as we don't hold a lock, we just have a stamp for an optimistic read,
+comment|// so `stripes` might be concurrently modified
+return|return
+literal|null
+return|;
+block|}
 if|if
 condition|(
 name|stripeRef

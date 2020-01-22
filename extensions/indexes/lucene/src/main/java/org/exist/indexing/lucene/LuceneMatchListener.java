@@ -643,6 +643,15 @@ name|ID
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|config
+operator|=
+name|LuceneConfig
+operator|.
+name|DEFAULT_CONFIG
+expr_stmt|;
+block|}
 name|getTerms
 argument_list|()
 expr_stmt|;

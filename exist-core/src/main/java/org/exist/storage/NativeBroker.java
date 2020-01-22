@@ -2044,6 +2044,8 @@ specifier|private
 name|void
 name|notifyCloseAndRemove
 parameter_list|()
+throws|throws
+name|DBException
 block|{
 for|for
 control|(
@@ -21650,11 +21652,11 @@ argument_list|(
 literal|"Removing index files ..."
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|notifyCloseAndRemove
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|pool
 operator|.
 name|getIndexManager
