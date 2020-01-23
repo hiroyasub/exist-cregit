@@ -1239,13 +1239,9 @@ argument_list|)
 expr_stmt|;
 name|jsonToXml
 argument_list|(
-name|context
-argument_list|,
 name|builder
 argument_list|,
 name|parser
-argument_list|,
-name|handleDuplicates
 argument_list|)
 expr_stmt|;
 return|return
@@ -1921,28 +1917,20 @@ return|return
 name|next
 return|;
 block|}
-comment|/**      * Generate an XML from the tokens delivered by the JSON parser.      *      * @param context the XQueryContext      * @param parser parser to use      * @param handleDuplicates string indicating how to handle duplicate property names      * @return the top item read      * @throws IOException      * @throws XPathException      */
+comment|/**      * Generate an XML from the tokens delivered by the JSON parser.      *      * @param builder the memtree builder      * @param parser parser to use      *      * @throws IOException if an I/O error occurs      */
 specifier|public
 specifier|static
 name|void
 name|jsonToXml
 parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
 name|MemTreeBuilder
 name|builder
 parameter_list|,
 name|JsonParser
 name|parser
-parameter_list|,
-name|String
-name|handleDuplicates
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|XPathException
 block|{
 name|JsonToken
 name|token

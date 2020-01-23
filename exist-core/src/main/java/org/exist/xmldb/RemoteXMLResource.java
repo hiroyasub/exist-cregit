@@ -718,7 +718,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Construct a remote XML Resource.      *      * @param parent the parent collection      * @param handle the handle to the remote resource      * @param pos the position of the remote resource      * @param docId the document if of the remote resource      * @param id the id of the remote resource      *      * @throws XMLDBException if an error occurs during construction      *      * @deprecared Use {@link #RemoteXMLResource(RemoteCollection, int, int, XmldbURI, Optional, Optional)}.      */
+comment|/**      * Construct a remote XML Resource.      *      * @param parent the parent collection      * @param handle the handle to the remote resource      * @param pos the position of the remote resource      * @param docId the document if of the remote resource      * @param id the id of the remote resource      *      * @throws XMLDBException if an error occurs during construction      *      * @deprecated Use {@link #RemoteXMLResource(RemoteCollection, int, int, XmldbURI, Optional, Optional)}.      */
 annotation|@
 name|Deprecated
 specifier|public
