@@ -341,8 +341,11 @@ name|AbstractMapType
 name|remove
 parameter_list|(
 name|AtomicValue
-name|key
+index|[]
+name|keysAtomicValues
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
