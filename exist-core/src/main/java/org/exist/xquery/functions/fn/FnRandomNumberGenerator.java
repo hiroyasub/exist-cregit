@@ -254,7 +254,7 @@ argument_list|()
 argument_list|,
 name|arity
 argument_list|(
-name|param
+name|optParam
 argument_list|(
 literal|"seed"
 argument_list|,
