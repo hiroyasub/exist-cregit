@@ -1132,6 +1132,8 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -1267,6 +1269,15 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

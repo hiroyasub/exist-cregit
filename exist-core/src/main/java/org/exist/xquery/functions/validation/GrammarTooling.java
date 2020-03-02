@@ -803,6 +803,13 @@ literal|"show-grammar-cache"
 argument_list|)
 condition|)
 block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -826,6 +833,15 @@ decl_stmt|;
 return|return
 name|result
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(

@@ -1519,6 +1519,13 @@ name|SQLException
 throws|,
 name|XPathException
 block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -1784,7 +1791,7 @@ literal|0
 condition|)
 block|{
 comment|// use column names as the XML node
-comment|/*                                  * Spaces in column names are replaced with                                  * underscore's                                  */
+comment|/*                                      * Spaces in column names are replaced with                                      * underscore's                                      */
 name|colElement
 operator|=
 name|SQLUtils
@@ -2346,6 +2353,15 @@ block|}
 block|}
 block|}
 block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 specifier|private
 name|ElementImpl
 name|sqlExceptionAsElement
@@ -2364,6 +2380,13 @@ specifier|final
 name|Element
 name|parametersElement
 parameter_list|)
+block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
 block|{
 specifier|final
 name|MemTreeBuilder
@@ -2945,6 +2968,15 @@ operator|.
 name|getDocumentElement
 argument_list|()
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

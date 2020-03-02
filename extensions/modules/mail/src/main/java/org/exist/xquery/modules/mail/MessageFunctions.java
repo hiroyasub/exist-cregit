@@ -644,6 +644,13 @@ name|ret
 return|;
 comment|// no messages requested
 block|}
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1522,6 +1529,15 @@ operator|(
 name|ret
 operator|)
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void

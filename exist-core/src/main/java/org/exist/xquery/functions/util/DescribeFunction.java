@@ -474,6 +474,13 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -661,6 +668,15 @@ argument_list|(
 name|nodeNr
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 * @param signature 	 * @param builder 	 * @throws XPathException if an internal error occurs 	 */
 specifier|private

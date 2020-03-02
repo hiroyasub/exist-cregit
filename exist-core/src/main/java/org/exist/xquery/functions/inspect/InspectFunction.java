@@ -488,6 +488,13 @@ operator|.
 name|getSignature
 argument_list|()
 decl_stmt|;
+try|try
+block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -521,6 +528,15 @@ argument_list|(
 name|nodeNr
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Generate an XML fragment containing information about the function identified by its signature.      *      * @param sig the signature of the function to describe      * @param func the function implementation. If provided, the method will also inspect the function body      *             and list all functions called from the current function.      * @param builder builder used to create the XML      * @return nodeNr of the generated element      * @throws XPathException in case of dynamic error      */
 specifier|public
