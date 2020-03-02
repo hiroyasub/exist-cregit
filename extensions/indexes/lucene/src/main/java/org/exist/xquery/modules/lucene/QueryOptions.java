@@ -360,6 +360,14 @@ name|OPTION_FIELDS
 init|=
 literal|"fields"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|OPTION_QUERY_ANALYZER_ID
+init|=
+literal|"query-analyzer-id"
+decl_stmt|;
 specifier|protected
 enum|enum
 name|DefaultOperator
@@ -368,6 +376,12 @@ name|OR
 block|,
 name|AND
 block|}
+specifier|protected
+name|String
+name|queryAnalyzerId
+init|=
+literal|null
+decl_stmt|;
 specifier|protected
 name|DefaultOperator
 name|defaultOperator
@@ -1343,6 +1357,13 @@ literal|"yes"
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|OPTION_QUERY_ANALYZER_ID
+case|:
+name|queryAnalyzerId
+operator|=
+name|value
+expr_stmt|;
 default|default:
 comment|// unknown option, ignore
 break|break;
@@ -1470,6 +1491,15 @@ name|lowercaseExpandedTerms
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|String
+name|getQueryAnalyzerId
+parameter_list|()
+block|{
+return|return
+name|queryAnalyzerId
+return|;
 block|}
 block|}
 end_class
