@@ -488,18 +488,15 @@ name|getInputStream
 argument_list|()
 expr_stmt|;
 comment|//was there any POST content?
-comment|/**              * There is a bug in HttpInput.available() in Jetty 7.2.2.v20101205              * This has been filed as Bug 333415 -              * https://bugs.eclipse.org/bugs/show_bug.cgi?id=333415 It is              * expected to be fixed in the Jetty 7.3.0 release              */
-comment|//TODO reinstate call to .available() when Jetty 7.3.0 is released, use of .getContentLength() is not reliable because of http mechanics
-comment|//if(is != null&& is.available()> 0) {
 if|if
 condition|(
 name|isRequest
 operator|!=
 literal|null
 operator|&&
-name|request
+name|isRequest
 operator|.
-name|getContentLength
+name|available
 argument_list|()
 operator|>
 literal|0
@@ -606,7 +603,7 @@ operator|.
 name|EMPTY_SEQUENCE
 condition|)
 block|{
-comment|//2) not binary, try and parse as an XML documemnt, otherwise 3) return a string representation
+comment|//2) not binary, try and parse as an XML document, otherwise 3) return a string representation
 comment|//parsing will consume the stream so we must cache!
 name|InputStream
 name|is
