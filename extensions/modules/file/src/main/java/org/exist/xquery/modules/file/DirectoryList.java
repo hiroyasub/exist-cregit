@@ -590,6 +590,11 @@ name|baseDir
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 specifier|final
 name|MemTreeBuilder
 name|builder
@@ -1033,6 +1038,14 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private

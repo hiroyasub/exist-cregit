@@ -652,6 +652,13 @@ name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 return|return
 operator|(
 name|NodeValue
@@ -670,6 +677,15 @@ operator|.
 name|getDocumentElement
 argument_list|()
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Serializes RESTXQ Services to an XML description      *      * @param builder The receiver for the serialization      * @param services The services to describe      *      * @return The XML Document constructed from serializing the      * services to the MemTreeBuilder      */
 specifier|public

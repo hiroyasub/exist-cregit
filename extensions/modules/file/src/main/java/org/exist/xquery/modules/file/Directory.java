@@ -574,6 +574,11 @@ argument_list|)
 throw|;
 block|}
 comment|// Get list of files, null if baseDir does not point to a directory
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 try|try
 init|(
 specifier|final
@@ -988,6 +993,14 @@ argument_list|,
 name|ioe
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private
