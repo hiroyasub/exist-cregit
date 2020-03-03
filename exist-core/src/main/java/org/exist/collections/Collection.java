@@ -387,12 +387,23 @@ name|XmldbURI
 name|getURI
 parameter_list|()
 function_decl|;
-comment|/**      * Set the URI path of the Collection      *      * @param path The URI path of the Collection      */
+comment|/**      * Set the URI path of the Collection.      *      * Simply calls {@link #setPath(XmldbURI, boolean)}      * with updateChildren=false.      *      * @param path The URI path of the Collection      */
 name|void
 name|setPath
 parameter_list|(
 name|XmldbURI
 name|path
+parameter_list|)
+function_decl|;
+comment|/**      * Set the URI path of the Collection      *      * @param path The URI path of the Collection      * @param updateChildren true if paths of child documents and collections should be updated (if needed), false otherwise      */
+name|void
+name|setPath
+parameter_list|(
+name|XmldbURI
+name|path
+parameter_list|,
+name|boolean
+name|updateChildren
 parameter_list|)
 function_decl|;
 comment|/**      * Get the metadata of the Collection      *      * @return The Collection metadata      */
