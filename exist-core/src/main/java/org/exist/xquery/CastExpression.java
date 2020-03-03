@@ -179,7 +179,8 @@ operator|=
 name|expr
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
@@ -212,7 +213,8 @@ name|requiredType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
