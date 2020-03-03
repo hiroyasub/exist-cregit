@@ -133,17 +133,17 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"n"
+literal|"index"
 argument_list|,
 name|Type
 operator|.
-name|POSITIVE_INTEGER
+name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the position of the item to retrieve from the array"
+literal|"The index"
 argument_list|)
 block|}
 argument_list|,
