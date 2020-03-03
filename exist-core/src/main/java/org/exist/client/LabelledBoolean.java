@@ -13,6 +13,16 @@ name|client
 package|;
 end_package
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple Label and Boolean value  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
@@ -27,9 +37,11 @@ specifier|final
 name|String
 name|label
 decl_stmt|;
+annotation|@
+name|Nullable
 specifier|private
 specifier|final
-name|boolean
+name|Boolean
 name|set
 decl_stmt|;
 specifier|public
@@ -39,8 +51,10 @@ specifier|final
 name|String
 name|label
 parameter_list|,
+annotation|@
+name|Nullable
 specifier|final
-name|boolean
+name|Boolean
 name|set
 parameter_list|)
 block|{
@@ -67,7 +81,9 @@ name|label
 return|;
 block|}
 specifier|public
-name|boolean
+annotation|@
+name|Nullable
+name|Boolean
 name|isSet
 parameter_list|()
 block|{

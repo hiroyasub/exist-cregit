@@ -384,12 +384,12 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode for the owner      *      * @param  other  The new mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
+comment|/**      *  Set mode for the owner      *      * @param  perm  The new mode value      * @throws PermissionDeniedException is user has not sufficient rights      */
 name|void
 name|setOwnerMode
 parameter_list|(
 name|int
-name|other
+name|perm
 parameter_list|)
 throws|throws
 name|PermissionDeniedException

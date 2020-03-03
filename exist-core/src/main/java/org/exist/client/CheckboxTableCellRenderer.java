@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2020 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -15,11 +15,37 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|tuple
+operator|.
+name|Tuple2
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|awt
 operator|.
 name|Component
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Function
 import|;
 end_import
 
@@ -112,13 +138,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Renders a LabelledBoolean as a JCheckBox  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
+comment|/**  * Renders a T as a JCheckBox.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|LabelledBooleanRenderer
+name|CheckboxTableCellRenderer
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|JCheckBox
 implements|implements
@@ -144,9 +173,38 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|final
+name|Function
+argument_list|<
+name|T
+argument_list|,
+name|Tuple2
+argument_list|<
+name|String
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|>
+name|valueStateFn
+decl_stmt|;
 specifier|public
-name|LabelledBooleanRenderer
-parameter_list|()
+name|CheckboxTableCellRenderer
+parameter_list|(
+specifier|final
+name|Function
+argument_list|<
+name|T
+argument_list|,
+name|Tuple2
+argument_list|<
+name|String
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|>
+name|valueStateFn
+parameter_list|)
 block|{
 name|super
 argument_list|()
@@ -169,6 +227,12 @@ name|SwingConstants
 operator|.
 name|RIGHT
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|valueStateFn
+operator|=
+name|valueStateFn
 expr_stmt|;
 block|}
 annotation|@
@@ -246,21 +310,36 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//set selected
+specifier|final
+name|Tuple2
+argument_list|<
+name|String
+argument_list|,
+name|Boolean
+argument_list|>
+name|state
+init|=
+name|valueStateFn
+operator|.
+name|apply
+argument_list|(
+operator|(
+name|T
+operator|)
+name|value
+argument_list|)
+decl_stmt|;
 name|setSelected
 argument_list|(
-name|value
+name|state
+operator|.
+name|_2
 operator|!=
 literal|null
 operator|&&
-operator|(
-operator|(
-name|LabelledBoolean
-operator|)
-name|value
-operator|)
+name|state
 operator|.
-name|isSet
-argument_list|()
+name|_2
 argument_list|)
 expr_stmt|;
 comment|//set label
@@ -273,15 +352,9 @@ condition|)
 block|{
 name|setText
 argument_list|(
-operator|(
-operator|(
-name|LabelledBoolean
-operator|)
-name|value
-operator|)
+name|state
 operator|.
-name|getLabel
-argument_list|()
+name|_1
 argument_list|)
 expr_stmt|;
 block|}
