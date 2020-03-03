@@ -2325,7 +2325,7 @@ argument_list|)
 expr_stmt|;
 name|listener
 operator|.
-name|hideDialog
+name|enableDismissDialogButton
 argument_list|()
 expr_stmt|;
 if|if

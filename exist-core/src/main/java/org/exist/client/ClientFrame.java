@@ -7713,7 +7713,7 @@ expr_stmt|;
 block|}
 name|listener
 operator|.
-name|hideDialog
+name|enableDismissDialogButton
 argument_list|()
 expr_stmt|;
 if|if
