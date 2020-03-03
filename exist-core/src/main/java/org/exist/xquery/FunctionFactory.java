@@ -257,6 +257,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|parent
+argument_list|,
 name|ErrorCodes
 operator|.
 name|XPST0081
