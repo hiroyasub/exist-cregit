@@ -228,6 +228,9 @@ name|eXistXMLCatalogResolver
 extends|extends
 name|XMLCatalogResolver
 block|{
+comment|//TODO(AR) refactor to org.apache.xml.resolver.tools.CatalogResolver which is reused within here for Xerces
+comment|// see https://github.com/eXist-db/exist/issues/350
+comment|// see https://www.saxonica.com/html/documentation/sourcedocs/xml-catalogs.html
 specifier|public
 name|eXistXMLCatalogResolver
 parameter_list|()
