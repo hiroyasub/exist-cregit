@@ -2765,6 +2765,11 @@ argument_list|(
 literal|'4'
 argument_list|)
 block|,
+name|SKIP_RESOURCES
+argument_list|(
+literal|'9'
+argument_list|)
+block|,
 name|INFO
 argument_list|(
 literal|'5'

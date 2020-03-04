@@ -215,6 +215,33 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|skipResources
+parameter_list|(
+specifier|final
+name|String
+name|message
+parameter_list|,
+specifier|final
+name|long
+name|count
+parameter_list|)
+block|{
+name|warn
+argument_list|(
+literal|"Skipping "
+operator|+
+name|count
+operator|+
+literal|" resources. "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|finished
 parameter_list|()
 block|{

@@ -1157,8 +1157,25 @@ name|void
 name|incrementFileCounter
 parameter_list|()
 block|{
+name|incrementFileCounter
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Increment the number of files that are restored and display the value.      *      * @param step the amount to increment by      */
+specifier|public
+name|void
+name|incrementFileCounter
+parameter_list|(
+specifier|final
+name|long
+name|step
+parameter_list|)
+block|{
 name|fileCounter
-operator|++
+operator|+=
+name|step
 expr_stmt|;
 if|if
 condition|(
