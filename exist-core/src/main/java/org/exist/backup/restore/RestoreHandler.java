@@ -2507,7 +2507,7 @@ condition|)
 block|{
 name|listener
 operator|.
-name|info
+name|skipResources
 argument_list|(
 literal|"Skipping app path "
 operator|+
@@ -2519,6 +2519,11 @@ operator|+
 literal|". Newer version "
 operator|+
 literal|"is already installed."
+argument_list|,
+name|subDescriptor
+operator|.
+name|getNumberOfFiles
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;

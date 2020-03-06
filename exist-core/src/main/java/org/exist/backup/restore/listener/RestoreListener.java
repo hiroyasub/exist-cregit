@@ -65,6 +65,17 @@ name|resource
 parameter_list|)
 function_decl|;
 name|void
+name|skipResources
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+specifier|final
+name|long
+name|count
+parameter_list|)
+function_decl|;
+name|void
 name|info
 parameter_list|(
 name|String
