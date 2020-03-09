@@ -263,6 +263,34 @@ name|FileUtils
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|launcher
+operator|.
+name|ConfigurationUtility
+operator|.
+name|LAUNCHER_PROPERTY_MAX_MEM
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|launcher
+operator|.
+name|ConfigurationUtility
+operator|.
+name|LAUNCHER_PROPERTY_MIN_MEM
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author wolf  */
 end_comment
@@ -340,9 +368,9 @@ specifier|final
 name|Properties
 name|launcherProperties
 init|=
-name|LauncherWrapper
+name|ConfigurationUtility
 operator|.
-name|getLauncherProperties
+name|loadProperties
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -357,7 +385,7 @@ name|launcherProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"memory.max"
+name|LAUNCHER_PROPERTY_MAX_MEM
 argument_list|,
 literal|"2048"
 argument_list|)
@@ -382,7 +410,7 @@ name|launcherProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"memory.min"
+name|LAUNCHER_PROPERTY_MIN_MEM
 argument_list|,
 literal|"64"
 argument_list|)
