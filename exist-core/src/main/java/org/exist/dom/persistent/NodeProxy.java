@@ -5567,12 +5567,14 @@ name|DOCUMENT_NODE
 condition|)
 block|{
 return|return
-literal|"Document node for "
+literal|"Document node proxy (docId="
 operator|+
 name|doc
 operator|.
 name|getDocId
 argument_list|()
+operator|+
+literal|")"
 return|;
 block|}
 else|else
