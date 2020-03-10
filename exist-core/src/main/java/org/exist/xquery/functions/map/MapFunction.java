@@ -15,6 +15,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -1579,6 +1593,17 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|final
+name|Collator
+name|collator
+init|=
+name|context
+operator|.
+name|getCollator
+argument_list|(
+name|collation
+argument_list|)
+decl_stmt|;
+specifier|final
 name|MapType
 name|map
 init|=
@@ -1589,7 +1614,7 @@ name|this
 operator|.
 name|context
 argument_list|,
-name|collation
+name|collator
 argument_list|)
 decl_stmt|;
 for|for

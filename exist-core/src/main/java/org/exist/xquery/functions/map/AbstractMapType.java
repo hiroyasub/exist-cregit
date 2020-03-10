@@ -494,6 +494,7 @@ name|AtomicValue
 argument_list|>
 name|getComparator
 parameter_list|(
+specifier|final
 name|String
 name|collation
 parameter_list|)
