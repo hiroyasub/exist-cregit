@@ -2090,6 +2090,28 @@ literal|" bytes"
 return|;
 block|}
 block|}
+comment|/**      * Replaces any Windows path separators with Unix path separators.      *      * @param pathString a path string      *      * @return the updated path string      */
+specifier|public
+specifier|static
+name|String
+name|withUnixSep
+parameter_list|(
+specifier|final
+name|String
+name|pathString
+parameter_list|)
+block|{
+return|return
+name|pathString
+operator|.
+name|replace
+argument_list|(
+literal|'\\'
+argument_list|,
+literal|'/'
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
