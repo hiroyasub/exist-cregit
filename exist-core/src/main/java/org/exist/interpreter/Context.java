@@ -590,7 +590,7 @@ name|Source
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/**      * Declare a user-defined static prefix/namespace mapping.      *      * eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the      * database. These default mappings need not to be declared explicitely.      *      * @param prefix the namespace prefix.      * @param uri the namespace URI.      *      * @throws XPathException if an error occurs when declaring the namespace.      */
+comment|/**      * Declare a user-defined static prefix/namespace mapping.      *      * eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the      * database. These default mappings need not to be declared explicitely.      *      * @param prefix the namespace prefix.      * @param uri the namespace URI.      *      * @throws XPathException if an error occurs when declaring the namespace      *     with error codes XQST0033 or XQST0070      */
 name|void
 name|declareNamespace
 parameter_list|(
@@ -1438,7 +1438,7 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-comment|/**      * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix      * specified by the module is used. If location is null, the module will be read from the namespace URI.      *      * @param namespaceURI the namespace URI of the module      * @param prefix the namespace prefix of the module      * @param location the location of the module      *      * @return the imported module      *      * @throws XPathException if an error occurs whilst importing the module      */
+comment|/**      * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix      * specified by the module is used. If location is null, the module will be read from the namespace URI.      *      * @param namespaceURI the namespace URI of the module      * @param prefix the namespace prefix of the module      * @param location the location of the module      *      * @return the imported module      *      * @throws XPathException if an error occurs whilst importing the module, with the error codes:      *      XPST0003      *      XQST0033      *      XQST0046      *      XQST0059      *      XQST0070      *      XQST0088      */
 name|Module
 name|importModule
 parameter_list|(

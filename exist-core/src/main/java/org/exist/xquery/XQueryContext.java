@@ -2046,6 +2046,7 @@ name|getExpathRepo
 argument_list|()
 return|;
 block|}
+comment|/**      * Resolve a Module from the EXPath Repository.      *      * @param namespace namespace URI      * @param prefix namespace prefix      *      * @return the module or null      *      * @throws XPathException if the namespace URI is invalid (XQST0046),      *     if the module could not be loaded (XQST0059) or compiled (XPST0003)      */
 specifier|private
 name|Module
 name|resolveInEXPathRepository
@@ -11725,6 +11726,10 @@ return|;
 block|}
 end_function
 
+begin_comment
+comment|/**      * Compile of borrow an already compile module from the cache.      *      * @param prefix the module namespace prefix      * @param namespaceURI the module namespace URI      * @param location the location hint      * @param source the source for the module      *      * @return the module or null      *      * @throws XPathException if the module could not be loaded (XQST0059) or compiled (XPST0003)      */
+end_comment
+
 begin_function
 specifier|private
 name|ExternalModule
@@ -11794,7 +11799,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Compile an XQuery Module      *      * @param prefix       the namespace prefix of the module.      * @param namespaceURI the namespace URI of the module.      * @param location     the location of the module      * @param source       the source of the module.      * @return The compiled module, or null if the source is not a module      * @throws XPathException if the module could not be loaded or compiled      */
+comment|/**      * Compile an XQuery Module      *      * @param prefix       the namespace prefix of the module.      * @param namespaceURI the namespace URI of the module.      * @param location     the location of the module      * @param source       the source of the module.      * @return The compiled module, or null if the source is not a module      * @throws XPathException if the module could not be loaded (XQST0059) or compiled (XPST0003)      */
 end_comment
 
 begin_function
@@ -12031,6 +12036,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"error found while loading module from "
 operator|+
 name|location
@@ -12084,6 +12093,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"error found while loading module from "
 operator|+
 name|location
@@ -12131,6 +12144,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
 literal|"namespace URI declared by module ("
 operator|+
 name|modExternal
@@ -12195,6 +12212,10 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"error found while loading module from "
 operator|+
 name|location
@@ -12219,6 +12240,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"error found while loading module from "
 operator|+
 name|location
