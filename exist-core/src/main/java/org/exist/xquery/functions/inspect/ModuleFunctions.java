@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2020 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -12,18 +16,6 @@ operator|.
 name|inspect
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
 
 begin_import
 import|import
@@ -171,6 +163,38 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionDSL
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|inspect
+operator|.
+name|InspectionModule
+operator|.
+name|functionSignature
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -179,50 +203,30 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|FNS_MODULE_FUNCTIONS_CURRENT
 init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
+name|functionSignature
 argument_list|(
 literal|"module-functions"
 argument_list|,
-name|InspectionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|InspectionModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
 literal|"Returns a sequence of function items pointing to each public function in the current module."
 argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
+name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
 argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"Sequence of function items containing all public functions in the current module or the empty sequence "
+literal|"Sequence of function items containing all public functions in the current module, "
 operator|+
-literal|"if the module is not known in the current context."
+literal|"or the empty sequence if the module is not known in the current context."
 argument_list|)
+argument_list|,
+name|params
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -231,31 +235,24 @@ specifier|static
 name|FunctionSignature
 name|FNS_MODULE_FUNCTIONS_OTHER
 init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
+name|functionSignature
 argument_list|(
 literal|"module-functions"
 argument_list|,
-name|InspectionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|InspectionModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
 literal|"Returns a sequence of function items pointing to each public function in the specified module."
 argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
+name|returnsOptMany
+argument_list|(
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+literal|"Sequence of function items containing all public functions in the module, "
+operator|+
+literal|"or the empty sequence if the module is not known in the current context."
+argument_list|)
+argument_list|,
+name|param
 argument_list|(
 literal|"location"
 argument_list|,
@@ -263,28 +260,7 @@ name|Type
 operator|.
 name|ANY_URI
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"The location URI of the module to be loaded."
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"Sequence of function items containing all public functions in the module or the empty sequence "
-operator|+
-literal|"if the module is not known in the current context."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -294,31 +270,24 @@ specifier|static
 name|FunctionSignature
 name|FNS_MODULE_FUNCTIONS_OTHER_URI
 init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
+name|functionSignature
 argument_list|(
 literal|"module-functions-by-uri"
 argument_list|,
-name|InspectionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|InspectionModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
 literal|"Returns a sequence of function items pointing to each public function in the specified module."
 argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
+name|returnsOptMany
+argument_list|(
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+literal|"Sequence of function items containing all public functions in the module, "
+operator|+
+literal|"or the empty sequence if the module is not known in the current context."
+argument_list|)
+argument_list|,
+name|param
 argument_list|(
 literal|"uri"
 argument_list|,
@@ -326,37 +295,18 @@ name|Type
 operator|.
 name|ANY_URI
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"The URI of the module to be loaded."
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"Sequence of function items containing all public functions in the module or the empty sequence "
-operator|+
-literal|"if the module is not known in the current context."
 argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
 name|ModuleFunctions
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -755,6 +705,7 @@ specifier|private
 name|void
 name|addFunctionRefsFromContext
 parameter_list|(
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|)
