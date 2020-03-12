@@ -1385,15 +1385,19 @@ specifier|static
 name|void
 name|addFunctionRefsFromModule
 parameter_list|(
+specifier|final
 name|Expression
 name|parent
 parameter_list|,
+specifier|final
 name|XQueryContext
 name|tempContext
 parameter_list|,
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -1701,6 +1705,7 @@ specifier|static
 name|String
 name|getXQueryVersion
 parameter_list|(
+specifier|final
 name|int
 name|version
 parameter_list|)

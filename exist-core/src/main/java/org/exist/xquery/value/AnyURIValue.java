@@ -572,13 +572,12 @@ operator|.
 name|ANY_URI
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|uri

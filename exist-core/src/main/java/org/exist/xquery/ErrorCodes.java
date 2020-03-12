@@ -49,20 +49,6 @@ specifier|public
 specifier|static
 specifier|final
 name|ErrorCode
-name|XPST0001
-init|=
-operator|new
-name|W3CErrorCode
-argument_list|(
-literal|"XPST0001"
-argument_list|,
-literal|"It is a static error if analysis of an expression relies on some component of the static context that has not been assigned a value."
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|ErrorCode
 name|XPDY0002
 init|=
 operator|new
@@ -1261,7 +1247,7 @@ name|W3CErrorCode
 argument_list|(
 literal|"XQST0088"
 argument_list|,
-literal|"It is a static    error if the literal that specifies the target namespace in a module import or a module declaration is of zero length."
+literal|"It is a static error if the literal that specifies the target namespace in a module import or a module declaration is of zero length."
 argument_list|)
 decl_stmt|;
 specifier|public

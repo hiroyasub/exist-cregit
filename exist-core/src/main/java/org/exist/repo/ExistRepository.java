@@ -271,6 +271,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Module
 import|;
 end_import
@@ -668,6 +680,7 @@ return|return
 name|myParent
 return|;
 block|}
+comment|/**      * Resolve a Java Module.      *      * @param namespace the namespace of the module      * @return the Java module, or null      *      * @throws XPathException with:      *      XQST0046 if the namespace URI is invalid      */
 specifier|public
 name|Module
 name|resolveJavaModule
@@ -709,6 +722,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0046
+argument_list|,
 literal|"Invalid URI: "
 operator|+
 name|namespace
@@ -1073,6 +1090,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * Resolve an XQuery Module.      *      * @param namespace the namespace of the module      * @return the path to the module, or null      *      * @throws XPathException with:      *      XQST0046 if the namespace URI is invalid      *      XQST0059 if an error occurs loading the module      */
 specifier|public
 name|Path
 name|resolveXQueryModule
@@ -1110,6 +1128,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0046
+argument_list|,
 literal|"Invalid URI: "
 operator|+
 name|namespace
@@ -1266,6 +1288,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0046
+argument_list|,
 literal|"Error parsing the URI of the query library: "
 operator|+
 name|sysid
@@ -1285,6 +1311,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
 literal|"Error resolving the query library: "
 operator|+
 name|namespace
