@@ -81,34 +81,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|xquery
@@ -187,21 +159,7 @@ name|AtomicValue
 operator|::
 name|hashCode
 decl_stmt|;
-specifier|protected
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|MapType
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|// TODO(AR) future potential optimisation... could the class member `map` remain `linear` ?
 specifier|private
 name|IMap
 argument_list|<
@@ -663,7 +621,6 @@ operator|instanceof
 name|MapType
 condition|)
 block|{
-comment|//TODO(AR) is the union in the correct direction i.e. keys from `other` overwrite `this`
 name|map
 operator|=
 name|map
@@ -683,7 +640,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// TODO(AR) could the class member `map` remain `linear` ?
 comment|// create a transient map
 specifier|final
 name|IMap
@@ -1370,13 +1326,6 @@ name|Type
 operator|.
 name|ITEM
 expr_stmt|;
-comment|//            try {
-comment|//                final Map.Transient<AtomicValue, Sequence> newTransientMap = PersistentTrieMap.<AtomicValue, Sequence>of().asTransient();
-comment|//                newTransientMap.__putAllEquivalent(map, EqualityComparator.fromComparator((Comparator)getComparator(null)));   //NOTE: getComparator(null) returns a default distinct values comparator
-comment|//                map = newTransientMap.freeze();
-comment|//            } catch (final XPathException e) {
-comment|//                LOG.error(e);
-comment|//            }
 block|}
 block|}
 specifier|private
@@ -1459,7 +1408,6 @@ parameter_list|()
 block|{
 comment|// TODO(AR) see bug in bifurcan - https://github.com/lacuna/bifurcan/issues/23
 comment|//return new LinearMap<K, V>();
-comment|// TODO(AR) workaround for the above bug
 return|return
 operator|new
 name|Map
