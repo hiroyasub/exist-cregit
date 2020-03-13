@@ -135,7 +135,7 @@ name|functions
 operator|.
 name|map
 operator|.
-name|MapType
+name|AbstractMapType
 import|;
 end_import
 
@@ -1290,7 +1290,7 @@ name|Expression
 name|parent
 parameter_list|,
 specifier|final
-name|MapType
+name|AbstractMapType
 name|entries
 parameter_list|)
 throws|throws
