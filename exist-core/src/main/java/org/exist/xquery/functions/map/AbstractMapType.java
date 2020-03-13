@@ -29,6 +29,18 @@ end_import
 
 begin_import
 import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|IEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -113,16 +125,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract base class for map types. A map item is also a function item. This class thus extends  * {@link FunctionReference} to allow the item to be called in a dynamic function  * call.  *  * @author Wolfgang Meier  */
 end_comment
@@ -135,9 +137,7 @@ name|AbstractMapType
 extends|extends
 name|FunctionReference
 implements|implements
-name|Map
-operator|.
-name|Entry
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -146,9 +146,7 @@ argument_list|>
 implements|,
 name|Iterable
 argument_list|<
-name|Map
-operator|.
-name|Entry
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -351,22 +349,6 @@ name|Type
 operator|.
 name|MAP
 return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Sequence
-name|setValue
-parameter_list|(
-name|Sequence
-name|value
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
 block|}
 annotation|@
 name|Override

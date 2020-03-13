@@ -33,6 +33,18 @@ end_import
 
 begin_import
 import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|IEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -1287,9 +1299,7 @@ block|{
 for|for
 control|(
 specifier|final
-name|Map
-operator|.
-name|Entry
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -1309,7 +1319,7 @@ name|subTypeOf
 argument_list|(
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 operator|.
 name|getType
@@ -1335,7 +1345,7 @@ literal|"name of external variable must be a qname: "
 operator|+
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 argument_list|)
 throw|;
@@ -1353,7 +1363,7 @@ name|QNameValue
 operator|)
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 operator|)
 operator|.
@@ -1367,7 +1377,7 @@ name|setValue
 argument_list|(
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 argument_list|)
 expr_stmt|;

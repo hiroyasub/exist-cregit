@@ -29,6 +29,18 @@ end_import
 
 begin_import
 import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|IEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -62,16 +74,6 @@ operator|.
 name|value
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -1729,9 +1731,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Map
-operator|.
-name|Entry
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -1760,12 +1760,12 @@ index|[]
 block|{
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 block|,
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 block|}
 argument_list|)

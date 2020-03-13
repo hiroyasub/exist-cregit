@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|ibm
@@ -38,6 +28,18 @@ operator|.
 name|text
 operator|.
 name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|IEntry
 import|;
 end_import
 
@@ -1181,9 +1183,8 @@ return|;
 block|}
 for|for
 control|(
-name|Map
-operator|.
-name|Entry
+specifier|final
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -1203,7 +1204,7 @@ name|contains
 argument_list|(
 name|aentry
 operator|.
-name|getKey
+name|key
 argument_list|()
 argument_list|)
 condition|)
@@ -1219,7 +1220,7 @@ name|deepEqualsSeq
 argument_list|(
 name|aentry
 operator|.
-name|getValue
+name|value
 argument_list|()
 argument_list|,
 name|bmap
@@ -1228,7 +1229,7 @@ name|get
 argument_list|(
 name|aentry
 operator|.
-name|getKey
+name|key
 argument_list|()
 argument_list|)
 argument_list|,
