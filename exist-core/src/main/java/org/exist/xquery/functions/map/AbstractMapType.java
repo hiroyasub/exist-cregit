@@ -158,6 +158,28 @@ name|Lookup
 operator|.
 name|LookupSupport
 block|{
+comment|/**      * Used when the type of the keys for the      * map is unknown.      */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNKNOWN_KEY_TYPE
+init|=
+name|Type
+operator|.
+name|ANY_SIMPLE_TYPE
+decl_stmt|;
+comment|/**      * Used when a map contains keys of various xs:anyAtomicType      */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MIXED_KEY_TYPES
+init|=
+name|Type
+operator|.
+name|ATOMIC
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static

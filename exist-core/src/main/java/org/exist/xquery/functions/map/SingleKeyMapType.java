@@ -117,20 +117,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -356,11 +342,9 @@ name|collator
 argument_list|)
 decl_stmt|;
 name|int
-name|type
+name|keyType
 init|=
-name|Type
-operator|.
-name|ANY_TYPE
+name|UNKNOWN_KEY_TYPE
 decl_stmt|;
 if|if
 condition|(
@@ -384,7 +368,7 @@ operator|.
 name|value
 argument_list|)
 expr_stmt|;
-name|type
+name|keyType
 operator|=
 name|this
 operator|.
@@ -405,7 +389,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|type
+name|keyType
 operator|!=
 name|key
 operator|.
@@ -413,11 +397,9 @@ name|getType
 argument_list|()
 condition|)
 block|{
-name|type
+name|keyType
 operator|=
-name|Type
-operator|.
-name|ITEM
+name|MIXED_KEY_TYPES
 expr_stmt|;
 block|}
 return|return
@@ -431,7 +413,7 @@ operator|.
 name|forked
 argument_list|()
 argument_list|,
-name|type
+name|keyType
 argument_list|)
 return|;
 block|}

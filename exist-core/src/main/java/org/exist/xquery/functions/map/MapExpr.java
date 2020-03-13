@@ -353,9 +353,9 @@ decl_stmt|;
 name|int
 name|prevType
 init|=
-name|Type
+name|AbstractMapType
 operator|.
-name|ANY_TYPE
+name|UNKNOWN_KEY_TYPE
 decl_stmt|;
 for|for
 control|(
@@ -511,9 +511,9 @@ condition|)
 block|{
 name|prevType
 operator|=
-name|Type
+name|AbstractMapType
 operator|.
-name|ITEM
+name|MIXED_KEY_TYPES
 expr_stmt|;
 block|}
 block|}
