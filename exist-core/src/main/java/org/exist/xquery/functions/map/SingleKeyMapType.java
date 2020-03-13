@@ -167,6 +167,10 @@ name|newLinearMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implementation of the XDM map() type for a map that only  * contains a single key and value.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -437,6 +441,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|AtomicValue
 name|key
 parameter_list|)
