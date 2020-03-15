@@ -2106,6 +2106,17 @@ name|Item
 name|nextItem
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|hasNext
+argument_list|()
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 return|return
 name|iterator
 operator|.
