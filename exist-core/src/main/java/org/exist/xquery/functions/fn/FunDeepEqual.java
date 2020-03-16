@@ -287,7 +287,7 @@ name|functions
 operator|.
 name|map
 operator|.
-name|MapType
+name|AbstractMapType
 import|;
 end_import
 
@@ -1147,20 +1147,20 @@ literal|false
 return|;
 block|}
 specifier|final
-name|MapType
+name|AbstractMapType
 name|amap
 init|=
 operator|(
-name|MapType
+name|AbstractMapType
 operator|)
 name|a
 decl_stmt|;
 specifier|final
-name|MapType
+name|AbstractMapType
 name|bmap
 init|=
 operator|(
-name|MapType
+name|AbstractMapType
 operator|)
 name|b
 decl_stmt|;
