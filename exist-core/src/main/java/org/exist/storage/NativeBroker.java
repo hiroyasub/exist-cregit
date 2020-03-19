@@ -8359,19 +8359,18 @@ argument_list|(
 name|childName
 argument_list|)
 decl_stmt|;
-try|try
-init|(
 specifier|final
 name|Collection
 name|child
 init|=
-name|getCollection
+name|getCollectionForOpen
 argument_list|(
+name|collectionsCache
+argument_list|,
 name|childUri
 argument_list|)
-init|)
-block|{
-comment|// NOTE: we already have a WRITE lock on child
+decl_stmt|;
+comment|// NOTE: we have a write lock on the sourceCollection, which means we don't need to lock sub-collections in the tree
 if|if
 condition|(
 name|child
@@ -8410,7 +8409,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
