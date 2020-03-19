@@ -65,6 +65,16 @@ name|CollectionManagementService
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Extends the {@link org.xmldb.api.modules.CollectionManagementService}  * interface with extensions specific to eXist, in particular moving and copying  * collections and resources.  *  * @author wolf  */
 end_comment
@@ -76,18 +86,22 @@ name|EXistCollectionManagementService
 extends|extends
 name|CollectionManagementService
 block|{
-comment|/**      * Move a Collection.      *      * @param collection the source collection.      * @param destination the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use XmldbURI version instead.      *      * @throws XMLDBException if an error occurs when moving the collection.      */
+comment|/**      * Move and/or rename a Collection.      *      * @param collectionName name of the collection to move/rename      * @param destination the destination collection, or null if just renaming      * @param newName the new name, or null if just moving       * @deprecated Use {@link #move(XmldbURI, XmldbURI, XmldbURI)} instead.      *      * @throws XMLDBException if an error occurs when moving the collection.      */
 annotation|@
 name|Deprecated
 name|void
 name|move
 parameter_list|(
 name|String
-name|collection
+name|collectionName
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|destination
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|newName
 parameter_list|)
@@ -163,15 +177,20 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Move and/or rename a Collection.      *      * @param collectionName name of the collection to move/rename      * @param destination the destination collection, or null if just renaming      * @param newName the new name, or null if just moving      */
 name|void
 name|move
 parameter_list|(
 name|XmldbURI
-name|collection
+name|collectionName
 parameter_list|,
+annotation|@
+name|Nullable
 name|XmldbURI
 name|destination
 parameter_list|,
+annotation|@
+name|Nullable
 name|XmldbURI
 name|newName
 parameter_list|)
