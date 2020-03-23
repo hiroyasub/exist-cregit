@@ -178,11 +178,6 @@ literal|255
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|setAlwaysOnTop
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|setDefaultCloseOperation
 argument_list|(
 name|DO_NOTHING_ON_CLOSE
@@ -608,6 +603,23 @@ expr_stmt|;
 name|setVisible
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+comment|// bring to front
+name|SwingUtilities
+operator|.
+name|invokeLater
+argument_list|(
+parameter_list|()
+lambda|->
+block|{
+name|toFront
+argument_list|()
+expr_stmt|;
+name|repaint
+argument_list|()
+expr_stmt|;
+block|}
 argument_list|)
 expr_stmt|;
 block|}
