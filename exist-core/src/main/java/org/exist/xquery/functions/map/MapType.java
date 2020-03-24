@@ -683,7 +683,7 @@ name|other
 decl_stmt|;
 name|newMap
 operator|=
-name|map
+name|newMap
 operator|.
 name|union
 argument_list|(
