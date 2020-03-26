@@ -239,13 +239,6 @@ name|NodeId
 name|other
 parameter_list|)
 function_decl|;
-name|boolean
-name|equals
-parameter_list|(
-name|NodeId
-name|other
-parameter_list|)
-function_decl|;
 comment|/**      * Returns the size (in bytes) of this node id. Depends on      * the concrete implementation.      *      * @return size      */
 name|int
 name|size
