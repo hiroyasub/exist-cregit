@@ -257,7 +257,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|parent
+name|ast
 argument_list|,
 name|ErrorCodes
 operator|.
