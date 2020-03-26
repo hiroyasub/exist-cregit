@@ -105,7 +105,7 @@ name|functions
 operator|.
 name|map
 operator|.
-name|MapType
+name|AbstractMapType
 import|;
 end_import
 
@@ -577,7 +577,7 @@ argument_list|(
 name|callingExpr
 argument_list|,
 operator|(
-name|MapType
+name|AbstractMapType
 operator|)
 name|parametersItem
 argument_list|)

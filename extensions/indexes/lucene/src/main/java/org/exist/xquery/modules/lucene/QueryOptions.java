@@ -19,15 +19,13 @@ end_package
 
 begin_import
 import|import
-name|org
+name|io
 operator|.
-name|apache
+name|lacuna
 operator|.
-name|lucene
+name|bifurcan
 operator|.
-name|facet
-operator|.
-name|DrillDownQuery
+name|IEntry
 import|;
 end_import
 
@@ -41,7 +39,7 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|FacetsConfig
+name|DrillDownQuery
 import|;
 end_import
 
@@ -106,20 +104,6 @@ operator|.
 name|search
 operator|.
 name|MultiTermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
 import|;
 end_import
 
@@ -625,9 +609,8 @@ name|XPathException
 block|{
 for|for
 control|(
-name|Map
-operator|.
-name|Entry
+specifier|final
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -644,7 +627,7 @@ name|key
 init|=
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 operator|.
 name|getStringValue
@@ -662,7 +645,7 @@ operator|&&
 operator|!
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|isEmpty
@@ -683,7 +666,7 @@ name|i
 init|=
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|unorderedIterator
@@ -722,7 +705,7 @@ argument_list|)
 operator|&&
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|hasOne
@@ -730,7 +713,7 @@ argument_list|()
 operator|&&
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|getItemType
@@ -759,9 +742,8 @@ decl_stmt|;
 comment|// iterate over each dimension and collect its values into a FacetQuery
 for|for
 control|(
-name|Map
-operator|.
-name|Entry
+specifier|final
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -774,7 +756,7 @@ name|AbstractMapType
 operator|)
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|itemAt
@@ -789,7 +771,7 @@ name|value
 init|=
 name|facet
 operator|.
-name|getValue
+name|value
 argument_list|()
 decl_stmt|;
 name|FacetQuery
@@ -822,7 +804,7 @@ name|ArrayType
 operator|)
 name|facet
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|itemAt
@@ -849,7 +831,7 @@ name|put
 argument_list|(
 name|facet
 operator|.
-name|getKey
+name|key
 argument_list|()
 operator|.
 name|getStringValue
@@ -877,7 +859,7 @@ name|key
 argument_list|,
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 operator|.
 name|getStringValue

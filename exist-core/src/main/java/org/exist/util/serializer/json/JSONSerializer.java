@@ -43,6 +43,18 @@ end_import
 
 begin_import
 import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|IEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -78,18 +90,6 @@ operator|.
 name|serializers
 operator|.
 name|Serializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|ErrorCodes
 import|;
 end_import
 
@@ -165,30 +165,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXNotRecognizedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXNotSupportedException
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -216,16 +192,6 @@ operator|.
 name|io
 operator|.
 name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -942,9 +908,8 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|Map
-operator|.
-name|Entry
+specifier|final
+name|IEntry
 argument_list|<
 name|AtomicValue
 argument_list|,
@@ -961,7 +926,7 @@ name|writeFieldName
 argument_list|(
 name|entry
 operator|.
-name|getKey
+name|key
 argument_list|()
 operator|.
 name|getStringValue
@@ -972,7 +937,7 @@ name|serializeSequence
 argument_list|(
 name|entry
 operator|.
-name|getValue
+name|value
 argument_list|()
 argument_list|,
 name|generator
