@@ -448,11 +448,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns an xml fragment or a sequence of nodes between two elements (normally milestone elements). "
+literal|"Serializes an XML fragment or a sequence of nodes between two elements (normally milestone elements). "
 operator|+
-literal|"This function works only on documents which are stored in eXist DB."
+literal|"This function works only on documents which are stored in the database itself."
 operator|+
 literal|"The $beginning-node represents the first node/milestone element, $ending-node, the second one. "
+operator|+
+literal|"The results will be inclusive of $beginning-node and exclusive of the $ending-node."
 operator|+
 literal|"The third argument, $make-fragment, is "
 operator|+
@@ -460,11 +462,11 @@ literal|"a boolean value for the path completion. If it is set to true() the "
 operator|+
 literal|"result sequence is wrapped into a parent element node. "
 operator|+
-literal|"The fourth argument, display-root-namespace, is "
+literal|"The fourth argument  display-root-namespace (only used when $make-fragment is true()), is "
 operator|+
 literal|"a boolean value for displaying the root node namespace. If it is set to true() the "
 operator|+
-literal|"attribute \"xmlns\" in the root node of the result sequence is determined explicitely from the $beginning-node. "
+literal|"attribute \"xmlns\" in the root node of the result sequence is determined from the $beginning-node. "
 operator|+
 literal|"Example call of the function for getting the fragment between two TEI page break element nodes: "
 operator|+
