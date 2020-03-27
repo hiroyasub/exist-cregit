@@ -719,6 +719,15 @@ condition|;
 control|)
 block|{
 specifier|final
+name|DocumentImpl
+name|doc
+init|=
+name|i
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -731,10 +740,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 argument_list|,
-name|i
-operator|.
-name|next
-argument_list|()
+name|doc
 argument_list|)
 decl_stmt|;
 specifier|final
