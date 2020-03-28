@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public  *  License along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public  *  License along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -215,16 +215,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -240,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Handles predicate expressions.  *   *@author Wolfgang Meier  */
+comment|/**  * Handles predicate expressions.  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -306,6 +296,7 @@ decl_stmt|;
 specifier|public
 name|Predicate
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -322,6 +313,7 @@ specifier|public
 name|void
 name|addPath
 parameter_list|(
+specifier|final
 name|PathExpr
 name|path
 parameter_list|)
@@ -358,16 +350,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.PathExpr#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|deps
-init|=
-literal|0
 decl_stmt|;
 if|if
 condition|(
@@ -402,11 +394,13 @@ return|return
 name|deps
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see      * org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -595,6 +589,7 @@ specifier|private
 name|AnalyzeContextInfo
 name|createContext
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -706,12 +701,15 @@ specifier|public
 name|Boolean
 name|matchPredicate
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1023,7 +1021,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-comment|/*                      *                       * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
+comment|/*                      *                      * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
 name|innerSeq
 operator|=
 name|inner
@@ -1269,12 +1267,15 @@ specifier|public
 name|Sequence
 name|evalPredicate
 parameter_list|(
+specifier|final
 name|Sequence
 name|outerSequence
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1599,7 +1600,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-comment|/*                      *                       * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
+comment|/*                      *                      * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
 name|innerSeq
 operator|=
 name|inner
@@ -1901,12 +1902,15 @@ specifier|private
 name|Sequence
 name|evalBoolean
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Expression
 name|inner
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -2503,6 +2507,7 @@ specifier|private
 name|Sequence
 name|selectByNodeSet
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -2804,15 +2809,19 @@ specifier|private
 name|Sequence
 name|selectByPosition
 parameter_list|(
+specifier|final
 name|Sequence
 name|outerSequence
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|Sequence
 name|innerSeq
 parameter_list|)
@@ -3775,10 +3784,13 @@ name|result
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContextDocSet
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|contextSet
 parameter_list|)
@@ -3819,11 +3831,13 @@ return|return
 name|executionMode
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.PathExpr#resetState()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
@@ -3847,6 +3861,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getParent
@@ -3856,10 +3872,13 @@ return|return
 name|parent
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|accept
 parameter_list|(
+specifier|final
 name|ExpressionVisitor
 name|visitor
 parameter_list|)
@@ -3872,10 +3891,13 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -3902,6 +3924,8 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
