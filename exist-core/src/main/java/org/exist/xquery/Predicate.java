@@ -1420,7 +1420,7 @@ name|innerSeq
 argument_list|)
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param inner      * @return The result of the boolean evaluation of the predicate.      * @throws XPathException      */
+comment|/**      * Evaluate the inner part of the predicate as a boolean.      *      * @param contextSequence the context sequence      * @param inner the inner expression      *      * @return The result of the boolean evaluation of the predicate.      *      * @throws XPathException if an error occurs      */
 specifier|private
 name|Sequence
 name|evalBoolean
@@ -2025,7 +2025,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @return The result of the node set evaluation of the predicate.      * @throws XPathException      */
+comment|/**      * @param contextSequence the context sequence      *      * @return The result of the node set evaluation of the predicate.      *      * @throws XPathException if an error occurs      */
 specifier|private
 name|Sequence
 name|selectByNodeSet
@@ -2327,7 +2327,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param outerSequence      * @param contextSequence      * @param mode      * @param innerSeq      * @return The result of the positional evaluation of the predicate.      * @throws XPathException      */
+comment|/**      * @param outerSequence the outer sequence      * @param contextSequence the context sequence      * @param mode the mode      * @param innerSeq the inner sequence      *      * @return The result of the positional evaluation of the predicate.      *      * @throws XPathException if an error occurs      */
 specifier|private
 name|Sequence
 name|selectByPosition
