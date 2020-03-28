@@ -2653,9 +2653,6 @@ name|list
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Configurable
-argument_list|>
 argument_list|(
 name|confs
 operator|.
@@ -2663,6 +2660,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// has to be raw type as we don't know what it should be.
 name|field
 operator|.
 name|set
@@ -5811,14 +5809,6 @@ operator|.
 name|getClass
 argument_list|()
 decl_stmt|;
-name|instance
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getAnnotations
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 operator|!
