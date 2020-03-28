@@ -245,6 +245,22 @@ end_import
 
 begin_import
 import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Predicate
+operator|.
+name|ExecutionMode
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
 name|com
 operator|.
 name|evolvedbinary
@@ -271,38 +287,17 @@ extends|extends
 name|PathExpr
 block|{
 specifier|public
-specifier|final
-specifier|static
-name|int
+enum|enum
+name|ExecutionMode
+block|{
 name|UNKNOWN
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
 name|NODE
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
 name|BOOLEAN
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
 name|POSITIONAL
-init|=
-literal|2
-decl_stmt|;
+block|;     }
 specifier|private
 name|CachedResult
 name|cached
@@ -310,7 +305,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|int
+name|ExecutionMode
 name|executionMode
 init|=
 name|UNKNOWN
@@ -872,7 +867,7 @@ block|}
 specifier|final
 name|Tuple2
 argument_list|<
-name|Integer
+name|ExecutionMode
 argument_list|,
 name|Sequence
 argument_list|>
@@ -886,7 +881,7 @@ name|inner
 argument_list|)
 decl_stmt|;
 specifier|final
-name|int
+name|ExecutionMode
 name|recomputedExecutionMode
 init|=
 name|recomputed
@@ -1130,7 +1125,7 @@ block|}
 specifier|private
 name|Tuple2
 argument_list|<
-name|Integer
+name|ExecutionMode
 argument_list|,
 name|Sequence
 argument_list|>
@@ -1147,7 +1142,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|int
+name|ExecutionMode
 name|recomputedExecutionMode
 init|=
 name|executionMode
@@ -3346,7 +3341,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|int
+name|ExecutionMode
 name|getExecutionMode
 parameter_list|()
 block|{
