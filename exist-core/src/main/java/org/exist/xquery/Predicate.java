@@ -322,7 +322,7 @@ if|if
 condition|(
 name|path
 operator|.
-name|getLength
+name|getSubExpressionCount
 argument_list|()
 operator|==
 literal|1
@@ -332,7 +332,7 @@ name|add
 argument_list|(
 name|path
 operator|.
-name|getExpression
+name|getSubExpression
 argument_list|(
 literal|0
 argument_list|)
@@ -363,7 +363,7 @@ name|deps
 decl_stmt|;
 if|if
 condition|(
-name|getLength
+name|getSubExpressionCount
 argument_list|()
 operator|==
 literal|1
@@ -371,7 +371,7 @@ condition|)
 block|{
 name|deps
 operator|=
-name|getExpression
+name|getSubExpression
 argument_list|(
 literal|0
 argument_list|)
@@ -433,7 +433,7 @@ specifier|final
 name|Expression
 name|inner
 init|=
-name|getExpression
+name|getSubExpression
 argument_list|(
 literal|0
 argument_list|)
@@ -681,7 +681,7 @@ argument_list|()
 operator|==
 literal|1
 condition|?
-name|getExpression
+name|getSubExpression
 argument_list|(
 literal|0
 argument_list|)
@@ -3804,13 +3804,13 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|getLength
+name|getSubExpressionCount
 argument_list|()
 operator|>
 literal|0
 condition|)
 block|{
-name|getExpression
+name|getSubExpression
 argument_list|(
 literal|0
 argument_list|)
