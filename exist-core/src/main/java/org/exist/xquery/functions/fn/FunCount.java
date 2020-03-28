@@ -269,7 +269,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The number of items in the argument sequence"
 argument_list|)

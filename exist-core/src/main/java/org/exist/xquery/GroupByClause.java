@@ -439,7 +439,7 @@ argument_list|()
 condition|?
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 else|:
 name|Cardinality
 operator|.

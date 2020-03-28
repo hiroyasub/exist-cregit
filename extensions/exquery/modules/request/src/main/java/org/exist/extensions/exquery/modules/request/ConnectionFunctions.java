@@ -276,7 +276,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The IP address of the server."
 argument_list|)
@@ -306,7 +306,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The Hostname of the client that issues the HTTP Request."
 argument_list|)
@@ -336,7 +336,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The IP address of the client."
 argument_list|)
@@ -366,7 +366,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The TCP port number of the client."
 argument_list|)

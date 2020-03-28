@@ -139,14 +139,14 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
 return|return
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 return|;
 block|}
 annotation|@

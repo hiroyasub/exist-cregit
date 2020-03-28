@@ -632,7 +632,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|"Returns an empty sequence"
 argument_list|)
@@ -679,7 +679,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|"Returns an empty sequence"
 argument_list|)

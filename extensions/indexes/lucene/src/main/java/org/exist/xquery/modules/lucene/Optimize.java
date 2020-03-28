@@ -138,7 +138,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|""
 argument_list|)

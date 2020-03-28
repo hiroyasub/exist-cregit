@@ -487,7 +487,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The first node/milestone element"
 argument_list|)
@@ -550,7 +550,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"the string containing the fragment between the two node/milestone elements."
 argument_list|)

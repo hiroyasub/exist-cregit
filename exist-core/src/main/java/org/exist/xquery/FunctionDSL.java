@@ -640,7 +640,7 @@ name|int
 name|type
 parameter_list|,
 specifier|final
-name|int
+name|Cardinality
 name|cardinality
 parameter_list|,
 specifier|final
@@ -862,7 +862,7 @@ name|description
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a Function Return Type which describes no result.      *      * @return a Function Return Type which has a cardinality of {@link Cardinality#EMPTY} and {@link Type#EMPTY}      */
+comment|/**      * Creates a Function Return Type which describes no result.      *      * @return a Function Return Type which has a cardinality of {@link Cardinality#EMPTY_SEQUENCE} and {@link Type#EMPTY}      */
 specifier|public
 specifier|static
 name|FunctionReturnSequenceType
@@ -879,7 +879,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|null
 argument_list|)
@@ -896,7 +896,7 @@ name|int
 name|type
 parameter_list|,
 specifier|final
-name|int
+name|Cardinality
 name|cardinality
 parameter_list|)
 block|{
@@ -922,7 +922,7 @@ name|int
 name|type
 parameter_list|,
 specifier|final
-name|int
+name|Cardinality
 name|cardinality
 parameter_list|,
 specifier|final

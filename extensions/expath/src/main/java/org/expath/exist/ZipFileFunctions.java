@@ -420,7 +420,7 @@ argument_list|)
 argument_list|)
 block|,
 comment|//zip:zip-file($zip as element(zip:file)) as empty-sequence()
-comment|/*            new FunctionSignature(                     new QName(ZIP_FILE, ZipModule.NAMESPACE_URI, ZipModule.PREFIX),                     "Creates a new zip file at zip:file/@href using the children specified within the element",                     new SequenceType[]{                             ENTRY_PARAM                     },                     new FunctionReturnSequenceType(Type.EMPTY, Cardinality.EMPTY, "The empty sequence.")             ),*/
+comment|/*            new FunctionSignature(                     new QName(ZIP_FILE, ZipModule.NAMESPACE_URI, ZipModule.PREFIX),                     "Creates a new zip file at zip:file/@href using the children specified within the element",                     new SequenceType[]{                             ENTRY_PARAM                     },                     new FunctionReturnSequenceType(Type.EMPTY, Cardinality.EMPTY_SEQUENCE, "The empty sequence.")             ),*/
 comment|//zip:update-entries($zip as element(zip:file), $output as xs:anyURI) as empty-sequence()
 operator|new
 name|FunctionSignature

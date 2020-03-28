@@ -8305,7 +8305,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|int
+specifier|final
+name|Cardinality
 name|actualCardinality
 decl_stmt|;
 if|if
@@ -8320,7 +8321,7 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 expr_stmt|;
 block|}
 if|else if
@@ -8335,7 +8336,7 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|MANY
+name|_MANY
 expr_stmt|;
 block|}
 else|else
@@ -8344,17 +8345,13 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 expr_stmt|;
 block|}
 comment|//Type.EMPTY is *not* a subtype of other types ; checking cardinality first
 if|if
 condition|(
 operator|!
-name|Cardinality
-operator|.
-name|checkCardinality
-argument_list|(
 name|var
 operator|.
 name|getSequenceType
@@ -8362,7 +8359,9 @@ argument_list|()
 operator|.
 name|getCardinality
 argument_list|()
-argument_list|,
+operator|.
+name|isSuperCardinalityOrEqualOf
+argument_list|(
 name|actualCardinality
 argument_list|)
 condition|)
@@ -8380,10 +8379,6 @@ argument_list|()
 operator|+
 literal|". Expected "
 operator|+
-name|Cardinality
-operator|.
-name|getDescription
-argument_list|(
 name|var
 operator|.
 name|getSequenceType
@@ -8391,16 +8386,16 @@ argument_list|()
 operator|.
 name|getCardinality
 argument_list|()
-argument_list|)
+operator|.
+name|getHumanDescription
+argument_list|()
 operator|+
 literal|", got "
 operator|+
-name|Cardinality
-operator|.
-name|getDescription
-argument_list|(
 name|actualCardinality
-argument_list|)
+operator|.
+name|getHumanDescription
+argument_list|()
 argument_list|)
 throw|;
 block|}

@@ -540,7 +540,7 @@ name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The binary file from which to extract from"
 argument_list|)
@@ -555,13 +555,13 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"Extracted metadata"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/*     public final static FunctionSignature writeMetadata = new FunctionSignature(         new QName("write-metadata", ExiftoolModule.NAMESPACE_URI, ExiftoolModule.PREFIX),         "write the metadata into a binary document",         new SequenceType[]{             new FunctionParameterSequenceType("doc",Type.DOCUMENT, Cardinality.ONE, " XML file containing file"),             new FunctionParameterSequenceType("binary", Type.BASE64_BINARY, Cardinality.ONE, "The binary data into where metadata is written")         },         new FunctionReturnSequenceType(Type.DOCUMENT, Cardinality.ONE, "Extracted metadata")     );     */
+comment|/*     public final static FunctionSignature writeMetadata = new FunctionSignature(         new QName("write-metadata", ExiftoolModule.NAMESPACE_URI, ExiftoolModule.PREFIX),         "write the metadata into a binary document",         new SequenceType[]{             new FunctionParameterSequenceType("doc",Type.DOCUMENT, Cardinality.EXACTLY_ONE, " XML file containing file"),             new FunctionParameterSequenceType("binary", Type.BASE64_BINARY, Cardinality.EXACTLY_ONE, "The binary data into where metadata is written")         },         new FunctionReturnSequenceType(Type.DOCUMENT, Cardinality.EXACTLY_ONE, "Extracted metadata")     );     */
 specifier|public
 name|MetadataFunctions
 parameter_list|(

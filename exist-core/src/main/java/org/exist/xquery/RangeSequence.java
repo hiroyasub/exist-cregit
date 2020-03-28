@@ -713,7 +713,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
@@ -734,7 +734,7 @@ block|{
 return|return
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 return|;
 block|}
 if|if
@@ -753,7 +753,7 @@ block|}
 return|return
 name|Cardinality
 operator|.
-name|MANY
+name|_MANY
 return|;
 block|}
 annotation|@

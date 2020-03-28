@@ -574,7 +574,7 @@ throws|throws
 name|XPathException
 block|{
 specifier|final
-name|int
+name|Cardinality
 name|requiredCardinality
 init|=
 name|type
@@ -582,7 +582,7 @@ operator|.
 name|getCardinality
 argument_list|()
 decl_stmt|;
-name|int
+name|Cardinality
 name|actualCardinality
 decl_stmt|;
 if|if
@@ -597,7 +597,7 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 expr_stmt|;
 block|}
 if|else if
@@ -612,7 +612,7 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|MANY
+name|_MANY
 expr_stmt|;
 block|}
 else|else
@@ -621,18 +621,16 @@ name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 expr_stmt|;
 block|}
 if|if
 condition|(
 operator|!
-name|Cardinality
-operator|.
-name|checkCardinality
-argument_list|(
 name|requiredCardinality
-argument_list|,
+operator|.
+name|isSuperCardinalityOrEqualOf
+argument_list|(
 name|actualCardinality
 argument_list|)
 condition|)
@@ -715,8 +713,10 @@ operator|.
 name|CONTEXT_ITEM
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{

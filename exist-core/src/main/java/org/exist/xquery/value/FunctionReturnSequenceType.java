@@ -15,6 +15,18 @@ name|value
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class is used to specify the name and description of an XQuery function parameter.  *  * @author lcahlander  * @version 1.3  */
 end_comment
@@ -36,12 +48,15 @@ comment|/**      * @param primaryType The<strong>Type</strong> of the parameter.
 specifier|public
 name|FunctionReturnSequenceType
 parameter_list|(
+specifier|final
 name|int
 name|primaryType
 parameter_list|,
-name|int
+specifier|final
+name|Cardinality
 name|cardinality
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|)
@@ -83,6 +98,7 @@ specifier|public
 name|void
 name|setDescription
 parameter_list|(
+specifier|final
 name|String
 name|description
 parameter_list|)

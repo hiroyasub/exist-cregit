@@ -316,7 +316,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The Scheme of the HTTP Request."
 argument_list|)
@@ -346,7 +346,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The Hostname of the HTTP Request."
 argument_list|)
@@ -376,7 +376,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The Port of the HTTP Request."
 argument_list|)
@@ -406,7 +406,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The Path of the URI of the HTTP Request."
 argument_list|)

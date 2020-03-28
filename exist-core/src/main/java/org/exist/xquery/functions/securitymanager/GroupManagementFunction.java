@@ -279,7 +279,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -342,7 +342,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -421,7 +421,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -468,12 +468,12 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//TODO implement later
-comment|/* public final static FunctionSignature FNS_DELETE_GROUP_WITH_SUCCESSOR = new FunctionSignature(         qnRemoveGroup         "Deletes an existing group identified by $group-id, any resources owned by the group will be moved to the group indicated by $successor-group-id.",         new SequenceType[]{             new FunctionParameterSequenceType("group-id", Type.STRING, Cardinality.EXACTLY_ONE, "The group-id to delete"),             new FunctionParameterSequenceType("successor-group-id", Type.STRING, Cardinality.EXACTLY_ONE, "The group-id that should take over ownership of any resources")         },         new SequenceType(Type.ITEM, Cardinality.EMPTY)     ); */
+comment|/* public final static FunctionSignature FNS_DELETE_GROUP_WITH_SUCCESSOR = new FunctionSignature(         qnRemoveGroup         "Deletes an existing group identified by $group-id, any resources owned by the group will be moved to the group indicated by $successor-group-id.",         new SequenceType[]{             new FunctionParameterSequenceType("group-id", Type.STRING, Cardinality.EXACTLY_ONE, "The group-id to delete"),             new FunctionParameterSequenceType("successor-group-id", Type.STRING, Cardinality.EXACTLY_ONE, "The group-id that should take over ownership of any resources")         },         new SequenceType(Type.ITEM, Cardinality.EMPTY_SEQUENCE)     ); */
 specifier|public
 name|GroupManagementFunction
 parameter_list|(

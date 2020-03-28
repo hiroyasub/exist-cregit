@@ -109,11 +109,13 @@ extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|expression
 decl_stmt|;
 specifier|private
-name|int
+specifier|final
+name|Cardinality
 name|requiredCardinality
 decl_stmt|;
 specifier|private
@@ -125,16 +127,20 @@ comment|/**      * Wrap a CastableExpression around an expression, expecting the
 specifier|public
 name|CastableExpression
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|Expression
 name|expr
 parameter_list|,
+specifier|final
 name|int
 name|requiredType
 parameter_list|,
-name|int
+specifier|final
+name|Cardinality
 name|requiredCardinality
 parameter_list|)
 block|{
@@ -174,9 +180,10 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
@@ -505,15 +512,13 @@ block|{
 comment|//If ? is specified after the target type, the result of the cast expression is an empty sequence.
 if|if
 condition|(
-name|Cardinality
-operator|.
-name|checkCardinality
-argument_list|(
 name|requiredCardinality
-argument_list|,
+operator|.
+name|isSuperCardinalityOrEqualOf
+argument_list|(
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 condition|)
 block|{
@@ -555,12 +560,10 @@ expr_stmt|;
 comment|//If ? is specified after the target type, the result of the cast expression is an empty sequence.
 if|if
 condition|(
-name|Cardinality
-operator|.
-name|checkCardinality
-argument_list|(
 name|requiredCardinality
-argument_list|,
+operator|.
+name|isSuperCardinalityOrEqualOf
+argument_list|(
 name|seq
 operator|.
 name|getCardinality

@@ -436,7 +436,7 @@ name|FUNCTION_REFERENCE
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|""
 argument_list|)

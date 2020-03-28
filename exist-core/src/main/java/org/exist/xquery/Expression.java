@@ -291,7 +291,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * The expected cardinality of the return value of the expression.      *      * Should return a bit mask with bits set as defined in class {@link Cardinality}.      *      * @return the cardinality.      */
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 function_decl|;

@@ -273,7 +273,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The boolean value, ebv, of the items"
 argument_list|)
