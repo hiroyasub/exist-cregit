@@ -1072,10 +1072,10 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
+specifier|final
+name|String
+name|msg
+init|=
 literal|"Unable to instantiate module from EXPath"
 operator|+
 literal|"repository: "
@@ -1084,6 +1084,25 @@ name|clazz
 operator|.
 name|getName
 argument_list|()
+decl_stmt|;
+comment|// need to log here, otherwise details are swallowed by XQueryTreeParser
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|msg
 argument_list|,
 name|e
 argument_list|)
