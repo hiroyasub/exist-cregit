@@ -1138,8 +1138,12 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Maximum amount of memory for JVM: {} MiB"
+literal|"Approximate maximum amount of memory for JVM: {}"
 argument_list|,
+name|FileUtils
+operator|.
+name|humanSize
+argument_list|(
 name|Runtime
 operator|.
 name|getRuntime
@@ -1147,12 +1151,7 @@ argument_list|()
 operator|.
 name|maxMemory
 argument_list|()
-operator|/
-operator|(
-literal|1024
-operator|*
-literal|1024
-operator|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|logger
