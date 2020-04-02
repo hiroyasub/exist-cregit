@@ -1138,6 +1138,41 @@ name|logger
 operator|.
 name|info
 argument_list|(
+literal|"Approximate maximum amount of memory for JVM: {}"
+argument_list|,
+name|FileUtils
+operator|.
+name|humanSize
+argument_list|(
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|maxMemory
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Number of processors available to JVM: {}"
+argument_list|,
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|availableProcessors
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
 literal|"Running as user '{}'"
 argument_list|,
 name|System
