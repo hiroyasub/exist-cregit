@@ -89,6 +89,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -223,7 +235,7 @@ name|removeDuplicates
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the cardinality of this sequence. The returned      * value is a combination of flags as defined in      * {@link org.exist.xquery.Cardinality}.      *      * @return the cardinality      *      * @see org.exist.xquery.Cardinality      */
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 function_decl|;

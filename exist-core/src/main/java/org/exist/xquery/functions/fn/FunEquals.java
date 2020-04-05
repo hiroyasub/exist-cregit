@@ -323,7 +323,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if $source-string equals $substring, false() otherwise"
 argument_list|)
@@ -416,7 +416,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if $source-string equals $substring, false() otherwise"
 argument_list|)

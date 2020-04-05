@@ -458,7 +458,7 @@ name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The binary data to extract from"
 argument_list|)
@@ -473,7 +473,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"Extracted metadata"
 argument_list|)
@@ -519,7 +519,7 @@ name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The binary data to extract from"
 argument_list|)
@@ -534,7 +534,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"Extracted content and metadata"
 argument_list|)
@@ -580,7 +580,7 @@ name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The binary data to extract from"
 argument_list|)
@@ -671,7 +671,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|"Returns empty sequence"
 argument_list|)

@@ -150,7 +150,7 @@ name|context
 parameter_list|)
 function_decl|;
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 function_decl|;

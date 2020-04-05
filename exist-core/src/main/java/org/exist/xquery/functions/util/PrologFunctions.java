@@ -280,7 +280,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|,
 name|LoadXQueryModule
@@ -353,7 +353,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 block|,
@@ -422,7 +422,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 block|,

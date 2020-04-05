@@ -231,7 +231,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 block|}
 decl_stmt|;

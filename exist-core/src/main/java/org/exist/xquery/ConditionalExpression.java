@@ -200,22 +200,28 @@ return|return
 name|elseExpr
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
 return|return
+name|Cardinality
+operator|.
+name|superCardinalityOf
+argument_list|(
 name|thenExpr
 operator|.
 name|getCardinality
 argument_list|()
-operator||
+argument_list|,
 name|elseExpr
 operator|.
 name|getCardinality
 argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */

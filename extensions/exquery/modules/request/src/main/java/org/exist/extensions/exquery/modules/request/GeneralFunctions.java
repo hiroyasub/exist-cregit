@@ -202,7 +202,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The HTTP Method."
 argument_list|)

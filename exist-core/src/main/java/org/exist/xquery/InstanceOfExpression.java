@@ -273,7 +273,7 @@ name|contextItem
 argument_list|)
 decl_stmt|;
 specifier|final
-name|int
+name|Cardinality
 name|requiredCardinality
 init|=
 name|type
@@ -293,7 +293,7 @@ name|requiredCardinality
 operator|==
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 condition|)
 block|{
 name|result
@@ -310,15 +310,10 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|&&
-operator|(
 name|requiredCardinality
-operator|&
-name|Cardinality
 operator|.
-name|ZERO
-operator|)
-operator|==
-literal|0
+name|atLeastOne
+argument_list|()
 condition|)
 block|{
 name|result
@@ -335,15 +330,10 @@ operator|.
 name|hasMany
 argument_list|()
 operator|&&
-operator|(
 name|requiredCardinality
-operator|&
-name|Cardinality
 operator|.
-name|MANY
-operator|)
-operator|==
-literal|0
+name|atMostOne
+argument_list|()
 condition|)
 block|{
 name|result
@@ -500,9 +490,10 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{

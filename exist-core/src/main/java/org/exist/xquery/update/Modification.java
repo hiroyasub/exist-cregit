@@ -645,15 +645,17 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
 return|return
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#returnsType()      */

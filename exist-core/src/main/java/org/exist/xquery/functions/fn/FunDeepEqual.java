@@ -554,7 +554,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if the sequences are deep-equal, false() otherwise"
 argument_list|)
@@ -645,7 +645,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if the sequences are deep-equal, false() otherwise"
 argument_list|)

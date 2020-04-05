@@ -446,8 +446,10 @@ name|effectiveBooleanValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
@@ -486,7 +488,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-literal|0
+name|Cardinality
+operator|.
+name|EMPTY_SEQUENCE
 return|;
 block|}
 block|}

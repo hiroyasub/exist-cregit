@@ -699,7 +699,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The permissions of the resource or collection"
 argument_list|)
@@ -796,7 +796,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -891,7 +891,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1002,7 +1002,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1113,7 +1113,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1208,7 +1208,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1271,7 +1271,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1318,7 +1318,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1381,7 +1381,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1444,7 +1444,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1507,7 +1507,7 @@ name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 argument_list|)
 argument_list|)
 decl_stmt|;

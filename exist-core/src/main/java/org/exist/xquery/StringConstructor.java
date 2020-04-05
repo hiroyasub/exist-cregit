@@ -288,7 +288,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{

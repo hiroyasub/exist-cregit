@@ -511,7 +511,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The list of newly registered resource functions."
 argument_list|)
@@ -546,7 +546,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The list of deregistered resource functions."
 argument_list|)
@@ -581,7 +581,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The list of newly registered resource functions."
 argument_list|)
@@ -618,7 +618,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true if the function was registered, false otherwise."
 argument_list|)
@@ -655,7 +655,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true if the function was deregistered, false otherwise."
 argument_list|)
@@ -719,7 +719,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The list of missing dependencies."
 argument_list|)
@@ -751,7 +751,7 @@ name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The list of dependencies."
 argument_list|)

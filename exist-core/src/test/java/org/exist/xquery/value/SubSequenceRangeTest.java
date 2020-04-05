@@ -575,7 +575,7 @@ name|getCardinality
 parameter_list|()
 block|{
 specifier|final
-name|int
+name|Cardinality
 name|expectedCardinality
 decl_stmt|;
 if|if
@@ -589,7 +589,7 @@ name|expectedCardinality
 operator|=
 name|Cardinality
 operator|.
-name|EMPTY
+name|EMPTY_SEQUENCE
 expr_stmt|;
 block|}
 if|else if
@@ -603,7 +603,7 @@ name|expectedCardinality
 operator|=
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 expr_stmt|;
 block|}
 else|else
@@ -612,7 +612,7 @@ name|expectedCardinality
 operator|=
 name|Cardinality
 operator|.
-name|MANY
+name|_MANY
 expr_stmt|;
 block|}
 name|assertEquals

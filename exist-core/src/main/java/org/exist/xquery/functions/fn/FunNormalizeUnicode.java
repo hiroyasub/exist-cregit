@@ -392,7 +392,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The normalization form"
 argument_list|)
@@ -412,7 +412,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"the normalized text"
 argument_list|)

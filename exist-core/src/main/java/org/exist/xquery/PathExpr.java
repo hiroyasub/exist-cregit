@@ -1127,15 +1127,13 @@ name|getItemType
 argument_list|()
 argument_list|)
 operator|+
-name|Cardinality
-operator|.
-name|toString
-argument_list|(
 name|result
 operator|.
 name|getCardinality
 argument_list|()
-argument_list|)
+operator|.
+name|getHumanDescription
+argument_list|()
 operator|+
 literal|"'"
 argument_list|)
@@ -2137,7 +2135,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
@@ -2154,7 +2152,7 @@ block|{
 return|return
 name|Cardinality
 operator|.
-name|ZERO
+name|EMPTY_SEQUENCE
 return|;
 block|}
 return|return

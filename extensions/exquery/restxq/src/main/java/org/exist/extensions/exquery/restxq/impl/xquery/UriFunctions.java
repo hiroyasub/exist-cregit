@@ -248,7 +248,7 @@ name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The base URI of the Resource Function."
 argument_list|)
@@ -286,7 +286,7 @@ name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The URI which addressed the Resource Function."
 argument_list|)

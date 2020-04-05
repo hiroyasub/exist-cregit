@@ -249,7 +249,7 @@ comment|/**      * The default cardinality is {@link Cardinality#EXACTLY_ONE}.  
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Cardinality
 name|getCardinality
 parameter_list|()
 block|{
