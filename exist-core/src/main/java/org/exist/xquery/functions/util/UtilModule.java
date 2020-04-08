@@ -621,7 +621,7 @@ name|FunctionDef
 argument_list|(
 name|DocumentNameOrId
 operator|.
-name|docIdSignature
+name|FS_DOCUMENT_ID
 argument_list|,
 name|DocumentNameOrId
 operator|.
@@ -633,7 +633,7 @@ name|FunctionDef
 argument_list|(
 name|DocumentNameOrId
 operator|.
-name|docNameSignature
+name|FS_DOCUMENT_NAME
 argument_list|,
 name|DocumentNameOrId
 operator|.
@@ -645,7 +645,7 @@ name|FunctionDef
 argument_list|(
 name|DocumentNameOrId
 operator|.
-name|absoluteResourceIdSignature
+name|FS_ABSOLUTE_RESOURCE_ID
 argument_list|,
 name|DocumentNameOrId
 operator|.
@@ -657,7 +657,7 @@ name|FunctionDef
 argument_list|(
 name|DocumentNameOrId
 operator|.
-name|resourceByAbsoluteIdSignature
+name|FS_GET_RESOURCE_BY_ABSOLUTE_ID
 argument_list|,
 name|DocumentNameOrId
 operator|.
