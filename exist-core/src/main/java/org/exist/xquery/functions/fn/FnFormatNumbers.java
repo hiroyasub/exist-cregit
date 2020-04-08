@@ -3095,8 +3095,16 @@ block|{
 name|m
 operator|--
 expr_stmt|;
-comment|// prevents a group separator being inseted at index 0
+comment|// prevents a group separator being inserted at index 0
 block|}
+if|if
+condition|(
+name|m
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
 specifier|final
 name|int
 index|[]
@@ -3163,6 +3171,7 @@ operator|.
 name|decimalSeparator
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
