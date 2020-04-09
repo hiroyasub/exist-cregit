@@ -738,6 +738,13 @@ argument_list|)
 expr_stmt|;
 name|defineSubType
 argument_list|(
+name|ANY_SIMPLE_TYPE
+argument_list|,
+name|NUMBER
+argument_list|)
+expr_stmt|;
+name|defineSubType
+argument_list|(
 name|NODE
 argument_list|,
 name|ELEMENT
@@ -827,13 +834,6 @@ argument_list|(
 name|ATOMIC
 argument_list|,
 name|ANY_URI
-argument_list|)
-expr_stmt|;
-name|defineSubType
-argument_list|(
-name|ATOMIC
-argument_list|,
-name|NUMBER
 argument_list|)
 expr_stmt|;
 name|defineSubType
