@@ -1127,6 +1127,8 @@ name|getItemType
 argument_list|()
 argument_list|)
 operator|+
+literal|" "
+operator|+
 name|result
 operator|.
 name|getCardinality
