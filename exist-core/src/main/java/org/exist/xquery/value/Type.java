@@ -705,6 +705,14 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+name|int
+name|NO_SUCH_VALUE
+init|=
+operator|-
+literal|99
+decl_stmt|;
+specifier|private
 specifier|final
 specifier|static
 name|int
@@ -756,8 +764,7 @@ name|typeCodes
 operator|.
 name|defaultReturnValue
 argument_list|(
-operator|-
-literal|1
+name|NO_SUCH_VALUE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1948,8 +1955,7 @@ if|if
 condition|(
 name|code
 operator|==
-operator|-
-literal|1
+name|NO_SUCH_VALUE
 condition|)
 block|{
 throw|throw
