@@ -337,6 +337,38 @@ end_import
 
 begin_import
 import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Object2ObjectAVLTreeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Object2ObjectRBTreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|net
 operator|.
 name|jcip
@@ -1241,7 +1273,7 @@ argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
 specifier|private
-name|TreeMap
+name|Map
 argument_list|<
 name|FunctionId
 argument_list|,
@@ -1250,7 +1282,7 @@ argument_list|>
 name|declaredFunctions
 init|=
 operator|new
-name|TreeMap
+name|Object2ObjectAVLTreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -1265,7 +1297,7 @@ argument_list|>
 name|globalVariables
 init|=
 operator|new
-name|TreeMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -2642,7 +2674,7 @@ operator|.
 name|declaredFunctions
 operator|=
 operator|new
-name|TreeMap
+name|Object2ObjectAVLTreeMap
 argument_list|<>
 argument_list|(
 name|this
@@ -2655,7 +2687,7 @@ operator|.
 name|globalVariables
 operator|=
 operator|new
-name|TreeMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|this
@@ -7932,8 +7964,6 @@ specifier|final
 name|int
 name|argCount
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 specifier|final
 name|FunctionId
@@ -7974,7 +8004,7 @@ name|name
 parameter_list|)
 block|{
 specifier|final
-name|ArrayList
+name|List
 argument_list|<
 name|FunctionSignature
 argument_list|>
@@ -8913,12 +8943,10 @@ block|}
 return|return
 name|globalVariables
 operator|.
-name|get
+name|containsKey
 argument_list|(
 name|qname
 argument_list|)
-operator|!=
-literal|null
 return|;
 block|}
 end_function
@@ -8946,7 +8974,7 @@ argument_list|>
 name|variables
 init|=
 operator|new
-name|HashMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|globalVariables
@@ -9194,7 +9222,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|HashMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|globalVariables
