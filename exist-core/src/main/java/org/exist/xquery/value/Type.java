@@ -27,39 +27,7 @@ name|fastutil
 operator|.
 name|ints
 operator|.
-name|Int2ObjectMap
-import|;
-end_import
-
-begin_import
-import|import
-name|it
-operator|.
-name|unimi
-operator|.
-name|dsi
-operator|.
-name|fastutil
-operator|.
-name|ints
-operator|.
 name|Int2ObjectOpenHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|it
-operator|.
-name|unimi
-operator|.
-name|dsi
-operator|.
-name|fastutil
-operator|.
-name|objects
-operator|.
-name|Object2IntMap
 import|;
 end_import
 
@@ -704,7 +672,7 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|Int2ObjectMap
+name|Int2ObjectOpenHashMap
 argument_list|<
 name|String
 index|[]
@@ -721,7 +689,7 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|Object2IntMap
+name|Object2IntOpenHashMap
 argument_list|<
 name|String
 argument_list|>
@@ -1655,6 +1623,17 @@ name|ENTITY
 argument_list|,
 literal|"xs:ENTITY"
 argument_list|)
+expr_stmt|;
+comment|// reduce any unused space
+name|typeNames
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
+name|typeCodes
+operator|.
+name|trim
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Define built-in type.      *      * @param type the type constant      * @param name The first name is the default name, any other names are aliases.      */
