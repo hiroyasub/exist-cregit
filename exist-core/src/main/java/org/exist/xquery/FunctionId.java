@@ -176,7 +176,7 @@ operator|.
 name|getStringValue
 argument_list|()
 operator|+
-literal|"/"
+literal|"#"
 operator|+
 name|argCount
 return|;
