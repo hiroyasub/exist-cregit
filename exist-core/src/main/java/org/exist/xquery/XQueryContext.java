@@ -7852,10 +7852,10 @@ literal|"' does not meet this requirement."
 argument_list|)
 throw|;
 block|}
-name|declaredFunctions
-operator|.
-name|put
-argument_list|(
+specifier|final
+name|FunctionId
+name|functionKey
+init|=
 name|function
 operator|.
 name|getSignature
@@ -7863,14 +7863,55 @@ argument_list|()
 operator|.
 name|getFunctionId
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|declaredFunctions
+operator|.
+name|containsKey
+argument_list|(
+name|functionKey
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0034
+argument_list|,
+literal|"Function "
+operator|+
+name|function
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"#"
+operator|+
+name|function
+operator|.
+name|getArgumentCount
+argument_list|()
+operator|+
+literal|" is already defined."
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+name|declaredFunctions
+operator|.
+name|put
+argument_list|(
+name|functionKey
 argument_list|,
 name|function
 argument_list|)
 expr_stmt|;
-comment|//      if (declaredFunctions.get(function.getSignature().getFunctionId()) == null)
-comment|//              declaredFunctions.put(function.getSignature().getFunctionId(), function);
-comment|//      else
-comment|//          throw new XPathException("XQST0034: function " + function.getName() + " is already defined with the same arity");
+block|}
 block|}
 end_function
 
