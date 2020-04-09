@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist-db Open Source Native XML Database  * Copyright (C) 2001 The eXist-db Authors  *  * info@exist-db.org  * http://www.exist-db.org  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public  * License as published by the Free Software Foundation; either  * version 2.1 of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  * Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public  * License along with this library; if not, write to the Free Software  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -1657,15 +1657,17 @@ literal|"xs:ENTITY"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param type the type constant      * @param name The first name is the default name, any other names are aliases.      */
-specifier|public
+comment|/**      * Define built-in type.      *      * @param type the type constant      * @param name The first name is the default name, any other names are aliases.      */
+specifier|private
 specifier|static
 name|void
 name|defineBuiltInType
 parameter_list|(
+specifier|final
 name|int
 name|type
 parameter_list|,
+specifier|final
 name|String
 modifier|...
 name|name
@@ -1699,6 +1701,29 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Define supertype/subtype relation.      *      * @param supertype type constant of the super type      * @param subtype the subtype      */
+specifier|private
+specifier|static
+name|void
+name|defineSubType
+parameter_list|(
+specifier|final
+name|int
+name|supertype
+parameter_list|,
+specifier|final
+name|int
+name|subtype
+parameter_list|)
+block|{
+name|superTypes
+index|[
+name|subtype
+index|]
+operator|=
+name|supertype
+expr_stmt|;
 block|}
 comment|/**      * Get the internal default name for the built-in type.      *      * @param type the type constant      * @return name of the type      */
 specifier|public
@@ -1918,27 +1943,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-comment|/**      * Define supertype/subtype relation.      *      * @param supertype type constant of the super type      * @param subtype the subtype      */
-specifier|public
-specifier|static
-name|void
-name|defineSubType
-parameter_list|(
-name|int
-name|supertype
-parameter_list|,
-name|int
-name|subtype
-parameter_list|)
-block|{
-name|superTypes
-index|[
-name|subtype
-index|]
-operator|=
-name|supertype
-expr_stmt|;
 block|}
 comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype the type constant of the subtype      * @param supertype type constant of the super type      * @return true if subtype is a sub type of supertype      * @throws IllegalArgumentException When the type is invalid      */
 specifier|public
