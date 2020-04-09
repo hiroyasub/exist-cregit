@@ -1155,7 +1155,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|value
 operator|.
@@ -1174,7 +1174,7 @@ condition|(
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|min
 operator|.

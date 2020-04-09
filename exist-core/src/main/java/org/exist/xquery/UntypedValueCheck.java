@@ -533,7 +533,7 @@ name|UNTYPED_ATOMIC
 operator|||
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|requiredType
 argument_list|,
@@ -544,7 +544,7 @@ argument_list|)
 operator|&&
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|item
 operator|.

@@ -508,7 +508,7 @@ operator|&&
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|args
 index|[

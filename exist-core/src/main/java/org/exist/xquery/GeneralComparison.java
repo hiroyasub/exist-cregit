@@ -5211,7 +5211,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|otherType
 argument_list|,
