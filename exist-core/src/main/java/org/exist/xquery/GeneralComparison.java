@@ -5154,11 +5154,197 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * Cast the atomic operands into a comparable type and compare them.      *      * @param   collator  DOCUMENT ME!      * @param   lv        DOCUMENT ME!      * @param   rv        DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
+specifier|private
+name|AtomicValue
+name|convertForCompareAtomic
+parameter_list|(
+specifier|final
+name|AtomicValue
+name|value
+parameter_list|,
+specifier|final
+name|int
+name|thisType
+parameter_list|,
+specifier|final
+name|int
+name|otherType
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+if|if
+condition|(
+name|thisType
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+try|try
+block|{
+comment|/*                     If both atomic values are instances of xs:untypedAtomic,                     then the values are cast to the type xs:string.                  */
+if|if
+condition|(
+name|otherType
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+return|return
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+return|;
+block|}
+comment|// it is cast to a type depending on the other value's dynamic type T
+comment|/*                     i. If T is a numeric type or is derived from a numeric type,                     then V is cast to xs:double.                  */
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|otherType
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+return|return
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+return|;
+block|}
+comment|/*                     ii. If T is xs:dayTimeDuration or is derived from xs:dayTimeDuration,                         then V is cast to xs:dayTimeDuration.                  */
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|otherType
+argument_list|,
+name|Type
+operator|.
+name|DAY_TIME_DURATION
+argument_list|)
+condition|)
+block|{
+return|return
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DAY_TIME_DURATION
+argument_list|)
+return|;
+block|}
+comment|/*                     iii. If T is xs:yearMonthDuration or is derived from xs:yearMonthDuration,                          then V is cast to xs:yearMonthDuration.                  */
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|otherType
+argument_list|,
+name|Type
+operator|.
+name|YEAR_MONTH_DURATION
+argument_list|)
+condition|)
+block|{
+return|return
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|YEAR_MONTH_DURATION
+argument_list|)
+return|;
+block|}
+comment|/*                     iv. In all other cases, V is cast to the primitive base type of T.                  */
+return|return
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|otherType
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getErrorCode
+argument_list|()
+operator|!=
+name|ErrorCodes
+operator|.
+name|FORG0001
+condition|)
+block|{
+name|e
+operator|=
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+name|e
+throw|;
+block|}
+block|}
+return|return
+name|value
+return|;
+block|}
+comment|/**      * Cast the atomic operands into a comparable type and compare them.      *      * @param collator the collator to use for comparisons      * @param lv left-hand-side value of comparison      * @param rv right-hand-side value of comparison      *      * @return true if the comparison holds, false otherwise      *      * @throws XPathException if an error occurs during the comparison      */
 specifier|private
 name|boolean
 name|compareAtomic
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
@@ -5171,8 +5357,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-try|try
-block|{
+comment|// get types locally as convertForCompareAtomic will change the types of the AtomicValue itself
 specifier|final
 name|int
 name|ltype
@@ -5191,191 +5376,28 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|ltype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-condition|)
-block|{
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of a numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
+name|lv
+operator|=
+name|convertForCompareAtomic
 argument_list|(
-name|rtype
+name|lv
 argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
-condition|)
-block|{
-comment|//if(isEmptyString(lv))
-comment|//    return false;
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|)
-expr_stmt|;
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
-comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
-block|}
-if|else if
-condition|(
-operator|(
-name|rtype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-operator|)
-operator|||
-operator|(
-name|rtype
-operator|==
-name|Type
-operator|.
-name|STRING
-operator|)
-condition|)
-block|{
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
-comment|//if (rtype == Type.UNTYPED_ATOMIC)
-comment|//rv = rv.convertTo(Type.STRING);
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
-block|}
-else|else
-block|{
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|rtype
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|rtype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-condition|)
-block|{
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of a numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
 name|ltype
 argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
-condition|)
-block|{
-comment|//if(isEmptyString(lv))
-comment|//    return false;
-name|rv
-operator|=
-name|rv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
+name|rtype
 argument_list|)
 expr_stmt|;
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
-comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
-block|}
-if|else if
-condition|(
-operator|(
-name|ltype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-operator|)
-operator|||
-operator|(
-name|ltype
-operator|==
-name|Type
-operator|.
-name|STRING
-operator|)
-condition|)
-block|{
 name|rv
 operator|=
-name|rv
-operator|.
-name|convertTo
+name|convertForCompareAtomic
 argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
-comment|//if (ltype == Type.UNTYPED_ATOMIC)
-comment|//  lv = lv.convertTo(Type.STRING);
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
-block|}
-else|else
-block|{
 name|rv
-operator|=
-name|rv
-operator|.
-name|convertTo
-argument_list|(
+argument_list|,
+name|rtype
+argument_list|,
 name|ltype
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-comment|/*             if (backwardsCompatible) {                 if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) {                     // in XPath 1.0 compatible mode, if one of the operands is a number, cast                     // both operands to xs:double                     if (Type.subTypeOf(ltype, Type.NUMBER)                         || Type.subTypeOf(rtype, Type.NUMBER)) {                             lv = lv.convertTo(Type.DOUBLE);                             rv = rv.convertTo(Type.DOUBLE);                     }                 }             }             */
 comment|// if truncation is set, we always do a string comparison
 if|if
 condition|(
@@ -5386,7 +5408,6 @@ operator|.
 name|NONE
 condition|)
 block|{
-comment|//TODO : log this ?
 name|lv
 operator|=
 name|lv
@@ -5399,8 +5420,6 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
-comment|//              System.out.println(
-comment|//                  lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 switch|switch
 condition|(
 name|truncation
@@ -5409,9 +5428,7 @@ block|{
 case|case
 name|RIGHT
 case|:
-block|{
 return|return
-operator|(
 name|lv
 operator|.
 name|startsWith
@@ -5420,15 +5437,11 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
-operator|)
 return|;
-block|}
 case|case
 name|LEFT
 case|:
-block|{
 return|return
-operator|(
 name|lv
 operator|.
 name|endsWith
@@ -5437,15 +5450,11 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
-operator|)
 return|;
-block|}
 case|case
 name|BOTH
 case|:
-block|{
 return|return
-operator|(
 name|lv
 operator|.
 name|contains
@@ -5454,14 +5463,10 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
-operator|)
 return|;
-block|}
 default|default:
-block|{
 comment|// If right value is () always return false
 return|return
-operator|(
 name|rv
 operator|.
 name|isEmpty
@@ -5479,38 +5484,7 @@ name|relation
 argument_list|,
 name|rv
 argument_list|)
-operator|)
 return|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|setLocation
-argument_list|(
-name|e
-operator|.
-name|getLine
-argument_list|()
-argument_list|,
-name|e
-operator|.
-name|getColumn
-argument_list|()
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|(
-name|e
-operator|)
-throw|;
 block|}
 block|}
 comment|/**      * DOCUMENT ME!      *      * @param   lv      *      * @return  Whether or not<code>lv</code> is an empty string      *      * @throws  XPathException      */
