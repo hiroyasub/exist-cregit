@@ -63,6 +63,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -540,6 +552,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"Type error: cannot cast xs:gMonth to "
 operator|+
 name|Type
