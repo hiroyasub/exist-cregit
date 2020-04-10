@@ -2265,7 +2265,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype the type constant of the subtype      * @param supertype type constant of the super type      * @return true if subtype is a sub type of supertype      * @throws IllegalArgumentException When the type is invalid      */
+comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype the type constant of the subtype      * @param supertype type constant of the super type      *      * @return true if subtype is a sub type of supertype      *      * @throws IllegalArgumentException When the type is invalid      */
 specifier|public
 specifier|static
 name|boolean
@@ -2274,6 +2274,7 @@ parameter_list|(
 name|int
 name|subtype
 parameter_list|,
+specifier|final
 name|int
 name|supertype
 parameter_list|)
@@ -2289,7 +2290,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|//Note that it will return true even if subtype == EMPTY
 if|if
 condition|(
 name|supertype
@@ -2300,14 +2300,14 @@ name|supertype
 operator|==
 name|ANY_TYPE
 condition|)
-comment|//maybe return subtype != EMPTY ?
 block|{
+comment|// Note: this will return true even if subtype == EMPTY, maybe return subtype != EMPTY ?
 return|return
 literal|true
 return|;
 block|}
-comment|//Note that EMPTY is *not* a sub-type of anything else than itself
-comment|//EmptySequence has to take care of this when it checks its type
+comment|// Note that EMPTY is *not* a sub-type of anything else than itself
+comment|// EmptySequence has to take care of this when it checks its type
 if|if
 condition|(
 name|subtype
@@ -2329,6 +2329,44 @@ condition|)
 block|{
 return|return
 literal|false
+return|;
+block|}
+if|if
+condition|(
+name|unionTypes
+operator|.
+name|containsKey
+argument_list|(
+name|supertype
+argument_list|)
+condition|)
+block|{
+return|return
+name|subTypeOfUnion
+argument_list|(
+name|subtype
+argument_list|,
+name|supertype
+argument_list|)
+return|;
+block|}
+if|if
+condition|(
+name|unionTypes
+operator|.
+name|containsKey
+argument_list|(
+name|subtype
+argument_list|)
+condition|)
+block|{
+return|return
+name|unionMembersHaveSuperType
+argument_list|(
+name|subtype
+argument_list|,
+name|supertype
+argument_list|)
 return|;
 block|}
 name|subtype
@@ -2721,6 +2759,91 @@ block|}
 block|}
 return|return
 literal|false
+return|;
+block|}
+specifier|public
+specifier|static
+name|boolean
+name|unionMembersHaveSuperType
+parameter_list|(
+specifier|final
+name|int
+name|unionType
+parameter_list|,
+specifier|final
+name|int
+name|supertype
+parameter_list|)
+block|{
+specifier|final
+name|IntArraySet
+name|members
+init|=
+name|unionTypes
+operator|.
+name|get
+argument_list|(
+name|unionType
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|members
+operator|==
+literal|null
+operator|||
+name|members
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|// inherited behaviour from {@link #subTypeOf(int, int)}
+comment|// where type is considered a subtype of itself.
+if|if
+condition|(
+name|supertype
+operator|==
+name|unionType
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+for|for
+control|(
+specifier|final
+name|int
+name|member
+range|:
+name|members
+control|)
+block|{
+if|if
+condition|(
+operator|!
+name|subTypeOf
+argument_list|(
+name|member
+argument_list|,
+name|supertype
+argument_list|)
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+return|return
+literal|true
 return|;
 block|}
 comment|/**      * Gets the primitive type for a typed atomic type.      *      * @param type the type to retrieve the primitive type of      *      * @return the primitive type      *      * @throws IllegalArgumentException if {@code type} has no defined primitive type      */
