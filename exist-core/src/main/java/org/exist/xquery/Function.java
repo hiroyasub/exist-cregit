@@ -1351,6 +1351,7 @@ name|getCardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1406,7 +1407,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 return|return
