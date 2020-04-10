@@ -1471,15 +1471,6 @@ argument_list|(
 name|e
 lambda|->
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"SAVE"
-argument_list|)
-expr_stmt|;
 name|save
 argument_list|()
 expr_stmt|;
