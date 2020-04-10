@@ -1136,6 +1136,14 @@ specifier|public
 specifier|static
 specifier|final
 name|int
+name|FIRST_COLLECTION_ID
+init|=
+literal|1
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
 name|OFFSET_COLLECTION_ID
 init|=
 literal|0
@@ -9989,7 +9997,7 @@ else|else
 block|{
 name|nextCollectionId
 operator|=
-literal|1
+name|FIRST_COLLECTION_ID
 expr_stmt|;
 block|}
 specifier|final
@@ -11368,12 +11376,6 @@ argument_list|()
 argument_list|)
 init|)
 block|{
-comment|//final VariableByteOutputStream os = new VariableByteOutputStream(8);
-comment|//doc.write(os);
-comment|//Value key = new CollectionStore.DocumentKey(doc.getCollection().getId(), doc.getResourceType(), doc.getDocId());
-comment|//collectionsDb.put(transaction, key, os.data(), true);
-comment|//Value collectionKey = new CollectionStore.CollectionKey
-comment|//collectionsDb.get(Value.EMPTY_VALUE)
 comment|//get the collection uri
 name|String
 name|collectionUri
@@ -11384,7 +11386,7 @@ if|if
 condition|(
 name|collectionId
 operator|==
-literal|0
+name|FIRST_COLLECTION_ID
 condition|)
 block|{
 name|collectionUri
@@ -11406,12 +11408,19 @@ name|getKeys
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
 name|collectionDbKey
 operator|.
 name|data
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|data
 index|[
 literal|0
 index|]
@@ -11459,17 +11468,11 @@ name|Arrays
 operator|.
 name|copyOfRange
 argument_list|(
-name|collectionDbKey
-operator|.
 name|data
-argument_list|()
 argument_list|,
 literal|1
 argument_list|,
-name|collectionDbKey
-operator|.
 name|data
-argument_list|()
 operator|.
 name|length
 argument_list|)
