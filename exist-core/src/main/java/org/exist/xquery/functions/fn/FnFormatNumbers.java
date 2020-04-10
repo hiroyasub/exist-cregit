@@ -3095,8 +3095,16 @@ block|{
 name|m
 operator|--
 expr_stmt|;
-comment|// prevents a group separator being inseted at index 0
+comment|// prevents a group separator being inserted at index 0
 block|}
+if|if
+condition|(
+name|m
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
 specifier|final
 name|int
 index|[]
@@ -3163,6 +3171,7 @@ operator|.
 name|decimalSeparator
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -3266,7 +3275,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
 name|int
 index|[]
 name|relGroupingOffsets
@@ -3274,9 +3282,7 @@ init|=
 operator|new
 name|int
 index|[
-name|fractionalPartGroupingPositions
-operator|.
-name|length
+literal|0
 index|]
 decl_stmt|;
 for|for
@@ -3315,6 +3321,31 @@ literal|1
 operator|+
 name|fractionalPartGroupingPosition
 decl_stmt|;
+if|if
+condition|(
+name|groupingIdx
+operator|<=
+name|formatted
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+name|relGroupingOffsets
+operator|=
+name|Arrays
+operator|.
+name|copyOf
+argument_list|(
+name|relGroupingOffsets
+argument_list|,
+name|relGroupingOffsets
+operator|.
+name|length
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
 name|relGroupingOffsets
 index|[
 name|i
@@ -3323,6 +3354,20 @@ operator|=
 name|groupingIdx
 expr_stmt|;
 block|}
+else|else
+block|{
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|relGroupingOffsets
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|formatted
 operator|.
 name|insert
@@ -3334,7 +3379,7 @@ operator|.
 name|groupingSeparator
 argument_list|)
 expr_stmt|;
-comment|/*             if (groupingIdx<= formatted.length()) {                     formatted = formatted.substring(0, groupingIdx) + decimalFormat.groupingSeparator + formatted.substring(groupingIdx);                 } else {                     break;                 }              */
+block|}
 name|fractLen
 operator|=
 name|idxDecimalSeparator
