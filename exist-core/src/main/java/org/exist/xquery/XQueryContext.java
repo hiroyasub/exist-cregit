@@ -337,6 +337,38 @@ end_import
 
 begin_import
 import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Object2ObjectAVLTreeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Object2ObjectRBTreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|net
 operator|.
 name|jcip
@@ -1241,7 +1273,7 @@ argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
 specifier|private
-name|TreeMap
+name|Map
 argument_list|<
 name|FunctionId
 argument_list|,
@@ -1250,7 +1282,7 @@ argument_list|>
 name|declaredFunctions
 init|=
 operator|new
-name|TreeMap
+name|Object2ObjectAVLTreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -1265,7 +1297,7 @@ argument_list|>
 name|globalVariables
 init|=
 operator|new
-name|TreeMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -2642,7 +2674,7 @@ operator|.
 name|declaredFunctions
 operator|=
 operator|new
-name|TreeMap
+name|Object2ObjectAVLTreeMap
 argument_list|<>
 argument_list|(
 name|this
@@ -2655,7 +2687,7 @@ operator|.
 name|globalVariables
 operator|=
 operator|new
-name|TreeMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|this
@@ -7852,10 +7884,10 @@ literal|"' does not meet this requirement."
 argument_list|)
 throw|;
 block|}
-name|declaredFunctions
-operator|.
-name|put
-argument_list|(
+specifier|final
+name|FunctionId
+name|functionKey
+init|=
 name|function
 operator|.
 name|getSignature
@@ -7863,14 +7895,55 @@ argument_list|()
 operator|.
 name|getFunctionId
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|declaredFunctions
+operator|.
+name|containsKey
+argument_list|(
+name|functionKey
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0034
+argument_list|,
+literal|"Function "
+operator|+
+name|function
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"#"
+operator|+
+name|function
+operator|.
+name|getArgumentCount
+argument_list|()
+operator|+
+literal|" is already defined."
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+name|declaredFunctions
+operator|.
+name|put
+argument_list|(
+name|functionKey
 argument_list|,
 name|function
 argument_list|)
 expr_stmt|;
-comment|//      if (declaredFunctions.get(function.getSignature().getFunctionId()) == null)
-comment|//              declaredFunctions.put(function.getSignature().getFunctionId(), function);
-comment|//      else
-comment|//          throw new XPathException("XQST0034: function " + function.getName() + " is already defined with the same arity");
+block|}
 block|}
 end_function
 
@@ -7891,8 +7964,6 @@ specifier|final
 name|int
 name|argCount
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 specifier|final
 name|FunctionId
@@ -7933,7 +8004,7 @@ name|name
 parameter_list|)
 block|{
 specifier|final
-name|ArrayList
+name|List
 argument_list|<
 name|FunctionSignature
 argument_list|>
@@ -8872,12 +8943,10 @@ block|}
 return|return
 name|globalVariables
 operator|.
-name|get
+name|containsKey
 argument_list|(
 name|qname
 argument_list|)
-operator|!=
-literal|null
 return|;
 block|}
 end_function
@@ -8905,7 +8974,7 @@ argument_list|>
 name|variables
 init|=
 operator|new
-name|HashMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|globalVariables
@@ -9153,7 +9222,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|HashMap
+name|Object2ObjectRBTreeMap
 argument_list|<>
 argument_list|(
 name|globalVariables

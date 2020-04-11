@@ -1014,7 +1014,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Resolve a user-defined function.      *      * @param name the function name      * @param argCount the function arity      *      * @return the resolved function, or null      *      * @throws XPathException if an error occurs whilst resolving the function      */
+comment|/**      * Resolve a user-defined function.      *      * @param name the function name      * @param argCount the function arity      *      * @return the resolved function, or null      */
 annotation|@
 name|Nullable
 name|UserDefinedFunction
@@ -1026,8 +1026,6 @@ parameter_list|,
 name|int
 name|argCount
 parameter_list|)
-throws|throws
-name|XPathException
 function_decl|;
 name|Iterator
 argument_list|<
