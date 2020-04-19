@@ -902,6 +902,8 @@ argument_list|(
 name|traceElements
 argument_list|,
 name|i
+operator|-
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
