@@ -789,6 +789,11 @@ operator|::
 name|declareGlobalVariable
 argument_list|)
 expr_stmt|;
+name|tempContext
+operator|.
+name|prepareForExecution
+argument_list|()
+expr_stmt|;
 name|Module
 name|loadedModule
 init|=
