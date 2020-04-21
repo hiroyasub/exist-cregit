@@ -310,11 +310,9 @@ literal|"argument. It may either be a document node or another node from the sam
 operator|+
 literal|"from which the target node will be retrieved by its id. The second argument is "
 operator|+
-literal|"the internal node-id, specified as a string. Please note: the function does "
+literal|"the internal node-id, specified as a string. If a node with the matching node-id is found, it is returned. "
 operator|+
-literal|"not check if the passed id does really point to an existing node. It just returns "
-operator|+
-literal|"a pointer, which may thus be invalid."
+literal|"Otherwise returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -362,9 +360,9 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
-literal|"the node"
+literal|"the node or an empty sequence if a matching node does not exist"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -497,7 +495,10 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-return|return
+specifier|final
+name|NodeProxy
+name|proxy
+init|=
 operator|new
 name|NodeProxy
 argument_list|(
@@ -505,6 +506,25 @@ name|doc
 argument_list|,
 name|nodeId
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|proxy
+operator|.
+name|getNode
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+return|return
+name|proxy
 return|;
 block|}
 block|}
