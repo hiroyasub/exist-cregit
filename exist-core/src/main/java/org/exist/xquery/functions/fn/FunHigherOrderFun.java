@@ -600,7 +600,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the function to call"
 argument_list|)
-block|, 	        }
+block|,             }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
