@@ -131,7 +131,7 @@ name|util
 operator|.
 name|function
 operator|.
-name|ToIntFunction
+name|ToLongFunction
 import|;
 end_import
 
@@ -149,7 +149,7 @@ block|{
 specifier|private
 specifier|static
 specifier|final
-name|ToIntFunction
+name|ToLongFunction
 argument_list|<
 name|AtomicValue
 argument_list|>

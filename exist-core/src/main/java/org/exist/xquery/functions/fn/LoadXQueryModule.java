@@ -1312,9 +1312,15 @@ name|Map
 operator|.
 name|from
 argument_list|(
-name|Arrays
+name|io
 operator|.
-name|asList
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
+name|List
+operator|.
+name|of
 argument_list|(
 operator|new
 name|Maps
