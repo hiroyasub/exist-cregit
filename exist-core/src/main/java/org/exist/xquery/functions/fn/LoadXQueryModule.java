@@ -1090,7 +1090,9 @@ argument_list|>
 name|functions
 init|=
 name|newLinearMap
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -1173,7 +1175,9 @@ block|{
 name|entry
 operator|=
 name|newLinearMap
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 name|functions
 operator|.
@@ -1212,7 +1216,9 @@ argument_list|>
 name|variables
 init|=
 name|newLinearMap
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 for|for
 control|(
