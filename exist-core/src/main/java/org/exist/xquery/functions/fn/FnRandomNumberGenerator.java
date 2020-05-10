@@ -479,8 +479,6 @@ parameter_list|,
 name|XORShiftRandom
 name|random
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 comment|// NOTE: we must create a copy so that `Random#nextDouble` does not interfere with multiple `next()` calls on the same random number generator
 name|random
@@ -500,7 +498,9 @@ argument_list|>
 name|result
 init|=
 name|newLinearMap
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|result
 operator|.
