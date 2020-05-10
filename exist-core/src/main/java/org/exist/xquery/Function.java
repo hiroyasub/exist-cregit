@@ -1505,18 +1505,9 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|argType
-operator|.
-name|getPrimaryType
-argument_list|()
-operator|==
 name|Type
 operator|.
-name|NUMBER
-operator|||
-name|Type
-operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|argType
 operator|.
@@ -1525,7 +1516,7 @@ argument_list|()
 argument_list|,
 name|Type
 operator|.
-name|DOUBLE
+name|NUMBER
 argument_list|)
 condition|)
 block|{

@@ -431,7 +431,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|returnType
 operator|.
@@ -1983,7 +1983,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|returnType
 operator|.

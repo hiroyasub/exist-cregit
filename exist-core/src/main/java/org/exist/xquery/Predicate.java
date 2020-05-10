@@ -530,7 +530,7 @@ if|else if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|innerType
 argument_list|,
@@ -1238,7 +1238,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|contextSequence
 operator|.
@@ -1324,7 +1324,7 @@ argument_list|()
 operator|&&
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|innerSeq
 operator|.
@@ -1433,7 +1433,7 @@ argument_list|()
 operator|&&
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|innerSeq
 operator|.
@@ -1654,7 +1654,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|inner
 operator|.
@@ -1937,7 +1937,7 @@ argument_list|()
 operator|&&
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|innerSeq
 operator|.

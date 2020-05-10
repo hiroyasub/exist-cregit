@@ -405,6 +405,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"cannot convert function reference to "
 operator|+
 name|Type

@@ -1216,7 +1216,7 @@ operator|||
 operator|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|a
 operator|.
@@ -1253,7 +1253,7 @@ operator|||
 operator|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|b
 operator|.

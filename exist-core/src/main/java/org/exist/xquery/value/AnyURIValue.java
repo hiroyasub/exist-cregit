@@ -664,6 +664,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"Type error: cannot cast xs:anyURI to "
 operator|+
 name|Type

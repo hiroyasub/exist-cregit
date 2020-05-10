@@ -270,7 +270,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|ltype
 argument_list|,
@@ -281,7 +281,7 @@ argument_list|)
 operator|&&
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|rtype
 argument_list|,
@@ -396,7 +396,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|ltype
 argument_list|,
@@ -417,7 +417,7 @@ if|if
 condition|(
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|rtype
 argument_list|,
@@ -990,7 +990,7 @@ condition|(
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|lvalue
 operator|.
@@ -1042,7 +1042,7 @@ condition|(
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|rvalue
 operator|.
@@ -1428,7 +1428,7 @@ condition|(
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|left
 operator|.
@@ -1476,7 +1476,7 @@ condition|(
 operator|!
 name|Type
 operator|.
-name|subTypeOf
+name|subTypeOfUnion
 argument_list|(
 name|right
 operator|.

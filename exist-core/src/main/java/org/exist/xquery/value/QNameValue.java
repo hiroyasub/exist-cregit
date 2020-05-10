@@ -379,6 +379,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"A QName cannot be converted to "
 operator|+
 name|Type
