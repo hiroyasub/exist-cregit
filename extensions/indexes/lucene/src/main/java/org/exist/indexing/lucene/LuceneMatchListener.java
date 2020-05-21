@@ -1972,7 +1972,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|public
+specifier|static
 name|NodePath
 name|getPath
 parameter_list|(
@@ -2019,6 +2020,7 @@ name|path
 return|;
 block|}
 specifier|private
+specifier|static
 name|void
 name|walkAncestor
 parameter_list|(
