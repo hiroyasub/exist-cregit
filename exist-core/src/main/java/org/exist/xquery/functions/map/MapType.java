@@ -73,6 +73,18 @@ name|lacuna
 operator|.
 name|bifurcan
 operator|.
+name|LinearMap
+import|;
+end_import
+
+begin_import
+import|import
+name|io
+operator|.
+name|lacuna
+operator|.
+name|bifurcan
+operator|.
 name|Map
 import|;
 end_import
@@ -238,16 +250,10 @@ name|Collator
 name|collator
 parameter_list|)
 block|{
-comment|// TODO(AR) see second bug in bifurcan - https://github.com/lacuna/bifurcan/issues/28
-comment|//        return new LinearMap<>(KEY_HASH_FN, (k1, k2) -> keysEqual(collator, k1, k2));
 return|return
 operator|new
-name|Map
-argument_list|<
-name|AtomicValue
-argument_list|,
-name|V
-argument_list|>
+name|LinearMap
+argument_list|<>
 argument_list|(
 name|KEY_HASH_FN
 argument_list|,
@@ -266,9 +272,6 @@ argument_list|,
 name|k2
 argument_list|)
 argument_list|)
-operator|.
-name|linear
-argument_list|()
 return|;
 block|}
 specifier|public
