@@ -338,6 +338,8 @@ argument_list|(
 name|name
 argument_list|,
 name|NAMESPACE_URI
+argument_list|,
+name|PREFIX
 argument_list|)
 argument_list|,
 name|description
@@ -383,6 +385,8 @@ argument_list|(
 name|name
 argument_list|,
 name|NAMESPACE_URI
+argument_list|,
+name|PREFIX
 argument_list|)
 argument_list|,
 name|description
