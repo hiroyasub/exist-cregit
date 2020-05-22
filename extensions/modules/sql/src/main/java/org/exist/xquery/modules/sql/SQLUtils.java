@@ -775,6 +775,10 @@ argument_list|,
 name|SQLModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|SQLModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 name|description
