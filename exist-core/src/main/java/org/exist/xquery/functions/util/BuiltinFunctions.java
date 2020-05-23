@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,36 +16,6 @@ operator|.
 name|util
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeSet
-import|;
-end_import
 
 begin_import
 import|import
@@ -95,7 +65,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|Module
 import|;
 end_import
 
@@ -107,7 +77,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Module
+name|*
 import|;
 end_import
 
@@ -157,8 +127,38 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeSet
+import|;
+end_import
+
 begin_comment
-comment|/**  * Returns a sequence containing the QNames of all built-in functions  * currently registered in the query engine.  *   * @author wolf  */
+comment|/**  * Returns a sequence containing the QNames of all built-in functions  * currently registered in the query engine.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -187,8 +187,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
 index|[]
+name|signatures
 init|=
 block|{
 operator|new
@@ -450,9 +450,11 @@ decl_stmt|;
 specifier|public
 name|BuiltinFunctions
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -470,10 +472,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -508,7 +512,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-specifier|final
+comment|// Get 'internal' modules
 name|Module
 name|module
 init|=
@@ -519,6 +523,41 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+comment|// If not found, try to load Java module
+if|if
+condition|(
+name|module
+operator|==
+literal|null
+operator|&&
+name|context
+operator|.
+name|getRepository
+argument_list|()
+operator|.
+name|isPresent
+argument_list|()
+condition|)
+block|{
+name|module
+operator|=
+name|context
+operator|.
+name|getRepository
+argument_list|()
+operator|.
+name|get
+argument_list|()
+operator|.
+name|resolveJavaModule
+argument_list|(
+name|uri
+argument_list|,
+name|context
+argument_list|)
+expr_stmt|;
+block|}
+comment|// There is no module afterall
 if|if
 condition|(
 name|module
@@ -599,6 +638,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// registered-functions
 for|for
 control|(
 specifier|final
@@ -704,9 +744,11 @@ specifier|private
 name|void
 name|addFunctionsFromModule
 parameter_list|(
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -725,8 +767,8 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|FunctionSignature
-name|signatures
 index|[]
+name|signatures
 init|=
 name|module
 operator|.
@@ -736,6 +778,7 @@ decl_stmt|;
 comment|// add to set to remove duplicate QName's
 for|for
 control|(
+specifier|final
 name|FunctionSignature
 name|signature
 range|:
@@ -787,9 +830,11 @@ specifier|private
 name|void
 name|addFunctionRefsFromModule
 parameter_list|(
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -798,8 +843,8 @@ name|XPathException
 block|{
 specifier|final
 name|FunctionSignature
-name|signatures
 index|[]
+name|signatures
 init|=
 name|module
 operator|.
@@ -861,6 +906,7 @@ specifier|private
 name|void
 name|addFunctionRefsFromContext
 parameter_list|(
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|)
@@ -949,9 +995,11 @@ specifier|private
 name|void
 name|addVariablesFromModule
 parameter_list|(
+specifier|final
 name|ValueSequence
 name|resultSeq
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
