@@ -320,7 +320,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 name|String
-name|CONFIG
+name|CONFIG_PATH
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
@@ -546,7 +546,7 @@ name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|XPathQueryService
@@ -790,7 +790,7 @@ name|XMLDBException
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|XMLResource
@@ -1059,7 +1059,7 @@ name|XMLDBException
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|XMLResource
@@ -1151,7 +1151,7 @@ name|XMLDBException
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|XMLResource
@@ -1817,7 +1817,7 @@ name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|String
@@ -1973,7 +1973,7 @@ name|Exception
 block|{
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|CONFIG_PATH
 argument_list|)
 expr_stmt|;
 name|storeXMLFileAndGetQueryService
