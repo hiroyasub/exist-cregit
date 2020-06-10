@@ -1234,9 +1234,11 @@ operator|.
 name|endOffset
 argument_list|()
 expr_stmt|;
+name|t
+operator|++
+expr_stmt|;
 if|if
 condition|(
-operator|++
 name|t
 operator|==
 name|phraseTerms
