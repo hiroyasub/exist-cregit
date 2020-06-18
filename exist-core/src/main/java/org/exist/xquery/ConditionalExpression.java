@@ -324,6 +324,8 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|Sequence
 name|testSeq
@@ -337,8 +339,6 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|testSeq
