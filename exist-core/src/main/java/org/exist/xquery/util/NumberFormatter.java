@@ -360,7 +360,7 @@ decl_stmt|;
 if|if
 condition|(
 name|hour
-operator|>
+operator|>=
 literal|12
 condition|)
 block|{
