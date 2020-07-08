@@ -1398,6 +1398,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+try|try
+block|{
 name|result
 operator|=
 name|expr
@@ -1407,6 +1409,45 @@ argument_list|(
 name|currentContext
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|ex
+parameter_list|)
+block|{
+comment|// enrich exception when information is available
+if|if
+condition|(
+name|getLine
+argument_list|()
+operator|!=
+operator|-
+literal|1
+operator|||
+name|getColumn
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|ex
+operator|.
+name|setLocation
+argument_list|(
+name|getLine
+argument_list|()
+argument_list|,
+name|getColumn
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+name|ex
+throw|;
+block|}
 block|}
 comment|//TOUNDERSTAND : why did I have to write this test :-) ? -pb
 comment|//it looks like an empty sequence could be considered as a sub-type of Type.NODE
