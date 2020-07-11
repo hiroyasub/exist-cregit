@@ -332,6 +332,16 @@ literal|"values.dbx"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|zipFile
+operator|.
+name|getEntry
+argument_list|(
+literal|"blob.dbx"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 class|class
