@@ -358,7 +358,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:matches() function.  *   * Based on the java.util.regex package for regular expression support.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
+comment|/**  * Implements the fn:matches() function.  *<p>  * Based on the java.util.regex package for regular expression support.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1653,7 +1653,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|/* If one argument is a node set we directly 			 * return the matching nodes from the context set. This works 			 * only inside predicates. 			 */
+comment|/* If one argument is a node set we directly              * return the matching nodes from the context set. This works              * only inside predicates.              */
 return|return
 name|Type
 operator|.
@@ -2214,7 +2214,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param input      * @return The resulting sequence 	 * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param input      * @return The resulting sequence      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalWithIndex
@@ -3188,7 +3188,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * @param string      * @param pattern      * @param flags      * @return Whether or not the string matches the given pattern with the given flags           * @throws XPathException      */
+comment|/**      * @param string      * @param pattern      * @param flags      * @return Whether or not the string matches the given pattern with the given flags      * @throws XPathException      */
 specifier|private
 name|boolean
 name|match
