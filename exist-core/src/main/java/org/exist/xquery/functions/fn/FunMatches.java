@@ -221,20 +221,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionReturnSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Item
 import|;
 end_import
@@ -250,20 +236,6 @@ operator|.
 name|value
 operator|.
 name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceType
 import|;
 end_import
 
@@ -349,6 +321,38 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|FunctionDSL
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|FnModule
+operator|.
+name|functionSignatures
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|regex
 operator|.
 name|RegexUtil
@@ -358,7 +362,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:matches() function.  *   * Based on the java.util.regex package for regular expression support.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
+comment|/**  * Implements the fn:matches() function.  *<p>  * Based on the java.util.regex package for regular expression support.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -372,21 +376,70 @@ name|Optimizable
 implements|,
 name|IndexUseReporter
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
-name|String
-name|FUNCTION_DESCRIPTION_1_PARAM
+name|FunctionParameterSequenceType
+name|FS_PARAM_INPUT
 init|=
-literal|"The function returns true if $input matches the regular expression "
-operator|+
-literal|"supplied as $pattern, if present; otherwise, it returns false.\n\n"
+name|optParam
+argument_list|(
+literal|"input"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+literal|"The input string"
+argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FS_PARAM_PATTERN
+init|=
+name|param
+argument_list|(
+literal|"pattern"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+literal|"The pattern"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FS_PARAM_FLAGS
+init|=
+name|param
+argument_list|(
+literal|"flags"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+literal|"The flags"
+argument_list|)
+decl_stmt|;
+specifier|private
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION_2_PARAM
+name|FS_MATCHES_NAME
+init|=
+literal|"matches"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FS_DESCRIPTION
 init|=
 literal|"The function returns true if $input matches the regular expression "
 operator|+
@@ -394,16 +447,12 @@ literal|"supplied as $pattern as influenced by the value of $flags, if present; 
 operator|+
 literal|"otherwise, it returns false.\n\n"
 operator|+
-literal|"The effect of calling this version of the function with the $flags argument set to a zero-length string is the same as using the other two argument version. "
+literal|"The effect of calling this version of the function with the $flags argument set to a"
+operator|+
+literal|"zero-length string is the same as using the other two argument version. "
 operator|+
 literal|"Flags are defined in 7.6.1.1 Flags.\n\n"
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|String
-name|FUNCTION_DESCRIPTION_COMMON
-init|=
+operator|+
 literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\n"
 operator|+
 literal|"Unless the metacharacters ^ and $ are used as anchors, the string is considered "
@@ -427,191 +476,52 @@ operator|+
 literal|"An error is raised [err:FORX0002] if the value of $pattern is invalid "
 operator|+
 literal|"according to the rules described in section 7.6.1 Regular Expression Syntax.\n\n"
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|String
-name|FUNCTION_DESCRIPTION_2_PARAM_2
-init|=
+operator|+
 literal|"An error is raised [err:FORX0001] if the value of $flags is invalid "
 operator|+
 literal|"according to the rules described in section 7.6.1 Regular Expression Syntax."
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|String
-name|FUNCTION_DESCRIPTION_REGEX
-init|=
-literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\n"
-operator|+
-literal|"Note:\n\n"
-operator|+
-literal|"The text:matches-regex() variants of the fn:matches() functions are identical except that they avoid the translation of the specified regular expression from XPath2 to Java syntax. "
-operator|+
-literal|"That is, the regular expression is evaluated as is, and must be valid according to Java regular expression syntax, rather than the more restrictive XPath2 syntax."
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|INPUT_ARG
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"input"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The input string"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|PATTERN_ARG
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"pattern"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The pattern"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|FLAGS_ARG
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"flags"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The flags"
-argument_list|)
 decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
+index|[]
 name|signatures
-index|[]
 init|=
-block|{
-operator|new
-name|FunctionSignature
+name|functionSignatures
 argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"matches"
+name|FS_MATCHES_NAME
 argument_list|,
-name|Function
-operator|.
-name|BUILTIN_FUNCTION_NS
-argument_list|)
+name|FS_DESCRIPTION
 argument_list|,
-name|FUNCTION_DESCRIPTION_1_PARAM
-operator|+
-name|FUNCTION_DESCRIPTION_COMMON
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-name|INPUT_ARG
-block|,
-name|PATTERN_ARG
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
+name|returns
 argument_list|(
 name|Type
 operator|.
 name|BOOLEAN
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"true if the pattern is a match, false otherwise"
 argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
+argument_list|,
+name|arities
 argument_list|(
-operator|new
-name|QName
+name|arity
 argument_list|(
-literal|"matches"
+name|FS_PARAM_INPUT
 argument_list|,
-name|Function
-operator|.
-name|BUILTIN_FUNCTION_NS
+name|FS_PARAM_PATTERN
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION_2_PARAM
-operator|+
-name|FUNCTION_DESCRIPTION_COMMON
-operator|+
-name|FUNCTION_DESCRIPTION_2_PARAM_2
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-name|INPUT_ARG
-block|,
-name|PATTERN_ARG
-block|,
-name|FLAGS_ARG
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
+name|arity
 argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
+name|FS_PARAM_INPUT
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
+name|FS_PARAM_PATTERN
 argument_list|,
-literal|"true if the pattern is a match, false otherwise"
+name|FS_PARAM_FLAGS
 argument_list|)
 argument_list|)
-block|}
+argument_list|)
 decl_stmt|;
 specifier|protected
 name|Matcher
@@ -658,6 +568,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|GeneralComparison
 operator|.
 name|IndexFlags
@@ -672,9 +583,11 @@ decl_stmt|;
 specifier|public
 name|FunMatches
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -693,6 +606,7 @@ specifier|public
 name|void
 name|setArguments
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -1101,10 +1015,13 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|canOptimize
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -1142,6 +1059,8 @@ name|STRING
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|optimizeOnSelf
@@ -1151,6 +1070,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|optimizeOnChild
@@ -1160,6 +1081,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getOptimizeAxis
@@ -1175,9 +1098,11 @@ specifier|public
 name|NodeSet
 name|preSelect
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|boolean
 name|useContext
 parameter_list|)
@@ -1299,32 +1224,6 @@ specifier|final
 name|String
 name|pattern
 decl_stmt|;
-if|if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"matches-regex"
-argument_list|)
-condition|)
-block|{
-name|pattern
-operator|=
-name|getArgument
-argument_list|(
-literal|1
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
-operator|.
-name|getStringValue
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
 specifier|final
 name|boolean
 name|literal
@@ -1398,7 +1297,6 @@ argument_list|,
 name|caseBlind
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 try|try
 block|{
@@ -1631,7 +1529,8 @@ name|CONTEXT_ITEM
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#returnsType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
@@ -1653,7 +1552,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|/* If one argument is a node set we directly 			 * return the matching nodes from the context set. This works 			 * only inside predicates. 			 */
+comment|/* If one argument is a node set we directly              * return the matching nodes from the context set. This works              * only inside predicates.              */
 return|return
 name|Type
 operator|.
@@ -1667,6 +1566,8 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasUsedIndex
@@ -1676,10 +1577,13 @@ return|return
 name|hasUsedIndex
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -1754,6 +1658,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1907,6 +1812,7 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
@@ -2214,17 +2120,20 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param input      * @return The resulting sequence 	 * @throws XPathException      */
+comment|/**      * @param contextSequence the context sequence      * @param contextItem the context item      * @param input the value of the $input arg      * @return The resulting sequence      * @throws XPathException if an error occurs      */
 specifier|private
 name|Sequence
 name|evalWithIndex
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|,
+specifier|final
 name|Sequence
 name|input
 parameter_list|)
@@ -2728,7 +2637,7 @@ name|Profiler
 operator|.
 name|OPTIMIZATIONS
 argument_list|,
-literal|"Using vlaue index '"
+literal|"Using value index '"
 operator|+
 name|index
 operator|.
@@ -2902,24 +2811,25 @@ specifier|private
 name|Sequence
 name|evalFallback
 parameter_list|(
+specifier|final
 name|NodeSet
 name|nodes
 parameter_list|,
+specifier|final
 name|String
 name|pattern
 parameter_list|,
+specifier|final
 name|int
 name|flags
 parameter_list|,
+specifier|final
 name|int
 name|indexType
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Sequence
-name|result
-decl_stmt|;
 if|if
 condition|(
 name|LOG
@@ -2945,12 +2855,14 @@ literal|". Need a string index."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|Sequence
 name|result
-operator|=
+init|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -2988,19 +2900,22 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return The resulting sequence      * @throws XPathException      */
+comment|/**      * @param contextSequence the context sequence      * @param contextItem the context item      * @param input the value of the $input arg      * @return The resulting sequence      * @throws XPathException if an error occurs      */
 specifier|private
 name|Sequence
 name|evalGeneric
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|,
+specifier|final
 name|Sequence
-name|stringArg
+name|input
 parameter_list|)
 throws|throws
 name|XPathException
@@ -3009,7 +2924,7 @@ specifier|final
 name|String
 name|string
 init|=
-name|stringArg
+name|input
 operator|.
 name|getStringValue
 argument_list|()
@@ -3188,17 +3103,20 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * @param string      * @param pattern      * @param flags      * @return Whether or not the string matches the given pattern with the given flags           * @throws XPathException      */
+comment|/**      * @param string the value      * @param pattern the pattern      * @param flags the flags      * @return Whether or not the string matches the given pattern with the given flags      * @throws XPathException if an error occurs      */
 specifier|private
 name|boolean
 name|match
 parameter_list|(
+specifier|final
 name|String
 name|string
 parameter_list|,
+specifier|final
 name|String
 name|pattern
 parameter_list|,
+specifier|final
 name|int
 name|flags
 parameter_list|)
